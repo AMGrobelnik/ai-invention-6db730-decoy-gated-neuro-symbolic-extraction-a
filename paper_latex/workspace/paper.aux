@@ -1,0 +1,167 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{Mohri2024}
+\citation{Jin2022}
+\citation{Li2025}
+\citation{RubinToles2025}
+\citation{Bashari2023}
+\citation{Marandon2023}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{Barber2015,Cands2016}
+\citation{Imrie2020}
+\citation{Wen2024}
+\citation{Barber2015}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces End-to-end decoy-gated text-to-logic pipeline. A short document is over-generated into typed first-order facts and bridges; each candidate is paired with a plausibility-matched counterfactual decoy and an independently-built entrapment item; an isolated, provenance-blinded self-consistency elicitation scores all of them; the knockoff+ gate admits candidates with $W_i \ge T$ at the most permissive target whose estimated FDR is $\le \alpha $; admitted facts populate a backward-chaining knowledge base that emits a trace-graph whose every leaf carries provenance, decoy $(W_i,T,\alpha )$, and entrapment $(\setbox \z@ \hbox {\mathsurround \z@ $\textstyle \mathrm  {FDP}$}\mathaccent "0362{\mathrm  {FDP}},r)$ certificates.}}{3}{figure.1}\protected@file@percent }
+\newlabel{fig:pipeline}{{1}{3}{End-to-end decoy-gated text-to-logic pipeline. A short document is over-generated into typed first-order facts and bridges; each candidate is paired with a plausibility-matched counterfactual decoy and an independently-built entrapment item; an isolated, provenance-blinded self-consistency elicitation scores all of them; the knockoff+ gate admits candidates with $W_i \ge T$ at the most permissive target whose estimated FDR is $\le \alpha $; admitted facts populate a backward-chaining knowledge base that emits a trace-graph whose every leaf carries provenance, decoy $(W_i,T,\alpha )$, and entrapment $(\widehat {\mathrm {FDP}},r)$ certificates}{figure.1}{}}
+\citation{Manakul2023}
+\citation{Wang2025}
+\citation{Sawczyn2025}
+\citation{Xiong2023}
+\citation{Tian2023}
+\citation{Mohri2024}
+\citation{RubinToles2025}
+\citation{Jin2022}
+\citation{Li2025}
+\citation{Lu2025}
+\citation{Bashari2023}
+\citation{Marandon2023}
+\citation{Jin2022}
+\citation{Li2025}
+\citation{Bashari2023}
+\citation{Marandon2023}
+\citation{Mohri2024}
+\@writefile{toc}{\contentsline {paragraph}{Summary of contributions.}{4}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{4}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Label-free hallucination scoring.}{4}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Labeled uncertainty quantification for LLMs.}{4}{section*.3}\protected@file@percent }
+\citation{Barber2015}
+\citation{Cands2016}
+\citation{Barber2015}
+\citation{Rajchert2022}
+\citation{Ebadi2023}
+\citation{Wen2024}
+\citation{Imrie2020}
+\citation{Olausson2023}
+\citation{Pan2023}
+\citation{Yang2023}
+\citation{Wei2022}
+\citation{Lewis2020}
+\citation{Clark2020}
+\citation{Tafjord2020}
+\citation{Sinha2019}
+\citation{Tan2022}
+\citation{Yao2019}
+\citation{Miller1995}
+\citation{Niles2001}
+\citation{Raedt2007}
+\citation{Manhaeve2018}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Decoy-gating against its nearest FDR/conformal neighbors. All prior methods require labeled calibration and certify a model output under assumed exchangeability; ours is label-free, targets the intermediate text-to-logic admission, and empirically tests an engineered decoy sign-flip property---which we show is elicitation-dependent and can break even when its marginal proxy holds.}}{5}{table.1}\protected@file@percent }
+\newlabel{tab:novelty}{{1}{5}{Decoy-gating against its nearest FDR/conformal neighbors. All prior methods require labeled calibration and certify a model output under assumed exchangeability; ours is label-free, targets the intermediate text-to-logic admission, and empirically tests an engineered decoy sign-flip property---which we show is elicitation-dependent and can break even when its marginal proxy holds}{table.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{FDR control by competition.}{5}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Text-to-logic neuro-symbolic reasoning.}{5}{section*.5}\protected@file@percent }
+\citation{Imrie2020}
+\citation{Cameron2008}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Preliminaries}{6}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The canonical competition statistic.}{6}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Two notions of exchangeability, and why the distinction is load-bearing.}{6}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The targets and the two roles of resampling.}{6}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Method}{6}{section.4}\protected@file@percent }
+\citation{Olausson2023,Pan2023}
+\citation{Miller1995}
+\citation{Niles2001}
+\citation{Imrie2020}
+\citation{Wang2025}
+\citation{Manakul2023,Sawczyn2025}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Extraction with deliberate over-generation}{7}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Plausibility-matched counterfactual decoys}{7}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Isolated, provenance-blinded scoring and elicitation selection}{7}{subsection.4.3}\protected@file@percent }
+\citation{Barber2015}
+\citation{Wen2024}
+\citation{Wen2024}
+\citation{Raedt2007}
+\citation{Sinha2019}
+\citation{Tan2022}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}The knockoff+ FDR gate and its self-report}{8}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Independent entrapment corroboration}{8}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Symbolic reasoning and auditable trace-graphs}{8}{subsection.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experimental Setup}{8}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Three anchors with a clean division of labor}{8}{subsection.5.1}\protected@file@percent }
+\citation{Wei2022}
+\citation{Lewis2020}
+\citation{Mohri2024}
+\citation{Reimers2019}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Pipeline, baselines, and metrics}{9}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Pre-registered claims and the primary disconfirmation}{9}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Results}{9}{section.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Pre-registered claim-chain verdicts under the diagnostic-validated self-consistency elicitation. The calibration certificate (S2) is honestly disconfirmed; the marginal decoy match (S1) holds, which is exactly what makes S2 instructive; the operational pipeline (S4b) delivers a measured corruption reduction and auditable traces.}}{10}{table.2}\protected@file@percent }
+\newlabel{tab:claims}{{2}{10}{Pre-registered claim-chain verdicts under the diagnostic-validated self-consistency elicitation. The calibration certificate (S2) is honestly disconfirmed; the marginal decoy match (S1) holds, which is exactly what makes S2 instructive; the operational pipeline (S4b) delivers a measured corruption reduction and auditable traces}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}The corrected CLUTRR calibration diagonal under self-consistency (S2)}{10}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Why the gate fails: marginal vs.\ paired exchangeability (S1)}{10}{subsection.6.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Realized FDR versus target $\alpha $ on the populable CLUTRR multi-hop family under the diagnostic-validated K=5 self-consistency elicitation. The knockoff+ gate certifies admissions only at $\alpha ^{*}=0.5$ (the $1/k$ floor blocks stricter targets); there realized FDR is $1.0$ (12/12 admitted are false), with document-block-bootstrap CI $[0.66,1.0]$ lying entirely above $\alpha ^{*}$, and the gate's own self-report $\setbox \z@ \hbox {\mathsurround \z@ $\textstyle \mathrm  {FDR}$}\mathaccent "0362{\mathrm  {FDR}}=0.5$ undershoots it. The pre-registered primary disconfirmation fires. The plain threshold and swap-decoy baselines are worse still.}}{11}{figure.2}\protected@file@percent }
+\newlabel{fig:diagonal}{{2}{11}{Realized FDR versus target $\alpha $ on the populable CLUTRR multi-hop family under the diagnostic-validated K=5 self-consistency elicitation. The knockoff+ gate certifies admissions only at $\alpha ^{*}=0.5$ (the $1/k$ floor blocks stricter targets); there realized FDR is $1.0$ (12/12 admitted are false), with document-block-bootstrap CI $[0.66,1.0]$ lying entirely above $\alpha ^{*}$, and the gate's own self-report $\widehat {\mathrm {FDR}}=0.5$ undershoots it. The pre-registered primary disconfirmation fires. The plain threshold and swap-decoy baselines are worse still}{figure.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces The disconfirmation localized. Left: pooled score CDFs under self-consistency---the counterfactual decoy distribution is statistically indistinguishable from the model's own spontaneous errors (full KS $p=0.058$; tail KS $p=0.31$) and sharply distinct from true positives (KS $p=5\times 10^{-9}$), so the \emph  {marginal} exchangeability the win-rate diagnostic checks holds. Right: at the admission cutoff the \emph  {paired} competition fails---all 12 admitted multi-hop reals out-score their own matched decoy (paired win-rate $0\%$), the property knockoff+ actually requires. Marginal exchangeability does not imply paired exchangeability.}}{11}{figure.3}\protected@file@percent }
+\newlabel{fig:exchange}{{3}{11}{The disconfirmation localized. Left: pooled score CDFs under self-consistency---the counterfactual decoy distribution is statistically indistinguishable from the model's own spontaneous errors (full KS $p=0.058$; tail KS $p=0.31$) and sharply distinct from true positives (KS $p=5\times 10^{-9}$), so the \emph {marginal} exchangeability the win-rate diagnostic checks holds. Right: at the admission cutoff the \emph {paired} competition fails---all 12 admitted multi-hop reals out-score their own matched decoy (paired win-rate $0\%$), the property knockoff+ actually requires. Marginal exchangeability does not imply paired exchangeability}{figure.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}The diagnostic blind spot and de-circularization (S1b, S2b)}{12}{subsection.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}The application headline: hallucination reduction and auditable traces (S4b)}{12}{subsection.6.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Executed application headline on the 24-document legal/news/regulatory anchor at the certified $\alpha =0.5$. Left: pooled atomic hallucinated-fact rate, raw LLM vs.\ gate---a directional $\sim $25\% reduction (CIs overlap at $n=24$; 0/40 grid cells reach CI separation). Right: corrupted multi-hop conclusion rate drops sharply from raw-KB $0.48$ (23 conclusions) to gated-KB $0.18$ (11 conclusions). The gate's self-report is conservative on this anchor.}}{13}{figure.4}\protected@file@percent }
+\newlabel{fig:application}{{4}{13}{Executed application headline on the 24-document legal/news/regulatory anchor at the certified $\alpha =0.5$. Left: pooled atomic hallucinated-fact rate, raw LLM vs.\ gate---a directional $\sim $25\% reduction (CIs overlap at $n=24$; 0/40 grid cells reach CI separation). Right: corrupted multi-hop conclusion rate drops sharply from raw-KB $0.48$ (23 conclusions) to gated-KB $0.18$ (11 conclusions). The gate's self-report is conservative on this anchor}{figure.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Left: matched-recall precision on 152 Re-DocRED documents (recall ceiling $0.075$). METHOD (knockoff+ $W_i$) and PLAIN (raw $Z_i$) are indistinguishable; CoT and RAG are recall-limited; the wedge is disconfirmed (no point with $\Delta $ CI $>0$). Right: the label-free regime-diagnostic places each anchor/elicitation on (decoy tail win-rate $\times $ base-scorer calibration) and predicts the wedge sign gold-free. Re-DocRED is predicted REDUNDANT (correct). The CLUTRR self-consistency point (win-rate $0.482$) would predict POSITIVE, yet the powered paired diagonal disconfirms it---the marginal diagnostic's blind spot.}}{13}{figure.5}\protected@file@percent }
+\newlabel{fig:redocred}{{5}{13}{Left: matched-recall precision on 152 Re-DocRED documents (recall ceiling $0.075$). METHOD (knockoff+ $W_i$) and PLAIN (raw $Z_i$) are indistinguishable; CoT and RAG are recall-limited; the wedge is disconfirmed (no point with $\Delta $ CI $>0$). Right: the label-free regime-diagnostic places each anchor/elicitation on (decoy tail win-rate $\times $ base-scorer calibration) and predicts the wedge sign gold-free. Re-DocRED is predicted REDUNDANT (correct). The CLUTRR self-consistency point (win-rate $0.482$) would predict POSITIVE, yet the powered paired diagonal disconfirms it---the marginal diagnostic's blind spot}{figure.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Re-DocRED: disconfirmed wedge, reframed as a gold-free regime-diagnostic (S4)}{14}{subsection.6.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Cost and reproducibility}{15}{subsection.6.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion}{15}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{What we now know, and where the certificate breaks.}{15}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The honest value proposition.}{15}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{15}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Connection to the target application.}{15}{section*.12}\protected@file@percent }
+\bibstyle{plainnat}
+\bibdata{references}
+\bibcite{Barber2015}{{1}{2015}{{Barber and Cand\`es}}{{}}}
+\bibcite{Bashari2023}{{2}{2023}{{Bashari et~al.}}{{Bashari, Epstein, Romano, and Sesia}}}
+\bibcite{Cameron2008}{{3}{2008}{{Cameron et~al.}}{{Cameron, Gelbach, Miller, and C.-Davis}}}
+\bibcite{Cands2016}{{4}{2016}{{Candès et~al.}}{{Candès, Fan, Janson, and Lv}}}
+\bibcite{Clark2020}{{5}{2020}{{Clark et~al.}}{{Clark, Tafjord, and Richardson}}}
+\bibcite{Ebadi2023}{{6}{2023}{{Ebadi et~al.}}{{Ebadi, Luo, Freestone, Noble, and Keich}}}
+\bibcite{Imrie2020}{{7}{2020}{{Imrie et~al.}}{{Imrie, Bradley, and Deane}}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{16}{section.8}\protected@file@percent }
+\bibcite{Jin2022}{{8}{2022}{{Jin and Candès}}{{}}}
+\bibcite{Lewis2020}{{9}{2020}{{Lewis et~al.}}{{Lewis, Perez, Piktus, Petroni, Karpukhin, Goyal, Kuttler, Lewis, tau Yih, Rocktäschel, Riedel, and Kiela}}}
+\bibcite{Li2025}{{10}{2025}{{Li et~al.}}{{Li, Magesh, and Veeravalli}}}
+\bibcite{Lu2025}{{11}{2025}{{Lu et~al.}}{{Lu, Huo, Ren, Wang, and Zou}}}
+\bibcite{Manakul2023}{{12}{2023}{{Manakul et~al.}}{{Manakul, Liusie, and Gales}}}
+\bibcite{Manhaeve2018}{{13}{2018}{{Manhaeve et~al.}}{{Manhaeve, Dumancic, Kimmig, Demeester, and Raedt}}}
+\bibcite{Marandon2023}{{14}{2023}{{Marandon}}{{}}}
+\bibcite{Miller1995}{{15}{1995}{{Miller}}{{}}}
+\bibcite{Mohri2024}{{16}{2024}{{Mohri and Hashimoto}}{{}}}
+\bibcite{Niles2001}{{17}{2001}{{Niles and Pease}}{{}}}
+\bibcite{Olausson2023}{{18}{2023}{{Olausson et~al.}}{{Olausson, Gu, Lipkin, Zhang, Solar-Lezama, Tenenbaum, and Levy}}}
+\bibcite{Pan2023}{{19}{2023}{{Pan et~al.}}{{Pan, Albalak, Wang, and Wang}}}
+\bibcite{Raedt2007}{{20}{2007}{{Raedt et~al.}}{{Raedt, Kimmig, and Toivonen}}}
+\bibcite{Rajchert2022}{{21}{2022}{{Rajchert and Keich}}{{}}}
+\bibcite{Reimers2019}{{22}{2019}{{Reimers and Gurevych}}{{}}}
+\bibcite{RubinToles2025}{{23}{2025}{{Rubin-Toles et~al.}}{{Rubin-Toles, Gambhir, Ramji, Roth, and Goel}}}
+\bibcite{Sawczyn2025}{{24}{2025}{{Sawczyn et~al.}}{{Sawczyn, Binkowski, Janiak, Gabrys, and Kajdanowicz}}}
+\bibcite{Sinha2019}{{25}{2019}{{Sinha et~al.}}{{Sinha, Sodhani, Dong, Pineau, and Hamilton}}}
+\bibcite{Tafjord2020}{{26}{2020}{{Tafjord et~al.}}{{Tafjord, Dalvi, and Clark}}}
+\bibcite{Tan2022}{{27}{2022}{{Tan et~al.}}{{Tan, Xu, Bing, Ng, and Aljunied}}}
+\bibcite{Tian2023}{{28}{2023}{{Tian et~al.}}{{Tian, Mitchell, Zhou, Sharma, Rafailov, Yao, Finn, and Manning}}}
+\bibcite{Wang2025}{{29}{2025}{{Wang and Stengel-Eskin}}{{}}}
+\bibcite{Wei2022}{{30}{2022}{{Wei et~al.}}{{Wei, Wang, Schuurmans, Bosma, Chi, Xia, Le, and Zhou}}}
+\bibcite{Wen2024}{{31}{2024}{{Wen et~al.}}{{Wen, Freestone, Riffle, MacCoss, Noble, and Keich}}}
+\bibcite{Xiong2023}{{32}{2023}{{Xiong et~al.}}{{Xiong, Hu, Lu, Li, Fu, He, and Hooi}}}
+\bibcite{Yang2023}{{33}{2023}{{Yang et~al.}}{{Yang, Ishay, and Lee}}}
+\bibcite{Yao2019}{{34}{2019}{{Yao et~al.}}{{Yao, Ye, Li, Han, Lin, Liu, Liu, Huang, Zhou, and Sun}}}
+\gdef \@abspage@last{19}

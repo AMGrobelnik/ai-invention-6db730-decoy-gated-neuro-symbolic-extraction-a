@@ -1,0 +1,16 @@
+{
+  "title": "Decoy-Gated Neuro-Symbolic Extraction: Label-Free FDR Gate Paper",
+  "summary": "Assembled a publication-ready LaTeX paper titled 'Decoy-Gated Neuro-Symbolic Extraction: A Label-Free FDR Gate at the Text-to-Logic Boundary and the Exchangeability Gap That Bounds It' and compiled it to a 19-page PDF. The document (11pt letterpaper article, 1in margins, natbib numeric citations, hyperref) contains all standard sections: Abstract, Introduction (with summary-of-contributions itemize), Related Work, Preliminaries, Method (6 subsections), Experimental Setup (3 subsections), Results (6 subsections), Discussion, and Conclusion. All 5 pre-generated figures from <available_figures> are included via \\includegraphics (fig1 pipeline architecture, fig2 corrected CLUTRR diagonal, fig3 marginal-vs-paired exchangeability, fig4 application-anchor hallucination reduction, fig5 Re-DocRED wedge + regime-diagnostic), each at its [FIGURE:figN] marker position with the exact captions from the source and a \\label. Two tables (tab:novelty comparison and tab:claims pre-registered verdicts) render via booktabs. The references.bib was built with the aii-semscholar-bib tool: 33 of 34 references fetched on the first batch call; the failed Barber & Candes knockoffs paper [4] was fetched separately by arXiv ID; one incorrect Semantic Scholar arXiv match (2410.01588 resolved to a wrong 'DynFrs' paper instead of Rubin-Toles coherent factuality [17]) was detected and corrected by re-fetching the right paper by title. An HTML-escaped '&amp;' in the Rajchert2022 entry that caused a 'Misplaced alignment tab' LaTeX error was fixed to '\\&'. All inline [N] citations in the paper text and tables were converted to \\cite{key} commands so numbering is internally consistent; \\footnote{Code: \\url{...}} artifact links were preserved verbatim and [ARTIFACT:...] markers removed. Compilation ran pdflatex -> bibtex (via bibtex.original, since the bibtex wrapper was absent) -> pdflatex x2, finishing with exit 0, no errors, no undefined references or citations. Every one of the 19 PDF pages was rendered to PNG at 150 DPI and visually inspected: layout is clean, no overlapping figures, no cut-off text, all figures and tables render correctly, and all 34 bibliography entries appear. Verification confirms grep -c includegraphics = 5, matching the 5 available figures.",
+  "out_expected_files": {
+    "paper_tex_path": "paper.tex",
+    "paper_pdf_path": "paper.pdf",
+    "references_bib_path": "references.bib",
+    "figure_paths": [
+      "figures/fig1_v0.jpg",
+      "figures/fig2_v0.jpg",
+      "figures/fig3_v0.jpg",
+      "figures/fig4_v0.jpg",
+      "figures/fig5_v0.jpg"
+    ]
+  }
+}

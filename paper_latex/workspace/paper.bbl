@@ -1,0 +1,265 @@
+\begin{thebibliography}{34}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Barber and Cand\`es(2015)]{Barber2015}
+Rina~Foygel Barber and Emmanuel~J. Cand\`es.
+\newblock Controlling the false discovery rate via knockoffs.
+\newblock \emph{Annals of Statistics}, 43\penalty0 (5):\penalty0 2055--2085,
+  2015.
+\newblock \doi{10.1214/15-AOS1337}.
+
+\bibitem[Bashari et~al.(2023)Bashari, Epstein, Romano, and Sesia]{Bashari2023}
+Meshi Bashari, Amir Epstein, Yaniv Romano, and Matteo Sesia.
+\newblock Derandomized novelty detection with fdr control via conformal
+  e-values.
+\newblock In \emph{Neural Information Processing Systems}, volume
+  abs/2302.07294, 2023.
+\newblock \doi{10.48550/arXiv.2302.07294}.
+
+\bibitem[Cameron et~al.(2008)Cameron, Gelbach, Miller, and
+  C.-Davis]{Cameron2008}
+Colin Cameron, Jonah~B. Gelbach, Douglas~L. Miller, and U.~C.-Davis.
+\newblock Bootstrap-based improvements for inference with clustered errors.
+\newblock In \emph{Review of Economics and Statistics}, volume~90, pages
+  414--427, 2008.
+\newblock \doi{10.1162/rest.90.3.414}.
+
+\bibitem[Candès et~al.(2016)Candès, Fan, Janson, and Lv]{Cands2016}
+E.~Candès, Yingying Fan, Lucas Janson, and Jinchi Lv.
+\newblock Panning for gold: ‘model‐x’ knockoffs for high dimensional
+  controlled variable selection.
+\newblock \emph{Journal of the Royal Statistical Society: Series B (Statistical
+  Methodology)}, 80, 2016.
+\newblock \doi{10.1111/rssb.12265}.
+
+\bibitem[Clark et~al.(2020)Clark, Tafjord, and Richardson]{Clark2020}
+Peter Clark, Oyvind Tafjord, and Kyle Richardson.
+\newblock Transformers as soft reasoners over language.
+\newblock In \emph{International Joint Conference on Artificial Intelligence},
+  pages 3882--3890, 2020.
+\newblock \doi{10.24963/ijcai.2020/537}.
+
+\bibitem[Ebadi et~al.(2023)Ebadi, Luo, Freestone, Noble, and Keich]{Ebadi2023}
+Arya Ebadi, D.~Luo, Jack Freestone, William~Stafford Noble, and U.~Keich.
+\newblock Bounding the fdp in competition-based control of the fdr.
+\newblock 2023.
+
+\bibitem[Imrie et~al.(2020)Imrie, Bradley, and Deane]{Imrie2020}
+F.~Imrie, A.~Bradley, and C.~Deane.
+\newblock Generating property-matched decoy molecules using deep learning.
+\newblock In \emph{bioRxiv}, volume~37, pages 2134 -- 2141, 2020.
+\newblock \doi{10.1093/bioinformatics/btab080}.
+
+\bibitem[Jin and Candès(2022)]{Jin2022}
+Ying Jin and E.~Candès.
+\newblock Selection by prediction with conformal p-values.
+\newblock In \emph{Journal of machine learning research}, volume~24, pages
+  244:1--244:41, 2022.
+
+\bibitem[Lewis et~al.(2020)Lewis, Perez, Piktus, Petroni, Karpukhin, Goyal,
+  Kuttler, Lewis, tau Yih, Rocktäschel, Riedel, and Kiela]{Lewis2020}
+Patrick Lewis, Ethan Perez, Aleksandara Piktus, F.~Petroni, Vladimir Karpukhin,
+  Naman Goyal, Heinrich Kuttler, M.~Lewis, Wen tau Yih, Tim Rocktäschel,
+  Sebastian Riedel, and Douwe Kiela.
+\newblock Retrieval-augmented generation for knowledge-intensive nlp tasks.
+\newblock In \emph{Neural Information Processing Systems}, volume
+  abs/2005.11401, 2020.
+
+\bibitem[Li et~al.(2025)Li, Magesh, and Veeravalli]{Li2025}
+Jiawei Li, Akshayaa Magesh, and V.~Veeravalli.
+\newblock Principled detection of hallucinations in large language models via
+  multiple testing.
+\newblock \emph{ArXiv}, abs/2508.18473, 2025.
+\newblock \doi{10.48550/arXiv.2508.18473}.
+
+\bibitem[Lu et~al.(2025)Lu, Huo, Ren, Wang, and Zou]{Lu2025}
+Lin Lu, Yuyang Huo, Haojie Ren, Zhaojun Wang, and Changliang Zou.
+\newblock Feedback-enhanced online multiple testing with applications to
+  conformal selection.
+\newblock 2025.
+
+\bibitem[Manakul et~al.(2023)Manakul, Liusie, and Gales]{Manakul2023}
+Potsawee Manakul, Adian Liusie, and M.~Gales.
+\newblock Selfcheckgpt: Zero-resource black-box hallucination detection for
+  generative large language models.
+\newblock In \emph{Conference on Empirical Methods in Natural Language
+  Processing}, volume abs/2303.08896, 2023.
+\newblock \doi{10.48550/arXiv.2303.08896}.
+
+\bibitem[Manhaeve et~al.(2018)Manhaeve, Dumancic, Kimmig, Demeester, and
+  Raedt]{Manhaeve2018}
+Robin Manhaeve, Sebastijan Dumancic, A.~Kimmig, T.~Demeester, and L.~D. Raedt.
+\newblock Deepproblog: Neural probabilistic logic programming.
+\newblock In \emph{BNAIC/BENELEARN}, volume abs/1907.08194, 2018.
+
+\bibitem[Marandon(2023)]{Marandon2023}
+Ariane Marandon.
+\newblock Conformal link prediction for false discovery rate control.
+\newblock In \emph{Test (Madrid)}, volume~33, pages 1062 -- 1083, 2023.
+\newblock \doi{10.1007/s11749-024-00934-w}.
+
+\bibitem[Miller(1995)]{Miller1995}
+G.~Miller.
+\newblock Wordnet: A lexical database for english.
+\newblock In \emph{Human Language Technology - The Baltic Perspectiv},
+  volume~38, pages 39--41, 1995.
+\newblock \doi{10.1145/219717.219748}.
+
+\bibitem[Mohri and Hashimoto(2024)]{Mohri2024}
+Christopher Mohri and Tatsunori Hashimoto.
+\newblock Language models with conformal factuality guarantees.
+\newblock In \emph{International Conference on Machine Learning}, volume
+  abs/2402.10978, 2024.
+\newblock \doi{10.48550/arXiv.2402.10978}.
+
+\bibitem[Niles and Pease(2001)]{Niles2001}
+Ian Niles and A.~Pease.
+\newblock Towards a standard upper ontology.
+\newblock In \emph{Formal Ontology in Information Systems}, pages 2--9, 2001.
+\newblock \doi{10.1145/505168.505170}.
+
+\bibitem[Olausson et~al.(2023)Olausson, Gu, Lipkin, Zhang, Solar-Lezama,
+  Tenenbaum, and Levy]{Olausson2023}
+Theo~X. Olausson, Alex Gu, Benjamin Lipkin, Cedegao~E. Zhang, Armando
+  Solar-Lezama, Josh Tenenbaum, and Roger Levy.
+\newblock Linc: A neurosymbolic approach for logical reasoning by combining
+  language models with first-order logic provers.
+\newblock In \emph{Conference on Empirical Methods in Natural Language
+  Processing}, pages 5153--5176, 2023.
+\newblock \doi{10.18653/v1/2023.emnlp-main.313}.
+
+\bibitem[Pan et~al.(2023)Pan, Albalak, Wang, and Wang]{Pan2023}
+Liangming Pan, Alon Albalak, Xinyi Wang, and William~Yang Wang.
+\newblock Logic-lm: Empowering large language models with symbolic solvers for
+  faithful logical reasoning.
+\newblock In \emph{Conference on Empirical Methods in Natural Language
+  Processing}, volume abs/2305.12295, 2023.
+\newblock \doi{10.48550/arXiv.2305.12295}.
+
+\bibitem[Raedt et~al.(2007)Raedt, Kimmig, and Toivonen]{Raedt2007}
+L.~D. Raedt, A.~Kimmig, and Hannu~(TT) Toivonen.
+\newblock Problog: A probabilistic prolog and its application in link
+  discovery.
+\newblock In \emph{International Joint Conference on Artificial Intelligence},
+  pages 2468--2473, 2007.
+
+\bibitem[Rajchert and Keich(2022)]{Rajchert2022}
+Andrew Rajchert and U.~Keich.
+\newblock Controlling the false discovery rate via competition: Is the +1
+  needed?
+\newblock In \emph{Statistics \& Probability Letters}, 2022.
+\newblock \doi{10.1016/j.spl.2023.109819}.
+
+\bibitem[Reimers and Gurevych(2019)]{Reimers2019}
+Nils Reimers and Iryna Gurevych.
+\newblock Sentence-bert: Sentence embeddings using siamese bert-networks.
+\newblock In \emph{Conference on Empirical Methods in Natural Language
+  Processing}, volume abs/1908.10084, 2019.
+\newblock \doi{10.18653/v1/D19-1410}.
+
+\bibitem[Rubin-Toles et~al.(2025)Rubin-Toles, Gambhir, Ramji, Roth, and
+  Goel]{RubinToles2025}
+Maxon Rubin-Toles, Maya Gambhir, Keshav Ramji, Aaron Roth, and Surbhi Goel.
+\newblock Conformal language model reasoning with coherent factuality.
+\newblock In \emph{International Conference on Learning Representations},
+  volume abs/2505.17126, 2025.
+\newblock \doi{10.48550/arXiv.2505.17126}.
+
+\bibitem[Sawczyn et~al.(2025)Sawczyn, Binkowski, Janiak, Gabrys, and
+  Kajdanowicz]{Sawczyn2025}
+Albert Sawczyn, Jakub Binkowski, Denis Janiak, Bogdan Gabrys, and Tomasz
+  Kajdanowicz.
+\newblock Factselfcheck: Fact-level black-box hallucination detection for llms.
+\newblock In \emph{Conference of the European Chapter of the Association for
+  Computational Linguistics}, volume abs/2503.17229, 2025.
+\newblock \doi{10.48550/arXiv.2503.17229}.
+
+\bibitem[Sinha et~al.(2019)Sinha, Sodhani, Dong, Pineau, and
+  Hamilton]{Sinha2019}
+Koustuv Sinha, Shagun Sodhani, Jin Dong, Joelle Pineau, and William~L.
+  Hamilton.
+\newblock Clutrr: A diagnostic benchmark for inductive reasoning from text.
+\newblock In \emph{Conference on Empirical Methods in Natural Language
+  Processing}, pages 4505--4514, 2019.
+\newblock \doi{10.18653/v1/D19-1458}.
+
+\bibitem[Tafjord et~al.(2020)Tafjord, Dalvi, and Clark]{Tafjord2020}
+Oyvind Tafjord, Bhavana Dalvi, and Peter Clark.
+\newblock Proofwriter: Generating implications, proofs, and abductive
+  statements over natural language.
+\newblock In \emph{Findings}, pages 3621--3634, 2020.
+\newblock \doi{10.18653/v1/2021.findings-acl.317}.
+
+\bibitem[Tan et~al.(2022)Tan, Xu, Bing, Ng, and Aljunied]{Tan2022}
+Qingyu Tan, Lu~Xu, Lidong Bing, H.~Ng, and Sharifah~Mahani Aljunied.
+\newblock Revisiting docred - addressing the false negative problem in relation
+  extraction.
+\newblock In \emph{Conference on Empirical Methods in Natural Language
+  Processing}, pages 8472--8487, 2022.
+\newblock \doi{10.18653/v1/2022.emnlp-main.580}.
+
+\bibitem[Tian et~al.(2023)Tian, Mitchell, Zhou, Sharma, Rafailov, Yao, Finn,
+  and Manning]{Tian2023}
+Katherine Tian, E.~Mitchell, Allan Zhou, Archit Sharma, Rafael Rafailov, Huaxiu
+  Yao, Chelsea Finn, and Christopher~D. Manning.
+\newblock Just ask for calibration: Strategies for eliciting calibrated
+  confidence scores from language models fine-tuned with human feedback.
+\newblock In \emph{Conference on Empirical Methods in Natural Language
+  Processing}, volume abs/2305.14975, 2023.
+\newblock \doi{10.48550/arXiv.2305.14975}.
+
+\bibitem[Wang and Stengel-Eskin(2025)]{Wang2025}
+Victor Wang and Elias Stengel-Eskin.
+\newblock Calibrating verbalized confidence with self-generated distractors.
+\newblock \emph{ArXiv}, abs/2509.25532, 2025.
+\newblock \doi{10.48550/arXiv.2509.25532}.
+
+\bibitem[Wei et~al.(2022)Wei, Wang, Schuurmans, Bosma, Chi, Xia, Le, and
+  Zhou]{Wei2022}
+Jason Wei, Xuezhi Wang, Dale Schuurmans, Maarten Bosma, Ed~H. Chi, F.~Xia, Quoc
+  Le, and Denny Zhou.
+\newblock Chain of thought prompting elicits reasoning in large language
+  models.
+\newblock In \emph{Neural Information Processing Systems}, volume
+  abs/2201.11903, 2022.
+\newblock \doi{10.52202/068431-1800}.
+
+\bibitem[Wen et~al.(2024)Wen, Freestone, Riffle, MacCoss, Noble, and
+  Keich]{Wen2024}
+Bo~Wen, Jack Freestone, Michael Riffle, M.~MacCoss, W.~Noble, and U.~Keich.
+\newblock Assessment of false discovery rate control in tandem mass
+  spectrometry analysis using entrapment.
+\newblock In \emph{bioRxiv}, volume~22, pages 1454 -- 1463, 2024.
+\newblock \doi{10.1101/2024.06.01.596967}.
+
+\bibitem[Xiong et~al.(2023)Xiong, Hu, Lu, Li, Fu, He, and Hooi]{Xiong2023}
+Miao Xiong, Zhiyuan Hu, Xinyang Lu, Yifei Li, Jie Fu, Junxian He, and Bryan
+  Hooi.
+\newblock Can llms express their uncertainty? an empirical evaluation of
+  confidence elicitation in llms.
+\newblock In \emph{International Conference on Learning Representations},
+  volume abs/2306.13063, 2023.
+\newblock \doi{10.48550/arXiv.2306.13063}.
+
+\bibitem[Yang et~al.(2023)Yang, Ishay, and Lee]{Yang2023}
+Zhun Yang, Adam Ishay, and Joohyung Lee.
+\newblock Coupling large language models with logic programming for robust and
+  general reasoning from text.
+\newblock In \emph{Annual Meeting of the Association for Computational
+  Linguistics}, volume abs/2307.07696, 2023.
+\newblock \doi{10.48550/arXiv.2307.07696}.
+
+\bibitem[Yao et~al.(2019)Yao, Ye, Li, Han, Lin, Liu, Liu, Huang, Zhou, and
+  Sun]{Yao2019}
+Yuan Yao, Deming Ye, Peng Li, Xu~Han, Yankai Lin, Zhenghao Liu, Zhiyuan Liu,
+  Lixin Huang, Jie Zhou, and Maosong Sun.
+\newblock Docred: A large-scale document-level relation extraction dataset.
+\newblock In \emph{Annual Meeting of the Association for Computational
+  Linguistics}, volume abs/1906.06127, 2019.
+\newblock \doi{10.18653/v1/P19-1074}.
+
+\end{thebibliography}
