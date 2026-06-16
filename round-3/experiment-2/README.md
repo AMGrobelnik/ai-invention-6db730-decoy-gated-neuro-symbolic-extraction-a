@@ -1,0 +1,40 @@
+# Decoy-gated text-to-logic hallucination control on the 24-doc legal/news/regulatory anchor
+
+`demo/` — Self-contained demo (Colab-ready notebook or markdown). Run without setup.  
+`src/` — Full source code, data, and outputs from the experiment execution.
+
+**Type:** experiment  
+**ID:** `art_vkfyOl2OQNVx`
+
+## Layman Summary
+
+Tests whether a statistics-based gate can cut how often an AI invents facts when turning real legal, news, and regulatory documents into machine-checkable logic, with auditable reasoning traces.
+
+## Full Summary
+
+Executes the goal's binding deliverable on the genre-faithful 24-doc application anchor (8 legal CUAD-crisp / 8 news Wikinews-silver / 8 regulatory GDPR+eCFR-silver, 210 extracted reals: 42 TRUE / 51 FALSE / 117 UNDECIDABLE). One implementation (method.py) runs method + baselines + controls side-by-side: STAGE 1 open over-generating extraction (n=3 sample union, temp 0.7) + WordNet->SUMO typing (typing_sumo.py) + LLM relation alignment to per-genre gold vocab with an 'other:' escape + entity linking + crisp/silver labelling; STAGE 2 document-conditioned COUNTERFACTUAL decoys (contamination 0.057), type-matched swap control, deterministic ENTRAPMENT (r=1, 209 items), dual label-free elicitation scoring (single-token logprob softmax P(Yes) AND K=5 self-consistency), and the reused knockoff+ gate at every alpha {0.05,0.1,0.2,0.3,0.5} per genre x elicitation; STAGE 2b PRIMARY metric hallucinated-fact rate (gate vs RAW LLM) with a non-circular cross-family adjudicator (ministral-8b), document-block bootstrap CIs, regime tags, and silver lower/upper bounds; STAGE 2c matched-recall vs RAW/GATE/RAG(BM25)/CoT; STAGE 3 a pure-Python backward-chaining proof engine (kb_engine.py; SWI-Prolog/janus attempted, fell back) with hand-authored genre bridge rules and JSON+DOT trace-graphs whose every leaf carries provenance + decoy (W_i,T,alpha) + entrapment (FDP_hat,r) certificates; STAGE 4 BH correction + schema-valid output + 7 figures.
+
+HEADLINE / REGIME MAP (reported across the FULL grid, never obscured): under BOTH elicitations the gate certifies ONLY at alpha=0.5 on 24 docs (n_admitted<1/alpha below that -> 'uncertified' cells shown but vacuous; this matches the pre-registered portable-floor fallback). At the certified alpha=0.5, pooled gate hallucinated-fact rate is 0.183 (portable) / 0.178 (logprob) vs the alpha-invariant RAW 0.243 -- a ~25% relative reduction, but bootstrap CIs OVERLAP (0 of 40 cells reach CI separation at n=24), so the reduction is directional not significant. The gate's own decoy_fdr_hat >= realized FDR in every cell (0 self_report_anticonservative cells) -> here the self-report is CONSERVATIVE (contrast: logprob was anti-conservative on CLUTRR). The entrapment FDP_hat is high at alpha=0.5 (pooled 0.81), honestly flagging that alpha=0.5 admission is loose. Multi-hop: RAW-KB derives 23 conclusions at 0.48 corrupted-rate vs GATE-KB (alpha=0.5) 11 conclusions at 0.18 -- a clear drop in corrupted multi-hop conclusions. Adjudicator kappa vs legal crisp gold = 0.10 (< 0.4 threshold) so the judge is DROPPED and hallucination reported by gold-membership with silver bounds (the documented fallback; low kappa is partly because crisp CUAD gold itself has partial recall). Atomic precision/recall: legal 0.28/0.27 (crisp-restricted), news 0.29/0.18, regulatory 0.17/0.42.
+
+DELIVERABLES (all in workspace): method.py (+ reused fdr_stats.py, llm_client.py; new typing_sumo.py, kb_engine.py), method_out.json (426K, 210 rows, exp_gen_sol_out schema-valid) with metadata.hallucination_grid (per genre x elicitation x alpha: gate/raw rate + CIs, decoy_fdr_hat, realized_fdr, entrapment FDP_hat, certified, k_floor, regime_tag, silver_bounds, self_report_anticonservative), s1_decoy_signature, matched_recall_curves (4 systems), extraction_quality, multihop_corruption, adjudicator_validation, trace_graphs, bh_correction; full/mini/preview variants; trace_graphs/ (6 JSON + 6 DOT, >=2 per genre, real 2-hop derivations e.g. obligation_with_exception with per-leaf certificates); figures/ (fig1 hallucination grid, fig2 self-report vs realized FDR, fig3 matched-recall, fig4 trace-graph per genre, fig5 multi-hop corruption). CPU-only; total cost $0.305 (soft cap $3, hard stop $10); offline selftest gates the paid run; on-disk cache makes re-runs free. Honest scope: legal crisp / news+reg silver (bracketed), portable certifies only at alpha=0.5, gate reduction directional (CI-overlapping) at this sample size -- the contribution is the auditable pipeline + the explicit regime map + the multi-hop corruption-propagation result.
+
+## Dependencies
+
+- `art_UBTwyePql8NQ` — dataset
+- `art_K6AE23HoGqe6` — pipeline
+- `art_SLUbUUr6Ul98` — methodology
+- `art_Cr6L9JpoewZi` — grounding
+
+## Output Files
+
+- `method.py`
+- `full_method_out.json`
+- `mini_method_out.json`
+- `preview_method_out.json`
+
+## Demo Files
+
+- **method.py** — Research methodology implementation
+
+---
+*Generated by AI Inventor Pipeline*

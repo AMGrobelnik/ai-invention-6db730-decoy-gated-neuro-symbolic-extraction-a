@@ -1,0 +1,35 @@
+# Re-DocRED decoy-gating wedge reframed as a gold-free regime-diagnostic
+
+`demo/` — Self-contained demo (Colab-ready notebook or markdown). Run without setup.  
+`src/` — Full source code, data, and outputs from the experiment execution.
+
+**Type:** experiment  
+**ID:** `art_RZC2468yZ-Jh`
+
+## Layman Summary
+
+Shows a label-free 'decoy-competition' filter for LLM-extracted facts adds nothing over a plain confidence threshold on Re-DocRED, and introduces a gold-free diagnostic that predicts this null result in advance.
+
+## Full Summary
+
+P3 scales the prior Re-DocRED operational wedge from 36 to the full 152 confirmatory + 36 pilot documents (resume-safe extraction, total new spend $1.08 of a $10 cap) and reframes the result as a NOVEL label-free regime-diagnostic. Core comparison (controlled, same pipeline): METHOD = a label-free decoy-competition FDR gate (knockoff+ statistic W_i = sign(Z_i - Z~_i)*max(Z_i, Z~_i)) vs the load-bearing PLAIN foil (rank by raw confidence Z_i), with CoT, BM25-RAG and a labeled Mohri-Hashimoto conformal back-off (CONF) as reference comparators, all mapped into the identical (title, P-code, head_id, tail_id) triple space by one fixed MiniLM-shortlist + temp-0 LLM aligner and scored by the official tuple-matching metric vs human gold. RESULT (pre-registered DISCONFIRMATION, scope-honest): at matched recall the wedge collapses to 'thresholding-is-enough' — across a 25-point recall grid no point shows a METHOD-over-PLAIN precision gain with document-block-bootstrap (B=2000) CI entirely > 0. The verdict embeds the true n and ceiling AT the claim: 'disconfirmed at recall <= 0.075 on 152 docs' (metadata.scope = {n_docs_used:152, n_docs_requested:152, recall_ceiling:0.075}); the fairness invariant holds exactly (METHOD and PLAIN share an identical candidate+alignment pool -> identical max recall), and the null delta sign persists under P-code-noise / embedding-only-aligner / strict-EL perturbations. Four reviewer-MAJOR fixes are implemented: (1) SCOPE honesty as above; (2) COMPARATORS completed-or-dropped — the matched-recall grid floor is relaxed to the lowest positive max_recall (0.034) so recall-limited CoT/RAG yield >=1 evaluable point; all five systems PARTICIPATE (dropped_comparators={}), no all-null baseline is listed; (3) MULTI-HOP comparison POWERED, not underpowered — six extra gold-justified Wikidata inverse rules (P22/P25->P40, P361<->P527, P131<->P150) densify forward-chained conclusions to n_derived=267 (METHOD)=267 (PLAIN), >> the power_target of 100, delta CI width 0.027, underpowered=false; the hallucinated-conclusion rate is ~0.79 for both systems (delta -0.004, CI spans 0) — the gate does not reduce hallucination here; (4) the NOVEL label-free REGIME-DIAGNOSTIC (regime.py, ZERO new API calls, NO gold) that PREDICTS the null wedge from cached Z/Z~/W/self-consistency via four signals: A tail decoy win-rate (knockoff-admitted tail 0.005 << 0.5 -> decoys too easy), B spontaneous-error CDF match (decoy score mean 0.165 vs low-self-consistency real mean 0.857; KS/Mann-Whitney/permutation all reject -> too easy), C W-vs-Z ranking divergence (frac(W==Z)=0.94, admitted-set Spearman rho=0.99 -> the gate keeps and orders the same facts as the plain threshold -> mechanically null), D base-scorer calibration (AUC(Z, self-consistency)=0.60). A 2-axis map (decoy exchangeability x base-scorer calibration) emits predicted_regime='GATE REDUNDANT' and predicted_wedge_sign='null', which is then VALIDATED against the realized wedge: prediction_correct=true. A cross-anchor panel places Re-DocRED beside P1's CLUTRR regimes (winrate 0.045->null, 0.103/0.34->negative, 0.482->positive) and states+tests the unifying principle that gate value is genuinely 2-axis (positive only with exchangeable decoys; at the too-easy end the sign splits by calibration into redundant vs anti-conservative), honestly noting it is a 2-anchor illustration, not a powered regression. The artifact also emits 8 human-auditable multi-hop proof traces (rule + premises -> conclusion, names resolved) and four paper-ready figures (matched-recall wedge, regime map, W-vs-Z signal, decoy diagnostics). All comparisons are RELATIVE-only (Re-DocRED residual false negatives depress recall and inflate hallucination for every system equally). Deliverables (schema exp_gen_sol_out, all validated): method.py orchestrator + run_analysis; regime.py (the gold-free diagnostic); analyze.py (aligner, official metric, knockoff+/conformal operating points, document-block bootstrap, traced forward-chaining); extract.py, prompts.py, llm.py, common.py, figures.py, summarize.py; method_out.json (619 KB) with full/mini/preview variants (all < 100 MB, no split); figures/. Downstream paper text can quote the disconfirmation precisely and lead with the regime-diagnostic as the substantive, novel, interpretable contribution.
+
+## Dependencies
+
+- `art_Jcudmkugg1qT` — dataset
+- `art_K6AE23HoGqe6` — pipeline
+- `art_SLUbUUr6Ul98` — methodology
+
+## Output Files
+
+- `method.py`
+- `full_method_out.json`
+- `mini_method_out.json`
+- `preview_method_out.json`
+
+## Demo Files
+
+- **method.py** — Research methodology implementation
+
+---
+*Generated by AI Inventor Pipeline*
