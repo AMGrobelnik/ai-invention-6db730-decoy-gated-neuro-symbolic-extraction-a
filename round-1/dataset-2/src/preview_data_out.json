@@ -1,0 +1,675 @@
+{
+  "metadata": {
+    "name": "Re-DocRED Operational Anchor (label-free FDR-gating)",
+    "source": "Re-DocRED (Tan, Xu, Bing et al., 'Revisiting DocRED — Addressing the False Negative Problem in Relation Extraction', EMNLP 2022)",
+    "paper_url": "https://arxiv.org/abs/2205.12696",
+    "data_urls": {
+      "train": "https://huggingface.co/datasets/tonytan48/Re-DocRED/resolve/main/train_revised.json",
+      "dev": "https://huggingface.co/datasets/tonytan48/Re-DocRED/resolve/main/dev_revised.json",
+      "test": "https://huggingface.co/datasets/tonytan48/Re-DocRED/resolve/main/test_revised.json"
+    },
+    "license": "MIT",
+    "raw_doc_counts": {
+      "train": 3053,
+      "dev": 500,
+      "test": 500,
+      "total": 4053
+    },
+    "n_emitted_rows": 236,
+    "n_confirmatory": 152,
+    "n_pilot": 36,
+    "n_reserve": 48,
+    "clusters": [
+      "cluster_PER",
+      "cluster_ORG",
+      "cluster_LOC"
+    ],
+    "per_cluster_counts": {
+      "cluster_PER": {
+        "confirmatory": 38,
+        "pilot": 9,
+        "reserve": 12
+      },
+      "cluster_ORG": {
+        "confirmatory": 38,
+        "pilot": 9,
+        "reserve": 12
+      },
+      "cluster_LOC": {
+        "confirmatory": 38,
+        "pilot": 9,
+        "reserve": 12
+      },
+      "cluster_MISC": {
+        "confirmatory": 38,
+        "pilot": 9,
+        "reserve": 12
+      }
+    },
+    "cluster_scheme": "dominant_entity_type_collapsed_4 (PER/ORG/LOC/MISC; TIME&NUM->MISC)",
+    "secondary_cluster_scheme": "kmeans (k=5, random_state=42) on entity-type histogram + top-20 relation profile + standardized length",
+    "seed": 20240617,
+    "eligibility_filter": "80<=num_words<=400 AND num_entities>=4 AND num_triples>=5",
+    "n_relation_types": 96,
+    "n_entity_types": 6,
+    "gold_caveat": "Re-DocRED has residual false negatives; this dataset licenses ONLY relative operational comparisons at matched recall (precision, hallucinated-conclusion rate) — never an absolute realized-FDR diagona...",
+    "shared_triple_space": "All downstream systems (neuro-symbolic, plain confidence threshold, CoT, RAG, labeled conformal) map their raw output into THIS identical entity set and 96-relation triple space at matched recall; onl...",
+    "companion_files": [
+      "relation_schema.json",
+      "entity_type_schema.json",
+      "dataset_meta.json"
+    ]
+  },
+  "datasets": [
+    {
+      "dataset": "Re-DocRED",
+      "examples": [
+        {
+          "input": "Mikhail Borisovich Kogan (; September 5, 1893 in Zhitomir, Russian Empire – November 26, 1951 in Moscow, USSR) was a well - known medical doctor, a head of the therapy department of 2nd Moscow Medical...",
+          "output": "[{\"head_id\": 0, \"head_name\": \"Mikhail Borisovich Kogan\", \"head_type\": \"PER\", \"relation_pid\": \"P569\", \"relation_name\": \"date of birth\", \"tail_id\": 1, \"tail_name\": \"September 5, 1893\", \"tail_type\": \"TIM...",
+          "metadata_fold": "cluster_PER",
+          "metadata_id": "redocred_test_477",
+          "metadata_title": "Mikhail Kogan",
+          "metadata_split_origin": "test",
+          "metadata_orig_index": 477,
+          "metadata_split_role": "confirmatory",
+          "metadata_is_confirmatory": true,
+          "metadata_is_pilot": false,
+          "metadata_is_reserve": false,
+          "metadata_kmeans_cluster": 4,
+          "metadata_cluster_scheme": "dominant_entity_type_collapsed_4",
+          "metadata_seed": 20240617,
+          "metadata_sents": [
+            [
+              "Mikhail",
+              "Borisovich",
+              "Kogan"
+            ],
+            [
+              "He",
+              "treated",
+              "well"
+            ],
+            [
+              "He",
+              "was",
+              "one"
+            ]
+          ],
+          "metadata_sent_char_offsets": [
+            0,
+            212,
+            331
+          ],
+          "metadata_entities": [
+            {
+              "entity_id": 0,
+              "type": "PER",
+              "canonical_name": "Mikhail Borisovich Kogan",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "Mikhail Borisovich Kogan",
+                  "sent_id": 0,
+                  "pos": [
+                    0,
+                    3
+                  ],
+                  "char_span": [
+                    0,
+                    24
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 1,
+              "type": "TIME",
+              "canonical_name": "September 5, 1893",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "September 5, 1893",
+                  "sent_id": 0,
+                  "pos": [
+                    4,
+                    8
+                  ],
+                  "char_span": [
+                    28,
+                    45
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 2,
+              "type": "LOC",
+              "canonical_name": "Zhitomir",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "Zhitomir",
+                  "sent_id": 0,
+                  "pos": [
+                    9,
+                    10
+                  ],
+                  "char_span": [
+                    49,
+                    57
+                  ]
+                }
+              ]
+            }
+          ],
+          "metadata_gold_triples": [
+            {
+              "head_id": 0,
+              "head_name": "Mikhail Borisovich Kogan",
+              "head_type": "PER",
+              "relation_pid": "P569",
+              "relation_name": "date of birth",
+              "tail_id": 1,
+              "tail_name": "September 5, 1893",
+              "tail_type": "TIME",
+              "evidence_sent_ids": [
+                0
+              ],
+              "evidence_text": [
+                "Mikhail Borisovich Kogan (; September 5, 1893 in Zhitomir, Russian Empire – November 26, 1951 in Moscow, USSR) was a well - known medical doctor, a head of the therapy department of 2nd Moscow Medical..."
+              ]
+            },
+            {
+              "head_id": 0,
+              "head_name": "Mikhail Borisovich Kogan",
+              "head_type": "PER",
+              "relation_pid": "P19",
+              "relation_name": "place of birth",
+              "tail_id": 2,
+              "tail_name": "Zhitomir",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [
+                0
+              ],
+              "evidence_text": [
+                "Mikhail Borisovich Kogan (; September 5, 1893 in Zhitomir, Russian Empire – November 26, 1951 in Moscow, USSR) was a well - known medical doctor, a head of the therapy department of 2nd Moscow Medical..."
+              ]
+            },
+            {
+              "head_id": 0,
+              "head_name": "Mikhail Borisovich Kogan",
+              "head_type": "PER",
+              "relation_pid": "P570",
+              "relation_name": "date of death",
+              "tail_id": 4,
+              "tail_name": "November 26, 1951",
+              "tail_type": "TIME",
+              "evidence_sent_ids": [
+                0
+              ],
+              "evidence_text": [
+                "Mikhail Borisovich Kogan (; September 5, 1893 in Zhitomir, Russian Empire – November 26, 1951 in Moscow, USSR) was a well - known medical doctor, a head of the therapy department of 2nd Moscow Medical..."
+              ]
+            }
+          ],
+          "metadata_features": {
+            "num_words": 129,
+            "num_chars": 633,
+            "num_sents": 4,
+            "num_entities": 16,
+            "num_triples": 24,
+            "num_relation_types_present": 11,
+            "num_entity_types_present": 5,
+            "entity_type_counts": {
+              "PER": 6,
+              "ORG": 1,
+              "LOC": 4,
+              "TIME": 3,
+              "NUM": 0,
+              "MISC": 2
+            },
+            "dominant_entity_type": "PER",
+            "relation_pid_counts": {
+              "P569": 1,
+              "P19": 1,
+              "P570": 1,
+              "P20": 1,
+              "P17": 5,
+              "P577": 2,
+              "P937": 1,
+              "P27": 3,
+              "P131": 7,
+              "P150": 1,
+              "P585": 1
+            },
+            "avg_mentions_per_entity": 1.0,
+            "entity_density": 0.12403100775193798,
+            "mention_density": 0.12403100775193798,
+            "triple_density": 6.0,
+            "frac_singleton_entities": 1.0,
+            "frac_multi_evidence_triples": 0.0,
+            "max_evidence_sentence_gap": 0
+          },
+          "metadata_gold_caveat": "Re-DocRED has residual false negatives; supports RELATIVE operational comparisons at matched recall only (precision, hallucinated-conclusion rate), not an absolute realized-FDR diagonal."
+        },
+        {
+          "input": "Julian Reinard (born 5 March 1983) is a German footballer. He first appeared in the German Bundesliga on 21 March 2004 while SC Freiburg's first and second keepers had been injured. A year later media...",
+          "output": "[{\"head_id\": 0, \"head_name\": \"Julian Reinard\", \"head_type\": \"PER\", \"relation_pid\": \"P569\", \"relation_name\": \"date of birth\", \"tail_id\": 1, \"tail_name\": \"5 March 1983\", \"tail_type\": \"TIME\", \"evidence_s...",
+          "metadata_fold": "cluster_ORG",
+          "metadata_id": "redocred_test_445",
+          "metadata_title": "Julian Reinard",
+          "metadata_split_origin": "test",
+          "metadata_orig_index": 445,
+          "metadata_split_role": "confirmatory",
+          "metadata_is_confirmatory": true,
+          "metadata_is_pilot": false,
+          "metadata_is_reserve": false,
+          "metadata_kmeans_cluster": 4,
+          "metadata_cluster_scheme": "dominant_entity_type_collapsed_4",
+          "metadata_seed": 20240617,
+          "metadata_sents": [
+            [
+              "Julian",
+              "Reinard",
+              "("
+            ],
+            [
+              "He",
+              "first",
+              "appeared"
+            ],
+            [
+              "A",
+              "year",
+              "later"
+            ]
+          ],
+          "metadata_sent_char_offsets": [
+            0,
+            59,
+            182
+          ],
+          "metadata_entities": [
+            {
+              "entity_id": 0,
+              "type": "PER",
+              "canonical_name": "Julian Reinard",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "Julian Reinard",
+                  "sent_id": 0,
+                  "pos": [
+                    0,
+                    2
+                  ],
+                  "char_span": [
+                    0,
+                    14
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 1,
+              "type": "TIME",
+              "canonical_name": "5 March 1983",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "5 March 1983",
+                  "sent_id": 0,
+                  "pos": [
+                    4,
+                    7
+                  ],
+                  "char_span": [
+                    21,
+                    33
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 2,
+              "type": "LOC",
+              "canonical_name": "German",
+              "n_mentions": 3,
+              "mentions": [
+                {
+                  "name": "German",
+                  "sent_id": 1,
+                  "pos": [
+                    5,
+                    6
+                  ],
+                  "char_span": [
+                    84,
+                    90
+                  ]
+                },
+                {
+                  "name": "German",
+                  "sent_id": 0,
+                  "pos": [
+                    10,
+                    11
+                  ],
+                  "char_span": [
+                    40,
+                    46
+                  ]
+                },
+                {
+                  "name": "German",
+                  "sent_id": 3,
+                  "pos": [
+                    18,
+                    19
+                  ],
+                  "char_span": [
+                    497,
+                    503
+                  ]
+                }
+              ]
+            }
+          ],
+          "metadata_gold_triples": [
+            {
+              "head_id": 0,
+              "head_name": "Julian Reinard",
+              "head_type": "PER",
+              "relation_pid": "P569",
+              "relation_name": "date of birth",
+              "tail_id": 1,
+              "tail_name": "5 March 1983",
+              "tail_type": "TIME",
+              "evidence_sent_ids": [
+                0
+              ],
+              "evidence_text": [
+                "Julian Reinard (born 5 March 1983) is a German footballer."
+              ]
+            },
+            {
+              "head_id": 0,
+              "head_name": "Julian Reinard",
+              "head_type": "PER",
+              "relation_pid": "P54",
+              "relation_name": "member of sports team",
+              "tail_id": 12,
+              "tail_name": "FC Wil",
+              "tail_type": "ORG",
+              "evidence_sent_ids": [
+                0,
+                4
+              ],
+              "evidence_text": [
+                "Julian Reinard (born 5 March 1983) is a German footballer.",
+                "Due to problems with his groin he quit Ramat Gan and, after a brief spell at FC Wil, is currently without a team."
+              ]
+            },
+            {
+              "head_id": 0,
+              "head_name": "Julian Reinard",
+              "head_type": "PER",
+              "relation_pid": "P118",
+              "relation_name": "league or competition",
+              "tail_id": 3,
+              "tail_name": "Bundesliga",
+              "tail_type": "ORG",
+              "evidence_sent_ids": [
+                0,
+                1
+              ],
+              "evidence_text": [
+                "Julian Reinard (born 5 March 1983) is a German footballer.",
+                "He first appeared in the German Bundesliga on 21 March 2004 while SC Freiburg's first and second keepers had been injured."
+              ]
+            }
+          ],
+          "metadata_features": {
+            "num_words": 129,
+            "num_chars": 673,
+            "num_sents": 5,
+            "num_entities": 13,
+            "num_triples": 17,
+            "num_relation_types_present": 7,
+            "num_entity_types_present": 5,
+            "entity_type_counts": {
+              "PER": 1,
+              "ORG": 6,
+              "LOC": 2,
+              "TIME": 3,
+              "NUM": 1,
+              "MISC": 0
+            },
+            "dominant_entity_type": "ORG",
+            "relation_pid_counts": {
+              "P569": 1,
+              "P54": 3,
+              "P118": 3,
+              "P27": 1,
+              "P17": 4,
+              "P463": 1,
+              "P131": 4
+            },
+            "avg_mentions_per_entity": 1.3076923076923077,
+            "entity_density": 0.10077519379844961,
+            "mention_density": 0.13178294573643412,
+            "triple_density": 3.4,
+            "frac_singleton_entities": 0.7692307692307693,
+            "frac_multi_evidence_triples": 0.29411764705882354,
+            "max_evidence_sentence_gap": 4
+          },
+          "metadata_gold_caveat": "Re-DocRED has residual false negatives; supports RELATIVE operational comparisons at matched recall only (precision, hallucinated-conclusion rate), not an absolute realized-FDR diagonal."
+        },
+        {
+          "input": "Baltimore and Ohio Railroad Martinsburg Shops is a historic industrial district in Martinsburg, West Virginia. It is significant both for its railroading architecture by Albert Fink and John Rudolph N...",
+          "output": "[{\"head_id\": 1, \"head_name\": \"Martinsburg\", \"head_type\": \"LOC\", \"relation_pid\": \"P17\", \"relation_name\": \"country\", \"tail_id\": 8, \"tail_name\": \"the United States\", \"tail_type\": \"LOC\", \"evidence_sent_id...",
+          "metadata_fold": "cluster_LOC",
+          "metadata_id": "redocred_dev_459",
+          "metadata_title": "Baltimore and Ohio Railroad Martinsburg Shops",
+          "metadata_split_origin": "dev",
+          "metadata_orig_index": 459,
+          "metadata_split_role": "confirmatory",
+          "metadata_is_confirmatory": true,
+          "metadata_is_pilot": false,
+          "metadata_is_reserve": false,
+          "metadata_kmeans_cluster": 1,
+          "metadata_cluster_scheme": "dominant_entity_type_collapsed_4",
+          "metadata_seed": 20240617,
+          "metadata_sents": [
+            [
+              "Baltimore",
+              "and",
+              "Ohio"
+            ],
+            [
+              "It",
+              "is",
+              "significant"
+            ],
+            [
+              "It",
+              "consists",
+              "of"
+            ]
+          ],
+          "metadata_sent_char_offsets": [
+            0,
+            111,
+            263
+          ],
+          "metadata_entities": [
+            {
+              "entity_id": 0,
+              "type": "LOC",
+              "canonical_name": "Baltimore and Ohio Railroad Martinsburg Shops",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "Baltimore and Ohio Railroad Martinsburg Shops",
+                  "sent_id": 0,
+                  "pos": [
+                    0,
+                    6
+                  ],
+                  "char_span": [
+                    0,
+                    45
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 1,
+              "type": "LOC",
+              "canonical_name": "Martinsburg",
+              "n_mentions": 2,
+              "mentions": [
+                {
+                  "name": "Martinsburg",
+                  "sent_id": 0,
+                  "pos": [
+                    12,
+                    13
+                  ],
+                  "char_span": [
+                    83,
+                    94
+                  ]
+                },
+                {
+                  "name": "Martinsburg",
+                  "sent_id": 3,
+                  "pos": [
+                    10,
+                    11
+                  ],
+                  "char_span": [
+                    435,
+                    446
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 2,
+              "type": "LOC",
+              "canonical_name": "West Virginia",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "West Virginia",
+                  "sent_id": 0,
+                  "pos": [
+                    14,
+                    16
+                  ],
+                  "char_span": [
+                    96,
+                    109
+                  ]
+                }
+              ]
+            }
+          ],
+          "metadata_gold_triples": [
+            {
+              "head_id": 1,
+              "head_name": "Martinsburg",
+              "head_type": "LOC",
+              "relation_pid": "P17",
+              "relation_name": "country",
+              "tail_id": 8,
+              "tail_name": "the United States",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [
+                0,
+                2
+              ],
+              "evidence_text": [
+                "Baltimore and Ohio Railroad Martinsburg Shops is a historic industrial district in Martinsburg, West Virginia.",
+                "It consists of three contributing buildings, one of which is the oldest covered roundhouse in the United States."
+              ]
+            },
+            {
+              "head_id": 2,
+              "head_name": "West Virginia",
+              "head_type": "LOC",
+              "relation_pid": "P17",
+              "relation_name": "country",
+              "tail_id": 8,
+              "tail_name": "the United States",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [
+                0,
+                2
+              ],
+              "evidence_text": [
+                "Baltimore and Ohio Railroad Martinsburg Shops is a historic industrial district in Martinsburg, West Virginia.",
+                "It consists of three contributing buildings, one of which is the oldest covered roundhouse in the United States."
+              ]
+            },
+            {
+              "head_id": 2,
+              "head_name": "West Virginia",
+              "head_type": "LOC",
+              "relation_pid": "P131",
+              "relation_name": "located in the administrative territorial entity",
+              "tail_id": 8,
+              "tail_name": "the United States",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [
+                0,
+                2
+              ],
+              "evidence_text": [
+                "Baltimore and Ohio Railroad Martinsburg Shops is a historic industrial district in Martinsburg, West Virginia.",
+                "It consists of three contributing buildings, one of which is the oldest covered roundhouse in the United States."
+              ]
+            }
+          ],
+          "metadata_features": {
+            "num_words": 129,
+            "num_chars": 736,
+            "num_sents": 6,
+            "num_entities": 14,
+            "num_triples": 19,
+            "num_relation_types_present": 7,
+            "num_entity_types_present": 6,
+            "entity_type_counts": {
+              "PER": 2,
+              "ORG": 1,
+              "LOC": 4,
+              "TIME": 3,
+              "NUM": 1,
+              "MISC": 3
+            },
+            "dominant_entity_type": "LOC",
+            "relation_pid_counts": {
+              "P17": 7,
+              "P131": 7,
+              "P585": 1,
+              "P150": 1,
+              "P279": 1,
+              "P582": 1,
+              "P580": 1
+            },
+            "avg_mentions_per_entity": 1.0714285714285714,
+            "entity_density": 0.10852713178294573,
+            "mention_density": 0.11627906976744186,
+            "triple_density": 3.1666666666666665,
+            "frac_singleton_entities": 0.9285714285714286,
+            "frac_multi_evidence_triples": 0.5789473684210527,
+            "max_evidence_sentence_gap": 2
+          },
+          "metadata_gold_caveat": "Re-DocRED has residual false negatives; supports RELATIVE operational comparisons at matched recall only (precision, hallucinated-conclusion rate), not an absolute realized-FDR diagonal."
+        }
+      ]
+    }
+  ]
+}

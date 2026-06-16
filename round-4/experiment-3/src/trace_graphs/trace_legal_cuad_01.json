@@ -1,0 +1,82 @@
+{
+  "doc_id": "legal_cuad_01",
+  "genre": "legal",
+  "kind": "admission",
+  "n_proofs": 1,
+  "graphs": [
+    {
+      "nodes": [
+        {
+          "id": 0,
+          "label": "admitted_fact(has_title(Heritage,President))",
+          "kind": "derived",
+          "rule": "admission"
+        },
+        {
+          "id": 1,
+          "label": "has_title(Heritage, President)",
+          "kind": "leaf",
+          "cert": {
+            "provenance": "Name: Sam Stremick Title: President",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 0.9677,
+              "T": 0.096774,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.545455,
+              "r": 1
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "src": 0,
+          "dst": 1,
+          "rule": "admission"
+        }
+      ]
+    }
+  ],
+  "proofs": [
+    {
+      "type": "derived",
+      "atom": [
+        "admitted_fact",
+        [
+          "has_title(Heritage,President)"
+        ]
+      ],
+      "rule": "admission",
+      "children": [
+        {
+          "type": "leaf",
+          "atom": [
+            "has_title",
+            [
+              "Heritage",
+              "President"
+            ]
+          ],
+          "cert": {
+            "provenance": "Name: Sam Stremick Title: President",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 0.9677,
+              "T": 0.096774,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.545455,
+              "r": 1
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

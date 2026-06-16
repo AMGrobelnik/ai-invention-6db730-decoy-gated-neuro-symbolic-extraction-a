@@ -1,0 +1,24 @@
+[project]
+name = "redocred-operational-wedge"
+version = "0.1.0"
+description = "Operational wedge on Re-DocRED: decoy-gating (knockoff+ W_i) vs plain confidence threshold (Z_i) at matched recall"
+requires-python = ">=3.12"
+# All versions pinned to exactly what is installed in .venv (uv pip list) for reproducibility.
+# torch is the CPU build (no GPU on this host); install with:
+#   uv pip install torch==2.12.0 --extra-index-url https://download.pytorch.org/whl/cpu
+dependencies = [
+    "aiohttp==3.14.1",
+    "tenacity==9.1.4",
+    "loguru==0.7.3",
+    "numpy==2.4.6",
+    "scipy==1.17.1",
+    "scikit-learn==1.9.0",
+    "sentence-transformers==5.5.1",
+    "transformers==5.12.1",
+    "tokenizers==0.22.2",
+    "huggingface-hub==1.19.0",
+    "safetensors==0.8.0",
+    "rank-bm25==0.2.2",
+    "psutil==7.2.2",
+    "torch==2.12.0",
+]

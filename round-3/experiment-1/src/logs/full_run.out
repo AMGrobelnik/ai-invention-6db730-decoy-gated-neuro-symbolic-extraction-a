@@ -1,0 +1,27 @@
+09:43:00|INFO   |Loaded 593 docs (pilot=58)
+09:43:00|INFO   |Extraction over 593 docs...
+09:43:02|INFO   |  [extract] 96/593 done | cost=$0.0000 | live=0 cached=96 (warm=0) | errs=0
+09:43:04|INFO   |  [extract] 192/593 done | cost=$0.0000 | live=0 cached=192 (warm=0) | errs=0
+09:43:06|INFO   |  [extract] 288/593 done | cost=$0.0000 | live=0 cached=288 (warm=0) | errs=0
+09:43:08|INFO   |  [extract] 384/593 done | cost=$0.0000 | live=0 cached=384 (warm=0) | errs=0
+09:43:10|INFO   |  [extract] 480/593 done | cost=$0.0000 | live=0 cached=480 (warm=0) | errs=0
+09:43:12|INFO   |  [extract] 576/593 done | cost=$0.0000 | live=0 cached=576 (warm=0) | errs=0
+09:43:13|INFO   |  [extract] 593/593 done | cost=$0.0000 | live=0 cached=593 (warm=0) | errs=0
+09:43:13|INFO   |reals=6992 TRUE=2069 FALSE(spont)=4923 UND=0
+09:43:13|INFO   |Generating counterfactual decoys (cf/cf2) + swaps + rungs + entrapment...
+09:43:15|INFO   |  [decoy] 96/593 done | cost=$0.0000 | live=0 cached=686 (warm=0) | errs=0
+09:43:17|INFO   |  [decoy] 192/593 done | cost=$0.0000 | live=0 cached=778 (warm=0) | errs=0
+09:43:19|INFO   |  [decoy] 288/593 done | cost=$0.0000 | live=0 cached=871 (warm=0) | errs=0
+09:43:21|INFO   |  [decoy] 384/593 done | cost=$0.0000 | live=0 cached=967 (warm=0) | errs=0
+09:43:22|INFO   |  [decoy] 480/593 done | cost=$0.0000 | live=0 cached=1055 (warm=0) | errs=0
+09:43:25|INFO   |  [decoy] 576/593 done | cost=$0.0000 | live=0 cached=1147 (warm=0) | errs=0
+09:43:25|INFO   |  [decoy] 593/593 done | cost=$0.0000 | live=0 cached=1164 (warm=0) | errs=0
+09:43:25|INFO   |decoys generated; contamination_rate=0.1002
+09:43:25|INFO   |Self-consistency scoring: 29911 items x K=5 ...
+09:44:27|INFO   |  [score-sc] 600/29911 done | cost=$0.0000 | live=0 cached=4164 (warm=0) | errs=0
+09:45:25|INFO   |  [score-sc] 1200/29911 done | cost=$0.0000 | live=0 cached=7164 (warm=0) | errs=0
+09:46:26|INFO   |  [score-sc] 1800/29911 done | cost=$0.0000 | live=0 cached=10164 (warm=0) | errs=0
+09:48:40|INFO   |  [score-sc] 2400/29911 done | cost=$0.0389 | live=1695 cached=11469 (warm=0) | errs=0
+09:51:03|INFO   |  [score-sc] 3000/29911 done | cost=$0.1070 | live=4695 cached=11469 (warm=0) | errs=0
+09:53:24|INFO   |  [score-sc] 3600/29911 done | cost=$0.1735 | live=7695 cached=11469 (warm=0) | errs=0
+09:55:41|INFO   |  [score-sc] 4200/29911 done | cost=$0.2399 | live=10695 cached=11469 (warm=0) | errs=0

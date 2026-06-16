@@ -1,0 +1,10 @@
+digraph prob_proof {
+  rankdir=TB;
+  node [style=filled, fontname="Helvetica", fontsize=10];
+  labelloc="t"; label="reg_gdpr_07 [regulatory] titled_obligation (prob)";
+  n0 [label="titled_obligation(Art. 7 GDPR, Conditions for consent, present consent request in a clearly distinguishable manner)\nrule: titled_obligation\np=0.050", fillcolor="lightblue", tooltip="derived conclusion (marginal)"];
+  n1 [label="has_title(Art. 7 GDPR, Conditions for consent)\np=0.340\nW=0.68 T=0.338462 a=0.5\nFDP_hat=0.93617 r=1", fillcolor="palegreen", tooltip="Art. 7 GDPR Conditions for consent"];
+  n2 [label="obligates(Art. 7 GDPR, present consent request in a clearly distinguishable manner)\np=0.147\nW=-0.3333 T=0.338462 a=0.5\nFDP_hat=0.93617 r=1", fillcolor="lightsalmon", tooltip="the request for consent shall be presented in a manner which is clearly distinguishable from the other matters"];
+  n0 -> n1 [label="titled_obligation", fontsize=8];
+  n0 -> n2 [label="titled_obligation", fontsize=8];
+}

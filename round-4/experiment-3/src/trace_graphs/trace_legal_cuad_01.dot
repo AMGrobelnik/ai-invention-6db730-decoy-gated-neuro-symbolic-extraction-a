@@ -1,0 +1,8 @@
+digraph proof {
+  rankdir=TB;
+  node [style=filled, fontname="Helvetica", fontsize=10];
+  labelloc="t"; label="legal_cuad_01 [legal] admission";
+  n0 [label="admitted_fact(has_title(Heritage,President))\nrule: admission", fillcolor="lightblue", tooltip="derived conclusion"];
+  n1 [label="has_title(Heritage, President)\nW=0.9677 T=0.096774 a=0.5\nFDP_hat=0.545455 r=1", fillcolor="palegreen", tooltip="Name: Sam Stremick Title: President"];
+  n0 -> n1 [label="admission", fontsize=8];
+}

@@ -1,0 +1,146 @@
+{
+  "metadata": {
+    "source": "CLUTRR v1 (Sinha et al., EMNLP 2019, arXiv:1908.06177). Pre-generated TEST splits of configs gen_train234_test2to10 and gen_train23_test2to10, staged in temp/datasets/ from the kliang5/CLUTRR_huggingf...",
+    "title": "CLUTRR Crisp-Gold Calibration Anchor: Atomic + Multi-Hop Kinship Triples with k-Difficulty Splits",
+    "selected_best_dataset": "CLUTRR-v1-CrispGold-CalibrationAnchor",
+    "selection_rationale": "CLUTRR is rule-based/templated so its kinship gold is exact (no annotation noise) — the property that lets it host the FDR calibration diagonal; proof_state yields crisp ATOMIC (directly-stated) + MUL...",
+    "row_is_example": "Each CLUTRR story is one example; 190 stories -> 190 examples.",
+    "schema_note": "input/output are JSON-serialized strings (parse with json.loads). input keys: doc_id, document_text (brackets stripped), document_text_bracketed, entities[{name,gender,type,node_index}], query{head,ta...",
+    "seed": 20240617,
+    "raw_rows_per_config": {
+      "gen_train234_test2to10": 1048,
+      "gen_train23_test2to10": 1146
+    },
+    "pooled_deduped_rows": 2191,
+    "clean_simple_path_records": 1345,
+    "rejected_non_simple_path": 846,
+    "clean_k_distribution": {
+      "k2": 75,
+      "k3": 210,
+      "k4": 238,
+      "k5": 262,
+      "k6": 125,
+      "k7": 143,
+      "k8": 130,
+      "k9": 93,
+      "k10": 69
+    },
+    "confirmatory_count": 150,
+    "pilot_count": 40,
+    "total_documents": 190,
+    "confirmatory_k_distribution": {
+      "k2": 12,
+      "k3": 15,
+      "k4": 20,
+      "k5": 20,
+      "k6": 20,
+      "k7": 18,
+      "k8": 18,
+      "k9": 15,
+      "k10": 12
+    },
+    "pilot_k_distribution": {
+      "k2": 5,
+      "k3": 5,
+      "k4": 5,
+      "k5": 5,
+      "k6": 5,
+      "k7": 5,
+      "k8": 5,
+      "k9": 3,
+      "k10": 2
+    },
+    "relation_vocabulary": [
+      "aunt",
+      "brother",
+      "daughter"
+    ],
+    "relation_vocab_version": "clutrr_kinship",
+    "selected_confirmatory_ids": [
+      "00d49e83-628b-40c9-94ab-af37f855c55b",
+      "01b11df2-ba2f-4e0d-8362-8464a56e697e",
+      "01d727b0-1935-41ef-864f-f5d46881be04"
+    ],
+    "selected_pilot_ids": [
+      "044054de-0354-4164-98c8-c7c7362c668b",
+      "046c5373-f233-4eb4-874f-31b3bbd0b6f0",
+      "08430cd0-2995-4430-a3ef-b32131f1ffdf"
+    ],
+    "example_ordering": "round-robin across k (order [2, 10, 6, 3, 9, 7, 4, 8, 5]) so mini/preview span short and long chains",
+    "filtering": "Restricted to canonical CLUTRR simple-path chains: distinct entities==k+1, distinct story edges==k, |atomic|==k, |multi_hop|==k-1, exactly one proof root equal to the query target, and a genders-order...",
+    "out_of_scope": "No decoy/entrapment generation, no LLM scoring, no FDR/precision/recall, no Prolog execution, no transitive-closure enrichment — those belong to the experiment artifact."
+  },
+  "datasets": [
+    {
+      "dataset": "CLUTRR-v1-CrispGold-CalibrationAnchor",
+      "examples": [
+        {
+          "input": "{\"doc_id\": \"b9e9666b-1371-400c-a8d0-1a9d3d4a0324\", \"document_text\": \"Dan's brother, Micheal, and his grandmother, Gabrielle, met him for his birthday dinner at the local diner.\", \"document_text_bracke...",
+          "output": "{\"atomic_facts\": [{\"head\": \"Gabrielle\", \"relation\": \"grandson\", \"tail\": \"Dan\"}, {\"head\": \"Dan\", \"relation\": \"brother\", \"tail\": \"Micheal\"}], \"multi_hop_facts\": [{\"head\": \"Gabrielle\", \"relation\": \"grand...",
+          "metadata_fold": "k2",
+          "metadata_chain_length_k": 2,
+          "metadata_difficulty_split": "short",
+          "metadata_f_comb": "grandson-brother",
+          "metadata_task_name": "task_1.2",
+          "metadata_source_config": "gen_train23_test2to10",
+          "metadata_source_split": "test",
+          "metadata_clutrr_id": "b9e9666b-1371-400c-a8d0-1a9d3d4a0324",
+          "metadata_is_pilot": false,
+          "metadata_n_atomic_facts": 2,
+          "metadata_n_multi_hop_facts": 1,
+          "metadata_document_char_length": 107,
+          "metadata_proof_state_raw": "[{('Gabrielle', 'grandson', 'Micheal'): [('Gabrielle', 'grandson', 'Dan'), ('Dan', 'brother', 'Micheal')]}]",
+          "metadata_noisy_story": "[Dan]'s brother, [Micheal], and his grandmother, [Gabrielle], met him for his birthday dinner at the local diner.",
+          "metadata_atomic_crosscheck": "match",
+          "metadata_namemap_method": "genders_order",
+          "metadata_genders_order_valid": true,
+          "metadata_relation_vocab_version": "clutrr_kinship"
+        },
+        {
+          "input": "{\"doc_id\": \"c5a0fb69-4629-45cc-ad52-c905d2fde01b\", \"document_text\": \"Victor invited his mother Joy and grandmother Debra over for dinner. Debra called her son Kenneth and his sister Melissa was at his...",
+          "output": "{\"atomic_facts\": [{\"head\": \"Joy\", \"relation\": \"son\", \"tail\": \"Victor\"}, {\"head\": \"Victor\", \"relation\": \"grandmother\", \"tail\": \"Debra\"}, {\"head\": \"Debra\", \"relation\": \"son\", \"tail\": \"Kenneth\"}, {\"head\"...",
+          "metadata_fold": "k10",
+          "metadata_chain_length_k": 10,
+          "metadata_difficulty_split": "long",
+          "metadata_f_comb": "son-grandmother-son-sister-son-brother-uncle-wife-daughter-sister",
+          "metadata_task_name": "task_1.10",
+          "metadata_source_config": "gen_train23_test2to10",
+          "metadata_source_split": "test",
+          "metadata_clutrr_id": "c5a0fb69-4629-45cc-ad52-c905d2fde01b",
+          "metadata_is_pilot": false,
+          "metadata_n_atomic_facts": 10,
+          "metadata_n_multi_hop_facts": 9,
+          "metadata_document_char_length": 498,
+          "metadata_proof_state_raw": "[{('Joy', 'niece', 'Ouida'): [('Joy', 'brother', 'Dale'), ('Dale', 'daughter', 'Ouida')]}, {('Joy', 'brother', 'Dale'): [('Joy', 'sister', 'Melissa'), ('Melissa', 'brother', 'Dale')]}, {('Dale', 'daug...",
+          "metadata_noisy_story": "[Debra] called her son [Kenneth] and his sister [Melissa] was at his house visiting so he said he would call her back later. [Victor] invited his mother [Joy] and grandmother [Debra] over for dinner. ...",
+          "metadata_atomic_crosscheck": "match",
+          "metadata_namemap_method": "genders_order",
+          "metadata_genders_order_valid": true,
+          "metadata_relation_vocab_version": "clutrr_kinship"
+        },
+        {
+          "input": "{\"doc_id\": \"42ae6a49-6451-40fb-8f74-feb29fcf40d3\", \"document_text\": \"Helen went to her son Leo's House Leo went to lunch with his aunt Kecia. Kecia and her husband Thomas took their son Matthew to the...",
+          "output": "{\"atomic_facts\": [{\"head\": \"Helen\", \"relation\": \"son\", \"tail\": \"Leo\"}, {\"head\": \"Leo\", \"relation\": \"aunt\", \"tail\": \"Kecia\"}, {\"head\": \"Kecia\", \"relation\": \"husband\", \"tail\": \"Thomas\"}, {\"head\": \"Thoma...",
+          "metadata_fold": "k6",
+          "metadata_chain_length_k": 6,
+          "metadata_difficulty_split": "long",
+          "metadata_f_comb": "son-aunt-husband-son-brother-sister",
+          "metadata_task_name": "task_1.6",
+          "metadata_source_config": "gen_train23_test2to10",
+          "metadata_source_split": "test",
+          "metadata_clutrr_id": "42ae6a49-6451-40fb-8f74-feb29fcf40d3",
+          "metadata_is_pilot": false,
+          "metadata_n_atomic_facts": 6,
+          "metadata_n_multi_hop_facts": 5,
+          "metadata_document_char_length": 250,
+          "metadata_proof_state_raw": "[{('Helen', 'niece', 'Laura'): [('Helen', 'sister', 'Kecia'), ('Kecia', 'daughter', 'Laura')]}, {('Kecia', 'daughter', 'Laura'): [('Kecia', 'son', 'Phillip'), ('Phillip', 'sister', 'Laura')]}, {('Hele...",
+          "metadata_noisy_story": "[Kecia] and her husband [Thomas] took their son [Matthew] to the wedding. [Matthew]'s brother [Phillip] hates weddings and did n't go. [Leo] went to lunch with his aunt [Kecia]. [Helen] went to her so...",
+          "metadata_atomic_crosscheck": "match",
+          "metadata_namemap_method": "genders_order",
+          "metadata_genders_order_valid": true,
+          "metadata_relation_vocab_version": "clutrr_kinship"
+        }
+      ]
+    }
+  ]
+}

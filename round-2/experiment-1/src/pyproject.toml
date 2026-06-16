@@ -1,0 +1,12 @@
+[project]
+name = "clutrr-fdr-gate"
+version = "0.1.0"
+description = "Label-free knockoff+ FDR gate at the LLM text-to-logic admission boundary (CLUTRR calibration diagonal)"
+requires-python = ">=3.12"
+dependencies = [
+    "numpy==2.4.6",
+    "scipy==1.17.1",
+    "aiohttp==3.14.1",
+    "python-dotenv==1.2.2",
+    "jsonschema==4.26.0",
+]

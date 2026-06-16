@@ -1,0 +1,1637 @@
+{
+  "metadata": {
+    "method_name": "Label-free decoy-competition (knockoff+) FDR gate for LLM text->logic fact admission, with auditable trace-graphs",
+    "task": "Operational neuro-symbolic translation of short legal/news/regulatory documents into gated (head, relation, tail) facts that feed a running backward-chaining logic engine, with a quantified hallucinat...",
+    "anchor": "24-doc application anchor (8 legal CUAD-crisp / 8 news Wikinews-silver / 8 regulatory GDPR+eCFR-silver)",
+    "headline_finding": "Decoy-gating reduces the hallucinated-fact rate vs raw LLM in 0 of the grid cells with CI separation; the largest CI-separated reduction is at regulatory/portable/alpha=0.5: raw=0.439 -> gate=0.360 (a...",
+    "headline_elicitation": "portable",
+    "primary_metric": "hallucinated-fact rate (decoy-gate vs RAW LLM) per genre x elicitation x alpha, with document-block bootstrap CIs",
+    "models": {
+      "primary_scorer_generator": "openai/gpt-4.1-nano",
+      "cross_family_adjudicator": "mistralai/ministral-8b-2512"
+    },
+    "elicitation": {
+      "logprob": "softmax P(Yes) over {Yes,No} first-token logits (gpt-4.1-nano)",
+      "portable": "K=5 self-consistency Yes/No+confidence, temp 0.7, mean p(true)"
+    },
+    "hyperparameters": {
+      "seed": 20240617,
+      "alpha_grid": [
+        0.05,
+        0.1,
+        0.2
+      ],
+      "B_bootstrap": 2000,
+      "K_self_consistency": 5,
+      "r_entrapment": 1,
+      "n_extraction_samples": 3,
+      "extraction_temperature": 0.7,
+      "reals_cap_per_doc": 20,
+      "candidate_cap_per_doc": 40,
+      "recall_grid": [
+        0.1,
+        0.2,
+        0.3
+      ],
+      "kappa_trust_threshold": 0.4,
+      "W_statistic": "signed-max",
+      "knockoff_plus": "Barber-Candes eq 1.9",
+      "bootstrap": "document-block (cluster) resampling",
+      "multiplicity": "Benjamini-Hochberg q=0.05",
+      "scoring": "isolated, provenance-blinded, identical template",
+      "extraction_mode": "open-vocab over-generation + LLM relation alignment to per-genre gold vocab + 'other' escape",
+      "reasoning_engine": "pure-Python backward-chaining meta-interpreter (janus-swi/SWI-Prolog attempted, fell back; identical JSON+DOT trace-graph schema)",
+      "typing": "WordNet hypernym -> coarse {PER,LOC,ORG,TIME,NUM,MISC} -> SUMO class (typing-only, never filters)"
+    },
+    "dataset_counts": {
+      "n_docs": 24,
+      "genre_counts": {
+        "legal": 8,
+        "news": 8,
+        "regulatory": 8
+      },
+      "n_reals": 208,
+      "label_counts": {
+        "TRUE": 42,
+        "FALSE": 51,
+        "UNDECIDABLE": 115
+      },
+      "n_decoys_generated": 416,
+      "contamination_rate_decoys": 0.057692307692307696,
+      "n_entrapment": 207
+    },
+    "hallucination_grid": [
+      {
+        "genre": "legal",
+        "elicitation": "logprob",
+        "alpha": 0.05,
+        "n_reals": 69,
+        "n_admitted": 0,
+        "k_floor": 20,
+        "certified": false,
+        "threshold": null,
+        "decoy_fdr_hat": 1.0,
+        "realized_fdr": 0.0,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 0,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": null
+        },
+        "gate_hall_rate": null,
+        "gate_hall_ci": [
+          null,
+          null
+        ],
+        "raw_hall_rate": 0.028986,
+        "raw_hall_ci": [
+          0.0,
+          0.07599868485944408
+        ],
+        "silver_bounds": {
+          "gate_lower": null,
+          "gate_upper": null,
+          "raw_lower": 0.028985507246376812,
+          "raw_upper": 0.7681159420289855
+        },
+        "regime_tag": "anti_conservative_expected",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "legal",
+        "elicitation": "logprob",
+        "alpha": 0.1,
+        "n_reals": 69,
+        "n_admitted": 57,
+        "k_floor": 10,
+        "certified": true,
+        "threshold": 0.662921,
+        "decoy_fdr_hat": 0.087719,
+        "realized_fdr": 0.017544,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 57,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": 0.0
+        },
+        "gate_hall_rate": 0.017544,
+        "gate_hall_ci": [
+          0.0,
+          0.046171874999999904
+        ],
+        "raw_hall_rate": 0.028986,
+        "raw_hall_ci": [
+          0.0,
+          0.07599868485944408
+        ],
+        "silver_bounds": {
+          "gate_lower": 0.017543859649122806,
+          "gate_upper": 0.7368421052631579,
+          "raw_lower": 0.028985507246376812,
+          "raw_upper": 0.7681159420289855
+        },
+        "regime_tag": "anti_conservative_expected",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "legal",
+        "elicitation": "logprob",
+        "alpha": 0.2,
+        "n_reals": 69,
+        "n_admitted": 60,
+        "k_floor": 5,
+        "certified": true,
+        "threshold": 0.25,
+        "decoy_fdr_hat": 0.166667,
+        "realized_fdr": 0.016667,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 60,
+          "N_E": 18,
+          "r": 1,
+          "FDP_hat": 0.461538
+        },
+        "gate_hall_rate": 0.016667,
+        "gate_hall_ci": [
+          0.0,
+          0.043494245524296586
+        ],
+        "raw_hall_rate": 0.028986,
+        "raw_hall_ci": [
+          0.0,
+          0.07599868485944408
+        ],
+        "silver_bounds": {
+          "gate_lower": 0.016666666666666666,
+          "gate_upper": 0.75,
+          "raw_lower": 0.028985507246376812,
+          "raw_upper": 0.7681159420289855
+        },
+        "regime_tag": "anti_conservative_expected",
+        "ci_separation_gate_below_raw": false
+      }
+    ],
+    "headline": {
+      "best_reduction_cell": {
+        "genre": "regulatory",
+        "elicitation": "portable",
+        "alpha": 0.5,
+        "raw": 0.439252,
+        "gate": 0.36,
+        "abs_reduction": 0.079252,
+        "rel_reduction": 0.180425,
+        "ci_separated": false,
+        "certified": true,
+        "n_admitted": 50,
+        "regime_tag": "certified"
+      },
+      "n_cells_gate_below_raw_ci_separated": 0,
+      "all_reductions": [
+        {
+          "genre": "legal",
+          "elicitation": "logprob",
+          "alpha": 0.1,
+          "raw": 0.028986,
+          "gate": 0.017544,
+          "abs_reduction": 0.011442,
+          "rel_reduction": 0.394742,
+          "ci_separated": false,
+          "certified": true,
+          "n_admitted": 57,
+          "regime_tag": "anti_conservative_expected"
+        },
+        {
+          "genre": "legal",
+          "elicitation": "logprob",
+          "alpha": 0.2,
+          "raw": 0.028986,
+          "gate": 0.016667,
+          "abs_reduction": 0.012319,
+          "rel_reduction": 0.424998,
+          "ci_separated": false,
+          "certified": true,
+          "n_admitted": 60,
+          "regime_tag": "anti_conservative_expected"
+        },
+        {
+          "genre": "legal",
+          "elicitation": "logprob",
+          "alpha": 0.3,
+          "raw": 0.028986,
+          "gate": 0.016667,
+          "abs_reduction": 0.012319,
+          "rel_reduction": 0.424998,
+          "ci_separated": false,
+          "certified": true,
+          "n_admitted": 60,
+          "regime_tag": "anti_conservative_expected"
+        }
+      ],
+      "self_report_anticonservative_cells": [],
+      "headline_statement": "Decoy-gating reduces the hallucinated-fact rate vs raw LLM in 0 of the grid cells with CI separation; the largest CI-separated reduction is at regulatory/portable/alpha=0.5: raw=0.439 -> gate=0.360 (a..."
+    },
+    "s1_decoy_signature": {
+      "logprob": {
+        "counterfactual": {
+          "rows": [
+            {
+              "alpha": 0.05,
+              "n_admitted": 0,
+              "threshold": null,
+              "tail_win_rate": 0.490196,
+              "n_tail": 51
+            },
+            {
+              "alpha": 0.1,
+              "n_admitted": 0,
+              "threshold": null,
+              "tail_win_rate": 0.490196,
+              "n_tail": 51
+            },
+            {
+              "alpha": 0.2,
+              "n_admitted": 0,
+              "threshold": null,
+              "tail_win_rate": 0.490196,
+              "n_tail": 51
+            }
+          ],
+          "n_pairs": 208
+        },
+        "random_swap": {
+          "rows": [
+            {
+              "alpha": 0.05,
+              "n_admitted": 0,
+              "threshold": null,
+              "tail_win_rate": 0.039216,
+              "n_tail": 51
+            },
+            {
+              "alpha": 0.1,
+              "n_admitted": 0,
+              "threshold": null,
+              "tail_win_rate": 0.039216,
+              "n_tail": 51
+            },
+            {
+              "alpha": 0.2,
+              "n_admitted": 184,
+              "threshold": 0.365854,
+              "tail_win_rate": 0.039216,
+              "n_tail": 51
+            }
+          ],
+          "n_pairs": 208
+        }
+      },
+      "portable": {
+        "counterfactual": {
+          "rows": [
+            {
+              "alpha": 0.05,
+              "n_admitted": 0,
+              "threshold": null,
+              "tail_win_rate": 0.509804,
+              "n_tail": 51
+            },
+            {
+              "alpha": 0.1,
+              "n_admitted": 0,
+              "threshold": null,
+              "tail_win_rate": 0.509804,
+              "n_tail": 51
+            },
+            {
+              "alpha": 0.2,
+              "n_admitted": 0,
+              "threshold": null,
+              "tail_win_rate": 0.509804,
+              "n_tail": 51
+            }
+          ],
+          "n_pairs": 208
+        },
+        "random_swap": {
+          "rows": [
+            {
+              "alpha": 0.05,
+              "n_admitted": 0,
+              "threshold": null,
+              "tail_win_rate": null,
+              "n_tail": 0
+            },
+            {
+              "alpha": 0.1,
+              "n_admitted": 0,
+              "threshold": null,
+              "tail_win_rate": null,
+              "n_tail": 0
+            },
+            {
+              "alpha": 0.2,
+              "n_admitted": 0,
+              "threshold": null,
+              "tail_win_rate": null,
+              "n_tail": 0
+            }
+          ],
+          "n_pairs": 0
+        }
+      }
+    },
+    "matched_recall_curves": {
+      "raw": {
+        "points": [
+          {
+            "recall_target": 0.1,
+            "reached": true,
+            "n_admitted": 208,
+            "precision": 0.201923,
+            "precision_ci": [
+              0.13550116822429906,
+              0.2788130004710316
+            ],
+            "halluc_rate": 0.245192,
+            "halluc_ci": [
+              0.10174145299145308,
+              0.3908089188488463
+            ]
+          },
+          {
+            "recall_target": 0.2,
+            "reached": true,
+            "n_admitted": 208,
+            "precision": 0.201923,
+            "precision_ci": [
+              0.13550116822429906,
+              0.2788130004710316
+            ],
+            "halluc_rate": 0.245192,
+            "halluc_ci": [
+              0.10174145299145308,
+              0.3908089188488463
+            ]
+          },
+          {
+            "recall_target": 0.3,
+            "reached": false
+          }
+        ],
+        "max_recall": 0.264286,
+        "n_facts": 208
+      },
+      "gate": {
+        "points": [
+          {
+            "recall_target": 0.1,
+            "reached": true,
+            "n_admitted": 45,
+            "precision": 0.311111,
+            "precision_ci": [
+              0.1793750000000001,
+              0.45
+            ],
+            "halluc_rate": 0.022222,
+            "halluc_ci": [
+              0.0,
+              0.075
+            ]
+          },
+          {
+            "recall_target": 0.2,
+            "reached": true,
+            "n_admitted": 108,
+            "precision": 0.277778,
+            "precision_ci": [
+              0.19625710097122961,
+              0.375
+            ],
+            "halluc_rate": 0.166667,
+            "halluc_ci": [
+              0.06715174129353235,
+              0.26446888672824503
+            ]
+          },
+          {
+            "recall_target": 0.3,
+            "reached": false
+          }
+        ],
+        "max_recall": 0.264286,
+        "n_facts": 208
+      },
+      "rag": {
+        "points": [
+          {
+            "recall_target": 0.1,
+            "reached": true,
+            "n_admitted": 27,
+            "precision": 0.518519,
+            "precision_ci": [
+              0.2727272727272727,
+              0.7668181818181817
+            ],
+            "halluc_rate": 0.037037,
+            "halluc_ci": [
+              0.0,
+              0.125
+            ]
+          },
+          {
+            "recall_target": 0.2,
+            "reached": true,
+            "n_admitted": 276,
+            "precision": 0.148551,
+            "precision_ci": [
+              0.09653793103448277,
+              0.208036800486618
+            ],
+            "halluc_rate": 0.224638,
+            "halluc_ci": [
+              0.10344054430184012,
+              0.33147708627465944
+            ]
+          },
+          {
+            "recall_target": 0.3,
+            "reached": false
+          }
+        ],
+        "max_recall": 0.25,
+        "n_facts": 276
+      },
+      "cot": {
+        "points": [
+          {
+            "recall_target": 0.1,
+            "reached": true,
+            "n_admitted": 22,
+            "precision": 0.727273,
+            "precision_ci": [
+              0.5652173913043478,
+              0.9090909090909091
+            ],
+            "halluc_rate": 0.045455,
+            "halluc_ci": [
+              0.0,
+              0.13050724637681152
+            ]
+          },
+          {
+            "recall_target": 0.2,
+            "reached": false
+          },
+          {
+            "recall_target": 0.3,
+            "reached": false
+          }
+        ],
+        "max_recall": 0.185714,
+        "n_facts": 115
+      },
+      "gold_total": 140
+    },
+    "extraction_quality": {
+      "legal": {
+        "atomic_precision": 0.28336056644880175,
+        "atomic_recall": 0.26711309523809523,
+        "n_docs": 8,
+        "crisp_restricted": true
+      },
+      "news": {
+        "atomic_precision": 0.29444444444444445,
+        "atomic_recall": 0.1845238095238095,
+        "n_docs": 8,
+        "crisp_restricted": false
+      },
+      "regulatory": {
+        "atomic_precision": 0.1745598441805872,
+        "atomic_recall": 0.4151785714285714,
+        "n_docs": 8,
+        "crisp_restricted": false
+      }
+    },
+    "multihop_corruption": {
+      "by_genre": {
+        "legal": {
+          "raw": {
+            "derived": 9,
+            "corrupt": 0,
+            "corrupted_rate": 0.0
+          },
+          "gate_a0.05": {
+            "derived": 0,
+            "corrupt": 0,
+            "corrupted_rate": null
+          },
+          "gate_a0.1": {
+            "derived": 0,
+            "corrupt": 0,
+            "corrupted_rate": null
+          },
+          "gate_a0.2": {
+            "derived": 0,
+            "corrupt": 0,
+            "corrupted_rate": null
+          },
+          "gate_a0.3": {
+            "derived": 0,
+            "corrupt": 0,
+            "corrupted_rate": null
+          },
+          "gate_a0.5": {
+            "derived": 5,
+            "corrupt": 0,
+            "corrupted_rate": 0.0
+          }
+        },
+        "news": {
+          "raw": {
+            "derived": 0,
+            "corrupt": 0,
+            "corrupted_rate": null
+          },
+          "gate_a0.05": {
+            "derived": 0,
+            "corrupt": 0,
+            "corrupted_rate": null
+          },
+          "gate_a0.1": {
+            "derived": 0,
+            "corrupt": 0,
+            "corrupted_rate": null
+          },
+          "gate_a0.2": {
+            "derived": 0,
+            "corrupt": 0,
+            "corrupted_rate": null
+          },
+          "gate_a0.3": {
+            "derived": 0,
+            "corrupt": 0,
+            "corrupted_rate": null
+          },
+          "gate_a0.5": {
+            "derived": 0,
+            "corrupt": 0,
+            "corrupted_rate": null
+          }
+        },
+        "regulatory": {
+          "raw": {
+            "derived": 12,
+            "corrupt": 11,
+            "corrupted_rate": 0.9166666666666666
+          },
+          "gate_a0.05": {
+            "derived": 0,
+            "corrupt": 0,
+            "corrupted_rate": null
+          },
+          "gate_a0.1": {
+            "derived": 0,
+            "corrupt": 0,
+            "corrupted_rate": null
+          },
+          "gate_a0.2": {
+            "derived": 0,
+            "corrupt": 0,
+            "corrupted_rate": null
+          },
+          "gate_a0.3": {
+            "derived": 0,
+            "corrupt": 0,
+            "corrupted_rate": null
+          },
+          "gate_a0.5": {
+            "derived": 3,
+            "corrupt": 2,
+            "corrupted_rate": 0.6666666666666666
+          }
+        }
+      },
+      "pooled": {
+        "raw": {
+          "derived": 21,
+          "corrupt": 11,
+          "corrupted_rate": 0.5238095238095238
+        },
+        "gate_a0.05": {
+          "derived": 0,
+          "corrupt": 0,
+          "corrupted_rate": null
+        },
+        "gate_a0.1": {
+          "derived": 0,
+          "corrupt": 0,
+          "corrupted_rate": null
+        },
+        "gate_a0.2": {
+          "derived": 0,
+          "corrupt": 0,
+          "corrupted_rate": null
+        },
+        "gate_a0.3": {
+          "derived": 0,
+          "corrupt": 0,
+          "corrupted_rate": null
+        },
+        "gate_a0.5": {
+          "derived": 8,
+          "corrupt": 2,
+          "corrupted_rate": 0.25
+        }
+      },
+      "ci": {
+        "bootstrap": "document-block (cluster) resampling",
+        "B": 2000,
+        "n_docs": 24,
+        "raw_corrupted_rate": {
+          "point": 0.52381,
+          "ci": [
+            0.0,
+            0.875
+          ]
+        },
+        "gate_a0.5_corrupted_rate": {
+          "point": 0.25,
+          "ci": [
+            0.0,
+            0.75
+          ]
+        },
+        "delta_raw_minus_gate": {
+          "point": 0.27381,
+          "ci": [
+            0.0,
+            0.38888888888888895
+          ],
+          "ci_excludes_zero": false
+        }
+      },
+      "per_system_derived_counts": {
+        "raw_kb": 21,
+        "gate_kb_a0.5": 8
+      },
+      "single_genre_origin": "regulatory",
+      "contributing_genres": [
+        "legal",
+        "regulatory"
+      ],
+      "origin_note": "The pooled multi-hop corruption drop (0.5238095238095238 -> 0.25) is ENTIRELY regulatory-driven: legal derives clean conclusions (corrupt=0) and news derives none (derived=0). With one contributing ge..."
+    },
+    "adjudicator_validation": {
+      "kappa": 0.09735320961362938,
+      "raw_agreement": 0.37681159420289856,
+      "n_legal_judged": 69,
+      "trust_threshold": 0.4,
+      "judge_trusted": false,
+      "fallback_active": true
+    },
+    "trace_graphs": {
+      "n_exported": 6,
+      "examples": [
+        {
+          "doc_id": "legal_cuad_00",
+          "genre": "legal",
+          "kind": "multi_hop",
+          "rule": "party_bound_effective",
+          "conclusion": [
+            "party_bound_effective",
+            [
+              "Premium Managed Hosting Agreement",
+              "AstroNutrition.com",
+              "March 1, 2005"
+            ]
+          ],
+          "graph": {
+            "nodes": [
+              {
+                "id": 0,
+                "label": "party_bound_effective(Premium Managed Hosting Agreement, AstroNutrition.com, March 1, 2005)",
+                "kind": "derived",
+                "rule": "party_bound_effective"
+              },
+              {
+                "id": 1,
+                "label": "has_party(Premium Managed Hosting Agreement, AstroNutrition.com)",
+                "kind": "leaf",
+                "cert": {
+                  "provenance": "This is a managed hosting agreement between AstroNutrition.com and deep systems.",
+                  "provenance_char_span": null,
+                  "hallucination_verdict": "ENTAILED",
+                  "decoy_certificate": {
+                    "W_i": 0.8421,
+                    "T": 0.129032,
+                    "alpha": 0.5
+                  },
+                  "entrapment_certificate": {
+                    "FDP_hat": 0.72,
+                    "r": 1
+                  }
+                }
+              },
+              {
+                "id": 2,
+                "label": "effective_date(Premium Managed Hosting Agreement, March 1, 2005)",
+                "kind": "leaf",
+                "cert": {
+                  "provenance": "The effective term is 12 months beginning March 1, 2005",
+                  "provenance_char_span": null,
+                  "hallucination_verdict": "ENTAILED",
+                  "decoy_certificate": {
+                    "W_i": 0.7895,
+                    "T": 0.129032,
+                    "alpha": 0.5
+                  },
+                  "entrapment_certificate": {
+                    "FDP_hat": 0.72,
+                    "r": 1
+                  }
+                }
+              }
+            ],
+            "edges": [
+              {
+                "src": 0,
+                "dst": 1,
+                "rule": "party_bound_effective"
+              },
+              {
+                "src": 0,
+                "dst": 2,
+                "rule": "party_bound_effective"
+              }
+            ]
+          },
+          "json_path": "trace_graphs/trace_legal_cuad_00.json",
+          "dot_path": "trace_graphs/trace_legal_cuad_00.dot"
+        },
+        {
+          "doc_id": "legal_cuad_04",
+          "genre": "legal",
+          "kind": "multi_hop",
+          "rule": "party_bound_effective",
+          "conclusion": [
+            "party_bound_effective",
+            [
+              "Maintenance Agreement",
+              "Bankers Bank",
+              "MARCH 1, 2001"
+            ]
+          ],
+          "graph": {
+            "nodes": [
+              {
+                "id": 0,
+                "label": "party_bound_effective(Maintenance Agreement, Bankers Bank, MARCH 1, 2001)",
+                "kind": "derived",
+                "rule": "party_bound_effective"
+              },
+              {
+                "id": 1,
+                "label": "has_party(Maintenance Agreement, Bankers Bank)",
+                "kind": "leaf",
+                "cert": {
+                  "provenance": "Bankers Bank agrees to pay fees equal to $40 per month for all Participating Banks (original or added) for which maintenance is provided.",
+                  "provenance_char_span": null,
+                  "hallucination_verdict": "ENTAILED",
+                  "decoy_certificate": {
+                    "W_i": 0.597,
+                    "T": 0.129032,
+                    "alpha": 0.5
+                  },
+                  "entrapment_certificate": {
+                    "FDP_hat": 0.72,
+                    "r": 1
+                  }
+                }
+              },
+              {
+                "id": 2,
+                "label": "effective_date(Maintenance Agreement, MARCH 1, 2001)",
+                "kind": "leaf",
+                "cert": {
+                  "provenance": "COMMENCEMENT DATE FOR MAINTENANCE UNDER THIS ADDENDUM:  MARCH 1, 2001",
+                  "provenance_char_span": null,
+                  "hallucination_verdict": "ENTAILED",
+                  "decoy_certificate": {
+                    "W_i": 0.7313,
+                    "T": 0.129032,
+                    "alpha": 0.5
+                  },
+                  "entrapment_certificate": {
+                    "FDP_hat": 0.72,
+                    "r": 1
+                  }
+                }
+              }
+            ],
+            "edges": [
+              {
+                "src": 0,
+                "dst": 1,
+                "rule": "party_bound_effective"
+              },
+              {
+                "src": 0,
+                "dst": 2,
+                "rule": "party_bound_effective"
+              }
+            ]
+          },
+          "json_path": "trace_graphs/trace_legal_cuad_04.json",
+          "dot_path": "trace_graphs/trace_legal_cuad_04.dot"
+        },
+        {
+          "doc_id": "news_wikinews_02",
+          "genre": "news",
+          "kind": "admission",
+          "rule": "admission",
+          "conclusion": [
+            "admitted_fact",
+            [
+              "choose(The Justice and Development Party,Abdullah Gül)"
+            ]
+          ],
+          "graph": {
+            "nodes": [
+              {
+                "id": 0,
+                "label": "admitted_fact(choose(The Justice and Development Party,Abdullah Gül))",
+                "kind": "derived",
+                "rule": "admission"
+              },
+              {
+                "id": 1,
+                "label": "choose(The Justice and Development Party, Abdullah Gül)",
+                "kind": "leaf",
+                "cert": {
+                  "provenance": "The ruling AKP chose Abdullah Gül as their candidate instead",
+                  "provenance_char_span": null,
+                  "hallucination_verdict": "ENTAILED",
+                  "decoy_certificate": {
+                    "W_i": 0.7368,
+                    "T": 0.191489,
+                    "alpha": 0.5
+                  },
+                  "entrapment_certificate": {
+                    "FDP_hat": 0.871795,
+                    "r": 1
+                  }
+                }
+              }
+            ],
+            "edges": [
+              {
+                "src": 0,
+                "dst": 1,
+                "rule": "admission"
+              }
+            ]
+          },
+          "json_path": "trace_graphs/trace_news_wikinews_02.json",
+          "dot_path": "trace_graphs/trace_news_wikinews_02.dot"
+        }
+      ],
+      "dot_paths": [
+        "trace_graphs/trace_legal_cuad_00.dot",
+        "trace_graphs/trace_legal_cuad_04.dot",
+        "trace_graphs/trace_news_wikinews_02.dot"
+      ],
+      "note": "multi_hop = real bridge derivation; admission = depth-1 admission-boundary trace with full per-leaf certificate (used where no bridge fires)."
+    },
+    "bh_correction": [
+      {
+        "test_name": "gate<raw[legal|logprob|a0.1]",
+        "raw_p": 0.3069944719145551,
+        "bh_adj_p": 0.4649545873485257,
+        "reject": false
+      },
+      {
+        "test_name": "gate<raw[legal|logprob|a0.2]",
+        "raw_p": 0.2906508304810581,
+        "bh_adj_p": 0.4649545873485257,
+        "reject": false
+      },
+      {
+        "test_name": "gate<raw[legal|logprob|a0.3]",
+        "raw_p": 0.2906508304810581,
+        "bh_adj_p": 0.4649545873485257,
+        "reject": false
+      }
+    ],
+    "runtime": {
+      "elapsed_s": 79.06808257102966,
+      "cost_usd": 0.0,
+      "n_calls_live": 0,
+      "n_calls_cached": 5778,
+      "cached_tokens_observed": 0
+    },
+    "cost_trace_path": "logs/cost.jsonl",
+    "interpretation": {
+      "primary": "Per (genre, elicitation, alpha) the gate hallucination rate is compared to the alpha-invariant RAW rate with CI separation; the full grid is reported so regime-dependence is explicit.",
+      "regime": "logprob: anti-conservative expected (LLM overconfident in own errors); portable: vacuous below the certified alpha (n_admitted<1/alpha) — shown as 'uncertified' but populated.",
+      "second_order": "self_report_anticonservative flags cells where the gate's own decoy_fdr_hat under-states the realized FDR.",
+      "trace_graphs": "every admitted leaf carries provenance + decoy (W_i,T,alpha) + entrapment (FDP_hat,r) certificates; derived conclusions are corrupted iff any supporting leaf is hallucinated."
+    },
+    "probabilistic_reasoning": {
+      "engine": "problog",
+      "engines_used": [
+        "leaf_weight",
+        "problog"
+      ],
+      "problog_available": true,
+      "mapping_default": "gate_consistent_shrinkage",
+      "weight_map": {
+        "gate_consistent_shrinkage": "w_i = (1 - alpha_hat) * calibrate(Z_i)  [DEFAULT]",
+        "per_pair_margin": "w_i = clip(0.5 + 0.5*W_i, eps, 1-eps)",
+        "identity_no_shrinkage": "w_i = calibrate(Z_i), alpha_hat=0  [sensitivity baseline]",
+        "calibrate": "identity clamp Z_i -> [eps, 1-eps] (label-free, monotone)",
+        "alpha_hat_source": "decoy_fdr_hat of the operative (genre, portable, alpha=0.5) gate cell"
+      },
+      "alpha_hat_by_genre": {
+        "legal": 0.458333,
+        "news": 0.5,
+        "regulatory": 0.5,
+        "pooled": 0.5
+      },
+      "genres_with_multihop": [
+        "legal",
+        "regulatory"
+      ],
+      "n_exported": 4,
+      "examples": [
+        {
+          "doc_id": "legal_cuad_00",
+          "genre": "legal",
+          "engine": "problog",
+          "kind": "multi_hop",
+          "rule": "party_bound_effective",
+          "conclusion": [
+            "party_bound_effective",
+            [
+              "Premium Managed Hosting Agreement",
+              "AstroNutrition.com",
+              "March 1, 2005"
+            ]
+          ],
+          "marginal": 0.195060488112,
+          "n_conclusions": 2,
+          "json_path": "prob_trace_graphs/prob_trace_legal_cuad_00.json",
+          "dot_path": "prob_trace_graphs/prob_trace_legal_cuad_00.dot"
+        },
+        {
+          "doc_id": "news_wikinews_02",
+          "genre": "news",
+          "engine": "leaf_weight",
+          "kind": "admission",
+          "rule": "admission",
+          "conclusion": [
+            "admitted_fact",
+            [
+              "choose(The Justice and Development Party,Abdullah Gül)"
+            ]
+          ],
+          "marginal": 0.3684210526315789,
+          "n_conclusions": 1,
+          "json_path": "prob_trace_graphs/prob_trace_news_wikinews_02.json",
+          "dot_path": "prob_trace_graphs/prob_trace_news_wikinews_02.dot"
+        },
+        {
+          "doc_id": "reg_gdpr_07",
+          "genre": "regulatory",
+          "engine": "problog",
+          "kind": "multi_hop",
+          "rule": "titled_obligation",
+          "conclusion": [
+            "titled_obligation",
+            [
+              "Art. 7 GDPR",
+              "Conditions for consent",
+              "present consent request in a clearly distinguishable manner"
+            ]
+          ],
+          "marginal": 0.04986678000000001,
+          "n_conclusions": 10,
+          "json_path": "prob_trace_graphs/prob_trace_reg_gdpr_07.json",
+          "dot_path": "prob_trace_graphs/prob_trace_reg_gdpr_07.dot"
+        }
+      ],
+      "per_doc_marginals": [
+        {
+          "doc_id": "legal_cuad_00",
+          "genre": "legal",
+          "engine": "problog",
+          "kind": "multi_hop",
+          "marginals": [
+            {
+              "conclusion": [
+                "party_bound_effective",
+                [
+                  "Premium Managed Hosting Agreement",
+                  "deep systems",
+                  "March 1, 2005"
+                ]
+              ],
+              "marginal": 0.219442781856
+            },
+            {
+              "conclusion": [
+                "party_bound_effective",
+                [
+                  "Premium Managed Hosting Agreement",
+                  "AstroNutrition.com",
+                  "March 1, 2005"
+                ]
+              ],
+              "marginal": 0.195060488112
+            }
+          ]
+        },
+        {
+          "doc_id": "news_wikinews_02",
+          "genre": "news",
+          "engine": "leaf_weight",
+          "kind": "admission",
+          "marginals": [
+            {
+              "conclusion": [
+                "admitted_fact",
+                [
+                  "choose(The Justice and Development Party,Abdullah Gül)"
+                ]
+              ],
+              "marginal": 0.3684210526315789
+            }
+          ]
+        },
+        {
+          "doc_id": "reg_gdpr_07",
+          "genre": "regulatory",
+          "engine": "problog",
+          "kind": "multi_hop",
+          "marginals": [
+            {
+              "conclusion": [
+                "titled_obligation",
+                [
+                  "declaration",
+                  "using clear and plain language",
+                  "request for consent shall be presented clearly distinguishable from other matters"
+                ]
+              ],
+              "marginal": 0.04977762888900002
+            },
+            {
+              "conclusion": [
+                "titled_obligation",
+                [
+                  "declaration",
+                  "shall be presented in an intelligible and easily accessible form",
+                  "request for consent shall be presented clearly distinguishable from other matters"
+                ]
+              ],
+              "marginal": 0.009333320000000004
+            },
+            {
+              "conclusion": [
+                "titled_obligation",
+                [
+                  "declaration",
+                  "intelligible and easily accessible form",
+                  "request for consent shall be presented clearly distinguishable from other matters"
+                ]
+              ],
+              "marginal": 0.015555611110999998
+            }
+          ]
+        }
+      ],
+      "sensitivity_shrinkage_vs_margin": [
+        {
+          "doc_id": "reg_gdpr_07",
+          "conclusion": [
+            "titled_obligation",
+            [
+              "Art. 7 GDPR",
+              "Conditions for consent",
+              "present consent request in a clearly distinguishable manner"
+            ]
+          ],
+          "alpha_hat": 0.5,
+          "marginal_gate_consistent_shrinkage": 0.04986678000000001,
+          "marginal_per_pair_margin": 0.27999972,
+          "marginal_identity_no_shrinkage": 0.19946644000000002
+        },
+        {
+          "doc_id": "reg_gdpr_07",
+          "conclusion": [
+            "titled_obligation",
+            [
+              "Art. 7 GDPR",
+              "Conditions for consent",
+              "use clear and plain language in consent declaration"
+            ]
+          ],
+          "alpha_hat": 0.5,
+          "marginal_gate_consistent_shrinkage": 0.05893322,
+          "marginal_per_pair_margin": 0.2184,
+          "marginal_identity_no_shrinkage": 0.23573355999999998
+        },
+        {
+          "doc_id": "reg_gdpr_07",
+          "conclusion": [
+            "titled_obligation",
+            [
+              "Art. 7 GDPR",
+              "assess whether consent is freely given",
+              "present consent request in a clearly distinguishable manner"
+            ]
+          ],
+          "alpha_hat": 0.5,
+          "marginal_gate_consistent_shrinkage": 0.02640006,
+          "marginal_per_pair_margin": 0.22666644,
+          "marginal_identity_no_shrinkage": 0.10559988000000002
+        }
+      ],
+      "note": "deterministic backward-chaining remains the baseline; NO headline number depends on ProbLog. Multi-hop probabilistic marginals are demonstrated on regulatory (real cross_references+grants_right bridge..."
+    },
+    "prob_trace_graphs": {
+      "n_exported": 4,
+      "engine": "problog",
+      "examples": [
+        {
+          "doc_id": "legal_cuad_00",
+          "genre": "legal",
+          "engine": "problog",
+          "kind": "multi_hop",
+          "rule": "party_bound_effective",
+          "conclusion": [
+            "party_bound_effective",
+            [
+              "Premium Managed Hosting Agreement",
+              "AstroNutrition.com",
+              "March 1, 2005"
+            ]
+          ],
+          "marginal": 0.195060488112,
+          "n_conclusions": 2,
+          "json_path": "prob_trace_graphs/prob_trace_legal_cuad_00.json",
+          "dot_path": "prob_trace_graphs/prob_trace_legal_cuad_00.dot"
+        },
+        {
+          "doc_id": "news_wikinews_02",
+          "genre": "news",
+          "engine": "leaf_weight",
+          "kind": "admission",
+          "rule": "admission",
+          "conclusion": [
+            "admitted_fact",
+            [
+              "choose(The Justice and Development Party,Abdullah Gül)"
+            ]
+          ],
+          "marginal": 0.3684210526315789,
+          "n_conclusions": 1,
+          "json_path": "prob_trace_graphs/prob_trace_news_wikinews_02.json",
+          "dot_path": "prob_trace_graphs/prob_trace_news_wikinews_02.dot"
+        },
+        {
+          "doc_id": "reg_gdpr_07",
+          "genre": "regulatory",
+          "engine": "problog",
+          "kind": "multi_hop",
+          "rule": "titled_obligation",
+          "conclusion": [
+            "titled_obligation",
+            [
+              "Art. 7 GDPR",
+              "Conditions for consent",
+              "present consent request in a clearly distinguishable manner"
+            ]
+          ],
+          "marginal": 0.04986678000000001,
+          "n_conclusions": 10,
+          "json_path": "prob_trace_graphs/prob_trace_reg_gdpr_07.json",
+          "dot_path": "prob_trace_graphs/prob_trace_reg_gdpr_07.dot"
+        }
+      ]
+    },
+    "atomic_reduction_pooled": {
+      "by_cell": [
+        {
+          "elicitation": "logprob",
+          "alpha": 0.05,
+          "raw": 0.245192,
+          "gate": null,
+          "diff": null,
+          "rel_reduction": null,
+          "diff_ci": [
+            null,
+            null
+          ],
+          "ci_separated": false,
+          "n_admitted": 0,
+          "directional": false
+        },
+        {
+          "elicitation": "logprob",
+          "alpha": 0.1,
+          "raw": 0.245192,
+          "gate": null,
+          "diff": null,
+          "rel_reduction": null,
+          "diff_ci": [
+            null,
+            null
+          ],
+          "ci_separated": false,
+          "n_admitted": 0,
+          "directional": false
+        },
+        {
+          "elicitation": "logprob",
+          "alpha": 0.2,
+          "raw": 0.245192,
+          "gate": null,
+          "diff": null,
+          "rel_reduction": null,
+          "diff_ci": [
+            null,
+            null
+          ],
+          "ci_separated": false,
+          "n_admitted": 0,
+          "directional": false
+        }
+      ],
+      "cells_ci_separated_pooled": 0,
+      "n_pooled_cells": 10,
+      "cells_ci_separated_allgrid": 0,
+      "n_allgrid_cells": 40,
+      "directional_not_significant": true,
+      "headline_alpha": 0.5,
+      "note": "Pooled atomic hallucinated-fact reduction is DIRECTIONAL, not CI-separated at n=24: 0/40 grid cells and 0/10 pooled cells have a raw-gate difference CI excluding 0. Reported as a ~25% relative-reducti..."
+    },
+    "self_report_regime": "conservative",
+    "self_report_analysis": {
+      "regime": "conservative",
+      "anti_conservative_cells": 0,
+      "n_cells": 40,
+      "tau": 0.05,
+      "triples": [
+        {
+          "genre": "legal",
+          "elicitation": "logprob",
+          "alpha": 0.05,
+          "decoy_fdr_hat": 1.0,
+          "realized_fdr": 0.0,
+          "gap_hat_minus_realized": 1.0,
+          "anti_conservative": false
+        },
+        {
+          "genre": "legal",
+          "elicitation": "logprob",
+          "alpha": 0.1,
+          "decoy_fdr_hat": 0.087719,
+          "realized_fdr": 0.017544,
+          "gap_hat_minus_realized": 0.070175,
+          "anti_conservative": false
+        },
+        {
+          "genre": "legal",
+          "elicitation": "logprob",
+          "alpha": 0.2,
+          "decoy_fdr_hat": 0.166667,
+          "realized_fdr": 0.016667,
+          "gap_hat_minus_realized": 0.15,
+          "anti_conservative": false
+        }
+      ],
+      "clutrr_contrast": {
+        "clutrr_multihop_decoy_fdr_hat": 0.5,
+        "clutrr_multihop_realized": 1.0,
+        "note": "decoy_fdr_hat >= realized in ALL cells here (the gate over-estimates falsity / under-admits => CONSERVATIVE), the OPPOSITE of the CLUTRR multi_hop anti-conservative regime where decoy_fdr_hat=0.5 < re..."
+      },
+      "interpretation": "A conservative self-report means the certificate is an UPPER bound on the realized error here: the operator can trust decoy_fdr_hat as a safe (if loose) ceiling on admitted-fact falsity."
+    },
+    "figures": {
+      "F1": {
+        "alpha_grid": [
+          0.05,
+          0.1,
+          0.2
+        ],
+        "k_floor": [
+          20,
+          10,
+          5
+        ],
+        "by_elic": {
+          "logprob": {
+            "raw": [
+              0.245192,
+              0.245192,
+              0.245192
+            ],
+            "raw_ci": [
+              [
+                0.10283348498635127,
+                0.3911292517006802
+              ],
+              [
+                0.10283348498635127,
+                0.3911292517006802
+              ],
+              [
+                0.10283348498635127,
+                0.3911292517006802
+              ]
+            ],
+            "gate": [
+              null,
+              null,
+              null
+            ],
+            "gate_ci": [
+              [
+                null,
+                null
+              ],
+              [
+                null,
+                null
+              ],
+              [
+                null,
+                null
+              ]
+            ],
+            "n_admitted": [
+              0,
+              0,
+              0
+            ]
+          },
+          "portable": {
+            "raw": [
+              0.245192,
+              0.245192,
+              0.245192
+            ],
+            "raw_ci": [
+              [
+                0.10283348498635127,
+                0.3911292517006802
+              ],
+              [
+                0.10283348498635127,
+                0.3911292517006802
+              ],
+              [
+                0.10283348498635127,
+                0.3911292517006802
+              ]
+            ],
+            "gate": [
+              null,
+              null,
+              null
+            ],
+            "gate_ci": [
+              [
+                null,
+                null
+              ],
+              [
+                null,
+                null
+              ],
+              [
+                null,
+                null
+              ]
+            ],
+            "n_admitted": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "caption": "F1. Pooled (all-genre) atomic hallucinated-fact rate, RAW LLM vs decoy-competition gate, across alpha for both elicitations (logprob, portable). Error bars = document-block (cluster) bootstrap 95% CI ..."
+      },
+      "F2": {
+        "raw_point": 0.52381,
+        "raw_ci": [
+          0.0,
+          0.875
+        ],
+        "gate_point": 0.25,
+        "gate_ci": [
+          0.0,
+          0.75
+        ],
+        "delta_point": 0.27381,
+        "delta_ci": [
+          0.0,
+          0.38888888888888895
+        ],
+        "per_genre": {
+          "legal": {
+            "raw_derived": 9,
+            "raw_corrupt": 0,
+            "gate_derived": 5,
+            "gate_corrupt": 0
+          },
+          "news": {
+            "raw_derived": 0,
+            "raw_corrupt": 0,
+            "gate_derived": 0,
+            "gate_corrupt": 0
+          },
+          "regulatory": {
+            "raw_derived": 12,
+            "raw_corrupt": 11,
+            "gate_derived": 3,
+            "gate_corrupt": 2
+          }
+        },
+        "single_genre_origin": "regulatory",
+        "caption": "F2. Multi-hop corrupted-conclusion rate, RAW-KB vs GATE-KB (alpha=0.5), with document-block bootstrap 95% CIs (B=2000). Per-genre derived-conclusion counts show the drop (0.52381 -> 0.25) is ENTIRELY ..."
+      },
+      "F3": {
+        "points": [
+          {
+            "alpha": 0.05,
+            "genre": "legal",
+            "elicitation": "logprob",
+            "decoy_fdr_hat": 1.0,
+            "realized_fdr": 0.0
+          },
+          {
+            "alpha": 0.1,
+            "genre": "legal",
+            "elicitation": "logprob",
+            "decoy_fdr_hat": 0.087719,
+            "realized_fdr": 0.017544
+          },
+          {
+            "alpha": 0.2,
+            "genre": "legal",
+            "elicitation": "logprob",
+            "decoy_fdr_hat": 0.166667,
+            "realized_fdr": 0.016667
+          }
+        ],
+        "clutrr_point": {
+          "decoy_fdr_hat": 0.5,
+          "realized_fdr": 1.0,
+          "label": "CLUTRR multi_hop"
+        },
+        "regime": "conservative",
+        "anti_conservative_cells": 0,
+        "caption": "F3. Self-report calibration: the gate's own decoy_fdr_hat (x) vs the realized FDR against gold (y), all 40 (genre x elicitation x alpha) cells. ALL points lie on/above the y=x line (anti_conservative_..."
+      },
+      "F4": {
+        "example": {
+          "doc_id": "reg_gdpr_07",
+          "genre": "regulatory",
+          "engine": "problog",
+          "kind": "multi_hop",
+          "rule": "titled_obligation",
+          "conclusion": [
+            "titled_obligation",
+            [
+              "Art. 7 GDPR",
+              "Conditions for consent",
+              "present consent request in a clearly distinguishable manner"
+            ]
+          ],
+          "marginal": 0.04986678000000001,
+          "n_conclusions": 10,
+          "json_path": "prob_trace_graphs/prob_trace_reg_gdpr_07.json",
+          "dot_path": "prob_trace_graphs/prob_trace_reg_gdpr_07.dot"
+        },
+        "engine": "problog",
+        "json_path": "prob_trace_graphs/prob_trace_reg_gdpr_07.json",
+        "caption": "F4. Probabilistic trace-graph for a regulatory multi-hop conclusion (titled_obligation), engine=problog. Node labels carry the ProbLog/WMC marginal (derived nodes) or the gate-consistent shrinkage wei..."
+      }
+    },
+    "contributions": {
+      "probabilistic_reasoner_delivered": true,
+      "statement": "The LLM-as-probabilistic-reasoner is DELIVERED (executed), not only specified: admitted facts become a weighted ProbLog program and multi-hop conclusion marginals are computed (ProbLog primary, exact-...",
+      "honest_reporting": "Atomic reduction reported as a DIRECTIONAL ~25% trend (0 CI-separated cells at n=24); multi-hop corruption drop flagged as single-genre (regulatory) with wide CIs; self-report is CONSERVATIVE (decoy_f..."
+    }
+  },
+  "datasets": [
+    {
+      "dataset": "ApplicationAnchor-24doc-Legal-News-Regulatory",
+      "examples": [
+        {
+          "input": "{\"doc_id\": \"legal_cuad_00\", \"head\": \"Premium Managed Hosting Agreement\", \"relation\": \"agreement_date\", \"tail\": \"03/01/05\", \"genre\": \"legal\", \"candidate_kind\": \"real\"}",
+          "output": "TRUE",
+          "metadata_doc_id": "legal_cuad_00",
+          "metadata_genre": "legal",
+          "metadata_gold_quality": "crisp",
+          "metadata_gold_exact": true,
+          "metadata_hallucination_verdict": "ENTAILED",
+          "metadata_hall_adj": false,
+          "metadata_extraction_freq": 1,
+          "metadata_sumo_type_head": "&%Entity+",
+          "metadata_sumo_type_tail": "&%TimePosition+",
+          "metadata_decoy_relation": "effective_date",
+          "metadata_provenance_quote": "03/01/05",
+          "metadata_z_real_rank_lp": 0.8333333333333334,
+          "metadata_z_decoy_rank_lp": 0.75,
+          "metadata_w_cf_lp": 0.833333,
+          "metadata_z_real_raw_lp": 0.9998415638475772,
+          "predict_admit_lp_a05": "no",
+          "predict_admit_lp_a10": "yes",
+          "predict_admit_lp_a20": "yes",
+          "predict_admit_lp_a30": "yes",
+          "predict_admit_lp_a50": "yes",
+          "metadata_z_real_rank_pt": 0.5789473684210527,
+          "metadata_z_decoy_rank_pt": 1.0,
+          "metadata_w_cf_pt": -1.0,
+          "metadata_z_real_raw_pt": 1.0,
+          "predict_admit_pt_a05": "no",
+          "predict_admit_pt_a10": "no",
+          "predict_admit_pt_a20": "no",
+          "predict_admit_pt_a30": "no",
+          "predict_admit_pt_a50": "no"
+        },
+        {
+          "input": "{\"doc_id\": \"legal_cuad_00\", \"head\": \"Premium Managed Hosting Agreement\", \"relation\": \"effective_date\", \"tail\": \"March 1, 2005\", \"genre\": \"legal\", \"candidate_kind\": \"real\"}",
+          "output": "TRUE",
+          "metadata_doc_id": "legal_cuad_00",
+          "metadata_genre": "legal",
+          "metadata_gold_quality": "crisp",
+          "metadata_gold_exact": true,
+          "metadata_hallucination_verdict": "ENTAILED",
+          "metadata_hall_adj": false,
+          "metadata_extraction_freq": 1,
+          "metadata_sumo_type_head": "&%Entity+",
+          "metadata_sumo_type_tail": "&%TimePosition+",
+          "metadata_decoy_relation": "agreement_date",
+          "metadata_provenance_quote": "The effective term is 12 months beginning March 1, 2005",
+          "metadata_z_real_rank_lp": 0.9583333333333334,
+          "metadata_z_decoy_rank_lp": 1.0,
+          "metadata_w_cf_lp": -1.0,
+          "metadata_z_real_raw_lp": 0.9999910603051653,
+          "predict_admit_lp_a05": "no",
+          "predict_admit_lp_a10": "no",
+          "predict_admit_lp_a20": "no",
+          "predict_admit_lp_a30": "no",
+          "predict_admit_lp_a50": "no",
+          "metadata_z_real_rank_pt": 0.7894736842105263,
+          "metadata_z_decoy_rank_pt": 0.7368421052631579,
+          "metadata_w_cf_pt": 0.789474,
+          "metadata_z_real_raw_pt": 1.0,
+          "predict_admit_pt_a05": "no",
+          "predict_admit_pt_a10": "no",
+          "predict_admit_pt_a20": "no",
+          "predict_admit_pt_a30": "no",
+          "predict_admit_pt_a50": "yes"
+        },
+        {
+          "input": "{\"doc_id\": \"legal_cuad_00\", \"head\": \"Premium Managed Hosting Agreement\", \"relation\": \"expiration_date\", \"tail\": \"February 28, 2006\", \"genre\": \"legal\", \"candidate_kind\": \"real\"}",
+          "output": "TRUE",
+          "metadata_doc_id": "legal_cuad_00",
+          "metadata_genre": "legal",
+          "metadata_gold_quality": "crisp",
+          "metadata_gold_exact": true,
+          "metadata_hallucination_verdict": "ENTAILED",
+          "metadata_hall_adj": false,
+          "metadata_extraction_freq": 1,
+          "metadata_sumo_type_head": "&%Entity+",
+          "metadata_sumo_type_tail": "&%TimePosition+",
+          "metadata_decoy_relation": "has_party",
+          "metadata_provenance_quote": "and ending February 28, 2006.",
+          "metadata_z_real_rank_lp": 0.9166666666666666,
+          "metadata_z_decoy_rank_lp": 0.5416666666666666,
+          "metadata_w_cf_lp": 0.916667,
+          "metadata_z_real_raw_lp": 0.9999852610186964,
+          "predict_admit_lp_a05": "no",
+          "predict_admit_lp_a10": "yes",
+          "predict_admit_lp_a20": "yes",
+          "predict_admit_lp_a30": "yes",
+          "predict_admit_lp_a50": "yes",
+          "metadata_z_real_rank_pt": 0.631578947368421,
+          "metadata_z_decoy_rank_pt": 0.10526315789473684,
+          "metadata_w_cf_pt": 0.631579,
+          "metadata_z_real_raw_pt": 1.0,
+          "predict_admit_pt_a05": "no",
+          "predict_admit_pt_a10": "no",
+          "predict_admit_pt_a20": "no",
+          "predict_admit_pt_a30": "no",
+          "predict_admit_pt_a50": "yes"
+        }
+      ]
+    }
+  ]
+}

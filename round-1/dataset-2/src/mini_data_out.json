@@ -1,0 +1,2477 @@
+{
+  "metadata": {
+    "name": "Re-DocRED Operational Anchor (label-free FDR-gating)",
+    "source": "Re-DocRED (Tan, Xu, Bing et al., 'Revisiting DocRED — Addressing the False Negative Problem in Relation Extraction', EMNLP 2022)",
+    "paper_url": "https://arxiv.org/abs/2205.12696",
+    "data_urls": {
+      "train": "https://huggingface.co/datasets/tonytan48/Re-DocRED/resolve/main/train_revised.json",
+      "dev": "https://huggingface.co/datasets/tonytan48/Re-DocRED/resolve/main/dev_revised.json",
+      "test": "https://huggingface.co/datasets/tonytan48/Re-DocRED/resolve/main/test_revised.json"
+    },
+    "license": "MIT",
+    "raw_doc_counts": {
+      "train": 3053,
+      "dev": 500,
+      "test": 500,
+      "total": 4053
+    },
+    "n_emitted_rows": 236,
+    "n_confirmatory": 152,
+    "n_pilot": 36,
+    "n_reserve": 48,
+    "clusters": [
+      "cluster_PER",
+      "cluster_ORG",
+      "cluster_LOC",
+      "cluster_MISC"
+    ],
+    "per_cluster_counts": {
+      "cluster_PER": {
+        "confirmatory": 38,
+        "pilot": 9,
+        "reserve": 12
+      },
+      "cluster_ORG": {
+        "confirmatory": 38,
+        "pilot": 9,
+        "reserve": 12
+      },
+      "cluster_LOC": {
+        "confirmatory": 38,
+        "pilot": 9,
+        "reserve": 12
+      },
+      "cluster_MISC": {
+        "confirmatory": 38,
+        "pilot": 9,
+        "reserve": 12
+      }
+    },
+    "cluster_scheme": "dominant_entity_type_collapsed_4 (PER/ORG/LOC/MISC; TIME&NUM->MISC)",
+    "secondary_cluster_scheme": "kmeans (k=5, random_state=42) on entity-type histogram + top-20 relation profile + standardized length",
+    "seed": 20240617,
+    "eligibility_filter": "80<=num_words<=400 AND num_entities>=4 AND num_triples>=5",
+    "n_relation_types": 96,
+    "n_entity_types": 6,
+    "gold_caveat": "Re-DocRED has residual false negatives; this dataset licenses ONLY relative operational comparisons at matched recall (precision, hallucinated-conclusion rate) — never an absolute realized-FDR diagonal.",
+    "shared_triple_space": "All downstream systems (neuro-symbolic, plain confidence threshold, CoT, RAG, labeled conformal) map their raw output into THIS identical entity set and 96-relation triple space at matched recall; only RELATIVE operational comparisons are asserted (residual false negatives affect all systems equally).",
+    "companion_files": [
+      "relation_schema.json",
+      "entity_type_schema.json",
+      "dataset_meta.json",
+      "row_schema.json"
+    ]
+  },
+  "datasets": [
+    {
+      "dataset": "Re-DocRED",
+      "examples": [
+        {
+          "input": "Mikhail Borisovich Kogan (; September 5, 1893 in Zhitomir, Russian Empire – November 26, 1951 in Moscow, USSR) was a well - known medical doctor, a head of the therapy department of 2nd Moscow Medical Institute. He treated well - known people as Samuel Marshak, Martiros Saryan, Dmitri Shostakovich, Vyacheslav Molotov and others. He was one of the doctors named in the fabricated Joseph Stalin's Doctors' Plot in 1953 in spite of the fact that he had already died by the time when the first article about the plot was published. He was the brother of, who was also a doctor named in the Doctor's Plot and later arrested, and jailed.",
+          "output": "[{\"head_id\": 0, \"head_name\": \"Mikhail Borisovich Kogan\", \"head_type\": \"PER\", \"relation_pid\": \"P569\", \"relation_name\": \"date of birth\", \"tail_id\": 1, \"tail_name\": \"September 5, 1893\", \"tail_type\": \"TIME\", \"evidence_sent_ids\": [0], \"evidence_text\": [\"Mikhail Borisovich Kogan (; September 5, 1893 in Zhitomir, Russian Empire – November 26, 1951 in Moscow, USSR) was a well - known medical doctor, a head of the therapy department of 2nd Moscow Medical Institute.\"]}, {\"head_id\": 0, \"head_name\": \"Mikhail Borisovich Kogan\", \"head_type\": \"PER\", \"relation_pid\": \"P19\", \"relation_name\": \"place of birth\", \"tail_id\": 2, \"tail_name\": \"Zhitomir\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [0], \"evidence_text\": [\"Mikhail Borisovich Kogan (; September 5, 1893 in Zhitomir, Russian Empire – November 26, 1951 in Moscow, USSR) was a well - known medical doctor, a head of the therapy department of 2nd Moscow Medical Institute.\"]}, {\"head_id\": 0, \"head_name\": \"Mikhail Borisovich Kogan\", \"head_type\": \"PER\", \"relation_pid\": \"P570\", \"relation_name\": \"date of death\", \"tail_id\": 4, \"tail_name\": \"November 26, 1951\", \"tail_type\": \"TIME\", \"evidence_sent_ids\": [0], \"evidence_text\": [\"Mikhail Borisovich Kogan (; September 5, 1893 in Zhitomir, Russian Empire – November 26, 1951 in Moscow, USSR) was a well - known medical doctor, a head of the therapy department of 2nd Moscow Medical Institute.\"]}, {\"head_id\": 0, \"head_name\": \"Mikhail Borisovich Kogan\", \"head_type\": \"PER\", \"relation_pid\": \"P20\", \"relation_name\": \"place of death\", \"tail_id\": 5, \"tail_name\": \"Moscow\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [0], \"evidence_text\": [\"Mikhail Borisovich Kogan (; September 5, 1893 in Zhitomir, Russian Empire – November 26, 1951 in Moscow, USSR) was a well - known medical doctor, a head of the therapy department of 2nd Moscow Medical Institute.\"]}, {\"head_id\": 2, \"head_name\": \"Zhitomir\", \"head_type\": \"LOC\", \"relation_pid\": \"P17\", \"relation_name\": \"country\", \"tail_id\": 3, \"tail_name\": \"Russian Empire\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [0], \"evidence_text\": [\"Mikhail Borisovich Kogan (; September 5, 1893 in Zhitomir, Russian Empire – November 26, 1951 in Moscow, USSR) was a well - known medical doctor, a head of the therapy department of 2nd Moscow Medical Institute.\"]}, {\"head_id\": 5, \"head_name\": \"Moscow\", \"head_type\": \"LOC\", \"relation_pid\": \"P17\", \"relation_name\": \"country\", \"tail_id\": 6, \"tail_name\": \"USSR\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [0], \"evidence_text\": [\"Mikhail Borisovich Kogan (; September 5, 1893 in Zhitomir, Russian Empire – November 26, 1951 in Moscow, USSR) was a well - known medical doctor, a head of the therapy department of 2nd Moscow Medical Institute.\"]}, {\"head_id\": 13, \"head_name\": \"Doctors ' Plot\", \"head_type\": \"MISC\", \"relation_pid\": \"P577\", \"relation_name\": \"publication date\", \"tail_id\": 14, \"tail_name\": \"1953\", \"tail_type\": \"TIME\", \"evidence_sent_ids\": [], \"evidence_text\": []}, {\"head_id\": 12, \"head_name\": \"Joseph Stalin\", \"head_type\": \"PER\", \"relation_pid\": \"P937\", \"relation_name\": \"work location\", \"tail_id\": 5, \"tail_name\": \"Moscow\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [], \"evidence_text\": []}, {\"head_id\": 0, \"head_name\": \"Mikhail Borisovich Kogan\", \"head_type\": \"PER\", \"relation_pid\": \"P27\", \"relation_name\": \"country of citizenship\", \"tail_id\": 6, \"tail_name\": \"USSR\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [], \"evidence_text\": []}, {\"head_id\": 7, \"head_name\": \"2nd Moscow Medical Institute\", \"head_type\": \"ORG\", \"relation_pid\": \"P131\", \"relation_name\": \"located in the administrative territorial entity\", \"tail_id\": 5, \"tail_name\": \"Moscow\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [], \"evidence_text\": []}, {\"head_id\": 12, \"head_name\": \"Joseph Stalin\", \"head_type\": \"PER\", \"relation_pid\": \"P27\", \"relation_name\": \"country of citizenship\", \"tail_id\": 6, \"tail_name\": \"USSR\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [], \"evidence_text\": []}, {\"head_id\": 7, \"head_name\": \"2nd Moscow Medical Institute\", \"head_type\": \"ORG\", \"relation_pid\": \"P17\", \"relation_name\": \"country\", \"tail_id\": 6, \"tail_name\": \"USSR\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [], \"evidence_text\": []}, {\"head_id\": 5, \"head_name\": \"Moscow\", \"head_type\": \"LOC\", \"relation_pid\": \"P131\", \"relation_name\": \"located in the administrative territorial entity\", \"tail_id\": 6, \"tail_name\": \"USSR\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [], \"evidence_text\": []}, {\"head_id\": 6, \"head_name\": \"USSR\", \"head_type\": \"LOC\", \"relation_pid\": \"P150\", \"relation_name\": \"contains the administrative territorial entity\", \"tail_id\": 5, \"tail_name\": \"Moscow\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [], \"evidence_text\": []}, {\"head_id\": 5, \"head_name\": \"Moscow\", \"head_type\": \"LOC\", \"relation_pid\": \"P17\", \"relation_name\": \"country\", \"tail_id\": 3, \"tail_name\": \"Russian Empire\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [], \"evidence_text\": []}, {\"head_id\": 13, \"head_name\": \"Doctors ' Plot\", \"head_type\": \"MISC\", \"relation_pid\": \"P585\", \"relation_name\": \"point in time\", \"tail_id\": 14, \"tail_name\": \"1953\", \"tail_type\": \"TIME\", \"evidence_sent_ids\": [], \"evidence_text\": []}, {\"head_id\": 0, \"head_name\": \"Mikhail Borisovich Kogan\", \"head_type\": \"PER\", \"relation_pid\": \"P27\", \"relation_name\": \"country of citizenship\", \"tail_id\": 3, \"tail_name\": \"Russian Empire\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [], \"evidence_text\": []}, {\"head_id\": 15, \"head_name\": \"Doctor 's Plot\", \"head_type\": \"MISC\", \"relation_pid\": \"P577\", \"relation_name\": \"publication date\", \"tail_id\": 14, \"tail_name\": \"1953\", \"tail_type\": \"TIME\", \"evidence_sent_ids\": [], \"evidence_text\": []}, {\"head_id\": 5, \"head_name\": \"Moscow\", \"head_type\": \"LOC\", \"relation_pid\": \"P131\", \"relation_name\": \"located in the administrative territorial entity\", \"tail_id\": 3, \"tail_name\": \"Russian Empire\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [], \"evidence_text\": []}, {\"head_id\": 2, \"head_name\": \"Zhitomir\", \"head_type\": \"LOC\", \"relation_pid\": \"P17\", \"relation_name\": \"country\", \"tail_id\": 6, \"tail_name\": \"USSR\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [], \"evidence_text\": []}, {\"head_id\": 2, \"head_name\": \"Zhitomir\", \"head_type\": \"LOC\", \"relation_pid\": \"P131\", \"relation_name\": \"located in the administrative territorial entity\", \"tail_id\": 3, \"tail_name\": \"Russian Empire\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [0], \"evidence_text\": [\"Mikhail Borisovich Kogan (; September 5, 1893 in Zhitomir, Russian Empire – November 26, 1951 in Moscow, USSR) was a well - known medical doctor, a head of the therapy department of 2nd Moscow Medical Institute.\"]}, {\"head_id\": 7, \"head_name\": \"2nd Moscow Medical Institute\", \"head_type\": \"ORG\", \"relation_pid\": \"P131\", \"relation_name\": \"located in the administrative territorial entity\", \"tail_id\": 6, \"tail_name\": \"USSR\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [], \"evidence_text\": []}, {\"head_id\": 2, \"head_name\": \"Zhitomir\", \"head_type\": \"LOC\", \"relation_pid\": \"P131\", \"relation_name\": \"located in the administrative territorial entity\", \"tail_id\": 6, \"tail_name\": \"USSR\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [], \"evidence_text\": []}, {\"head_id\": 7, \"head_name\": \"2nd Moscow Medical Institute\", \"head_type\": \"ORG\", \"relation_pid\": \"P131\", \"relation_name\": \"located in the administrative territorial entity\", \"tail_id\": 3, \"tail_name\": \"Russian Empire\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [], \"evidence_text\": []}]",
+          "metadata_fold": "cluster_PER",
+          "metadata_id": "redocred_test_477",
+          "metadata_title": "Mikhail Kogan",
+          "metadata_split_origin": "test",
+          "metadata_orig_index": 477,
+          "metadata_split_role": "confirmatory",
+          "metadata_is_confirmatory": true,
+          "metadata_is_pilot": false,
+          "metadata_is_reserve": false,
+          "metadata_kmeans_cluster": 4,
+          "metadata_cluster_scheme": "dominant_entity_type_collapsed_4",
+          "metadata_seed": 20240617,
+          "metadata_sents": [
+            [
+              "Mikhail",
+              "Borisovich",
+              "Kogan",
+              "(;",
+              "September",
+              "5",
+              ",",
+              "1893",
+              "in",
+              "Zhitomir",
+              ",",
+              "Russian",
+              "Empire",
+              "–",
+              "November",
+              "26",
+              ",",
+              "1951",
+              "in",
+              "Moscow",
+              ",",
+              "USSR",
+              ")",
+              "was",
+              "a",
+              "well",
+              "-",
+              "known",
+              "medical",
+              "doctor",
+              ",",
+              "a",
+              "head",
+              "of",
+              "the",
+              "therapy",
+              "department",
+              "of",
+              "2nd",
+              "Moscow",
+              "Medical",
+              "Institute",
+              "."
+            ],
+            [
+              "He",
+              "treated",
+              "well",
+              "-",
+              "known",
+              "people",
+              "as",
+              "Samuel",
+              "Marshak",
+              ",",
+              "Martiros",
+              "Saryan",
+              ",",
+              "Dmitri",
+              "Shostakovich",
+              ",",
+              "Vyacheslav",
+              "Molotov",
+              "and",
+              "others",
+              "."
+            ],
+            [
+              "He",
+              "was",
+              "one",
+              "of",
+              "the",
+              "doctors",
+              "named",
+              "in",
+              "the",
+              "fabricated",
+              "Joseph",
+              "Stalin",
+              "'s",
+              "Doctors",
+              "'",
+              "Plot",
+              "in",
+              "1953",
+              "in",
+              "spite",
+              "of",
+              "the",
+              "fact",
+              "that",
+              "he",
+              "had",
+              "already",
+              "died",
+              "by",
+              "the",
+              "time",
+              "when",
+              "the",
+              "first",
+              "article",
+              "about",
+              "the",
+              "plot",
+              "was",
+              "published",
+              "."
+            ],
+            [
+              "He",
+              "was",
+              "the",
+              "brother",
+              "of",
+              ",",
+              "who",
+              "was",
+              "also",
+              "a",
+              "doctor",
+              "named",
+              "in",
+              "the",
+              "Doctor",
+              "'s",
+              "Plot",
+              "and",
+              "later",
+              "arrested",
+              ",",
+              "and",
+              "jailed",
+              "."
+            ]
+          ],
+          "metadata_sent_char_offsets": [
+            0,
+            212,
+            331,
+            530
+          ],
+          "metadata_entities": [
+            {
+              "entity_id": 0,
+              "type": "PER",
+              "canonical_name": "Mikhail Borisovich Kogan",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "Mikhail Borisovich Kogan",
+                  "sent_id": 0,
+                  "pos": [
+                    0,
+                    3
+                  ],
+                  "char_span": [
+                    0,
+                    24
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 1,
+              "type": "TIME",
+              "canonical_name": "September 5, 1893",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "September 5, 1893",
+                  "sent_id": 0,
+                  "pos": [
+                    4,
+                    8
+                  ],
+                  "char_span": [
+                    28,
+                    45
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 2,
+              "type": "LOC",
+              "canonical_name": "Zhitomir",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "Zhitomir",
+                  "sent_id": 0,
+                  "pos": [
+                    9,
+                    10
+                  ],
+                  "char_span": [
+                    49,
+                    57
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 3,
+              "type": "LOC",
+              "canonical_name": "Russian Empire",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "Russian Empire",
+                  "sent_id": 0,
+                  "pos": [
+                    11,
+                    13
+                  ],
+                  "char_span": [
+                    59,
+                    73
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 4,
+              "type": "TIME",
+              "canonical_name": "November 26, 1951",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "November 26, 1951",
+                  "sent_id": 0,
+                  "pos": [
+                    14,
+                    18
+                  ],
+                  "char_span": [
+                    76,
+                    93
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 5,
+              "type": "LOC",
+              "canonical_name": "Moscow",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "Moscow",
+                  "sent_id": 0,
+                  "pos": [
+                    19,
+                    20
+                  ],
+                  "char_span": [
+                    97,
+                    103
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 6,
+              "type": "LOC",
+              "canonical_name": "USSR",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "USSR",
+                  "sent_id": 0,
+                  "pos": [
+                    21,
+                    22
+                  ],
+                  "char_span": [
+                    105,
+                    109
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 7,
+              "type": "ORG",
+              "canonical_name": "2nd Moscow Medical Institute",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "2nd Moscow Medical Institute",
+                  "sent_id": 0,
+                  "pos": [
+                    38,
+                    42
+                  ],
+                  "char_span": [
+                    182,
+                    210
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 8,
+              "type": "PER",
+              "canonical_name": "Samuel Marshak",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "Samuel Marshak",
+                  "sent_id": 1,
+                  "pos": [
+                    7,
+                    9
+                  ],
+                  "char_span": [
+                    246,
+                    260
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 9,
+              "type": "PER",
+              "canonical_name": "Martiros Saryan",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "Martiros Saryan",
+                  "sent_id": 1,
+                  "pos": [
+                    10,
+                    12
+                  ],
+                  "char_span": [
+                    262,
+                    277
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 10,
+              "type": "PER",
+              "canonical_name": "Dmitri Shostakovich",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "Dmitri Shostakovich",
+                  "sent_id": 1,
+                  "pos": [
+                    13,
+                    15
+                  ],
+                  "char_span": [
+                    279,
+                    298
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 11,
+              "type": "PER",
+              "canonical_name": "Vyacheslav Molotov",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "Vyacheslav Molotov",
+                  "sent_id": 1,
+                  "pos": [
+                    16,
+                    18
+                  ],
+                  "char_span": [
+                    300,
+                    318
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 12,
+              "type": "PER",
+              "canonical_name": "Joseph Stalin",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "Joseph Stalin",
+                  "sent_id": 2,
+                  "pos": [
+                    10,
+                    12
+                  ],
+                  "char_span": [
+                    381,
+                    394
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 13,
+              "type": "MISC",
+              "canonical_name": "Doctors ' Plot",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "Doctors ' Plot",
+                  "sent_id": 2,
+                  "pos": [
+                    13,
+                    16
+                  ],
+                  "char_span": [
+                    397,
+                    410
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 14,
+              "type": "TIME",
+              "canonical_name": "1953",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "1953",
+                  "sent_id": 2,
+                  "pos": [
+                    17,
+                    18
+                  ],
+                  "char_span": [
+                    414,
+                    418
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 15,
+              "type": "MISC",
+              "canonical_name": "Doctor 's Plot",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "Doctor 's Plot",
+                  "sent_id": 3,
+                  "pos": [
+                    14,
+                    17
+                  ],
+                  "char_span": [
+                    588,
+                    601
+                  ]
+                }
+              ]
+            }
+          ],
+          "metadata_gold_triples": [
+            {
+              "head_id": 0,
+              "head_name": "Mikhail Borisovich Kogan",
+              "head_type": "PER",
+              "relation_pid": "P569",
+              "relation_name": "date of birth",
+              "tail_id": 1,
+              "tail_name": "September 5, 1893",
+              "tail_type": "TIME",
+              "evidence_sent_ids": [
+                0
+              ],
+              "evidence_text": [
+                "Mikhail Borisovich Kogan (; September 5, 1893 in Zhitomir, Russian Empire – November 26, 1951 in Moscow, USSR) was a well - known medical doctor, a head of the therapy department of 2nd Moscow Medical Institute."
+              ]
+            },
+            {
+              "head_id": 0,
+              "head_name": "Mikhail Borisovich Kogan",
+              "head_type": "PER",
+              "relation_pid": "P19",
+              "relation_name": "place of birth",
+              "tail_id": 2,
+              "tail_name": "Zhitomir",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [
+                0
+              ],
+              "evidence_text": [
+                "Mikhail Borisovich Kogan (; September 5, 1893 in Zhitomir, Russian Empire – November 26, 1951 in Moscow, USSR) was a well - known medical doctor, a head of the therapy department of 2nd Moscow Medical Institute."
+              ]
+            },
+            {
+              "head_id": 0,
+              "head_name": "Mikhail Borisovich Kogan",
+              "head_type": "PER",
+              "relation_pid": "P570",
+              "relation_name": "date of death",
+              "tail_id": 4,
+              "tail_name": "November 26, 1951",
+              "tail_type": "TIME",
+              "evidence_sent_ids": [
+                0
+              ],
+              "evidence_text": [
+                "Mikhail Borisovich Kogan (; September 5, 1893 in Zhitomir, Russian Empire – November 26, 1951 in Moscow, USSR) was a well - known medical doctor, a head of the therapy department of 2nd Moscow Medical Institute."
+              ]
+            },
+            {
+              "head_id": 0,
+              "head_name": "Mikhail Borisovich Kogan",
+              "head_type": "PER",
+              "relation_pid": "P20",
+              "relation_name": "place of death",
+              "tail_id": 5,
+              "tail_name": "Moscow",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [
+                0
+              ],
+              "evidence_text": [
+                "Mikhail Borisovich Kogan (; September 5, 1893 in Zhitomir, Russian Empire – November 26, 1951 in Moscow, USSR) was a well - known medical doctor, a head of the therapy department of 2nd Moscow Medical Institute."
+              ]
+            },
+            {
+              "head_id": 2,
+              "head_name": "Zhitomir",
+              "head_type": "LOC",
+              "relation_pid": "P17",
+              "relation_name": "country",
+              "tail_id": 3,
+              "tail_name": "Russian Empire",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [
+                0
+              ],
+              "evidence_text": [
+                "Mikhail Borisovich Kogan (; September 5, 1893 in Zhitomir, Russian Empire – November 26, 1951 in Moscow, USSR) was a well - known medical doctor, a head of the therapy department of 2nd Moscow Medical Institute."
+              ]
+            },
+            {
+              "head_id": 5,
+              "head_name": "Moscow",
+              "head_type": "LOC",
+              "relation_pid": "P17",
+              "relation_name": "country",
+              "tail_id": 6,
+              "tail_name": "USSR",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [
+                0
+              ],
+              "evidence_text": [
+                "Mikhail Borisovich Kogan (; September 5, 1893 in Zhitomir, Russian Empire – November 26, 1951 in Moscow, USSR) was a well - known medical doctor, a head of the therapy department of 2nd Moscow Medical Institute."
+              ]
+            },
+            {
+              "head_id": 13,
+              "head_name": "Doctors ' Plot",
+              "head_type": "MISC",
+              "relation_pid": "P577",
+              "relation_name": "publication date",
+              "tail_id": 14,
+              "tail_name": "1953",
+              "tail_type": "TIME",
+              "evidence_sent_ids": [],
+              "evidence_text": []
+            },
+            {
+              "head_id": 12,
+              "head_name": "Joseph Stalin",
+              "head_type": "PER",
+              "relation_pid": "P937",
+              "relation_name": "work location",
+              "tail_id": 5,
+              "tail_name": "Moscow",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [],
+              "evidence_text": []
+            },
+            {
+              "head_id": 0,
+              "head_name": "Mikhail Borisovich Kogan",
+              "head_type": "PER",
+              "relation_pid": "P27",
+              "relation_name": "country of citizenship",
+              "tail_id": 6,
+              "tail_name": "USSR",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [],
+              "evidence_text": []
+            },
+            {
+              "head_id": 7,
+              "head_name": "2nd Moscow Medical Institute",
+              "head_type": "ORG",
+              "relation_pid": "P131",
+              "relation_name": "located in the administrative territorial entity",
+              "tail_id": 5,
+              "tail_name": "Moscow",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [],
+              "evidence_text": []
+            },
+            {
+              "head_id": 12,
+              "head_name": "Joseph Stalin",
+              "head_type": "PER",
+              "relation_pid": "P27",
+              "relation_name": "country of citizenship",
+              "tail_id": 6,
+              "tail_name": "USSR",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [],
+              "evidence_text": []
+            },
+            {
+              "head_id": 7,
+              "head_name": "2nd Moscow Medical Institute",
+              "head_type": "ORG",
+              "relation_pid": "P17",
+              "relation_name": "country",
+              "tail_id": 6,
+              "tail_name": "USSR",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [],
+              "evidence_text": []
+            },
+            {
+              "head_id": 5,
+              "head_name": "Moscow",
+              "head_type": "LOC",
+              "relation_pid": "P131",
+              "relation_name": "located in the administrative territorial entity",
+              "tail_id": 6,
+              "tail_name": "USSR",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [],
+              "evidence_text": []
+            },
+            {
+              "head_id": 6,
+              "head_name": "USSR",
+              "head_type": "LOC",
+              "relation_pid": "P150",
+              "relation_name": "contains the administrative territorial entity",
+              "tail_id": 5,
+              "tail_name": "Moscow",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [],
+              "evidence_text": []
+            },
+            {
+              "head_id": 5,
+              "head_name": "Moscow",
+              "head_type": "LOC",
+              "relation_pid": "P17",
+              "relation_name": "country",
+              "tail_id": 3,
+              "tail_name": "Russian Empire",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [],
+              "evidence_text": []
+            },
+            {
+              "head_id": 13,
+              "head_name": "Doctors ' Plot",
+              "head_type": "MISC",
+              "relation_pid": "P585",
+              "relation_name": "point in time",
+              "tail_id": 14,
+              "tail_name": "1953",
+              "tail_type": "TIME",
+              "evidence_sent_ids": [],
+              "evidence_text": []
+            },
+            {
+              "head_id": 0,
+              "head_name": "Mikhail Borisovich Kogan",
+              "head_type": "PER",
+              "relation_pid": "P27",
+              "relation_name": "country of citizenship",
+              "tail_id": 3,
+              "tail_name": "Russian Empire",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [],
+              "evidence_text": []
+            },
+            {
+              "head_id": 15,
+              "head_name": "Doctor 's Plot",
+              "head_type": "MISC",
+              "relation_pid": "P577",
+              "relation_name": "publication date",
+              "tail_id": 14,
+              "tail_name": "1953",
+              "tail_type": "TIME",
+              "evidence_sent_ids": [],
+              "evidence_text": []
+            },
+            {
+              "head_id": 5,
+              "head_name": "Moscow",
+              "head_type": "LOC",
+              "relation_pid": "P131",
+              "relation_name": "located in the administrative territorial entity",
+              "tail_id": 3,
+              "tail_name": "Russian Empire",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [],
+              "evidence_text": []
+            },
+            {
+              "head_id": 2,
+              "head_name": "Zhitomir",
+              "head_type": "LOC",
+              "relation_pid": "P17",
+              "relation_name": "country",
+              "tail_id": 6,
+              "tail_name": "USSR",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [],
+              "evidence_text": []
+            },
+            {
+              "head_id": 2,
+              "head_name": "Zhitomir",
+              "head_type": "LOC",
+              "relation_pid": "P131",
+              "relation_name": "located in the administrative territorial entity",
+              "tail_id": 3,
+              "tail_name": "Russian Empire",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [
+                0
+              ],
+              "evidence_text": [
+                "Mikhail Borisovich Kogan (; September 5, 1893 in Zhitomir, Russian Empire – November 26, 1951 in Moscow, USSR) was a well - known medical doctor, a head of the therapy department of 2nd Moscow Medical Institute."
+              ]
+            },
+            {
+              "head_id": 7,
+              "head_name": "2nd Moscow Medical Institute",
+              "head_type": "ORG",
+              "relation_pid": "P131",
+              "relation_name": "located in the administrative territorial entity",
+              "tail_id": 6,
+              "tail_name": "USSR",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [],
+              "evidence_text": []
+            },
+            {
+              "head_id": 2,
+              "head_name": "Zhitomir",
+              "head_type": "LOC",
+              "relation_pid": "P131",
+              "relation_name": "located in the administrative territorial entity",
+              "tail_id": 6,
+              "tail_name": "USSR",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [],
+              "evidence_text": []
+            },
+            {
+              "head_id": 7,
+              "head_name": "2nd Moscow Medical Institute",
+              "head_type": "ORG",
+              "relation_pid": "P131",
+              "relation_name": "located in the administrative territorial entity",
+              "tail_id": 3,
+              "tail_name": "Russian Empire",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [],
+              "evidence_text": []
+            }
+          ],
+          "metadata_features": {
+            "num_words": 129,
+            "num_chars": 633,
+            "num_sents": 4,
+            "num_entities": 16,
+            "num_triples": 24,
+            "num_relation_types_present": 11,
+            "num_entity_types_present": 5,
+            "entity_type_counts": {
+              "PER": 6,
+              "ORG": 1,
+              "LOC": 4,
+              "TIME": 3,
+              "NUM": 0,
+              "MISC": 2
+            },
+            "dominant_entity_type": "PER",
+            "relation_pid_counts": {
+              "P569": 1,
+              "P19": 1,
+              "P570": 1,
+              "P20": 1,
+              "P17": 5,
+              "P577": 2,
+              "P937": 1,
+              "P27": 3,
+              "P131": 7,
+              "P150": 1,
+              "P585": 1
+            },
+            "avg_mentions_per_entity": 1.0,
+            "entity_density": 0.12403100775193798,
+            "mention_density": 0.12403100775193798,
+            "triple_density": 6.0,
+            "frac_singleton_entities": 1.0,
+            "frac_multi_evidence_triples": 0.0,
+            "max_evidence_sentence_gap": 0
+          },
+          "metadata_gold_caveat": "Re-DocRED has residual false negatives; supports RELATIVE operational comparisons at matched recall only (precision, hallucinated-conclusion rate), not an absolute realized-FDR diagonal."
+        },
+        {
+          "input": "Julian Reinard (born 5 March 1983) is a German footballer. He first appeared in the German Bundesliga on 21 March 2004 while SC Freiburg's first and second keepers had been injured. A year later media and trainer looked upon him as the future number one of Freiburg, but his disastrous effort during a 0–7 defeat against Bayern Munich and the following massive public criticism terminated these ambitions. While plying his trade at Hakoah Amidar / Ramat Gan on 23 October 2006 he became the first German footballer ever to play a professional match in Israel. Due to problems with his groin he quit Ramat Gan and, after a brief spell at FC Wil, is currently without a team.",
+          "output": "[{\"head_id\": 0, \"head_name\": \"Julian Reinard\", \"head_type\": \"PER\", \"relation_pid\": \"P569\", \"relation_name\": \"date of birth\", \"tail_id\": 1, \"tail_name\": \"5 March 1983\", \"tail_type\": \"TIME\", \"evidence_sent_ids\": [0], \"evidence_text\": [\"Julian Reinard (born 5 March 1983) is a German footballer.\"]}, {\"head_id\": 0, \"head_name\": \"Julian Reinard\", \"head_type\": \"PER\", \"relation_pid\": \"P54\", \"relation_name\": \"member of sports team\", \"tail_id\": 12, \"tail_name\": \"FC Wil\", \"tail_type\": \"ORG\", \"evidence_sent_ids\": [0, 4], \"evidence_text\": [\"Julian Reinard (born 5 March 1983) is a German footballer.\", \"Due to problems with his groin he quit Ramat Gan and, after a brief spell at FC Wil, is currently without a team.\"]}, {\"head_id\": 0, \"head_name\": \"Julian Reinard\", \"head_type\": \"PER\", \"relation_pid\": \"P118\", \"relation_name\": \"league or competition\", \"tail_id\": 3, \"tail_name\": \"Bundesliga\", \"tail_type\": \"ORG\", \"evidence_sent_ids\": [0, 1], \"evidence_text\": [\"Julian Reinard (born 5 March 1983) is a German footballer.\", \"He first appeared in the German Bundesliga on 21 March 2004 while SC Freiburg's first and second keepers had been injured.\"]}, {\"head_id\": 0, \"head_name\": \"Julian Reinard\", \"head_type\": \"PER\", \"relation_pid\": \"P54\", \"relation_name\": \"member of sports team\", \"tail_id\": 8, \"tail_name\": \"Hakoah Amidar\", \"tail_type\": \"ORG\", \"evidence_sent_ids\": [0, 3], \"evidence_text\": [\"Julian Reinard (born 5 March 1983) is a German footballer.\", \"While plying his trade at Hakoah Amidar / Ramat Gan on 23 October 2006 he became the first German footballer ever to play a professional match in Israel.\"]}, {\"head_id\": 0, \"head_name\": \"Julian Reinard\", \"head_type\": \"PER\", \"relation_pid\": \"P27\", \"relation_name\": \"country of citizenship\", \"tail_id\": 2, \"tail_name\": \"German\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [0, 1, 3], \"evidence_text\": [\"Julian Reinard (born 5 March 1983) is a German footballer.\", \"He first appeared in the German Bundesliga on 21 March 2004 while SC Freiburg's first and second keepers had been injured.\", \"While plying his trade at Hakoah Amidar / Ramat Gan on 23 October 2006 he became the first German footballer ever to play a professional match in Israel.\"]}, {\"head_id\": 0, \"head_name\": \"Julian Reinard\", \"head_type\": \"PER\", \"relation_pid\": \"P54\", \"relation_name\": \"member of sports team\", \"tail_id\": 9, \"tail_name\": \"Ramat Gan\", \"tail_type\": \"ORG\", \"evidence_sent_ids\": [0, 3, 4], \"evidence_text\": [\"Julian Reinard (born 5 March 1983) is a German footballer.\", \"While plying his trade at Hakoah Amidar / Ramat Gan on 23 October 2006 he became the first German footballer ever to play a professional match in Israel.\", \"Due to problems with his groin he quit Ramat Gan and, after a brief spell at FC Wil, is currently without a team.\"]}, {\"head_id\": 3, \"head_name\": \"Bundesliga\", \"head_type\": \"ORG\", \"relation_pid\": \"P17\", \"relation_name\": \"country\", \"tail_id\": 2, \"tail_name\": \"German\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [1], \"evidence_text\": [\"He first appeared in the German Bundesliga on 21 March 2004 while SC Freiburg's first and second keepers had been injured.\"]}, {\"head_id\": 5, \"head_name\": \"SC Freiburg\", \"head_type\": \"ORG\", \"relation_pid\": \"P118\", \"relation_name\": \"league or competition\", \"tail_id\": 3, \"tail_name\": \"Bundesliga\", \"tail_type\": \"ORG\", \"evidence_sent_ids\": [1], \"evidence_text\": [\"He first appeared in the German Bundesliga on 21 March 2004 while SC Freiburg's first and second keepers had been injured.\"]}, {\"head_id\": 0, \"head_name\": \"Julian Reinard\", \"head_type\": \"PER\", \"relation_pid\": \"P463\", \"relation_name\": \"member of\", \"tail_id\": 5, \"tail_name\": \"SC Freiburg\", \"tail_type\": \"ORG\", \"evidence_sent_ids\": [], \"evidence_text\": []}, {\"head_id\": 5, \"head_name\": \"SC Freiburg\", \"head_type\": \"ORG\", \"relation_pid\": \"P17\", \"relation_name\": \"country\", \"tail_id\": 2, \"tail_name\": \"German\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [], \"evidence_text\": []}, {\"head_id\": 8, \"head_name\": \"Hakoah Amidar\", \"head_type\": \"ORG\", \"relation_pid\": \"P17\", \"relation_name\": \"country\", \"tail_id\": 11, \"tail_name\": \"Israel\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [], \"evidence_text\": []}, {\"head_id\": 7, \"head_name\": \"Bayern Munich\", \"head_type\": \"ORG\", \"relation_pid\": \"P118\", \"relation_name\": \"league or competition\", \"tail_id\": 3, \"tail_name\": \"Bundesliga\", \"tail_type\": \"ORG\", \"evidence_sent_ids\": [], \"evidence_text\": []}, {\"head_id\": 9, \"head_name\": \"Ramat Gan\", \"head_type\": \"ORG\", \"relation_pid\": \"P17\", \"relation_name\": \"country\", \"tail_id\": 11, \"tail_name\": \"Israel\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [], \"evidence_text\": []}, {\"head_id\": 3, \"head_name\": \"Bundesliga\", \"head_type\": \"ORG\", \"relation_pid\": \"P131\", \"relation_name\": \"located in the administrative territorial entity\", \"tail_id\": 2, \"tail_name\": \"German\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [1], \"evidence_text\": [\"He first appeared in the German Bundesliga on 21 March 2004 while SC Freiburg's first and second keepers had been injured.\"]}, {\"head_id\": 5, \"head_name\": \"SC Freiburg\", \"head_type\": \"ORG\", \"relation_pid\": \"P131\", \"relation_name\": \"located in the administrative territorial entity\", \"tail_id\": 2, \"tail_name\": \"German\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [], \"evidence_text\": []}, {\"head_id\": 8, \"head_name\": \"Hakoah Amidar\", \"head_type\": \"ORG\", \"relation_pid\": \"P131\", \"relation_name\": \"located in the administrative territorial entity\", \"tail_id\": 11, \"tail_name\": \"Israel\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [], \"evidence_text\": []}, {\"head_id\": 9, \"head_name\": \"Ramat Gan\", \"head_type\": \"ORG\", \"relation_pid\": \"P131\", \"relation_name\": \"located in the administrative territorial entity\", \"tail_id\": 11, \"tail_name\": \"Israel\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [], \"evidence_text\": []}]",
+          "metadata_fold": "cluster_ORG",
+          "metadata_id": "redocred_test_445",
+          "metadata_title": "Julian Reinard",
+          "metadata_split_origin": "test",
+          "metadata_orig_index": 445,
+          "metadata_split_role": "confirmatory",
+          "metadata_is_confirmatory": true,
+          "metadata_is_pilot": false,
+          "metadata_is_reserve": false,
+          "metadata_kmeans_cluster": 4,
+          "metadata_cluster_scheme": "dominant_entity_type_collapsed_4",
+          "metadata_seed": 20240617,
+          "metadata_sents": [
+            [
+              "Julian",
+              "Reinard",
+              "(",
+              "born",
+              "5",
+              "March",
+              "1983",
+              ")",
+              "is",
+              "a",
+              "German",
+              "footballer",
+              "."
+            ],
+            [
+              "He",
+              "first",
+              "appeared",
+              "in",
+              "the",
+              "German",
+              "Bundesliga",
+              "on",
+              "21",
+              "March",
+              "2004",
+              "while",
+              "SC",
+              "Freiburg",
+              "'s",
+              "first",
+              "and",
+              "second",
+              "keepers",
+              "had",
+              "been",
+              "injured",
+              "."
+            ],
+            [
+              "A",
+              "year",
+              "later",
+              "media",
+              "and",
+              "trainer",
+              "looked",
+              "upon",
+              "him",
+              "as",
+              "the",
+              "future",
+              "number",
+              "one",
+              "of",
+              "Freiburg",
+              ",",
+              "but",
+              "his",
+              "disastrous",
+              "effort",
+              "during",
+              "a",
+              "0–7",
+              "defeat",
+              "against",
+              "Bayern",
+              "Munich",
+              "and",
+              "the",
+              "following",
+              "massive",
+              "public",
+              "criticism",
+              "terminated",
+              "these",
+              "ambitions",
+              "."
+            ],
+            [
+              "While",
+              "plying",
+              "his",
+              "trade",
+              "at",
+              "Hakoah",
+              "Amidar",
+              "/",
+              "Ramat",
+              "Gan",
+              "on",
+              "23",
+              "October",
+              "2006",
+              "he",
+              "became",
+              "the",
+              "first",
+              "German",
+              "footballer",
+              "ever",
+              "to",
+              "play",
+              "a",
+              "professional",
+              "match",
+              "in",
+              "Israel",
+              "."
+            ],
+            [
+              "Due",
+              "to",
+              "problems",
+              "with",
+              "his",
+              "groin",
+              "he",
+              "quit",
+              "Ramat",
+              "Gan",
+              "and",
+              ",",
+              "after",
+              "a",
+              "brief",
+              "spell",
+              "at",
+              "FC",
+              "Wil",
+              ",",
+              "is",
+              "currently",
+              "without",
+              "a",
+              "team",
+              "."
+            ]
+          ],
+          "metadata_sent_char_offsets": [
+            0,
+            59,
+            182,
+            406,
+            560
+          ],
+          "metadata_entities": [
+            {
+              "entity_id": 0,
+              "type": "PER",
+              "canonical_name": "Julian Reinard",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "Julian Reinard",
+                  "sent_id": 0,
+                  "pos": [
+                    0,
+                    2
+                  ],
+                  "char_span": [
+                    0,
+                    14
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 1,
+              "type": "TIME",
+              "canonical_name": "5 March 1983",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "5 March 1983",
+                  "sent_id": 0,
+                  "pos": [
+                    4,
+                    7
+                  ],
+                  "char_span": [
+                    21,
+                    33
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 2,
+              "type": "LOC",
+              "canonical_name": "German",
+              "n_mentions": 3,
+              "mentions": [
+                {
+                  "name": "German",
+                  "sent_id": 1,
+                  "pos": [
+                    5,
+                    6
+                  ],
+                  "char_span": [
+                    84,
+                    90
+                  ]
+                },
+                {
+                  "name": "German",
+                  "sent_id": 0,
+                  "pos": [
+                    10,
+                    11
+                  ],
+                  "char_span": [
+                    40,
+                    46
+                  ]
+                },
+                {
+                  "name": "German",
+                  "sent_id": 3,
+                  "pos": [
+                    18,
+                    19
+                  ],
+                  "char_span": [
+                    497,
+                    503
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 3,
+              "type": "ORG",
+              "canonical_name": "Bundesliga",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "Bundesliga",
+                  "sent_id": 1,
+                  "pos": [
+                    6,
+                    7
+                  ],
+                  "char_span": [
+                    91,
+                    101
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 4,
+              "type": "TIME",
+              "canonical_name": "21 March 2004",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "21 March 2004",
+                  "sent_id": 1,
+                  "pos": [
+                    8,
+                    11
+                  ],
+                  "char_span": [
+                    105,
+                    118
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 5,
+              "type": "ORG",
+              "canonical_name": "SC Freiburg",
+              "n_mentions": 2,
+              "mentions": [
+                {
+                  "name": "SC Freiburg",
+                  "sent_id": 1,
+                  "pos": [
+                    12,
+                    14
+                  ],
+                  "char_span": [
+                    125,
+                    136
+                  ]
+                },
+                {
+                  "name": "Freiburg",
+                  "sent_id": 2,
+                  "pos": [
+                    15,
+                    16
+                  ],
+                  "char_span": [
+                    257,
+                    265
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 6,
+              "type": "NUM",
+              "canonical_name": "0–7",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "0–7",
+                  "sent_id": 2,
+                  "pos": [
+                    23,
+                    24
+                  ],
+                  "char_span": [
+                    302,
+                    305
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 7,
+              "type": "ORG",
+              "canonical_name": "Bayern Munich",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "Bayern Munich",
+                  "sent_id": 2,
+                  "pos": [
+                    26,
+                    28
+                  ],
+                  "char_span": [
+                    321,
+                    334
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 8,
+              "type": "ORG",
+              "canonical_name": "Hakoah Amidar",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "Hakoah Amidar",
+                  "sent_id": 3,
+                  "pos": [
+                    5,
+                    7
+                  ],
+                  "char_span": [
+                    432,
+                    445
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 9,
+              "type": "ORG",
+              "canonical_name": "Ramat Gan",
+              "n_mentions": 2,
+              "mentions": [
+                {
+                  "name": "Ramat Gan",
+                  "sent_id": 3,
+                  "pos": [
+                    8,
+                    10
+                  ],
+                  "char_span": [
+                    448,
+                    457
+                  ]
+                },
+                {
+                  "name": "Ramat Gan",
+                  "sent_id": 4,
+                  "pos": [
+                    8,
+                    10
+                  ],
+                  "char_span": [
+                    599,
+                    608
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 10,
+              "type": "TIME",
+              "canonical_name": "23 October 2006",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "23 October 2006",
+                  "sent_id": 3,
+                  "pos": [
+                    11,
+                    14
+                  ],
+                  "char_span": [
+                    461,
+                    476
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 11,
+              "type": "LOC",
+              "canonical_name": "Israel",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "Israel",
+                  "sent_id": 3,
+                  "pos": [
+                    27,
+                    28
+                  ],
+                  "char_span": [
+                    552,
+                    558
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 12,
+              "type": "ORG",
+              "canonical_name": "FC Wil",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "FC Wil",
+                  "sent_id": 4,
+                  "pos": [
+                    17,
+                    19
+                  ],
+                  "char_span": [
+                    637,
+                    643
+                  ]
+                }
+              ]
+            }
+          ],
+          "metadata_gold_triples": [
+            {
+              "head_id": 0,
+              "head_name": "Julian Reinard",
+              "head_type": "PER",
+              "relation_pid": "P569",
+              "relation_name": "date of birth",
+              "tail_id": 1,
+              "tail_name": "5 March 1983",
+              "tail_type": "TIME",
+              "evidence_sent_ids": [
+                0
+              ],
+              "evidence_text": [
+                "Julian Reinard (born 5 March 1983) is a German footballer."
+              ]
+            },
+            {
+              "head_id": 0,
+              "head_name": "Julian Reinard",
+              "head_type": "PER",
+              "relation_pid": "P54",
+              "relation_name": "member of sports team",
+              "tail_id": 12,
+              "tail_name": "FC Wil",
+              "tail_type": "ORG",
+              "evidence_sent_ids": [
+                0,
+                4
+              ],
+              "evidence_text": [
+                "Julian Reinard (born 5 March 1983) is a German footballer.",
+                "Due to problems with his groin he quit Ramat Gan and, after a brief spell at FC Wil, is currently without a team."
+              ]
+            },
+            {
+              "head_id": 0,
+              "head_name": "Julian Reinard",
+              "head_type": "PER",
+              "relation_pid": "P118",
+              "relation_name": "league or competition",
+              "tail_id": 3,
+              "tail_name": "Bundesliga",
+              "tail_type": "ORG",
+              "evidence_sent_ids": [
+                0,
+                1
+              ],
+              "evidence_text": [
+                "Julian Reinard (born 5 March 1983) is a German footballer.",
+                "He first appeared in the German Bundesliga on 21 March 2004 while SC Freiburg's first and second keepers had been injured."
+              ]
+            },
+            {
+              "head_id": 0,
+              "head_name": "Julian Reinard",
+              "head_type": "PER",
+              "relation_pid": "P54",
+              "relation_name": "member of sports team",
+              "tail_id": 8,
+              "tail_name": "Hakoah Amidar",
+              "tail_type": "ORG",
+              "evidence_sent_ids": [
+                0,
+                3
+              ],
+              "evidence_text": [
+                "Julian Reinard (born 5 March 1983) is a German footballer.",
+                "While plying his trade at Hakoah Amidar / Ramat Gan on 23 October 2006 he became the first German footballer ever to play a professional match in Israel."
+              ]
+            },
+            {
+              "head_id": 0,
+              "head_name": "Julian Reinard",
+              "head_type": "PER",
+              "relation_pid": "P27",
+              "relation_name": "country of citizenship",
+              "tail_id": 2,
+              "tail_name": "German",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [
+                0,
+                1,
+                3
+              ],
+              "evidence_text": [
+                "Julian Reinard (born 5 March 1983) is a German footballer.",
+                "He first appeared in the German Bundesliga on 21 March 2004 while SC Freiburg's first and second keepers had been injured.",
+                "While plying his trade at Hakoah Amidar / Ramat Gan on 23 October 2006 he became the first German footballer ever to play a professional match in Israel."
+              ]
+            },
+            {
+              "head_id": 0,
+              "head_name": "Julian Reinard",
+              "head_type": "PER",
+              "relation_pid": "P54",
+              "relation_name": "member of sports team",
+              "tail_id": 9,
+              "tail_name": "Ramat Gan",
+              "tail_type": "ORG",
+              "evidence_sent_ids": [
+                0,
+                3,
+                4
+              ],
+              "evidence_text": [
+                "Julian Reinard (born 5 March 1983) is a German footballer.",
+                "While plying his trade at Hakoah Amidar / Ramat Gan on 23 October 2006 he became the first German footballer ever to play a professional match in Israel.",
+                "Due to problems with his groin he quit Ramat Gan and, after a brief spell at FC Wil, is currently without a team."
+              ]
+            },
+            {
+              "head_id": 3,
+              "head_name": "Bundesliga",
+              "head_type": "ORG",
+              "relation_pid": "P17",
+              "relation_name": "country",
+              "tail_id": 2,
+              "tail_name": "German",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [
+                1
+              ],
+              "evidence_text": [
+                "He first appeared in the German Bundesliga on 21 March 2004 while SC Freiburg's first and second keepers had been injured."
+              ]
+            },
+            {
+              "head_id": 5,
+              "head_name": "SC Freiburg",
+              "head_type": "ORG",
+              "relation_pid": "P118",
+              "relation_name": "league or competition",
+              "tail_id": 3,
+              "tail_name": "Bundesliga",
+              "tail_type": "ORG",
+              "evidence_sent_ids": [
+                1
+              ],
+              "evidence_text": [
+                "He first appeared in the German Bundesliga on 21 March 2004 while SC Freiburg's first and second keepers had been injured."
+              ]
+            },
+            {
+              "head_id": 0,
+              "head_name": "Julian Reinard",
+              "head_type": "PER",
+              "relation_pid": "P463",
+              "relation_name": "member of",
+              "tail_id": 5,
+              "tail_name": "SC Freiburg",
+              "tail_type": "ORG",
+              "evidence_sent_ids": [],
+              "evidence_text": []
+            },
+            {
+              "head_id": 5,
+              "head_name": "SC Freiburg",
+              "head_type": "ORG",
+              "relation_pid": "P17",
+              "relation_name": "country",
+              "tail_id": 2,
+              "tail_name": "German",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [],
+              "evidence_text": []
+            },
+            {
+              "head_id": 8,
+              "head_name": "Hakoah Amidar",
+              "head_type": "ORG",
+              "relation_pid": "P17",
+              "relation_name": "country",
+              "tail_id": 11,
+              "tail_name": "Israel",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [],
+              "evidence_text": []
+            },
+            {
+              "head_id": 7,
+              "head_name": "Bayern Munich",
+              "head_type": "ORG",
+              "relation_pid": "P118",
+              "relation_name": "league or competition",
+              "tail_id": 3,
+              "tail_name": "Bundesliga",
+              "tail_type": "ORG",
+              "evidence_sent_ids": [],
+              "evidence_text": []
+            },
+            {
+              "head_id": 9,
+              "head_name": "Ramat Gan",
+              "head_type": "ORG",
+              "relation_pid": "P17",
+              "relation_name": "country",
+              "tail_id": 11,
+              "tail_name": "Israel",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [],
+              "evidence_text": []
+            },
+            {
+              "head_id": 3,
+              "head_name": "Bundesliga",
+              "head_type": "ORG",
+              "relation_pid": "P131",
+              "relation_name": "located in the administrative territorial entity",
+              "tail_id": 2,
+              "tail_name": "German",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [
+                1
+              ],
+              "evidence_text": [
+                "He first appeared in the German Bundesliga on 21 March 2004 while SC Freiburg's first and second keepers had been injured."
+              ]
+            },
+            {
+              "head_id": 5,
+              "head_name": "SC Freiburg",
+              "head_type": "ORG",
+              "relation_pid": "P131",
+              "relation_name": "located in the administrative territorial entity",
+              "tail_id": 2,
+              "tail_name": "German",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [],
+              "evidence_text": []
+            },
+            {
+              "head_id": 8,
+              "head_name": "Hakoah Amidar",
+              "head_type": "ORG",
+              "relation_pid": "P131",
+              "relation_name": "located in the administrative territorial entity",
+              "tail_id": 11,
+              "tail_name": "Israel",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [],
+              "evidence_text": []
+            },
+            {
+              "head_id": 9,
+              "head_name": "Ramat Gan",
+              "head_type": "ORG",
+              "relation_pid": "P131",
+              "relation_name": "located in the administrative territorial entity",
+              "tail_id": 11,
+              "tail_name": "Israel",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [],
+              "evidence_text": []
+            }
+          ],
+          "metadata_features": {
+            "num_words": 129,
+            "num_chars": 673,
+            "num_sents": 5,
+            "num_entities": 13,
+            "num_triples": 17,
+            "num_relation_types_present": 7,
+            "num_entity_types_present": 5,
+            "entity_type_counts": {
+              "PER": 1,
+              "ORG": 6,
+              "LOC": 2,
+              "TIME": 3,
+              "NUM": 1,
+              "MISC": 0
+            },
+            "dominant_entity_type": "ORG",
+            "relation_pid_counts": {
+              "P569": 1,
+              "P54": 3,
+              "P118": 3,
+              "P27": 1,
+              "P17": 4,
+              "P463": 1,
+              "P131": 4
+            },
+            "avg_mentions_per_entity": 1.3076923076923077,
+            "entity_density": 0.10077519379844961,
+            "mention_density": 0.13178294573643412,
+            "triple_density": 3.4,
+            "frac_singleton_entities": 0.7692307692307693,
+            "frac_multi_evidence_triples": 0.29411764705882354,
+            "max_evidence_sentence_gap": 4
+          },
+          "metadata_gold_caveat": "Re-DocRED has residual false negatives; supports RELATIVE operational comparisons at matched recall only (precision, hallucinated-conclusion rate), not an absolute realized-FDR diagonal."
+        },
+        {
+          "input": "Baltimore and Ohio Railroad Martinsburg Shops is a historic industrial district in Martinsburg, West Virginia. It is significant both for its railroading architecture by Albert Fink and John Rudolph Niernsee and for its role in the Great Railroad Strike of 1877. It consists of three contributing buildings, one of which is the oldest covered roundhouse in the United States. The presence of the Baltimore and Ohio Railroad Company in Martinsburg dates back to the late 1840s, when the first engine and machine shops were erected for the expanding company. The shops were designated a National Historic Landmark and placed on the National Register of Historic Places in 2003. They are now managed by a local authority as an event venue.",
+          "output": "[{\"head_id\": 1, \"head_name\": \"Martinsburg\", \"head_type\": \"LOC\", \"relation_pid\": \"P17\", \"relation_name\": \"country\", \"tail_id\": 8, \"tail_name\": \"the United States\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [0, 2], \"evidence_text\": [\"Baltimore and Ohio Railroad Martinsburg Shops is a historic industrial district in Martinsburg, West Virginia.\", \"It consists of three contributing buildings, one of which is the oldest covered roundhouse in the United States.\"]}, {\"head_id\": 2, \"head_name\": \"West Virginia\", \"head_type\": \"LOC\", \"relation_pid\": \"P17\", \"relation_name\": \"country\", \"tail_id\": 8, \"tail_name\": \"the United States\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [0, 2], \"evidence_text\": [\"Baltimore and Ohio Railroad Martinsburg Shops is a historic industrial district in Martinsburg, West Virginia.\", \"It consists of three contributing buildings, one of which is the oldest covered roundhouse in the United States.\"]}, {\"head_id\": 2, \"head_name\": \"West Virginia\", \"head_type\": \"LOC\", \"relation_pid\": \"P131\", \"relation_name\": \"located in the administrative territorial entity\", \"tail_id\": 8, \"tail_name\": \"the United States\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [0, 2], \"evidence_text\": [\"Baltimore and Ohio Railroad Martinsburg Shops is a historic industrial district in Martinsburg, West Virginia.\", \"It consists of three contributing buildings, one of which is the oldest covered roundhouse in the United States.\"]}, {\"head_id\": 5, \"head_name\": \"Great Railroad Strike\", \"head_type\": \"MISC\", \"relation_pid\": \"P585\", \"relation_name\": \"point in time\", \"tail_id\": 6, \"tail_name\": \"1877\", \"tail_type\": \"TIME\", \"evidence_sent_ids\": [1], \"evidence_text\": [\"It is significant both for its railroading architecture by Albert Fink and John Rudolph Niernsee and for its role in the Great Railroad Strike of 1877.\"]}, {\"head_id\": 8, \"head_name\": \"the United States\", \"head_type\": \"LOC\", \"relation_pid\": \"P150\", \"relation_name\": \"contains the administrative territorial entity\", \"tail_id\": 2, \"tail_name\": \"West Virginia\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [0, 2], \"evidence_text\": [\"Baltimore and Ohio Railroad Martinsburg Shops is a historic industrial district in Martinsburg, West Virginia.\", \"It consists of three contributing buildings, one of which is the oldest covered roundhouse in the United States.\"]}, {\"head_id\": 0, \"head_name\": \"Baltimore and Ohio Railroad Martinsburg Shops\", \"head_type\": \"LOC\", \"relation_pid\": \"P131\", \"relation_name\": \"located in the administrative territorial entity\", \"tail_id\": 2, \"tail_name\": \"West Virginia\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [0], \"evidence_text\": [\"Baltimore and Ohio Railroad Martinsburg Shops is a historic industrial district in Martinsburg, West Virginia.\"]}, {\"head_id\": 0, \"head_name\": \"Baltimore and Ohio Railroad Martinsburg Shops\", \"head_type\": \"LOC\", \"relation_pid\": \"P17\", \"relation_name\": \"country\", \"tail_id\": 8, \"tail_name\": \"the United States\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [0, 2], \"evidence_text\": [\"Baltimore and Ohio Railroad Martinsburg Shops is a historic industrial district in Martinsburg, West Virginia.\", \"It consists of three contributing buildings, one of which is the oldest covered roundhouse in the United States.\"]}, {\"head_id\": 12, \"head_name\": \"National Register of Historic Places\", \"head_type\": \"MISC\", \"relation_pid\": \"P17\", \"relation_name\": \"country\", \"tail_id\": 8, \"tail_name\": \"the United States\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [2, 4], \"evidence_text\": [\"It consists of three contributing buildings, one of which is the oldest covered roundhouse in the United States.\", \"The shops were designated a National Historic Landmark and placed on the National Register of Historic Places in 2003.\"]}, {\"head_id\": 9, \"head_name\": \"Baltimore and Ohio Railroad Company\", \"head_type\": \"ORG\", \"relation_pid\": \"P17\", \"relation_name\": \"country\", \"tail_id\": 8, \"tail_name\": \"the United States\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [0, 2], \"evidence_text\": [\"Baltimore and Ohio Railroad Martinsburg Shops is a historic industrial district in Martinsburg, West Virginia.\", \"It consists of three contributing buildings, one of which is the oldest covered roundhouse in the United States.\"]}, {\"head_id\": 11, \"head_name\": \"National Historic Landmark\", \"head_type\": \"MISC\", \"relation_pid\": \"P279\", \"relation_name\": \"subclass of\", \"tail_id\": 12, \"tail_name\": \"National Register of Historic Places\", \"tail_type\": \"MISC\", \"evidence_sent_ids\": [2, 4], \"evidence_text\": [\"It consists of three contributing buildings, one of which is the oldest covered roundhouse in the United States.\", \"The shops were designated a National Historic Landmark and placed on the National Register of Historic Places in 2003.\"]}, {\"head_id\": 5, \"head_name\": \"Great Railroad Strike\", \"head_type\": \"MISC\", \"relation_pid\": \"P17\", \"relation_name\": \"country\", \"tail_id\": 8, \"tail_name\": \"the United States\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [], \"evidence_text\": []}, {\"head_id\": 0, \"head_name\": \"Baltimore and Ohio Railroad Martinsburg Shops\", \"head_type\": \"LOC\", \"relation_pid\": \"P131\", \"relation_name\": \"located in the administrative territorial entity\", \"tail_id\": 1, \"tail_name\": \"Martinsburg\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [], \"evidence_text\": []}, {\"head_id\": 11, \"head_name\": \"National Historic Landmark\", \"head_type\": \"MISC\", \"relation_pid\": \"P17\", \"relation_name\": \"country\", \"tail_id\": 8, \"tail_name\": \"the United States\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [], \"evidence_text\": []}, {\"head_id\": 5, \"head_name\": \"Great Railroad Strike\", \"head_type\": \"MISC\", \"relation_pid\": \"P582\", \"relation_name\": \"end time\", \"tail_id\": 6, \"tail_name\": \"1877\", \"tail_type\": \"TIME\", \"evidence_sent_ids\": [], \"evidence_text\": []}, {\"head_id\": 5, \"head_name\": \"Great Railroad Strike\", \"head_type\": \"MISC\", \"relation_pid\": \"P580\", \"relation_name\": \"start time\", \"tail_id\": 6, \"tail_name\": \"1877\", \"tail_type\": \"TIME\", \"evidence_sent_ids\": [], \"evidence_text\": []}, {\"head_id\": 1, \"head_name\": \"Martinsburg\", \"head_type\": \"LOC\", \"relation_pid\": \"P131\", \"relation_name\": \"located in the administrative territorial entity\", \"tail_id\": 2, \"tail_name\": \"West Virginia\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [], \"evidence_text\": []}, {\"head_id\": 1, \"head_name\": \"Martinsburg\", \"head_type\": \"LOC\", \"relation_pid\": \"P131\", \"relation_name\": \"located in the administrative territorial entity\", \"tail_id\": 8, \"tail_name\": \"the United States\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [0, 2], \"evidence_text\": [\"Baltimore and Ohio Railroad Martinsburg Shops is a historic industrial district in Martinsburg, West Virginia.\", \"It consists of three contributing buildings, one of which is the oldest covered roundhouse in the United States.\"]}, {\"head_id\": 0, \"head_name\": \"Baltimore and Ohio Railroad Martinsburg Shops\", \"head_type\": \"LOC\", \"relation_pid\": \"P131\", \"relation_name\": \"located in the administrative territorial entity\", \"tail_id\": 8, \"tail_name\": \"the United States\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [0, 2], \"evidence_text\": [\"Baltimore and Ohio Railroad Martinsburg Shops is a historic industrial district in Martinsburg, West Virginia.\", \"It consists of three contributing buildings, one of which is the oldest covered roundhouse in the United States.\"]}, {\"head_id\": 9, \"head_name\": \"Baltimore and Ohio Railroad Company\", \"head_type\": \"ORG\", \"relation_pid\": \"P131\", \"relation_name\": \"located in the administrative territorial entity\", \"tail_id\": 8, \"tail_name\": \"the United States\", \"tail_type\": \"LOC\", \"evidence_sent_ids\": [0, 2], \"evidence_text\": [\"Baltimore and Ohio Railroad Martinsburg Shops is a historic industrial district in Martinsburg, West Virginia.\", \"It consists of three contributing buildings, one of which is the oldest covered roundhouse in the United States.\"]}]",
+          "metadata_fold": "cluster_LOC",
+          "metadata_id": "redocred_dev_459",
+          "metadata_title": "Baltimore and Ohio Railroad Martinsburg Shops",
+          "metadata_split_origin": "dev",
+          "metadata_orig_index": 459,
+          "metadata_split_role": "confirmatory",
+          "metadata_is_confirmatory": true,
+          "metadata_is_pilot": false,
+          "metadata_is_reserve": false,
+          "metadata_kmeans_cluster": 1,
+          "metadata_cluster_scheme": "dominant_entity_type_collapsed_4",
+          "metadata_seed": 20240617,
+          "metadata_sents": [
+            [
+              "Baltimore",
+              "and",
+              "Ohio",
+              "Railroad",
+              "Martinsburg",
+              "Shops",
+              "is",
+              "a",
+              "historic",
+              "industrial",
+              "district",
+              "in",
+              "Martinsburg",
+              ",",
+              "West",
+              "Virginia",
+              "."
+            ],
+            [
+              "It",
+              "is",
+              "significant",
+              "both",
+              "for",
+              "its",
+              "railroading",
+              "architecture",
+              "by",
+              "Albert",
+              "Fink",
+              "and",
+              "John",
+              "Rudolph",
+              "Niernsee",
+              "and",
+              "for",
+              "its",
+              "role",
+              "in",
+              "the",
+              "Great",
+              "Railroad",
+              "Strike",
+              "of",
+              "1877",
+              "."
+            ],
+            [
+              "It",
+              "consists",
+              "of",
+              "three",
+              "contributing",
+              "buildings",
+              ",",
+              "one",
+              "of",
+              "which",
+              "is",
+              "the",
+              "oldest",
+              "covered",
+              "roundhouse",
+              "in",
+              "the",
+              "United",
+              "States",
+              "."
+            ],
+            [
+              "The",
+              "presence",
+              "of",
+              "the",
+              "Baltimore",
+              "and",
+              "Ohio",
+              "Railroad",
+              "Company",
+              "in",
+              "Martinsburg",
+              "dates",
+              "back",
+              "to",
+              "the",
+              "late",
+              "1840s",
+              ",",
+              "when",
+              "the",
+              "first",
+              "engine",
+              "and",
+              "machine",
+              "shops",
+              "were",
+              "erected",
+              "for",
+              "the",
+              "expanding",
+              "company",
+              "."
+            ],
+            [
+              "The",
+              "shops",
+              "were",
+              "designated",
+              "a",
+              "National",
+              "Historic",
+              "Landmark",
+              "and",
+              "placed",
+              "on",
+              "the",
+              "National",
+              "Register",
+              "of",
+              "Historic",
+              "Places",
+              "in",
+              "2003",
+              "."
+            ],
+            [
+              "They",
+              "are",
+              "now",
+              "managed",
+              "by",
+              "a",
+              "local",
+              "authority",
+              "as",
+              "an",
+              "event",
+              "venue",
+              "."
+            ]
+          ],
+          "metadata_sent_char_offsets": [
+            0,
+            111,
+            263,
+            376,
+            557,
+            676
+          ],
+          "metadata_entities": [
+            {
+              "entity_id": 0,
+              "type": "LOC",
+              "canonical_name": "Baltimore and Ohio Railroad Martinsburg Shops",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "Baltimore and Ohio Railroad Martinsburg Shops",
+                  "sent_id": 0,
+                  "pos": [
+                    0,
+                    6
+                  ],
+                  "char_span": [
+                    0,
+                    45
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 1,
+              "type": "LOC",
+              "canonical_name": "Martinsburg",
+              "n_mentions": 2,
+              "mentions": [
+                {
+                  "name": "Martinsburg",
+                  "sent_id": 0,
+                  "pos": [
+                    12,
+                    13
+                  ],
+                  "char_span": [
+                    83,
+                    94
+                  ]
+                },
+                {
+                  "name": "Martinsburg",
+                  "sent_id": 3,
+                  "pos": [
+                    10,
+                    11
+                  ],
+                  "char_span": [
+                    435,
+                    446
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 2,
+              "type": "LOC",
+              "canonical_name": "West Virginia",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "West Virginia",
+                  "sent_id": 0,
+                  "pos": [
+                    14,
+                    16
+                  ],
+                  "char_span": [
+                    96,
+                    109
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 3,
+              "type": "PER",
+              "canonical_name": "Albert Fink",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "Albert Fink",
+                  "sent_id": 1,
+                  "pos": [
+                    9,
+                    11
+                  ],
+                  "char_span": [
+                    170,
+                    181
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 4,
+              "type": "PER",
+              "canonical_name": "John Rudolph Niernsee",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "John Rudolph Niernsee",
+                  "sent_id": 1,
+                  "pos": [
+                    12,
+                    15
+                  ],
+                  "char_span": [
+                    186,
+                    207
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 5,
+              "type": "MISC",
+              "canonical_name": "Great Railroad Strike",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "Great Railroad Strike",
+                  "sent_id": 1,
+                  "pos": [
+                    21,
+                    24
+                  ],
+                  "char_span": [
+                    232,
+                    253
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 6,
+              "type": "TIME",
+              "canonical_name": "1877",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "1877",
+                  "sent_id": 1,
+                  "pos": [
+                    25,
+                    26
+                  ],
+                  "char_span": [
+                    257,
+                    261
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 7,
+              "type": "NUM",
+              "canonical_name": "three",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "three",
+                  "sent_id": 2,
+                  "pos": [
+                    3,
+                    4
+                  ],
+                  "char_span": [
+                    278,
+                    283
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 8,
+              "type": "LOC",
+              "canonical_name": "the United States",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "the United States",
+                  "sent_id": 2,
+                  "pos": [
+                    16,
+                    19
+                  ],
+                  "char_span": [
+                    357,
+                    374
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 9,
+              "type": "ORG",
+              "canonical_name": "Baltimore and Ohio Railroad Company",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "Baltimore and Ohio Railroad Company",
+                  "sent_id": 3,
+                  "pos": [
+                    4,
+                    9
+                  ],
+                  "char_span": [
+                    396,
+                    431
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 10,
+              "type": "TIME",
+              "canonical_name": "1840s",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "1840s",
+                  "sent_id": 3,
+                  "pos": [
+                    16,
+                    17
+                  ],
+                  "char_span": [
+                    470,
+                    475
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 11,
+              "type": "MISC",
+              "canonical_name": "National Historic Landmark",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "National Historic Landmark",
+                  "sent_id": 4,
+                  "pos": [
+                    5,
+                    8
+                  ],
+                  "char_span": [
+                    585,
+                    611
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 12,
+              "type": "MISC",
+              "canonical_name": "National Register of Historic Places",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "National Register of Historic Places",
+                  "sent_id": 4,
+                  "pos": [
+                    12,
+                    17
+                  ],
+                  "char_span": [
+                    630,
+                    666
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_id": 13,
+              "type": "TIME",
+              "canonical_name": "2003",
+              "n_mentions": 1,
+              "mentions": [
+                {
+                  "name": "2003",
+                  "sent_id": 4,
+                  "pos": [
+                    18,
+                    19
+                  ],
+                  "char_span": [
+                    670,
+                    674
+                  ]
+                }
+              ]
+            }
+          ],
+          "metadata_gold_triples": [
+            {
+              "head_id": 1,
+              "head_name": "Martinsburg",
+              "head_type": "LOC",
+              "relation_pid": "P17",
+              "relation_name": "country",
+              "tail_id": 8,
+              "tail_name": "the United States",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [
+                0,
+                2
+              ],
+              "evidence_text": [
+                "Baltimore and Ohio Railroad Martinsburg Shops is a historic industrial district in Martinsburg, West Virginia.",
+                "It consists of three contributing buildings, one of which is the oldest covered roundhouse in the United States."
+              ]
+            },
+            {
+              "head_id": 2,
+              "head_name": "West Virginia",
+              "head_type": "LOC",
+              "relation_pid": "P17",
+              "relation_name": "country",
+              "tail_id": 8,
+              "tail_name": "the United States",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [
+                0,
+                2
+              ],
+              "evidence_text": [
+                "Baltimore and Ohio Railroad Martinsburg Shops is a historic industrial district in Martinsburg, West Virginia.",
+                "It consists of three contributing buildings, one of which is the oldest covered roundhouse in the United States."
+              ]
+            },
+            {
+              "head_id": 2,
+              "head_name": "West Virginia",
+              "head_type": "LOC",
+              "relation_pid": "P131",
+              "relation_name": "located in the administrative territorial entity",
+              "tail_id": 8,
+              "tail_name": "the United States",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [
+                0,
+                2
+              ],
+              "evidence_text": [
+                "Baltimore and Ohio Railroad Martinsburg Shops is a historic industrial district in Martinsburg, West Virginia.",
+                "It consists of three contributing buildings, one of which is the oldest covered roundhouse in the United States."
+              ]
+            },
+            {
+              "head_id": 5,
+              "head_name": "Great Railroad Strike",
+              "head_type": "MISC",
+              "relation_pid": "P585",
+              "relation_name": "point in time",
+              "tail_id": 6,
+              "tail_name": "1877",
+              "tail_type": "TIME",
+              "evidence_sent_ids": [
+                1
+              ],
+              "evidence_text": [
+                "It is significant both for its railroading architecture by Albert Fink and John Rudolph Niernsee and for its role in the Great Railroad Strike of 1877."
+              ]
+            },
+            {
+              "head_id": 8,
+              "head_name": "the United States",
+              "head_type": "LOC",
+              "relation_pid": "P150",
+              "relation_name": "contains the administrative territorial entity",
+              "tail_id": 2,
+              "tail_name": "West Virginia",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [
+                0,
+                2
+              ],
+              "evidence_text": [
+                "Baltimore and Ohio Railroad Martinsburg Shops is a historic industrial district in Martinsburg, West Virginia.",
+                "It consists of three contributing buildings, one of which is the oldest covered roundhouse in the United States."
+              ]
+            },
+            {
+              "head_id": 0,
+              "head_name": "Baltimore and Ohio Railroad Martinsburg Shops",
+              "head_type": "LOC",
+              "relation_pid": "P131",
+              "relation_name": "located in the administrative territorial entity",
+              "tail_id": 2,
+              "tail_name": "West Virginia",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [
+                0
+              ],
+              "evidence_text": [
+                "Baltimore and Ohio Railroad Martinsburg Shops is a historic industrial district in Martinsburg, West Virginia."
+              ]
+            },
+            {
+              "head_id": 0,
+              "head_name": "Baltimore and Ohio Railroad Martinsburg Shops",
+              "head_type": "LOC",
+              "relation_pid": "P17",
+              "relation_name": "country",
+              "tail_id": 8,
+              "tail_name": "the United States",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [
+                0,
+                2
+              ],
+              "evidence_text": [
+                "Baltimore and Ohio Railroad Martinsburg Shops is a historic industrial district in Martinsburg, West Virginia.",
+                "It consists of three contributing buildings, one of which is the oldest covered roundhouse in the United States."
+              ]
+            },
+            {
+              "head_id": 12,
+              "head_name": "National Register of Historic Places",
+              "head_type": "MISC",
+              "relation_pid": "P17",
+              "relation_name": "country",
+              "tail_id": 8,
+              "tail_name": "the United States",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [
+                2,
+                4
+              ],
+              "evidence_text": [
+                "It consists of three contributing buildings, one of which is the oldest covered roundhouse in the United States.",
+                "The shops were designated a National Historic Landmark and placed on the National Register of Historic Places in 2003."
+              ]
+            },
+            {
+              "head_id": 9,
+              "head_name": "Baltimore and Ohio Railroad Company",
+              "head_type": "ORG",
+              "relation_pid": "P17",
+              "relation_name": "country",
+              "tail_id": 8,
+              "tail_name": "the United States",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [
+                0,
+                2
+              ],
+              "evidence_text": [
+                "Baltimore and Ohio Railroad Martinsburg Shops is a historic industrial district in Martinsburg, West Virginia.",
+                "It consists of three contributing buildings, one of which is the oldest covered roundhouse in the United States."
+              ]
+            },
+            {
+              "head_id": 11,
+              "head_name": "National Historic Landmark",
+              "head_type": "MISC",
+              "relation_pid": "P279",
+              "relation_name": "subclass of",
+              "tail_id": 12,
+              "tail_name": "National Register of Historic Places",
+              "tail_type": "MISC",
+              "evidence_sent_ids": [
+                2,
+                4
+              ],
+              "evidence_text": [
+                "It consists of three contributing buildings, one of which is the oldest covered roundhouse in the United States.",
+                "The shops were designated a National Historic Landmark and placed on the National Register of Historic Places in 2003."
+              ]
+            },
+            {
+              "head_id": 5,
+              "head_name": "Great Railroad Strike",
+              "head_type": "MISC",
+              "relation_pid": "P17",
+              "relation_name": "country",
+              "tail_id": 8,
+              "tail_name": "the United States",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [],
+              "evidence_text": []
+            },
+            {
+              "head_id": 0,
+              "head_name": "Baltimore and Ohio Railroad Martinsburg Shops",
+              "head_type": "LOC",
+              "relation_pid": "P131",
+              "relation_name": "located in the administrative territorial entity",
+              "tail_id": 1,
+              "tail_name": "Martinsburg",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [],
+              "evidence_text": []
+            },
+            {
+              "head_id": 11,
+              "head_name": "National Historic Landmark",
+              "head_type": "MISC",
+              "relation_pid": "P17",
+              "relation_name": "country",
+              "tail_id": 8,
+              "tail_name": "the United States",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [],
+              "evidence_text": []
+            },
+            {
+              "head_id": 5,
+              "head_name": "Great Railroad Strike",
+              "head_type": "MISC",
+              "relation_pid": "P582",
+              "relation_name": "end time",
+              "tail_id": 6,
+              "tail_name": "1877",
+              "tail_type": "TIME",
+              "evidence_sent_ids": [],
+              "evidence_text": []
+            },
+            {
+              "head_id": 5,
+              "head_name": "Great Railroad Strike",
+              "head_type": "MISC",
+              "relation_pid": "P580",
+              "relation_name": "start time",
+              "tail_id": 6,
+              "tail_name": "1877",
+              "tail_type": "TIME",
+              "evidence_sent_ids": [],
+              "evidence_text": []
+            },
+            {
+              "head_id": 1,
+              "head_name": "Martinsburg",
+              "head_type": "LOC",
+              "relation_pid": "P131",
+              "relation_name": "located in the administrative territorial entity",
+              "tail_id": 2,
+              "tail_name": "West Virginia",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [],
+              "evidence_text": []
+            },
+            {
+              "head_id": 1,
+              "head_name": "Martinsburg",
+              "head_type": "LOC",
+              "relation_pid": "P131",
+              "relation_name": "located in the administrative territorial entity",
+              "tail_id": 8,
+              "tail_name": "the United States",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [
+                0,
+                2
+              ],
+              "evidence_text": [
+                "Baltimore and Ohio Railroad Martinsburg Shops is a historic industrial district in Martinsburg, West Virginia.",
+                "It consists of three contributing buildings, one of which is the oldest covered roundhouse in the United States."
+              ]
+            },
+            {
+              "head_id": 0,
+              "head_name": "Baltimore and Ohio Railroad Martinsburg Shops",
+              "head_type": "LOC",
+              "relation_pid": "P131",
+              "relation_name": "located in the administrative territorial entity",
+              "tail_id": 8,
+              "tail_name": "the United States",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [
+                0,
+                2
+              ],
+              "evidence_text": [
+                "Baltimore and Ohio Railroad Martinsburg Shops is a historic industrial district in Martinsburg, West Virginia.",
+                "It consists of three contributing buildings, one of which is the oldest covered roundhouse in the United States."
+              ]
+            },
+            {
+              "head_id": 9,
+              "head_name": "Baltimore and Ohio Railroad Company",
+              "head_type": "ORG",
+              "relation_pid": "P131",
+              "relation_name": "located in the administrative territorial entity",
+              "tail_id": 8,
+              "tail_name": "the United States",
+              "tail_type": "LOC",
+              "evidence_sent_ids": [
+                0,
+                2
+              ],
+              "evidence_text": [
+                "Baltimore and Ohio Railroad Martinsburg Shops is a historic industrial district in Martinsburg, West Virginia.",
+                "It consists of three contributing buildings, one of which is the oldest covered roundhouse in the United States."
+              ]
+            }
+          ],
+          "metadata_features": {
+            "num_words": 129,
+            "num_chars": 736,
+            "num_sents": 6,
+            "num_entities": 14,
+            "num_triples": 19,
+            "num_relation_types_present": 7,
+            "num_entity_types_present": 6,
+            "entity_type_counts": {
+              "PER": 2,
+              "ORG": 1,
+              "LOC": 4,
+              "TIME": 3,
+              "NUM": 1,
+              "MISC": 3
+            },
+            "dominant_entity_type": "LOC",
+            "relation_pid_counts": {
+              "P17": 7,
+              "P131": 7,
+              "P585": 1,
+              "P150": 1,
+              "P279": 1,
+              "P582": 1,
+              "P580": 1
+            },
+            "avg_mentions_per_entity": 1.0714285714285714,
+            "entity_density": 0.10852713178294573,
+            "mention_density": 0.11627906976744186,
+            "triple_density": 3.1666666666666665,
+            "frac_singleton_entities": 0.9285714285714286,
+            "frac_multi_evidence_triples": 0.5789473684210527,
+            "max_evidence_sentence_gap": 2
+          },
+          "metadata_gold_caveat": "Re-DocRED has residual false negatives; supports RELATIVE operational comparisons at matched recall only (precision, hallucinated-conclusion rate), not an absolute realized-FDR diagonal."
+        }
+      ]
+    }
+  ]
+}

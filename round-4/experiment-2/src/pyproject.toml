@@ -1,0 +1,14 @@
+[project]
+name = "iter4-p1-deconfound"
+version = "0.1.0"
+description = "Iter-4 dir-2 P1-DECONFOUND: a 2-axis (extractor-strength x false-positive-density) persistence matrix for the marginal-vs-paired knockoff+ FDR-gate failure on CLUTRR; reuses iter-3 P1 fdr_stats/fdr_core/llm_client + warm caches."
+requires-python = ">=3.12"
+dependencies = [
+    "numpy==1.26.4",
+    "scipy==1.17.1",
+    "loguru==0.7.3",
+    "aiohttp==3.14.1",
+    "tenacity==9.1.4",
+    "psutil==7.2.2",
+    "matplotlib==3.11.0",
+]

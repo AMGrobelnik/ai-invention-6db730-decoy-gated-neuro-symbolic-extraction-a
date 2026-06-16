@@ -1,0 +1,254 @@
+{
+  "doc_id": "legal_cuad_04",
+  "genre": "legal",
+  "kind": "multi_hop",
+  "n_proofs": 2,
+  "graphs": [
+    {
+      "nodes": [
+        {
+          "id": 0,
+          "label": "party_bound_effective(Maintenance Agreement, Bankers Bank, MARCH 1, 2001)",
+          "kind": "derived",
+          "rule": "party_bound_effective"
+        },
+        {
+          "id": 1,
+          "label": "has_party(Maintenance Agreement, Bankers Bank)",
+          "kind": "leaf",
+          "cert": {
+            "provenance": "Bankers Bank agrees to pay fees equal to $40 per month for all Participating Banks (original or added) for which maintenance is provided.",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 0.597,
+              "T": 0.129032,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.666667,
+              "r": 1
+            }
+          }
+        },
+        {
+          "id": 2,
+          "label": "effective_date(Maintenance Agreement, MARCH 1, 2001)",
+          "kind": "leaf",
+          "cert": {
+            "provenance": "COMMENCEMENT DATE FOR MAINTENANCE UNDER THIS ADDENDUM:  MARCH 1, 2001",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 0.7313,
+              "T": 0.129032,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.666667,
+              "r": 1
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "src": 0,
+          "dst": 1,
+          "rule": "party_bound_effective"
+        },
+        {
+          "src": 0,
+          "dst": 2,
+          "rule": "party_bound_effective"
+        }
+      ]
+    },
+    {
+      "nodes": [
+        {
+          "id": 0,
+          "label": "party_bound_effective(Maintenance Agreement, Netzee, MARCH 1, 2001)",
+          "kind": "derived",
+          "rule": "party_bound_effective"
+        },
+        {
+          "id": 1,
+          "label": "has_party(Maintenance Agreement, Netzee)",
+          "kind": "leaf",
+          "cert": {
+            "provenance": "The Continued Service provided by Netzee will be the operation, maintenance, and support of the computer systems, software and interfaces included in the System.",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": -0.9552,
+              "T": 0.129032,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.666667,
+              "r": 1
+            }
+          }
+        },
+        {
+          "id": 2,
+          "label": "effective_date(Maintenance Agreement, MARCH 1, 2001)",
+          "kind": "leaf",
+          "cert": {
+            "provenance": "COMMENCEMENT DATE FOR MAINTENANCE UNDER THIS ADDENDUM:  MARCH 1, 2001",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 0.7313,
+              "T": 0.129032,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.666667,
+              "r": 1
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "src": 0,
+          "dst": 1,
+          "rule": "party_bound_effective"
+        },
+        {
+          "src": 0,
+          "dst": 2,
+          "rule": "party_bound_effective"
+        }
+      ]
+    }
+  ],
+  "proofs": [
+    {
+      "type": "derived",
+      "atom": [
+        "party_bound_effective",
+        [
+          "Maintenance Agreement",
+          "Bankers Bank",
+          "MARCH 1, 2001"
+        ]
+      ],
+      "rule": "party_bound_effective",
+      "children": [
+        {
+          "type": "leaf",
+          "atom": [
+            "has_party",
+            [
+              "Maintenance Agreement",
+              "Bankers Bank"
+            ]
+          ],
+          "cert": {
+            "provenance": "Bankers Bank agrees to pay fees equal to $40 per month for all Participating Banks (original or added) for which maintenance is provided.",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 0.597,
+              "T": 0.129032,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.666667,
+              "r": 1
+            }
+          }
+        },
+        {
+          "type": "leaf",
+          "atom": [
+            "effective_date",
+            [
+              "Maintenance Agreement",
+              "MARCH 1, 2001"
+            ]
+          ],
+          "cert": {
+            "provenance": "COMMENCEMENT DATE FOR MAINTENANCE UNDER THIS ADDENDUM:  MARCH 1, 2001",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 0.7313,
+              "T": 0.129032,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.666667,
+              "r": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "derived",
+      "atom": [
+        "party_bound_effective",
+        [
+          "Maintenance Agreement",
+          "Netzee",
+          "MARCH 1, 2001"
+        ]
+      ],
+      "rule": "party_bound_effective",
+      "children": [
+        {
+          "type": "leaf",
+          "atom": [
+            "has_party",
+            [
+              "Maintenance Agreement",
+              "Netzee"
+            ]
+          ],
+          "cert": {
+            "provenance": "The Continued Service provided by Netzee will be the operation, maintenance, and support of the computer systems, software and interfaces included in the System.",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": -0.9552,
+              "T": 0.129032,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.666667,
+              "r": 1
+            }
+          }
+        },
+        {
+          "type": "leaf",
+          "atom": [
+            "effective_date",
+            [
+              "Maintenance Agreement",
+              "MARCH 1, 2001"
+            ]
+          ],
+          "cert": {
+            "provenance": "COMMENCEMENT DATE FOR MAINTENANCE UNDER THIS ADDENDUM:  MARCH 1, 2001",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 0.7313,
+              "T": 0.129032,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.666667,
+              "r": 1
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,181 @@
+{
+  "name": "application_anchor",
+  "description": "Genre-faithful APPLICATION anchor: short, professionally-written legal / news / regulatory documents standardized to a shared (head, relation, tail) triple schema with char-span provenance, coarse {PER,LOC,ORG,TIME,NUM,MISC} entity typing, a crisp-vs-silver gold_quality flag, per-row license, and a genre fold (metadata_fold) for leave-one-genre-out. ONE merged file assembled from multiple source corpora; the datasets[] array is grouped by source corpus. Built for a text->FOL->Prolog neuro-symbolic atomic-fact-extraction & hallucination-control experiment. NO LLM in gold construction (non-circularity). iter_4: scaled to ~84 docs (~24-32/genre; crisp-prioritized legal via CUAD excerpt windows + deepened silver recall) and adds a crisp-only fold (metadata_crisp_subset) and a deterministic coverage proxy (metadata_decidable_fraction) for selecting the cleanest documents.",
+  "schema_per_example": {
+    "grouping": "datasets[] is grouped by SOURCE CORPUS; each document is ONE example.",
+    "input": "JSON string: {doc_id, document_text, genre, source, char_length, entities:[{name,type in {PER,LOC,ORG,TIME,NUM,MISC},char_span:[s,e]}]}",
+    "output": "JSON string: {gold_atomic_facts:[{head,relation,tail,provenance_char_span:[s,e]}]}",
+    "metadata": "metadata_fold(genre), metadata_genre, metadata_gold_quality(crisp|silver), metadata_crisp_subset(bool; crisp-only fold), metadata_decidable_fraction(float [0,1] composite coverage proxy), metadata_decidable_subscores({sentence_coverage,entity_participation,char_coverage}), metadata_source, metadata_license, metadata_relation_vocab, metadata_char_length, metadata_num_facts, metadata_num_entities, metadata_doc_id, metadata_entity_types_fine(optional), metadata_excerpt(legal whole vs excerpt)"
+  },
+  "n_documents": 84,
+  "n_source_datasets": 4,
+  "dataset_selection_rationale": "4 source corpora CHOSEN from 9+ evaluated. Kept (free commercial+research license + genre-faithful short documents + supports deterministic no-LLM gold): CUAD (legal, CRISP), Wikinews (news, silver), GDPR + eCFR (regulatory, silver). iter_4 SCALE: legal CRISP is the priority lever -- CUAD's 510 contracts are mostly long (median ~33k chars), so beyond the ~22 naturally short whole contracts we add DETERMINISTIC excerpt windows (densest clause-span cluster, clean-boundary, re-based + re-verified) for ~30 crisp legal docs; regulatory deepens silver recall (more GDPR articles + 6 CFR parts incl. HIPAA/Reg S-P) and news broadens predicates. Excluded for the HARD free-license / genre / format gates: MAUD (source merger texts CC-BY-NC-SA 3.0, NonCommercial; multiple-choice on very long docs), LEDGAR (provision classification, no relational span facts), ContractNLI (CC-BY-NC-SA, NonCommercial), REDFM (CC BY-SA-NC), WebRED (sentence-level TFRecord), LDC ACE/TACRED (research-restricted). No free-license span-annotated 5th legal corpus exists, so CUAD excerpt windows supply crisp depth.",
+  "genre_counts": {
+    "legal": 30,
+    "news": 28,
+    "regulatory": 26
+  },
+  "source_dataset_counts": {
+    "CUAD": 30,
+    "Wikinews": 28,
+    "GDPR": 15,
+    "eCFR": 11
+  },
+  "gold_quality_counts": {
+    "crisp": 30,
+    "silver": 54
+  },
+  "gold_quality_by_genre": {
+    "legal": {
+      "crisp": 30
+    },
+    "news": {
+      "silver": 28
+    },
+    "regulatory": {
+      "silver": 26
+    }
+  },
+  "license_counts": {
+    "CC BY 4.0 (Atticus Project / CUAD v1; Zenodo 4595826)": 30,
+    "CC BY 2.5 (Wikinews / Wikimedia Foundation)": 28,
+    "EUR-Lex reuse (© European Union; Regulation (EU) 2016/679, CELEX:32016R0679; free reuse with attribution); text via gdpr-info.eu": 15,
+    "Public domain (US Government work; eCFR / GPO, ecfr.gov)": 11
+  },
+  "relation_vocab_by_genre": {
+    "legal": [
+      "agreement_date",
+      "contains_exclusivity",
+      "contains_license_grant",
+      "contains_termination_for_convenience",
+      "effective_date",
+      "expiration_date",
+      "governed_by",
+      "has_party",
+      "has_title",
+      "minimum_commitment",
+      "renewal_term",
+      "revenue_profit_sharing"
+    ],
+    "news": [
+      "affiliated_with",
+      "announce",
+      "ask",
+      "call",
+      "choose",
+      "claim",
+      "confirm",
+      "draw",
+      "head",
+      "join",
+      "located_in",
+      "occurred_on",
+      "promote",
+      "report",
+      "say",
+      "speak",
+      "state",
+      "tell",
+      "warn"
+    ],
+    "regulatory": [
+      "applies_to",
+      "cross_references",
+      "defined_as",
+      "grants_right",
+      "has_exception",
+      "has_paragraph",
+      "has_provision",
+      "has_title",
+      "obligates",
+      "prohibits",
+      "requires"
+    ]
+  },
+  "crisp_subset_count": 30,
+  "decidable_fraction": {
+    "note": "Deterministic coverage proxy (NO model). composite = mean(sentence_coverage, entity_participation, char_coverage). Descriptive per-row feature (like num_facts) so the experiment can rank/select the most-decidable documents; NOT an experiment metric.",
+    "overall": {
+      "min": 0.1139,
+      "max": 0.7692,
+      "mean": 0.3041,
+      "median": 0.2485
+    },
+    "by_genre": {
+      "legal": {
+        "min": 0.1139,
+        "max": 0.3537,
+        "mean": 0.2235,
+        "median": 0.2092
+      },
+      "news": {
+        "min": 0.1348,
+        "max": 0.5206,
+        "mean": 0.24,
+        "median": 0.2202
+      },
+      "regulatory": {
+        "min": 0.118,
+        "max": 0.7692,
+        "mean": 0.4662,
+        "median": 0.5005
+      }
+    },
+    "subscore_means_overall": {
+      "sentence_coverage": 0.4016,
+      "entity_participation": 0.3024,
+      "char_coverage": 0.2083
+    }
+  },
+  "total_facts": 547,
+  "total_entities": 2774,
+  "facts_per_doc": {
+    "min": 3,
+    "max": 15,
+    "mean": 6.51
+  },
+  "char_length": {
+    "min": 1161,
+    "max": 3493,
+    "mean": 2196.1,
+    "median": 2087
+  },
+  "sources": {
+    "CUAD (legal)": "CUAD v1 (theatticusproject) — CC BY 4.0 — human-annotated clause spans (CRISP). https://zenodo.org/records/4595826",
+    "Wikinews (news)": "en.wikinews.org — CC BY 2.5 — deterministic spaCy SVO+5W rule-based curation (SILVER).",
+    "GDPR (regulatory, EU)": "Regulation (EU) 2016/679 (EUR-Lex CELEX:32016R0679; text via gdpr-info.eu) — EUR-Lex free reuse — deterministic structural regex curation (SILVER).",
+    "eCFR (regulatory, US)": "Electronic Code of Federal Regulations (ecfr.gov, versioner API @ 2024-12-31) — US Government public domain — deterministic structural regex curation (SILVER). Parts: 12 CFR 1005 (Reg E), 12 CFR 1016 (Reg P), 16 CFR 312 (COPPA), 16 CFR 314 (FTC Safeguards), 17 CFR 248 (Reg S-P), 45 CFR 164 (HIPAA)."
+  },
+  "evaluated_but_excluded": {
+    "MAUD (TheAtticusProject/maud)": "annotations CC-BY 4.0 BUT the source merger-agreement texts are CC-BY-NC-SA 3.0 (NonCommercial); multiple-choice expert labels on very long (>50k char) docs, not (h,r,t) char-span facts on ~3k-char documents.",
+    "LEDGAR (LexGLUE coastalcph)": "single-label provision CLASSIFICATION only; no relational span facts -> not a crisp (head,relation,tail) source.",
+    "REDFM (Babelscape)": "CC BY-SA-NC 4.0 (NonCommercial) — fails free-license rule; Wikipedia-genre overlap with the Re-DocRED anchor.",
+    "ContractNLI (HF kiddothe2b)": "CC-BY-NC-SA 3.0 underlying docs (NonCommercial) — fails free-license rule; document-level NLI labels, not span facts.",
+    "WebRED (google-research)": "CC BY-SA 3.0 (usable) but sentence-level TFRecord, not genre-faithful short documents; Wikinews preferred.",
+    "LDC ACE / TACRED": "research-restricted / non-free — excluded per plan."
+  },
+  "determinism": {
+    "seed": 42,
+    "tool_versions": {
+      "python": "3.12",
+      "spacy": "3.7.5",
+      "spacy_model": "en_core_web_sm==3.7.1",
+      "nltk": "3.9.1 (wordnet, omw-1.4)",
+      "numpy": "1.26.4",
+      "beautifulsoup4": "4.12.3 (lxml 5.3.0 parser)",
+      "reserved_next_iteration": "sentence-transformers all-MiniLM-L6-v2, rank_bm25 (NOT used for gold here; reserved for next-iteration relation-alignment / retrieval)"
+    },
+    "regeneration": "Deterministic from cached raw/ with no network: python data.py (build_legal+build_news+build_regulatory). Stable sort within each source group by doc_id; source groups in fixed order ['CUAD', 'Wikinews', 'GDPR', 'eCFR'].",
+    "raw_cache_manifest": {
+      "CUADv1.json": {
+        "bytes": 40128638,
+        "sha256_16": "ed0b77d85bdf4014"
+      },
+      "gdpr_html_files": 38,
+      "wikinews_article_files": 734,
+      "ecfr_xml_files": 7
+    }
+  },
+  "verification": "Every entity char_span and fact provenance_char_span is re-verified against document_text (build/verify_dataset.py). Value-tail facts: tail is a substring of the provenance span; clause/label facts: the provenance span is the annotated supporting evidence.",
+  "limitations": "Legal gold is CRISP (CUAD human clause-span annotation), including the excerpt-window legal docs whose every clause span is re-based and re-verified. News and regulatory gold are SILVER (deterministic rule/structure curation, no LLM): facts are span-supported and high-precision but rule-based recall is partial -- metadata_decidable_fraction reports this per-document coverage so the experiment can select the most-decidable docs. gold_quality + crisp_subset carry the crisp/silver split per row. decidable_fraction is a DESCRIPTIVE proxy (no model), NOT an experiment metric."
+}

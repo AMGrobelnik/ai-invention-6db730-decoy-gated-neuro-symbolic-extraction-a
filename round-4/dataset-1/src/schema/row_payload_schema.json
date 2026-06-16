@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Application-anchor row payloads (the JSON-encoded input and output strings)",
+  "description": "Each example's `input` and `output` fields are JSON STRINGS. After json.loads, they must satisfy input_payload / output_payload below. This is the inner contract aligned to the (head, relation, tail) space and {PER,LOC,ORG,TIME,NUM,MISC} typing of the dependency spec (research_out.json).",
+  "definitions": {
+    "input_payload": {
+      "type": "object",
+      "required": ["doc_id", "document_text", "genre", "source", "char_length", "entities"],
+      "additionalProperties": false,
+      "properties": {
+        "doc_id": {"type": "string"},
+        "document_text": {"type": "string", "description": "verbatim native document (UTF-8)"},
+        "genre": {"enum": ["legal", "news", "regulatory"]},
+        "source": {"type": "string", "description": "corpus name + record id"},
+        "char_length": {"type": "integer", "description": "== len(document_text)"},
+        "entities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "type", "char_span"],
+            "additionalProperties": false,
+            "properties": {
+              "name": {"type": "string"},
+              "type": {"enum": ["PER", "LOC", "ORG", "TIME", "NUM", "MISC"]},
+              "char_span": {"type": "array", "items": {"type": "integer"}, "minItems": 2, "maxItems": 2,
+                            "description": "[start,end] with document_text[start:end] == name"}
+            }
+          }
+        }
+      }
+    },
+    "output_payload": {
+      "type": "object",
+      "required": ["gold_atomic_facts"],
+      "additionalProperties": false,
+      "properties": {
+        "gold_atomic_facts": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["head", "relation", "tail", "provenance_char_span"],
+            "additionalProperties": false,
+            "properties": {
+              "head": {"type": "string", "description": "subject surface (reuses an entity surface form)"},
+              "relation": {"type": "string", "description": "open-vocab string from the documented per-genre controlled vocabulary"},
+              "tail": {"type": "string", "description": "object surface (entity/value) or normalized clause-type token"},
+              "provenance_char_span": {"type": "array", "items": {"type": "integer"}, "minItems": 2, "maxItems": 2,
+                                       "description": "[start,end] containing the surface evidence supporting the fact"}
+            }
+          }
+        }
+      }
+    }
+  }
+}

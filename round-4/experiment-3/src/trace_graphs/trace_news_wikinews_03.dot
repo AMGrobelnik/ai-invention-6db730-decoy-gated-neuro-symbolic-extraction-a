@@ -1,0 +1,8 @@
+digraph proof {
+  rankdir=TB;
+  node [style=filled, fontname="Helvetica", fontsize=10];
+  labelloc="t"; label="news_wikinews_03 [news] admission";
+  n0 [label="admitted_fact(call(Rove,Novak))\nrule: admission", fillcolor="lightblue", tooltip="derived conclusion"];
+  n1 [label="call(Rove, Novak)\nW=1.0 T=0.191489 a=0.5\nFDP_hat=0.871795 r=1", fillcolor="palegreen", tooltip="Novak called Rove on a Tuesday, 6 days before he broke the story."];
+  n0 -> n1 [label="admission", fontsize=8];
+}

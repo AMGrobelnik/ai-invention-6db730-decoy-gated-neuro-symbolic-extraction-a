@@ -1,0 +1,840 @@
+{
+  "metadata": {
+    "method_name": "Decoy-gating (knockoff+ W_i) vs plain confidence threshold (Z_i)",
+    "description": "Operational wedge on Re-DocRED at matched recall: atomic-fact precision, multi-hop hallucinated-conclusion rate, knockoff+ operating points.",
+    "n_docs_used": 152,
+    "split_role": "confirmatory",
+    "model": "openai/gpt-4.1-nano",
+    "elicitation": "logprob_yes_token (verbalized_[0,1] fallback)",
+    "logprobs_available": false,
+    "caching_ok": false,
+    "cost_usd": 1.07548,
+    "n_api_calls": 20141,
+    "n_calibration_labels_conformal": 1112,
+    "seed": 20240617,
+    "bootstrap_B": 2000,
+    "systems": [
+      "METHOD",
+      "PLAIN",
+      "CoT"
+    ],
+    "participating_systems": [
+      "METHOD",
+      "PLAIN",
+      "CoT"
+    ],
+    "dropped_comparators": {},
+    "scope": {
+      "n_docs_used": 152,
+      "n_docs_requested": 152,
+      "recall_ceiling": 0.07504,
+      "recall_ceiling_definition": "max recall of METHOD/PLAIN's shared candidate+alignment pool",
+      "bootstrap_B": 2000,
+      "grid_start": 0.03419
+    },
+    "rules_list": [
+      "transitive_located_in_admin (P131;P131->P131)",
+      "located_in_admin_then_country (P131;P17->P17)",
+      "transitive_contains_admin (P150;P150->P150)"
+    ],
+    "config": {
+      "cand_cap": 30,
+      "n_overgen": 3,
+      "n_conf_samples": 5,
+      "alpha_grid": [
+        0.05,
+        0.1,
+        0.2
+      ],
+      "W_floor_k": {
+        "0.05": 20,
+        "0.1": 10,
+        "0.2": 5,
+        "0.3": 4,
+        "0.5": 2
+      },
+      "align_shortlist_k": 8,
+      "el_embed_floor": 0.6,
+      "decoy_max_regen": 3
+    },
+    "max_recall_per_system": {
+      "METHOD": 0.07504,
+      "PLAIN": 0.07504,
+      "CoT": 0.05117,
+      "RAG": 0.03419,
+      "CONF": 0.07504
+    },
+    "max_common_recall": 0.03419,
+    "pr_curves": {
+      "METHOD": [
+        [
+          0.00022,
+          1.0,
+          1.0
+        ],
+        [
+          0.00237,
+          0.2973,
+          1.0
+        ],
+        [
+          0.0043,
+          0.27397,
+          1.0
+        ]
+      ],
+      "PLAIN": [
+        [
+          0.00022,
+          1.0,
+          1.0
+        ],
+        [
+          0.00258,
+          0.32432,
+          1.0
+        ],
+        [
+          0.00452,
+          0.28767,
+          1.0
+        ]
+      ],
+      "CoT": [
+        [
+          0.00022,
+          1.0,
+          1.0
+        ],
+        [
+          0.00194,
+          0.47368,
+          1.0
+        ],
+        [
+          0.0028,
+          0.34211,
+          1.0
+        ]
+      ],
+      "RAG": [
+        [
+          0.00022,
+          1.0,
+          1.0
+        ],
+        [
+          0.00065,
+          0.23077,
+          1.0
+        ],
+        [
+          0.00086,
+          0.15385,
+          1.0
+        ]
+      ],
+      "CONF": [
+        [
+          0.00022,
+          1.0,
+          1.0
+        ],
+        [
+          0.00301,
+          0.37838,
+          1.0
+        ],
+        [
+          0.00495,
+          0.31507,
+          1.0
+        ]
+      ]
+    },
+    "matched_recall": {
+      "recall_grid": [
+        0.03419,
+        0.03589,
+        0.03759
+      ],
+      "participating_systems": [
+        "METHOD",
+        "PLAIN",
+        "CoT"
+      ],
+      "precision": {
+        "METHOD": [
+          0.26544,
+          0.26635,
+          0.2684
+        ],
+        "PLAIN": [
+          0.26949,
+          0.26806,
+          0.26718
+        ],
+        "CoT": [
+          0.26412,
+          0.26849,
+          0.26882
+        ],
+        "RAG": [
+          0.21116,
+          null,
+          null
+        ],
+        "CONF": [
+          0.27461,
+          0.27467,
+          0.25926
+        ]
+      },
+      "precision_ci": {
+        "METHOD": [
+          [
+            0.22294,
+            0.30892
+          ],
+          [
+            0.22492,
+            0.31081
+          ],
+          [
+            0.22576,
+            0.31035
+          ]
+        ],
+        "PLAIN": [
+          [
+            0.22535,
+            0.31598
+          ],
+          [
+            0.22448,
+            0.31294
+          ],
+          [
+            0.22478,
+            0.31101
+          ]
+        ],
+        "CoT": [
+          [
+            0.2138,
+            0.27922
+          ],
+          [
+            0.2138,
+            0.27922
+          ],
+          [
+            0.2138,
+            0.27922
+          ]
+        ],
+        "RAG": [
+          [
+            0.17265,
+            0.24174
+          ],
+          [
+            null,
+            null
+          ],
+          [
+            null,
+            null
+          ]
+        ],
+        "CONF": [
+          [
+            0.23148,
+            0.31873
+          ],
+          [
+            0.2299,
+            0.32019
+          ],
+          [
+            0.21681,
+            0.30278
+          ]
+        ]
+      },
+      "delta_method_minus_plain": [
+        -0.00436,
+        -0.00168,
+        0.00104
+      ],
+      "delta_ci": [
+        [
+          -0.01613,
+          0.00754
+        ],
+        [
+          -0.01172,
+          0.00891
+        ],
+        [
+          -0.00783,
+          0.01006
+        ]
+      ],
+      "delta_bootstrap_p_value": [
+        0.7805,
+        0.637,
+        0.4075
+      ],
+      "bh_significant": [
+        false,
+        false,
+        false
+      ],
+      "confirmed_recall_points": []
+    },
+    "knockoff_operating_points": {
+      "0.05": {
+        "recall": 0.06837239303375618,
+        "precision": 0.175303197353914,
+        "n_admit": 1814,
+        "T": 0.7773002103662882,
+        "k_floor": 20,
+        "k_floor_met": true
+      },
+      "0.1": {
+        "recall": 0.07245753601376048,
+        "precision": 0.1643100926377377,
+        "n_admit": 2051,
+        "T": 0.0,
+        "k_floor": 10,
+        "k_floor_met": true
+      },
+      "0.2": {
+        "recall": 0.07245753601376048,
+        "precision": 0.1643100926377377,
+        "n_admit": 2051,
+        "T": 0.0,
+        "k_floor": 5,
+        "k_floor_met": true
+      },
+      "0.3": {
+        "recall": 0.07245753601376048,
+        "precision": 0.1643100926377377,
+        "n_admit": 2051,
+        "T": 0.0,
+        "k_floor": 4,
+        "k_floor_met": true
+      },
+      "0.5": {
+        "recall": 0.07245753601376048,
+        "precision": 0.1643100926377377,
+        "n_admit": 2051,
+        "T": 0.0,
+        "k_floor": 2,
+        "k_floor_met": true
+      }
+    },
+    "conformal_operating_points": {
+      "calibrated_on": "pilot",
+      "n_calibration_labels": 1112,
+      "by_alpha": {
+        "0.05": {
+          "q_hat": 1.0,
+          "recall": 0.0012900451515803052,
+          "precision": 0.42857142857142855,
+          "n_retained": 14
+        },
+        "0.1": {
+          "q_hat": 1.0,
+          "recall": 0.0012900451515803052,
+          "precision": 0.3157894736842105,
+          "n_retained": 19
+        },
+        "0.2": {
+          "q_hat": 1.0,
+          "recall": 0.0032251128789507633,
+          "precision": 0.3,
+          "n_retained": 50
+        },
+        "0.3": {
+          "q_hat": 1.0,
+          "recall": 0.00666523328316491,
+          "precision": 0.3333333333333333,
+          "n_retained": 93
+        },
+        "0.5": {
+          "q_hat": 1.0,
+          "recall": 0.012040421414749517,
+          "precision": 0.3218390804597701,
+          "n_retained": 174
+        }
+      },
+      "note": "CONF is the LABELED reference (Mohri-Hashimoto conformal back-off): q-hat calibrated on the pilot split; the label-free decoy gate (METHOD) uses 0 labels. In the matched-recall grid CONF is swept by i..."
+    },
+    "hallucinated_conclusion_rate": {
+      "representative_recall": 0.06312,
+      "by_system": {
+        "METHOD": {
+          "point": 0.7865168539325843,
+          "ci_lo": 0.7178204884948425,
+          "ci_hi": 0.8560332278923942,
+          "n_derived": 267,
+          "n_hallucinated": 210
+        },
+        "PLAIN": {
+          "point": 0.7902621722846442,
+          "ci_lo": 0.7201331058020478,
+          "ci_hi": 0.86031454248366,
+          "n_derived": 267,
+          "n_hallucinated": 211
+        },
+        "CoT": {
+          "point": null,
+          "ci_lo": null,
+          "ci_hi": null,
+          "n_derived": 0,
+          "n_hallucinated": 0
+        },
+        "RAG": {
+          "point": null,
+          "ci_lo": null,
+          "ci_hi": null,
+          "n_derived": 0,
+          "n_hallucinated": 0
+        },
+        "CONF": {
+          "point": 0.7837837837837838,
+          "ci_lo": 0.703879000359583,
+          "ci_hi": 0.8556717931384147,
+          "n_derived": 259,
+          "n_hallucinated": 203
+        }
+      },
+      "delta_method_minus_plain": {
+        "point": -0.004120504635618347,
+        "ci_lo": -0.018242760387005355,
+        "ci_hi": 0.008486647980594798
+      },
+      "underpowered": false,
+      "power_target": 100,
+      "n_derived_by_system": {
+        "METHOD": 267,
+        "PLAIN": 267,
+        "CoT": 0,
+        "RAG": 0,
+        "CONF": 259
+      },
+      "delta_ci_width": 0.02673,
+      "power_note": "POWERED: both systems derive >= power_target (100) conclusions with delta CI width <= 0.5.",
+      "recall_grid": [
+        0.03419,
+        0.03589,
+        0.03759
+      ],
+      "rate_by_system_grid": {
+        "METHOD": [
+          0.7377,
+          0.74242,
+          0.73759
+        ],
+        "PLAIN": [
+          0.75214,
+          0.7377,
+          0.74265
+        ],
+        "CoT": [
+          0.73077,
+          0.73077,
+          0.73077
+        ],
+        "RAG": [
+          0.73729,
+          null,
+          null
+        ],
+        "CONF": [
+          0.68367,
+          0.71028,
+          0.71681
+        ]
+      },
+      "delta_grid": [
+        -0.01412,
+        0.00585,
+        -0.00549
+      ],
+      "delta_ci_grid": [
+        [
+          -0.0411,
+          0.0048
+        ],
+        [
+          -0.00613,
+          0.02271
+        ],
+        [
+          -0.02231,
+          0.0045
+        ]
+      ],
+      "note": "Read the METHOD-vs-PLAIN hallucination wedge at PARTIAL admission (representative_recall, ~70% of max): at max recall both admit the identical shared candidate pool so the delta is structurally 0. Abs..."
+    },
+    "alignment_check": {
+      "aligner_relation_accuracy": 0.97312,
+      "aligner_entitylink_accuracy": 0.99247,
+      "sensitivity": {
+        "baseline": {
+          "r_star": 0.06312262595857522,
+          "delta": -0.004066043490950754,
+          "ci": [
+            -0.009231639095010565,
+            0.00152376036173408
+          ]
+        },
+        "noise_5pct": {
+          "delta": -0.0037217399049817644,
+          "ci": [
+            -0.008690143656975098,
+            0.0012438374847940894
+          ]
+        },
+        "noise_10pct": {
+          "delta": -0.004441416388895059,
+          "ci": [
+            -0.009353067278311934,
+            0.0006429170935125125
+          ]
+        },
+        "noise_20pct": {
+          "delta": -0.002979141172236029,
+          "ci": [
+            -0.006009815991468583,
+            -0.0001340357065351753
+          ]
+        },
+        "embed_only_aligner": {
+          "delta": 0.0,
+          "ci": [
+            0.0,
+            0.0
+          ]
+        },
+        "strict_el_floor_0.7": {
+          "delta": -0.004293164442155627,
+          "ci": [
+            -0.009527420323236188,
+            0.0013477846336374887
+          ]
+        }
+      }
+    },
+    "contamination_rate_decoys": 0.11747,
+    "reasoning_traces": [
+      {
+        "doc": "Great Bear Lake",
+        "rule": "has_part_implies_part_of (P527->P361 inverse)",
+        "premises": [
+          {
+            "relation": "P527",
+            "relation_name": "has part(s)",
+            "head": "Scented Grass Hills",
+            "tail": "Saoyú-ʔehdacho National Historic Site of Canada"
+          }
+        ],
+        "conclusion": {
+          "relation": "P361",
+          "relation_name": "part of",
+          "head": "Saoyú-ʔehdacho National Historic Site of Canada",
+          "tail": "Scented Grass Hills"
+        },
+        "conclusion_in_gold": false,
+        "note": "conclusion_in_gold=false may be a Re-DocRED residual false negative rather than a true hallucination (relative interpretation only)."
+      },
+      {
+        "doc": "Oslo Airport Station",
+        "rule": "located_in_admin_inverse_contains (P131->P150 inverse)",
+        "premises": [
+          {
+            "relation": "P131",
+            "relation_name": "located in the administrative territorial entity",
+            "head": "Oslo Airport Station",
+            "tail": "Norway"
+          }
+        ],
+        "conclusion": {
+          "relation": "P150",
+          "relation_name": "contains the administrative territorial entity",
+          "head": "Norway",
+          "tail": "Oslo Airport Station"
+        },
+        "conclusion_in_gold": false,
+        "note": "conclusion_in_gold=false may be a Re-DocRED residual false negative rather than a true hallucination (relative interpretation only)."
+      },
+      {
+        "doc": "Mario Fatafehi",
+        "rule": "father_implies_child (P22->P40 inverse)",
+        "premises": [
+          {
+            "relation": "P22",
+            "relation_name": "father",
+            "head": "Fatafehi",
+            "tail": "Toni"
+          }
+        ],
+        "conclusion": {
+          "relation": "P40",
+          "relation_name": "child",
+          "head": "Toni",
+          "tail": "Fatafehi"
+        },
+        "conclusion_in_gold": false,
+        "note": "conclusion_in_gold=false may be a Re-DocRED residual false negative rather than a true hallucination (relative interpretation only)."
+      }
+    ],
+    "regime_diagnostic": {
+      "summary": "Label-free 2-axis regime-diagnostic that predicts the operational-wedge sign from cached Z/Zt/W/self-consistency with ZERO API calls and NO gold, then validates against the realized wedge.",
+      "n_candidate_rows": 4384,
+      "n_docs": 152,
+      "signal_A_winrate_tail": [
+        {
+          "label": "top_25pct",
+          "cutoff": "max(Z,Zt)>=1.000",
+          "n_tail": 1096,
+          "winrate": 0.05383,
+          "ci": [
+            0.03504,
+            0.07549
+          ]
+        },
+        {
+          "label": "top_50pct",
+          "cutoff": "max(Z,Zt)>=0.999",
+          "n_tail": 2192,
+          "winrate": 0.04471,
+          "ci": [
+            0.03366,
+            0.05807
+          ]
+        },
+        {
+          "label": "all",
+          "cutoff": "all candidates",
+          "n_tail": 4384,
+          "winrate": 0.06227,
+          "ci": [
+            0.05149,
+            0.07303
+          ]
+        }
+      ],
+      "signal_B_cdf_match": {
+        "low_f_threshold": 0.4,
+        "full_distribution": {
+          "n_decoy": 4384,
+          "n_lowf_real": 1704,
+          "ks_p": 0.0,
+          "mw_p": 0.0,
+          "perm_p": 0.0005,
+          "decoy_mean": 0.16527,
+          "lowf_real_mean": 0.85737,
+          "match": false
+        },
+        "top_tail": {
+          "n_decoy": 1410,
+          "n_lowf_real": 1634,
+          "ks_p": 0.0,
+          "mw_p": 0.0,
+          "perm_p": 0.0005,
+          "decoy_mean": 0.51103,
+          "lowf_real_mean": 0.89398,
+          "match": false
+        },
+        "interpretation": "MATCH (fail-to-reject) => decoys exchangeable with the model's own spontaneous errors (valid knockoff); REJECT with decoy mean < low-f-real mean => decoys TOO EASY (gate redundant/worse)."
+      },
+      "signal_C_wz_divergence": {
+        "spearman_full": 0.93399,
+        "spearman_admission": 0.99096,
+        "admitted_set_jaccard": 0.91609,
+        "frac_W_equals_Z": 0.9391,
+        "n_candidates": 4384,
+        "n_admitted_W_ge_0": 4133,
+        "interpretation": "frac(W==Z)~1 and admitted-set rho~1 => the gate keeps and orders the same facts as the plain Z threshold => mechanically NULL wedge. Jaccard<1 measures the few 'winner' demotions, which the realized w..."
+      },
+      "signal_D_calibration": {
+        "calibration_auc": 0.60293,
+        "calibration_spearman_Z_f": 0.2015,
+        "f_pos_threshold": 0.5,
+        "n_pos": 2680,
+        "n_total": 4384,
+        "interpretation": "AUC(Z -> high-self-consistency) high => Z is calibrated against the model's own truth proxy => plain threshold already separates good from bad => the gate is redundant rather than harmful."
+      },
+      "winrate_tail_headline": 0.04471,
+      "predicted_regime": "GATE REDUNDANT",
+      "predicted_wedge_sign": "null",
+      "prediction_basis": "Signal C (frac(W==Z)=0.9391, admitted-set rho=0.99096: the gate keeps & orders the same facts as the plain threshold -> mechanically null wedge)",
+      "regime_axes": {
+        "decoy_exchangeable": false,
+        "decoys_too_easy": true,
+        "decoys_too_hard": false,
+        "base_scorer_calibrated": false,
+        "rerank_blocked": true
+      },
+      "prediction_vs_realized": {
+        "predicted_wedge_sign": "null",
+        "realized_wedge_sign": "null_or_negative",
+        "realized_any_positive_recall_point": false,
+        "prediction_correct": true,
+        "note": "prediction_correct == (predicted null) AND (no matched-recall point has a delta CI entirely > 0)."
+      },
+      "cross_anchor": {
+        "points": [
+          {
+            "anchor": "Re-DocRED (logprob)",
+            "winrate_tail": 0.04471,
+            "base_scorer_calibrated": false,
+            "predicted_regime": "GATE REDUNDANT",
+            "predicted_wedge_sign": "null",
+            "realized_wedge_sign": "null_or_negative"
+          },
+          {
+            "anchor": "CLUTRR (verbalized)",
+            "winrate_tail": 0.103,
+            "base_scorer_calibrated": false,
+            "predicted_regime": "GATE WORSE/anti-conservative",
+            "predicted_wedge_sign": "negative"
+          },
+          {
+            "anchor": "CLUTRR (logprob)",
+            "winrate_tail": 0.34,
+            "base_scorer_calibrated": false,
+            "predicted_regime": "GATE WORSE/anti-conservative",
+            "predicted_wedge_sign": "negative"
+          }
+        ],
+        "clutrr_source": "hypothesis_reported",
+        "principle": "Gate value is monotone in tail-overconfidence and CONDITIONAL on decoy exchangeability: the decoy-competition gate adds value ONLY where the base elicitation is tail-overconfident AND the decoys are e...",
+        "winrate_sorted": [
+          [
+            0.0447,
+            "null"
+          ],
+          [
+            0.103,
+            "negative"
+          ],
+          [
+            0.34,
+            "negative"
+          ]
+        ],
+        "direction": "The wedge sign is governed by a 2-AXIS map, NOT a 1-D monotone of winrate_tail: the positive (gate-adds-value) regime requires exchangeable decoys (winrate~0.5) — realized only at the high end (CLUTRR..."
+      },
+      "thresholds": {
+        "regime_low_f": 0.4,
+        "regime_tail_quantiles": [
+          0.25,
+          0.5
+        ],
+        "regime_exch_band": 0.15,
+        "regime_calib_auc_hi": 0.65,
+        "regime_rho_null": 0.97,
+        "regime_jaccard_null": 0.95
+      }
+    },
+    "verdict": {
+      "wedge_confirmed": false,
+      "disconfirmed": true,
+      "n_confirmed_points": 0,
+      "scope": {
+        "n_docs_used": 152,
+        "n_docs_requested": 152,
+        "recall_ceiling": 0.07504,
+        "recall_ceiling_definition": "max recall of METHOD/PLAIN's shared candidate+alignment pool",
+        "bootstrap_B": 2000,
+        "grid_start": 0.03419
+      },
+      "recall_ceiling": 0.07504,
+      "n_docs_used": 152,
+      "message": "OPERATIONAL DISCONFIRMATION at recall <= 0.075 on 152 docs (pre-registered): the wedge collapses to 'thresholding-is-enough' — no recall point shows a precision advantage of decoy-gating over the plai...",
+      "operational_verdict": "disconfirmed at recall <= 0.075 on 152 docs; reframed as a label-free regime-diagnostic — the Re-DocRED scorer sits in the GATE REDUNDANT regime (predicted gold-free as 'null'; prediction_correct=True...",
+      "predicted_regime": "GATE REDUNDANT",
+      "predicted_wedge_sign": "null",
+      "prediction_correct": true,
+      "notes": "RELATIVE comparison only: Re-DocRED residual false negatives depress recall for ALL systems equally and inflate hallucinated-conclusion counts for ALL systems equally; no absolute realized-FDR diagona..."
+    },
+    "cost_log_summary": {
+      "total_usd": 1.07548,
+      "n_calls": 20141,
+      "soft_cap": 2.0,
+      "hard_stop": 10.0
+    }
+  },
+  "datasets": [
+    {
+      "dataset": "Re-DocRED",
+      "examples": [
+        {
+          "input": "Mikhail Borisovich Kogan (; September 5, 1893 in Zhitomir, Russian Empire – November 26, 1951 in Moscow, USSR) was a well - known medical doctor, a head of the therapy department of 2nd Moscow Medical...",
+          "output": "[[\"P569\", 0, 1], [\"P19\", 0, 2], [\"P570\", 0, 4], [\"P20\", 0, 5], [\"P17\", 2, 3], [\"P17\", 5, 6], [\"P577\", 13, 14], [\"P937\", 12, 5], [\"P27\", 0, 6], [\"P131\", 7, 5], [\"P27\", 12, 6], [\"P17\", 7, 6], [\"P131\", 5...",
+          "metadata_doc_id": "redocred_test_477",
+          "metadata_title": "Mikhail Kogan",
+          "metadata_fold": "cluster_PER",
+          "metadata_n_candidates": 27,
+          "metadata_n_gold": 24,
+          "metadata_decoy_winrate": 0.1852,
+          "metadata_self_consistency_f_hist": [
+            10,
+            3,
+            14
+          ],
+          "predict_METHOD": "[[\"P569\", 0, 1, 0.9998], [\"P19\", 0, 2, 0.9981], [\"P131\", 2, 3, 0.9933], [\"P570\", 0, 4, 1.0], [\"P570\", 0, 5, 0.989], [\"P131\", 5, 6, 0.977], [\"P31\", 0, 13, 1.0], [\"P488\", 0, 7, -0.9999], [\"P108\", 0, 13,...",
+          "predict_PLAIN": "[[\"P569\", 0, 1, 0.9998], [\"P19\", 0, 2, 0.9981], [\"P131\", 2, 3, 0.9933], [\"P570\", 0, 4, 1.0], [\"P570\", 0, 5, 0.989], [\"P131\", 5, 6, 0.977], [\"P31\", 0, 13, 1.0], [\"P488\", 0, 7, 0.9998], [\"P108\", 0, 13, ...",
+          "predict_CoT": "[[\"P569\", 0, 1, 1.0], [\"P19\", 0, 2, 1.0], [\"P570\", 0, 4, 1.0], [\"P570\", 0, 5, 1.0], [\"P137\", 0, 13, 1.0], [\"P39\", 0, 7, 1.0], [\"P570\", 0, 13, 1.0], [\"P3373\", 0, 13, 0.8]]",
+          "predict_RAG": "[[\"P19\", 0, 2, 1.0], [\"P570\", 0, 5, 1.0], [\"P108\", 0, 7, 1.0], [\"P570\", 0, 14, 1.0], [\"P3373\", 0, 13, 0.7]]",
+          "predict_CONF": "[[\"P569\", 0, 1, 0.8999], [\"P19\", 0, 2, 0.999], [\"P131\", 2, 3, 0.7967], [\"P570\", 0, 4, 0.9], [\"P570\", 0, 5, 0.9945], [\"P131\", 5, 6, 0.7885], [\"P31\", 0, 13, 0.9], [\"P488\", 0, 7, 0.8999], [\"P108\", 0, 13,..."
+        },
+        {
+          "input": "Julian Reinard (born 5 March 1983) is a German footballer. He first appeared in the German Bundesliga on 21 March 2004 while SC Freiburg's first and second keepers had been injured. A year later media...",
+          "output": "[[\"P569\", 0, 1], [\"P54\", 0, 12], [\"P118\", 0, 3], [\"P54\", 0, 8], [\"P27\", 0, 2], [\"P54\", 0, 9], [\"P17\", 3, 2], [\"P118\", 5, 3], [\"P463\", 0, 5], [\"P17\", 5, 2], [\"P17\", 8, 11], [\"P118\", 7, 3], [\"P17\", 9, 1...",
+          "metadata_doc_id": "redocred_test_445",
+          "metadata_title": "Julian Reinard",
+          "metadata_fold": "cluster_ORG",
+          "metadata_n_candidates": 29,
+          "metadata_n_gold": 17,
+          "metadata_decoy_winrate": 0.0,
+          "metadata_self_consistency_f_hist": [
+            11,
+            1,
+            17
+          ],
+          "predict_METHOD": "[[\"P569\", 0, 1, 1.0], [\"P279\", 0, 2, 1.0], [\"P1344\", 0, 3, 1.0], [\"P571\", 0, 4, 1.0], [\"P118\", 0, 8, 1.0], [\"P118\", 0, 11, 1.0], [\"P118\", 0, 9, 1.0], [\"P576\", 0, 9, 0.9914], [\"P571\", 0, 4, 0.9999], [\"...",
+          "predict_PLAIN": "[[\"P569\", 0, 1, 1.0], [\"P279\", 0, 2, 1.0], [\"P1344\", 0, 3, 1.0], [\"P571\", 0, 4, 1.0], [\"P118\", 0, 8, 1.0], [\"P118\", 0, 11, 1.0], [\"P118\", 0, 9, 1.0], [\"P576\", 0, 9, 0.9914], [\"P571\", 0, 4, 0.9999], [\"...",
+          "predict_CoT": "[[\"P569\", 0, 1, 1.0], [\"P27\", 0, 2, 1.0], [\"P54\", 0, 5, 1.0], [\"P54\", 0, 7, 0.9], [\"P54\", 0, 8, 1.0], [\"P54\", 0, 12, 0.8]]",
+          "predict_RAG": "[[\"P569\", 0, 1, 1.0], [\"P279\", 0, 2, 1.0], [\"P1344\", 0, 3, 1.0], [\"P54\", 0, 5, 1.0], [\"P118\", 0, 11, 1.0], [\"P118\", 0, 8, 1.0], [\"P118\", 0, 12, 1.0]]",
+          "predict_CONF": "[[\"P569\", 0, 1, 1.0], [\"P279\", 0, 2, 1.0], [\"P1344\", 0, 3, 1.0], [\"P571\", 0, 4, 0.9], [\"P118\", 0, 8, 1.0], [\"P118\", 0, 11, 0.9], [\"P118\", 0, 9, 0.9], [\"P576\", 0, 9, 0.8957], [\"P571\", 0, 4, 0.9], [\"P60..."
+        },
+        {
+          "input": "Baltimore and Ohio Railroad Martinsburg Shops is a historic industrial district in Martinsburg, West Virginia. It is significant both for its railroading architecture by Albert Fink and John Rudolph N...",
+          "output": "[[\"P17\", 1, 8], [\"P17\", 2, 8], [\"P131\", 2, 8], [\"P585\", 5, 6], [\"P150\", 8, 2], [\"P131\", 0, 2], [\"P17\", 0, 8], [\"P17\", 12, 8], [\"P17\", 9, 8], [\"P279\", 11, 12], [\"P17\", 5, 8], [\"P131\", 0, 1], [\"P17\", 11...",
+          "metadata_doc_id": "redocred_dev_459",
+          "metadata_title": "Baltimore and Ohio Railroad Martinsburg Shops",
+          "metadata_fold": "cluster_LOC",
+          "metadata_n_candidates": 25,
+          "metadata_n_gold": 19,
+          "metadata_decoy_winrate": 0.08,
+          "metadata_self_consistency_f_hist": [
+            11,
+            2,
+            12
+          ],
+          "predict_METHOD": "[[\"P131\", 0, 2, 1.0], [\"P800\", 0, 4, 0.6792], [\"P710\", 0, 5, 0.852], [\"P527\", 0, 7, 0.9998], [\"P569\", 0, 8, 0.9985], [\"P1441\", 9, 1, 0.9998], [\"P585\", 9, 10, 0.9994], [\"P37\", 0, 11, 0.982], [\"P706\", 0...",
+          "predict_PLAIN": "[[\"P131\", 0, 2, 1.0], [\"P800\", 0, 4, 0.6792], [\"P710\", 0, 5, 0.852], [\"P527\", 0, 7, 0.9998], [\"P569\", 0, 8, 0.9985], [\"P1441\", 9, 1, 0.9998], [\"P585\", 9, 10, 0.9994], [\"P37\", 0, 11, 0.982], [\"P706\", 0...",
+          "predict_CoT": "[[\"P131\", 0, 2, 1.0], [\"P1441\", 9, 1, 1.0], [\"P571\", 9, 10, 1.0], [\"P37\", 0, 11, 1.0], [\"P131\", 0, 12, 1.0], [\"P361\", 0, 8, 0.9]]",
+          "predict_RAG": "[[\"P131\", 0, 2, 1.0], [\"P131\", 9, 1, 1.0], [\"P585\", 9, 10, 1.0], [\"P170\", 0, 4, 1.0], [\"P161\", 0, 5, 1.0], [\"P37\", 0, 11, 1.0], [\"P131\", 0, 12, 1.0], [\"P527\", 0, 7, 1.0]]",
+          "predict_CONF": "[[\"P131\", 0, 2, 0.9], [\"P800\", 0, 4, 0.4396], [\"P710\", 0, 5, 0.726], [\"P527\", 0, 7, 0.4999], [\"P569\", 0, 8, 0.5992], [\"P1441\", 9, 1, 0.9999], [\"P585\", 9, 10, 0.6997], [\"P37\", 0, 11, 0.891], [\"P706\", 0..."
+        }
+      ]
+    }
+  ]
+}

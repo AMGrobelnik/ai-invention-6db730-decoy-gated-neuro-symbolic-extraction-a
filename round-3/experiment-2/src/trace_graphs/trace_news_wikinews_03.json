@@ -1,0 +1,82 @@
+{
+  "doc_id": "news_wikinews_03",
+  "genre": "news",
+  "kind": "admission",
+  "n_proofs": 1,
+  "graphs": [
+    {
+      "nodes": [
+        {
+          "id": 0,
+          "label": "admitted_fact(call(Rove,Novak))",
+          "kind": "derived",
+          "rule": "admission"
+        },
+        {
+          "id": 1,
+          "label": "call(Rove, Novak)",
+          "kind": "leaf",
+          "cert": {
+            "provenance": "Novak called Rove on a Tuesday, 6 days before he broke the story.",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 1.0,
+              "T": 0.191489,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.871795,
+              "r": 1
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "src": 0,
+          "dst": 1,
+          "rule": "admission"
+        }
+      ]
+    }
+  ],
+  "proofs": [
+    {
+      "type": "derived",
+      "atom": [
+        "admitted_fact",
+        [
+          "call(Rove,Novak)"
+        ]
+      ],
+      "rule": "admission",
+      "children": [
+        {
+          "type": "leaf",
+          "atom": [
+            "call",
+            [
+              "Rove",
+              "Novak"
+            ]
+          ],
+          "cert": {
+            "provenance": "Novak called Rove on a Tuesday, 6 days before he broke the story.",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 1.0,
+              "T": 0.191489,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.871795,
+              "r": 1
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

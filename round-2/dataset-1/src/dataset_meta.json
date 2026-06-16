@@ -1,0 +1,129 @@
+{
+  "name": "application_anchor",
+  "description": "Genre-faithful APPLICATION anchor: short, professionally-written legal / news / regulatory documents standardized to a shared (head, relation, tail) triple schema with char-span provenance, coarse {PER,LOC,ORG,TIME,NUM,MISC} entity typing, a crisp-vs-silver gold_quality flag, per-row license, and a genre fold (metadata_fold) for leave-one-genre-out. ONE merged file assembled from multiple source corpora; the datasets[] array is grouped by source corpus. Built for a text->FOL->Prolog neuro-symbolic atomic-fact-extraction & hallucination-control experiment. NO LLM in gold construction (non-circularity).",
+  "schema_per_example": {
+    "grouping": "datasets[] is grouped by SOURCE CORPUS; each document is ONE example.",
+    "input": "JSON string: {doc_id, document_text, genre, source, char_length, entities:[{name,type in {PER,LOC,ORG,TIME,NUM,MISC},char_span:[s,e]}]}",
+    "output": "JSON string: {gold_atomic_facts:[{head,relation,tail,provenance_char_span:[s,e]}]}",
+    "metadata": "metadata_fold(genre), metadata_gold_quality(crisp|silver), metadata_source, metadata_license, metadata_relation_vocab, metadata_char_length, metadata_num_facts, metadata_num_entities, metadata_entity_types_fine(spaCy fine NER labels, optional)"
+  },
+  "n_documents": 24,
+  "n_source_datasets": 4,
+  "dataset_selection_rationale": "4 source corpora CHOSEN from 7 evaluated. Kept (free license + genre-faithful short documents + supports deterministic no-LLM gold): CUAD, Wikinews, GDPR, eCFR. Excluded: REDFM (CC BY-SA-NC, NonCommercial), ContractNLI-HF (CC BY-NC-SA, NonCommercial), WebRED (free CC BY-SA but sentence-level TFRecord, not genre-faithful documents), LDC ACE/TACRED (research-restricted). Count is 4 (not 6) because the plan's HARD free-license + genre-faithfulness gates legitimately exclude the rest; the binding deliverable (~24 docs balanced 8/8/8 across 3 genres) is met.",
+  "genre_counts": {
+    "legal": 8,
+    "news": 8,
+    "regulatory": 8
+  },
+  "source_dataset_counts": {
+    "CUAD": 8,
+    "Wikinews": 8,
+    "GDPR": 5,
+    "eCFR": 3
+  },
+  "gold_quality_counts": {
+    "crisp": 8,
+    "silver": 16
+  },
+  "gold_quality_by_genre": {
+    "legal": {
+      "crisp": 8
+    },
+    "news": {
+      "silver": 8
+    },
+    "regulatory": {
+      "silver": 8
+    }
+  },
+  "license_counts": {
+    "CC BY 4.0 (Atticus Project / CUAD v1; Zenodo 4595826)": 8,
+    "CC BY 2.5 (Wikinews / Wikimedia Foundation)": 8,
+    "EUR-Lex reuse (© European Union; Regulation (EU) 2016/679, CELEX:32016R0679; free reuse with attribution); text via gdpr-info.eu": 5,
+    "Public domain (US Government work; eCFR / GPO, ecfr.gov)": 3
+  },
+  "relation_vocab_by_genre": {
+    "legal": [
+      "agreement_date",
+      "contains_exclusivity",
+      "contains_license_grant",
+      "effective_date",
+      "expiration_date",
+      "has_party",
+      "has_title",
+      "minimum_commitment",
+      "renewal_term",
+      "revenue_profit_sharing"
+    ],
+    "news": [
+      "call",
+      "choose",
+      "direct",
+      "draw",
+      "head",
+      "join",
+      "occurred_on",
+      "return",
+      "speak",
+      "win"
+    ],
+    "regulatory": [
+      "cross_references",
+      "defined_as",
+      "grants_right",
+      "has_exception",
+      "has_title",
+      "obligates",
+      "requires"
+    ]
+  },
+  "total_facts": 140,
+  "total_entities": 945,
+  "facts_per_doc": {
+    "min": 3,
+    "max": 10,
+    "mean": 5.83
+  },
+  "char_length": {
+    "min": 1239,
+    "max": 3474,
+    "mean": 2372.1,
+    "median": 2209
+  },
+  "sources": {
+    "CUAD (legal)": "CUAD v1 (theatticusproject) — CC BY 4.0 — human-annotated clause spans (CRISP). https://zenodo.org/records/4595826",
+    "Wikinews (news)": "en.wikinews.org — CC BY 2.5 — deterministic spaCy SVO+5W rule-based curation (SILVER).",
+    "GDPR (regulatory, EU)": "Regulation (EU) 2016/679 (EUR-Lex CELEX:32016R0679; text via gdpr-info.eu) — EUR-Lex free reuse — deterministic structural regex curation (SILVER).",
+    "eCFR (regulatory, US)": "Electronic Code of Federal Regulations (ecfr.gov) — US Government public domain — deterministic structural regex curation (SILVER)."
+  },
+  "evaluated_but_excluded": {
+    "REDFM (Babelscape)": "CC BY-SA-NC 4.0 (NonCommercial) — fails free-license rule; Wikipedia-genre overlap with the Re-DocRED anchor.",
+    "ContractNLI (HF kiddothe2b)": "CC BY-NC-SA 4.0 (NonCommercial) — fails free-license rule.",
+    "WebRED (google-research)": "CC BY-SA 3.0 (usable) but sentence-level TFRecord, not genre-faithful short documents; Wikinews preferred.",
+    "LDC ACE / TACRED": "research-restricted / non-free — excluded per plan."
+  },
+  "determinism": {
+    "seed": 42,
+    "tool_versions": {
+      "python": "3.12",
+      "spacy": "3.7.5",
+      "spacy_model": "en_core_web_sm==3.7.1",
+      "nltk": "3.9.1 (wordnet, omw-1.4)",
+      "numpy": "1.26.4",
+      "beautifulsoup4": "4.12.3 (lxml 5.3.0 parser)",
+      "reserved_next_iteration": "sentence-transformers all-MiniLM-L6-v2, rank_bm25 (NOT used for gold here; reserved for next-iteration relation-alignment / retrieval)"
+    },
+    "regeneration": "Deterministic from cached raw/ with no network: python data.py (build_legal+build_news+build_regulatory). Stable sort within each source group by doc_id; source groups in fixed order ['CUAD', 'Wikinews', 'GDPR', 'eCFR'].",
+    "raw_cache_manifest": {
+      "CUADv1.json": {
+        "bytes": 40128638,
+        "sha256_16": "ed0b77d85bdf4014"
+      },
+      "gdpr_html_files": 21,
+      "wikinews_article_files": 200,
+      "ecfr_xml_files": 3
+    }
+  },
+  "verification": "Every entity char_span and fact provenance_char_span is re-verified against document_text (build/verify_dataset.py). Value-tail facts: tail is a substring of the provenance span; clause/label facts: the provenance span is the annotated supporting evidence.",
+  "limitations": "Legal gold is CRISP (CUAD human annotation). News and regulatory gold are SILVER (deterministic rule/structure curation, no LLM): facts are span-supported and high-precision but rule-based recall is partial. The gold_quality flag carries this per row."
+}

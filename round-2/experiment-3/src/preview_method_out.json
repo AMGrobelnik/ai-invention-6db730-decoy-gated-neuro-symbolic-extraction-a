@@ -1,0 +1,566 @@
+{
+  "metadata": {
+    "method_name": "Decoy-gating (knockoff+ W_i) vs plain confidence threshold (Z_i)",
+    "description": "Operational wedge on Re-DocRED at matched recall: atomic-fact precision, multi-hop hallucinated-conclusion rate, knockoff+ operating points.",
+    "n_docs_used": 36,
+    "split_role": "confirmatory",
+    "model": "openai/gpt-4.1-nano",
+    "elicitation": "logprob_yes_token (verbalized_[0,1] fallback)",
+    "logprobs_available": true,
+    "caching_ok": false,
+    "cost_usd": 0.34744,
+    "n_api_calls": 8005,
+    "n_calibration_labels_conformal": 259,
+    "seed": 20240617,
+    "bootstrap_B": 300,
+    "systems": [
+      "METHOD",
+      "PLAIN",
+      "CoT"
+    ],
+    "rules_list": [
+      "transitive_located_in_admin (P131;P131->P131)",
+      "located_in_admin_then_country (P131;P17->P17)",
+      "transitive_contains_admin (P150;P150->P150)"
+    ],
+    "config": {
+      "cand_cap": 30,
+      "n_overgen": 3,
+      "n_conf_samples": 5,
+      "alpha_grid": [
+        0.05,
+        0.1,
+        0.2
+      ],
+      "W_floor_k": {
+        "0.05": 20,
+        "0.1": 10,
+        "0.2": 5,
+        "0.3": 4,
+        "0.5": 2
+      },
+      "align_shortlist_k": 8,
+      "el_embed_floor": 0.6,
+      "decoy_max_regen": 3
+    },
+    "max_recall_per_system": {
+      "METHOD": 0.08555,
+      "PLAIN": 0.08555,
+      "CoT": 0.04943,
+      "RAG": 0.04087,
+      "CONF": 0.08555
+    },
+    "max_common_recall": 0.04087,
+    "pr_curves": {
+      "METHOD": [
+        [
+          0.0,
+          0.0,
+          1.0
+        ],
+        [
+          0.0038,
+          0.44444,
+          1.0
+        ],
+        [
+          0.00665,
+          0.41176,
+          1.0
+        ]
+      ],
+      "PLAIN": [
+        [
+          0.0,
+          0.0,
+          1.0
+        ],
+        [
+          0.0038,
+          0.44444,
+          1.0
+        ],
+        [
+          0.00665,
+          0.41176,
+          1.0
+        ]
+      ],
+      "CoT": [
+        [
+          0.00095,
+          1.0,
+          1.0
+        ],
+        [
+          0.00285,
+          0.6,
+          1.0
+        ],
+        [
+          0.00475,
+          0.55556,
+          1.0
+        ]
+      ],
+      "RAG": [
+        [
+          0.00095,
+          1.0,
+          1.0
+        ],
+        [
+          0.00095,
+          0.25,
+          1.0
+        ],
+        [
+          0.0019,
+          0.28571,
+          1.0
+        ]
+      ],
+      "CONF": [
+        [
+          0.00095,
+          1.0,
+          1.0
+        ],
+        [
+          0.00475,
+          0.55556,
+          1.0
+        ],
+        [
+          0.0076,
+          0.47059,
+          1.0
+        ]
+      ]
+    },
+    "matched_recall": {
+      "recall_grid": [
+        0.05,
+        0.05148,
+        0.05296
+      ],
+      "precision": {
+        "METHOD": [
+          0.26108,
+          0.25822,
+          0.25339
+        ],
+        "PLAIN": [
+          0.26368,
+          0.25822,
+          0.25688
+        ],
+        "CoT": [
+          null,
+          null,
+          null
+        ],
+        "RAG": [
+          null,
+          null,
+          null
+        ],
+        "CONF": [
+          0.22944,
+          0.23305,
+          0.23629
+        ]
+      },
+      "precision_ci": {
+        "METHOD": [
+          [
+            0.19803,
+            0.32037
+          ],
+          [
+            0.19157,
+            0.32129
+          ],
+          [
+            0.18878,
+            0.31839
+          ]
+        ],
+        "PLAIN": [
+          [
+            0.20525,
+            0.31913
+          ],
+          [
+            0.19787,
+            0.31644
+          ],
+          [
+            0.19578,
+            0.31591
+          ]
+        ],
+        "CoT": [
+          [
+            null,
+            null
+          ],
+          [
+            null,
+            null
+          ],
+          [
+            null,
+            null
+          ]
+        ],
+        "RAG": [
+          [
+            null,
+            null
+          ],
+          [
+            null,
+            null
+          ],
+          [
+            null,
+            null
+          ]
+        ],
+        "CONF": [
+          [
+            0.19756,
+            0.26774
+          ],
+          [
+            0.1956,
+            0.27315
+          ],
+          [
+            0.19665,
+            0.2777
+          ]
+        ]
+      },
+      "delta_method_minus_plain": [
+        -0.00252,
+        -0.00029,
+        -0.00337
+      ],
+      "delta_ci": [
+        [
+          -0.0159,
+          0.01208
+        ],
+        [
+          -0.01122,
+          0.01132
+        ],
+        [
+          -0.01612,
+          0.01021
+        ]
+      ],
+      "delta_bootstrap_p_value": [
+        0.64667,
+        0.57333,
+        0.70333
+      ],
+      "bh_significant": [
+        false,
+        false,
+        false
+      ],
+      "confirmed_recall_points": []
+    },
+    "knockoff_operating_points": {
+      "0.05": {
+        "recall": 0.08079847908745247,
+        "precision": 0.19362186788154898,
+        "n_admit": 439,
+        "T": 0.22272606129801784,
+        "k_floor": 20,
+        "k_floor_met": true
+      },
+      "0.1": {
+        "recall": 0.0817490494296578,
+        "precision": 0.18336886993603413,
+        "n_admit": 469,
+        "T": 0.0,
+        "k_floor": 10,
+        "k_floor_met": true
+      },
+      "0.2": {
+        "recall": 0.0817490494296578,
+        "precision": 0.18336886993603413,
+        "n_admit": 469,
+        "T": 0.0,
+        "k_floor": 5,
+        "k_floor_met": true
+      },
+      "0.3": {
+        "recall": 0.0817490494296578,
+        "precision": 0.18336886993603413,
+        "n_admit": 469,
+        "T": 0.0,
+        "k_floor": 4,
+        "k_floor_met": true
+      },
+      "0.5": {
+        "recall": 0.0817490494296578,
+        "precision": 0.18336886993603413,
+        "n_admit": 469,
+        "T": 0.0,
+        "k_floor": 2,
+        "k_floor_met": true
+      }
+    },
+    "conformal_operating_points": {
+      "calibrated_on": "pilot",
+      "n_calibration_labels": 259,
+      "by_alpha": {
+        "0.05": {
+          "q_hat": 1.0,
+          "recall": 0.0028517110266159697,
+          "precision": 0.6,
+          "n_retained": 5
+        },
+        "0.1": {
+          "q_hat": 1.0,
+          "recall": 0.0028517110266159697,
+          "precision": 0.6,
+          "n_retained": 5
+        },
+        "0.2": {
+          "q_hat": 1.0,
+          "recall": 0.0038022813688212928,
+          "precision": 0.5,
+          "n_retained": 8
+        },
+        "0.3": {
+          "q_hat": 1.0,
+          "recall": 0.011406844106463879,
+          "precision": 0.5217391304347826,
+          "n_retained": 23
+        },
+        "0.5": {
+          "q_hat": 1.0,
+          "recall": 0.015209125475285171,
+          "precision": 0.47058823529411764,
+          "n_retained": 34
+        }
+      },
+      "note": "CONF is the LABELED reference (Mohri-Hashimoto conformal back-off): q-hat calibrated on the pilot split; the label-free decoy gate (METHOD) uses 0 labels. In the matched-recall grid CONF is swept by i..."
+    },
+    "hallucinated_conclusion_rate": {
+      "representative_recall": 0.07518,
+      "by_system": {
+        "METHOD": {
+          "point": 0.5,
+          "ci_lo": 0.2857142857142857,
+          "ci_hi": 1.0,
+          "n_derived": 24,
+          "n_hallucinated": 12
+        },
+        "PLAIN": {
+          "point": 0.4782608695652174,
+          "ci_lo": 0.2820598006644518,
+          "ci_hi": 1.0,
+          "n_derived": 23,
+          "n_hallucinated": 11
+        },
+        "CoT": {
+          "point": null,
+          "ci_lo": null,
+          "ci_hi": null,
+          "n_derived": 0,
+          "n_hallucinated": 0
+        },
+        "RAG": {
+          "point": null,
+          "ci_lo": null,
+          "ci_hi": null,
+          "n_derived": 0,
+          "n_hallucinated": 0
+        },
+        "CONF": {
+          "point": 0.5,
+          "ci_lo": 0.1951923076923077,
+          "ci_hi": 1.0,
+          "n_derived": 18,
+          "n_hallucinated": 9
+        }
+      },
+      "delta_method_minus_plain": {
+        "point": 0.014187005234364981,
+        "ci_lo": 0.0,
+        "ci_hi": 0.04761904761904767
+      },
+      "recall_grid": [
+        0.05,
+        0.05148,
+        0.05296
+      ],
+      "rate_by_system_grid": {
+        "METHOD": [
+          0.375,
+          0.35294,
+          0.35294
+        ],
+        "PLAIN": [
+          0.33333,
+          0.35294,
+          0.35294
+        ],
+        "CoT": [
+          null,
+          null,
+          null
+        ],
+        "RAG": [
+          null,
+          null,
+          null
+        ],
+        "CONF": [
+          0.66667,
+          0.7,
+          0.7
+        ]
+      },
+      "delta_grid": [
+        0.04046,
+        0.0,
+        0.0
+      ],
+      "delta_ci_grid": [
+        [
+          0.0,
+          0.16667
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "note": "Read the METHOD-vs-PLAIN hallucination wedge at PARTIAL admission (representative_recall, ~70% of max): at max recall both admit the identical shared candidate pool so the delta is structurally 0. Abs..."
+    },
+    "alignment_check": {
+      "aligner_relation_accuracy": 0.97814,
+      "aligner_entitylink_accuracy": 0.9943,
+      "sensitivity": {
+        "baseline": {
+          "r_star": 0.07518219264892269,
+          "delta": 0.0010567383243161518,
+          "ci": [
+            -0.0077429139019032905,
+            0.01103847262316117
+          ]
+        },
+        "noise_5pct": {
+          "delta": 0.003830948001447097,
+          "ci": [
+            -0.005043369795203653,
+            0.012641272173905775
+          ]
+        },
+        "noise_10pct": {
+          "delta": -0.01177826220064749,
+          "ci": [
+            -0.021053115770818157,
+            -0.0025272196653715125
+          ]
+        },
+        "noise_20pct": {
+          "delta": 0.0,
+          "ci": [
+            0.0,
+            0.0
+          ]
+        },
+        "embed_only_aligner": {
+          "delta": 0.0,
+          "ci": [
+            0.0,
+            0.0
+          ]
+        },
+        "strict_el_floor_0.7": {
+          "delta": 0.0005713551489344832,
+          "ci": [
+            -0.008358190489382779,
+            0.010099332053817398
+          ]
+        }
+      }
+    },
+    "contamination_rate_decoys": 0.12913,
+    "verdict": {
+      "wedge_confirmed": false,
+      "disconfirmed": true,
+      "n_confirmed_points": 0,
+      "message": "OPERATIONAL DISCONFIRMATION (pre-registered): the wedge collapses to 'thresholding-is-enough' — no recall point shows a precision advantage of decoy-gating over the plain confidence threshold with CI ...",
+      "notes": "RELATIVE comparison only: Re-DocRED residual false negatives depress recall for ALL systems equally and inflate hallucinated-conclusion counts for ALL systems equally; no absolute realized-FDR diagona..."
+    },
+    "cost_log_summary": {
+      "total_usd": 0.34744,
+      "n_calls": 8005,
+      "soft_cap": 3.0,
+      "hard_stop": 10.0
+    }
+  },
+  "datasets": [
+    {
+      "dataset": "Re-DocRED",
+      "examples": [
+        {
+          "input": "Mikhail Borisovich Kogan (; September 5, 1893 in Zhitomir, Russian Empire – November 26, 1951 in Moscow, USSR) was a well - known medical doctor, a head of the therapy department of 2nd Moscow Medical...",
+          "output": "[[\"P569\", 0, 1], [\"P19\", 0, 2], [\"P570\", 0, 4], [\"P20\", 0, 5], [\"P17\", 2, 3], [\"P17\", 5, 6], [\"P577\", 13, 14], [\"P937\", 12, 5], [\"P27\", 0, 6], [\"P131\", 7, 5], [\"P27\", 12, 6], [\"P17\", 7, 6], [\"P131\", 5...",
+          "metadata_doc_id": "redocred_test_477",
+          "metadata_title": "Mikhail Kogan",
+          "metadata_fold": "cluster_PER",
+          "metadata_n_candidates": 27,
+          "metadata_n_gold": 24,
+          "predict_METHOD": "[[\"P569\", 0, 1, 0.9998], [\"P19\", 0, 2, 0.9981], [\"P131\", 2, 3, 0.9933], [\"P570\", 0, 4, 1.0], [\"P570\", 0, 5, 0.989], [\"P131\", 5, 6, 0.977], [\"P31\", 0, 13, 1.0], [\"P488\", 0, 7, -0.9999], [\"P108\", 0, 13,...",
+          "predict_PLAIN": "[[\"P569\", 0, 1, 0.9998], [\"P19\", 0, 2, 0.9981], [\"P131\", 2, 3, 0.9933], [\"P570\", 0, 4, 1.0], [\"P570\", 0, 5, 0.989], [\"P131\", 5, 6, 0.977], [\"P31\", 0, 13, 1.0], [\"P488\", 0, 7, 0.9998], [\"P108\", 0, 13, ...",
+          "predict_CoT": "[[\"P569\", 0, 1, 1.0], [\"P19\", 0, 2, 1.0], [\"P570\", 0, 4, 1.0], [\"P570\", 0, 5, 1.0], [\"P137\", 0, 13, 1.0], [\"P39\", 0, 7, 1.0], [\"P570\", 0, 13, 1.0], [\"P3373\", 0, 13, 0.8]]",
+          "predict_RAG": "[[\"P19\", 0, 2, 1.0], [\"P570\", 0, 5, 1.0], [\"P108\", 0, 7, 1.0], [\"P570\", 0, 14, 1.0], [\"P3373\", 0, 13, 0.7]]",
+          "predict_CONF": "[[\"P569\", 0, 1, 0.8999], [\"P19\", 0, 2, 0.999], [\"P131\", 2, 3, 0.7967], [\"P570\", 0, 4, 0.9], [\"P570\", 0, 5, 0.9945], [\"P131\", 5, 6, 0.7885], [\"P31\", 0, 13, 0.9], [\"P488\", 0, 7, 0.8999], [\"P108\", 0, 13,..."
+        },
+        {
+          "input": "Julian Reinard (born 5 March 1983) is a German footballer. He first appeared in the German Bundesliga on 21 March 2004 while SC Freiburg's first and second keepers had been injured. A year later media...",
+          "output": "[[\"P569\", 0, 1], [\"P54\", 0, 12], [\"P118\", 0, 3], [\"P54\", 0, 8], [\"P27\", 0, 2], [\"P54\", 0, 9], [\"P17\", 3, 2], [\"P118\", 5, 3], [\"P463\", 0, 5], [\"P17\", 5, 2], [\"P17\", 8, 11], [\"P118\", 7, 3], [\"P17\", 9, 1...",
+          "metadata_doc_id": "redocred_test_445",
+          "metadata_title": "Julian Reinard",
+          "metadata_fold": "cluster_ORG",
+          "metadata_n_candidates": 29,
+          "metadata_n_gold": 17,
+          "predict_METHOD": "[[\"P569\", 0, 1, 1.0], [\"P279\", 0, 2, 1.0], [\"P1344\", 0, 3, 1.0], [\"P571\", 0, 4, 1.0], [\"P118\", 0, 8, 1.0], [\"P118\", 0, 11, 1.0], [\"P118\", 0, 9, 1.0], [\"P576\", 0, 9, 0.9914], [\"P571\", 0, 4, 0.9999], [\"...",
+          "predict_PLAIN": "[[\"P569\", 0, 1, 1.0], [\"P279\", 0, 2, 1.0], [\"P1344\", 0, 3, 1.0], [\"P571\", 0, 4, 1.0], [\"P118\", 0, 8, 1.0], [\"P118\", 0, 11, 1.0], [\"P118\", 0, 9, 1.0], [\"P576\", 0, 9, 0.9914], [\"P571\", 0, 4, 0.9999], [\"...",
+          "predict_CoT": "[[\"P569\", 0, 1, 1.0], [\"P27\", 0, 2, 1.0], [\"P54\", 0, 5, 1.0], [\"P54\", 0, 7, 0.9], [\"P54\", 0, 8, 1.0], [\"P54\", 0, 12, 0.8]]",
+          "predict_RAG": "[[\"P569\", 0, 1, 1.0], [\"P279\", 0, 2, 1.0], [\"P1344\", 0, 3, 1.0], [\"P54\", 0, 5, 1.0], [\"P118\", 0, 11, 1.0], [\"P118\", 0, 8, 1.0], [\"P118\", 0, 12, 1.0]]",
+          "predict_CONF": "[[\"P569\", 0, 1, 1.0], [\"P279\", 0, 2, 1.0], [\"P1344\", 0, 3, 1.0], [\"P571\", 0, 4, 0.9], [\"P118\", 0, 8, 1.0], [\"P118\", 0, 11, 0.9], [\"P118\", 0, 9, 0.9], [\"P576\", 0, 9, 0.8957], [\"P571\", 0, 4, 0.9], [\"P60..."
+        },
+        {
+          "input": "Baltimore and Ohio Railroad Martinsburg Shops is a historic industrial district in Martinsburg, West Virginia. It is significant both for its railroading architecture by Albert Fink and John Rudolph N...",
+          "output": "[[\"P17\", 1, 8], [\"P17\", 2, 8], [\"P131\", 2, 8], [\"P585\", 5, 6], [\"P150\", 8, 2], [\"P131\", 0, 2], [\"P17\", 0, 8], [\"P17\", 12, 8], [\"P17\", 9, 8], [\"P279\", 11, 12], [\"P17\", 5, 8], [\"P131\", 0, 1], [\"P17\", 11...",
+          "metadata_doc_id": "redocred_dev_459",
+          "metadata_title": "Baltimore and Ohio Railroad Martinsburg Shops",
+          "metadata_fold": "cluster_LOC",
+          "metadata_n_candidates": 25,
+          "metadata_n_gold": 19,
+          "predict_METHOD": "[[\"P131\", 0, 2, 1.0], [\"P800\", 0, 4, 0.6792], [\"P710\", 0, 5, 0.852], [\"P527\", 0, 7, 0.9998], [\"P569\", 0, 8, 0.9985], [\"P1441\", 9, 1, 0.9998], [\"P585\", 9, 10, 0.9994], [\"P37\", 0, 11, 0.982], [\"P706\", 0...",
+          "predict_PLAIN": "[[\"P131\", 0, 2, 1.0], [\"P800\", 0, 4, 0.6792], [\"P710\", 0, 5, 0.852], [\"P527\", 0, 7, 0.9998], [\"P569\", 0, 8, 0.9985], [\"P1441\", 9, 1, 0.9998], [\"P585\", 9, 10, 0.9994], [\"P37\", 0, 11, 0.982], [\"P706\", 0...",
+          "predict_CoT": "[[\"P131\", 0, 2, 1.0], [\"P1441\", 9, 1, 1.0], [\"P571\", 9, 10, 1.0], [\"P37\", 0, 11, 1.0], [\"P131\", 0, 12, 1.0], [\"P361\", 0, 8, 0.9]]",
+          "predict_RAG": "[[\"P131\", 0, 2, 1.0], [\"P131\", 9, 1, 1.0], [\"P585\", 9, 10, 1.0], [\"P170\", 0, 4, 1.0], [\"P161\", 0, 5, 1.0], [\"P37\", 0, 11, 1.0], [\"P131\", 0, 12, 1.0], [\"P527\", 0, 7, 1.0]]",
+          "predict_CONF": "[[\"P131\", 0, 2, 0.9], [\"P800\", 0, 4, 0.4396], [\"P710\", 0, 5, 0.726], [\"P527\", 0, 7, 0.4999], [\"P569\", 0, 8, 0.5992], [\"P1441\", 9, 1, 0.9999], [\"P585\", 9, 10, 0.6997], [\"P37\", 0, 11, 0.891], [\"P706\", 0..."
+        }
+      ]
+    }
+  ]
+}

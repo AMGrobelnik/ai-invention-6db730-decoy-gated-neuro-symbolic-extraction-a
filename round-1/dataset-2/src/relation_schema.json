@@ -1,0 +1,482 @@
+[
+  {
+    "relation_pid": "P1001",
+    "relation_name": "applies to jurisdiction",
+    "relation_description": "the item (institution, law, public office, public register, etc) or statement belongs to or has power over or applies to the value (a territorial jurisdiction: a country, state, municipality, etc)"
+  },
+  {
+    "relation_pid": "P102",
+    "relation_name": "member of political party",
+    "relation_description": "the political party of which a person is or has been a member or otherwise affiliated"
+  },
+  {
+    "relation_pid": "P1056",
+    "relation_name": "product or material produced",
+    "relation_description": "material or product, including services, produced or provided by an organization, industry, facility, or process"
+  },
+  {
+    "relation_pid": "P108",
+    "relation_name": "employer",
+    "relation_description": "person or organization for which the subject works or worked"
+  },
+  {
+    "relation_pid": "P112",
+    "relation_name": "founder",
+    "relation_description": "founder or co-founder of this organization, religion, place or entity"
+  },
+  {
+    "relation_pid": "P118",
+    "relation_name": "league or competition",
+    "relation_description": "league or competition in which team or player has played, or in which an event occurs"
+  },
+  {
+    "relation_pid": "P1198",
+    "relation_name": "unemployment rate",
+    "relation_description": "portion of a workforce population that is not employed"
+  },
+  {
+    "relation_pid": "P123",
+    "relation_name": "publisher",
+    "relation_description": "organization or person responsible for publishing a work, such as a book, periodical, printed music, podcast, game or software"
+  },
+  {
+    "relation_pid": "P127",
+    "relation_name": "owned by",
+    "relation_description": "owner of the subject"
+  },
+  {
+    "relation_pid": "P131",
+    "relation_name": "located in the administrative territorial entity",
+    "relation_description": "the item is located on the territory of the following administrative entity. Use P276 for specifying locations that are non-administrative places and for items about events. Use P1382 if the item falls only partially into the administrative entity"
+  },
+  {
+    "relation_pid": "P1336",
+    "relation_name": "territory claimed by",
+    "relation_description": "administrative divisions that claim control of a given area"
+  },
+  {
+    "relation_pid": "P1344",
+    "relation_name": "participant in",
+    "relation_description": "event in which a person, organization or creative work was/is a participant; inverse of P710 or P1923"
+  },
+  {
+    "relation_pid": "P136",
+    "relation_name": "genre",
+    "relation_description": "creative work's genre or an artist's field of work (P101). Use main subject (P921) to relate creative works to their topic"
+  },
+  {
+    "relation_pid": "P1365",
+    "relation_name": "replaces",
+    "relation_description": "person, state or item replaced. Use \"structure replaces\" (P1398) for structures. Use \"follows\" (P155) if the previous item was not replaced or predecessor and successor are identical"
+  },
+  {
+    "relation_pid": "P1366",
+    "relation_name": "replaced by",
+    "relation_description": "other person or item which continues the item by replacing it in its role. Use P156 (\"followed by\") if the item is not replaced nor identical, but adds to the series (e.g. books in a series)."
+  },
+  {
+    "relation_pid": "P137",
+    "relation_name": "operator",
+    "relation_description": "person, profession, organization or entity that operates the equipment, facility, or service"
+  },
+  {
+    "relation_pid": "P1376",
+    "relation_name": "capital of",
+    "relation_description": "country, state, department, canton or other administrative division of which the municipality is the governmental seat"
+  },
+  {
+    "relation_pid": "P140",
+    "relation_name": "religion or worldview",
+    "relation_description": "religion of a person, organization or religious building, or associated with this subject"
+  },
+  {
+    "relation_pid": "P1412",
+    "relation_name": "languages spoken, written or signed",
+    "relation_description": "language(s) that a person or a people speaks, writes or signs, including the native language(s)"
+  },
+  {
+    "relation_pid": "P1441",
+    "relation_name": "present in work",
+    "relation_description": "this (fictional or fictionalized) entity, place, or person appears in that work as part of the narration (use P2860 for works citing other works, P361/P1433 for works being part of other works, P1343 for entities described in non-fictional accounts)"
+  },
+  {
+    "relation_pid": "P150",
+    "relation_name": "contains the administrative territorial entity",
+    "relation_description": "(list of) direct subdivisions of an administrative territorial entity"
+  },
+  {
+    "relation_pid": "P155",
+    "relation_name": "follows",
+    "relation_description": "immediately prior item in a series of which the subject is a part, preferably use as qualifier of P179 [if the subject has replaced the preceding item, e.g. political offices, use \"replaces\" (P1365)]"
+  },
+  {
+    "relation_pid": "P156",
+    "relation_name": "followed by",
+    "relation_description": "immediately following item in a series of which the subject is a part, preferably use as qualifier of P179 [if the subject has been replaced, e.g. political offices, use \"replaced by\" (P1366)]"
+  },
+  {
+    "relation_pid": "P159",
+    "relation_name": "headquarters location",
+    "relation_description": "city or town where an organization's headquarters is or has been situated. Use P276 qualifier for specific building"
+  },
+  {
+    "relation_pid": "P161",
+    "relation_name": "cast member",
+    "relation_description": "actor in the subject production [use \"character role\" (P453) and/or \"name of the character role\" (P4633) as qualifiers] [use \"voice actor\" (P725) for voice-only role] - [use \"recorded participant\" (P11108) for non-fiction productions]"
+  },
+  {
+    "relation_pid": "P162",
+    "relation_name": "producer",
+    "relation_description": "person(s) who produced the film, musical work, theatrical production, etc. (for film, this does not include executive producers, associate producers, etc.) [for production company, use P272, video games - use P178]"
+  },
+  {
+    "relation_pid": "P166",
+    "relation_name": "award received",
+    "relation_description": "award or recognition received by a person, organization or creative work"
+  },
+  {
+    "relation_pid": "P17",
+    "relation_name": "country",
+    "relation_description": "sovereign state that this subject item is in (not to be used for human beings)"
+  },
+  {
+    "relation_pid": "P170",
+    "relation_name": "creator",
+    "relation_description": "maker of this creative work or other object (where no more specific property exists)"
+  },
+  {
+    "relation_pid": "P171",
+    "relation_name": "parent taxon",
+    "relation_description": "closest parent taxon of the taxon in question"
+  },
+  {
+    "relation_pid": "P172",
+    "relation_name": "ethnic group",
+    "relation_description": "subject's ethnicity (consensus is that a VERY high standard of proof is needed for this field to be used. In general this means 1) the subject claims it themselves, or 2) it is widely agreed on by scholars, or 3) is fictional and portrayed as such)"
+  },
+  {
+    "relation_pid": "P175",
+    "relation_name": "performer",
+    "relation_description": "actor, musician, band or other performer associated with this role or musical work"
+  },
+  {
+    "relation_pid": "P176",
+    "relation_name": "manufacturer",
+    "relation_description": "(main or final) manufacturer or producer of this product"
+  },
+  {
+    "relation_pid": "P178",
+    "relation_name": "developer",
+    "relation_description": "organization or person that developed the item"
+  },
+  {
+    "relation_pid": "P179",
+    "relation_name": "part of the series",
+    "relation_description": "series which contains the subject"
+  },
+  {
+    "relation_pid": "P19",
+    "relation_name": "place of birth",
+    "relation_description": "most specific known birth location of a person, animal or fictional character"
+  },
+  {
+    "relation_pid": "P190",
+    "relation_name": "twinned administrative body",
+    "relation_description": "twin towns, sister cities, twinned municipalities and other localities that have a partnership or cooperative agreement, either legally or informally acknowledged by their governments"
+  },
+  {
+    "relation_pid": "P194",
+    "relation_name": "legislative body",
+    "relation_description": "legislative body governing this entity; political institution with elected representatives, such as a parliament/legislature or council"
+  },
+  {
+    "relation_pid": "P20",
+    "relation_name": "place of death",
+    "relation_description": "most specific known (e.g. city instead of country, or hospital instead of city) death location of a person, animal or fictional character"
+  },
+  {
+    "relation_pid": "P205",
+    "relation_name": "basin country",
+    "relation_description": "country that have drainage to/from or border the body of water"
+  },
+  {
+    "relation_pid": "P206",
+    "relation_name": "located in or next to body of water",
+    "relation_description": "body of water on or next to which a place is located"
+  },
+  {
+    "relation_pid": "P22",
+    "relation_name": "father",
+    "relation_description": "male parent of the subject. For stepfather, use \"stepparent\" (P3448)"
+  },
+  {
+    "relation_pid": "P241",
+    "relation_name": "military branch",
+    "relation_description": "branch to which this military unit, award, office, or person belongs, e.g. Royal Navy"
+  },
+  {
+    "relation_pid": "P25",
+    "relation_name": "mother",
+    "relation_description": "female parent of the subject. For stepmother, use \"stepparent\" (P3448)"
+  },
+  {
+    "relation_pid": "P26",
+    "relation_name": "spouse",
+    "relation_description": "the subject has the object as their spouse (husband, wife, partner, etc.). Use \"unmarried partner\" (P451) for non-married companions"
+  },
+  {
+    "relation_pid": "P264",
+    "relation_name": "record label",
+    "relation_description": "brand and trademark associated with the marketing of subject music recordings and music videos"
+  },
+  {
+    "relation_pid": "P27",
+    "relation_name": "country of citizenship",
+    "relation_description": "the object is a country that recognizes the subject as its citizen"
+  },
+  {
+    "relation_pid": "P272",
+    "relation_name": "production company",
+    "relation_description": "company that produced this film, audio or performing arts work"
+  },
+  {
+    "relation_pid": "P276",
+    "relation_name": "location",
+    "relation_description": "location of the object, structure or event; use P131 to indicate the containing administrative entity, P8138 for statistical entities, or P706 for geographic entities; use P7153 for locations associated with the object"
+  },
+  {
+    "relation_pid": "P279",
+    "relation_name": "subclass of",
+    "relation_description": "this item is a subclass (subset) of that item; ALL instances of this item are instances of that item; different from P31 (instance of), e.g.: volcano is a subclass of mountain; Everest is an instance of mountain"
+  },
+  {
+    "relation_pid": "P30",
+    "relation_name": "continent",
+    "relation_description": "continent of which the subject is a part"
+  },
+  {
+    "relation_pid": "P31",
+    "relation_name": "instance of",
+    "relation_description": "type to which this subject corresponds/belongs. Different from P279 (subclass of); for example: K2 is an instance of mountain; volcano is a subclass of mountain"
+  },
+  {
+    "relation_pid": "P3373",
+    "relation_name": "sibling",
+    "relation_description": "the subject and the object have at least one common parent (brother, sister, etc. including half-siblings); use \"relative\" (P1038) for siblings-in-law (brother-in-law, sister-in-law, etc.) and step-siblings (step-brothers, step-sisters, etc.)"
+  },
+  {
+    "relation_pid": "P35",
+    "relation_name": "head of state",
+    "relation_description": "official with the highest formal authority in a country/state"
+  },
+  {
+    "relation_pid": "P355",
+    "relation_name": "child organization or unit",
+    "relation_description": "child organization/unit of an org./unit; usually a fully owned separate org.; for non-independent sub-units, see org. division (P199); opposite of parent org./unit (P749); use instance of (P31) to distinguish org. (Q43229) and org. unit (Q10387680)"
+  },
+  {
+    "relation_pid": "P36",
+    "relation_name": "capital",
+    "relation_description": "seat of government of a country, province, state or other type of administrative territorial entity"
+  },
+  {
+    "relation_pid": "P361",
+    "relation_name": "part of",
+    "relation_description": "object of which the subject is a part (if this subject is already part of object A which is a part of object B, then please only make the subject part of object A), inverse property of \"has part\" (P527, see also \"has parts of the class\" (P2670))"
+  },
+  {
+    "relation_pid": "P364",
+    "relation_name": "original language of film or TV show",
+    "relation_description": "language in which a film or a performance work was originally created. Deprecated for written works and songs; use P407 (\"language of work or name\") instead."
+  },
+  {
+    "relation_pid": "P37",
+    "relation_name": "official language",
+    "relation_description": "language designated as official by this item"
+  },
+  {
+    "relation_pid": "P39",
+    "relation_name": "position held",
+    "relation_description": "subject currently or formerly holds the object position or public office"
+  },
+  {
+    "relation_pid": "P40",
+    "relation_name": "child",
+    "relation_description": "subject has object as child. Do not use for stepchildren—use \"relative\" (P1038), qualified with \"kinship to subject\" (P1039)"
+  },
+  {
+    "relation_pid": "P400",
+    "relation_name": "platform",
+    "relation_description": "platform for which a work was developed or released, or the specific platform version of a software product"
+  },
+  {
+    "relation_pid": "P403",
+    "relation_name": "mouth of the watercourse",
+    "relation_description": "the body of water to which the watercourse drains"
+  },
+  {
+    "relation_pid": "P449",
+    "relation_name": "original broadcaster",
+    "relation_description": "network(s) or service(s) that originally broadcast a radio or television program"
+  },
+  {
+    "relation_pid": "P463",
+    "relation_name": "member of",
+    "relation_description": "organization, club or musical group to which the subject belongs. Do not use for membership in ethnic or social groups, nor for holding a political position, such as a member of parliament (use P39 for that)"
+  },
+  {
+    "relation_pid": "P488",
+    "relation_name": "chairperson",
+    "relation_description": "presiding member of an organization, group or body"
+  },
+  {
+    "relation_pid": "P495",
+    "relation_name": "country of origin",
+    "relation_description": "country of origin of this item (creative work, food, phrase, product, etc.)"
+  },
+  {
+    "relation_pid": "P50",
+    "relation_name": "author",
+    "relation_description": "main creator(s) of a written work (use on works, not humans); use P2093 (author name string) when Wikidata item is unknown or does not exist"
+  },
+  {
+    "relation_pid": "P527",
+    "relation_name": "has part(s)",
+    "relation_description": "part of this subject; inverse property of \"part of\" (P361). See also \"has parts of the class\" (P2670)."
+  },
+  {
+    "relation_pid": "P54",
+    "relation_name": "member of sports team",
+    "relation_description": "sports teams or clubs that the subject represents or represented"
+  },
+  {
+    "relation_pid": "P551",
+    "relation_name": "residence",
+    "relation_description": "the place where the person is or has been, resident"
+  },
+  {
+    "relation_pid": "P569",
+    "relation_name": "date of birth",
+    "relation_description": "date on which the subject was born"
+  },
+  {
+    "relation_pid": "P57",
+    "relation_name": "director",
+    "relation_description": "director(s) of film, TV-series, stageplay, video game or similar"
+  },
+  {
+    "relation_pid": "P570",
+    "relation_name": "date of death",
+    "relation_description": "date on which the subject died"
+  },
+  {
+    "relation_pid": "P571",
+    "relation_name": "inception",
+    "relation_description": "time when an entity begins to exist; for date of official opening use P1619"
+  },
+  {
+    "relation_pid": "P576",
+    "relation_name": "dissolved, abolished or demolished date",
+    "relation_description": "point in time at which the subject (organisation, building) ceased to exist; see \"date of official closure\" (P3999) for closing a facility, \"service retirement\" (P730) for retiring equipment, \"discontinued date\" (P2669) for stopping a product"
+  },
+  {
+    "relation_pid": "P577",
+    "relation_name": "publication date",
+    "relation_description": "date or point in time when a work or product was first published or released"
+  },
+  {
+    "relation_pid": "P58",
+    "relation_name": "screenwriter",
+    "relation_description": "person(s) who wrote the script for subject item"
+  },
+  {
+    "relation_pid": "P580",
+    "relation_name": "start time",
+    "relation_description": "time an entity begins to exist or a statement starts being valid"
+  },
+  {
+    "relation_pid": "P582",
+    "relation_name": "end time",
+    "relation_description": "moment when an entity ceases to exist and a statement stops being entirely valid or no longer be true"
+  },
+  {
+    "relation_pid": "P585",
+    "relation_name": "point in time",
+    "relation_description": "date something took place, existed or a statement was true; for providing time use the \"refine date\" property (P4241)"
+  },
+  {
+    "relation_pid": "P6",
+    "relation_name": "head of government",
+    "relation_description": "head of the executive power of this town, city, municipality, state, country, or other governmental body"
+  },
+  {
+    "relation_pid": "P607",
+    "relation_name": "participated in conflict",
+    "relation_description": "battles, wars or other military engagements in which the person or item participated"
+  },
+  {
+    "relation_pid": "P674",
+    "relation_name": "characters",
+    "relation_description": "characters which appear in this item (like plays, operas, operettas, books, comics, films, TV series, video games)"
+  },
+  {
+    "relation_pid": "P676",
+    "relation_name": "lyricist",
+    "relation_description": "author of song lyrics"
+  },
+  {
+    "relation_pid": "P69",
+    "relation_name": "educated at",
+    "relation_description": "educational institution attended by subject"
+  },
+  {
+    "relation_pid": "P706",
+    "relation_name": "located in/on physical feature",
+    "relation_description": "located on the specified (geo)physical feature. Should not be used when the value is only political/administrative (P131) or a mountain range (P4552). Use P206 for things in/on bodies of water."
+  },
+  {
+    "relation_pid": "P710",
+    "relation_name": "participant",
+    "relation_description": "person, group of people or organization (object) that actively takes/took part in an event or process (subject). Preferably qualify with \"object has role\" (P3831). Use P1923 for participants that are teams."
+  },
+  {
+    "relation_pid": "P737",
+    "relation_name": "influenced by",
+    "relation_description": "the subject (person, idea, etc.) was influenced or inspired by this object entity, e.g. \"Heidegger was influenced by Aristotle\""
+  },
+  {
+    "relation_pid": "P740",
+    "relation_name": "location of formation",
+    "relation_description": "location where a group or organization was formed"
+  },
+  {
+    "relation_pid": "P749",
+    "relation_name": "parent organization or unit",
+    "relation_description": "parent organization or unit of an organization or unit, opposite of child organization or unit (P355); use instance of (P31) to distinguish organization (Q43229) and organization unit (Q10387680)"
+  },
+  {
+    "relation_pid": "P800",
+    "relation_name": "notable work",
+    "relation_description": "notable scientific, artistic or literary work, or other work of significance among subject's works"
+  },
+  {
+    "relation_pid": "P807",
+    "relation_name": "separated from",
+    "relation_description": "subject was founded or started by separating from identified object"
+  },
+  {
+    "relation_pid": "P840",
+    "relation_name": "narrative location",
+    "relation_description": "the narrative of the work is set in this location"
+  },
+  {
+    "relation_pid": "P86",
+    "relation_name": "composer",
+    "relation_description": "person(s) who wrote the music [for lyricist, use \"lyrics by\" (P676)]"
+  },
+  {
+    "relation_pid": "P937",
+    "relation_name": "work location",
+    "relation_description": "location where persons or organisations were actively participating in employment, business or other work"
+  }
+]

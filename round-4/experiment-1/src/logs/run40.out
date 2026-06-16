@@ -1,0 +1,30 @@
+11:22:09|INFO   |Loaded 40 docs (pilot=0)
+11:22:09|INFO   |Extraction over 40 docs (n_extract=1)...
+11:22:11|INFO   |  [extract] 40/40 done | cost=$0.0000 | live=0 cached=40 (warm=37) | errs=0
+11:22:11|INFO   |reals=410 TRUE=123 FALSE(spont)=287 UND=0
+11:22:11|INFO   |Generating counterfactual decoys (cf/cf2) + swaps + rungs + entrapment...
+11:22:12|INFO   |  [decoy] 40/40 done | cost=$0.0000 | live=0 cached=79 (warm=73) | errs=0
+11:22:12|INFO   |decoys generated; contamination_rate=0.0839
+11:22:12|INFO   |Self-consistency headline scoring: 1640 items x K=5 ...
+11:24:23|INFO   |  [score-sc] 600/1640 done | cost=$0.0000 | live=0 cached=3079 (warm=2743) | errs=0
+11:26:12|INFO   |  [score-sc] 1200/1640 done | cost=$0.0000 | live=0 cached=6079 (warm=5458) | errs=0
+11:27:31|INFO   |  [score-sc] 1640/1640 done | cost=$0.0000 | live=0 cached=8279 (warm=7638) | errs=0
+11:27:31|INFO   |S1b ladder rung scoring: 1230 items (scope=pilot+conf) ...
+11:30:44|INFO   |  [score-rung] 600/1230 done | cost=$0.0546 | live=2570 cached=8709 (warm=7638) | errs=0
+11:33:10|INFO   |  [score-rung] 1200/1230 done | cost=$0.1153 | live=5415 cached=8864 (warm=7663) | errs=0
+11:33:20|INFO   |  [score-rung] 1230/1230 done | cost=$0.1189 | live=5565 cached=8864 (warm=7663) | errs=0
+11:33:20|INFO   |Verbalized contrast scoring: 1230 items ...
+11:33:39|INFO   |  [score-vb] 600/1230 done | cost=$0.1189 | live=5565 cached=9464 (warm=8197) | errs=0
+11:33:59|INFO   |  [score-vb] 1200/1230 done | cost=$0.1189 | live=5565 cached=10064 (warm=8740) | errs=0
+11:34:00|INFO   |  [score-vb] 1230/1230 done | cost=$0.1189 | live=5565 cached=10094 (warm=8766) | errs=0
+11:34:00|WARNING|(G,S) matrix SKIPPED (cost=$0.1189 >= soft cap $4.0 or no warm docs); reported underpowered.
+11:34:00|INFO   |Pipeline done in 710.7s | cost=$0.1189 | live=5565 cached=10094 warm=8766
+11:34:00|INFO   |saved pipe checkpoint -> /ai-inventor/aii_data/runs/run_MQN7mBg4AhvH/3_invention_loop/iter_4/gen_art/gen_art_experiment_1/checkpoints/pipe.json (1.2 MB)
+11:34:00|INFO   |Analyzing (offline)...
+/ai-inventor/aii_data/runs/run_MQN7mBg4AhvH/3_invention_loop/iter_4/gen_art/gen_art_experiment_1/.venv/lib/python3.12/site-packages/numpy/core/_methods.py:206: RuntimeWarning: Degrees of freedom <= 0 for slice
+  ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/ai-inventor/aii_data/runs/run_MQN7mBg4AhvH/3_invention_loop/iter_4/gen_art/gen_art_experiment_1/.venv/lib/python3.12/site-packages/numpy/core/_methods.py:198: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+11:34:06|INFO   |Wrote /ai-inventor/aii_data/runs/run_MQN7mBg4AhvH/3_invention_loop/iter_4/gen_art/gen_art_experiment_1/method_out.json (540 KB, 410 examples)
+11:34:18|INFO   |figures: ['/ai-inventor/aii_data/runs/run_MQN7mBg4AhvH/3_invention_loop/iter_4/gen_art/gen_art_experiment_1/figures/figure_diagonal_self_consistency.jpg', '/ai-inventor/aii_data/runs/run_MQN7mBg4AhvH/3_invention_loop/iter_4/gen_art/gen_art_experiment_1/figures/figure_crux_cdfs_self_consistency.jpg', '/ai-inventor/aii_data/runs/run_MQN7mBg4AhvH/3_invention_loop/iter_4/gen_art/gen_art_experiment_1/figures/figure_s1b_ladder.jpg', '/ai-inventor/aii_data/runs/run_MQN7mBg4AhvH/3_invention_loop/iter_4/gen_art/gen_art_experiment_1/figures/figure_paired_across_GS.jpg', '/ai-inventor/aii_data/runs/run_MQN7mBg4AhvH/3_invention_loop/iter_4/gen_art/gen_art_experiment_1/figures/figure_deconfound_density.jpg']
+11:34:18|INFO   |DONE cost=$0.1189 | verdict=DISCONFIRMED alpha*=0.5 | self_report_disconfirmed=True

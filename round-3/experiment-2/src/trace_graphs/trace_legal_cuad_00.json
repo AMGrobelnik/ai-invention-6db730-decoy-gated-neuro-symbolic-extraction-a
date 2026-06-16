@@ -1,0 +1,254 @@
+{
+  "doc_id": "legal_cuad_00",
+  "genre": "legal",
+  "kind": "multi_hop",
+  "n_proofs": 2,
+  "graphs": [
+    {
+      "nodes": [
+        {
+          "id": 0,
+          "label": "party_bound_effective(Premium Managed Hosting Agreement, AstroNutrition.com, March 1, 2005)",
+          "kind": "derived",
+          "rule": "party_bound_effective"
+        },
+        {
+          "id": 1,
+          "label": "has_party(Premium Managed Hosting Agreement, AstroNutrition.com)",
+          "kind": "leaf",
+          "cert": {
+            "provenance": "This is a managed hosting agreement between AstroNutrition.com and deep systems.",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 0.8421,
+              "T": 0.129032,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.666667,
+              "r": 1
+            }
+          }
+        },
+        {
+          "id": 2,
+          "label": "effective_date(Premium Managed Hosting Agreement, March 1, 2005)",
+          "kind": "leaf",
+          "cert": {
+            "provenance": "The effective term is 12 months beginning March 1, 2005",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 0.7895,
+              "T": 0.129032,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.666667,
+              "r": 1
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "src": 0,
+          "dst": 1,
+          "rule": "party_bound_effective"
+        },
+        {
+          "src": 0,
+          "dst": 2,
+          "rule": "party_bound_effective"
+        }
+      ]
+    },
+    {
+      "nodes": [
+        {
+          "id": 0,
+          "label": "party_bound_effective(Premium Managed Hosting Agreement, deep systems, March 1, 2005)",
+          "kind": "derived",
+          "rule": "party_bound_effective"
+        },
+        {
+          "id": 1,
+          "label": "has_party(Premium Managed Hosting Agreement, deep systems)",
+          "kind": "leaf",
+          "cert": {
+            "provenance": "This is a managed hosting agreement between AstroNutrition.com and deep systems.",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 0.9474,
+              "T": 0.129032,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.666667,
+              "r": 1
+            }
+          }
+        },
+        {
+          "id": 2,
+          "label": "effective_date(Premium Managed Hosting Agreement, March 1, 2005)",
+          "kind": "leaf",
+          "cert": {
+            "provenance": "The effective term is 12 months beginning March 1, 2005",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 0.7895,
+              "T": 0.129032,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.666667,
+              "r": 1
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "src": 0,
+          "dst": 1,
+          "rule": "party_bound_effective"
+        },
+        {
+          "src": 0,
+          "dst": 2,
+          "rule": "party_bound_effective"
+        }
+      ]
+    }
+  ],
+  "proofs": [
+    {
+      "type": "derived",
+      "atom": [
+        "party_bound_effective",
+        [
+          "Premium Managed Hosting Agreement",
+          "AstroNutrition.com",
+          "March 1, 2005"
+        ]
+      ],
+      "rule": "party_bound_effective",
+      "children": [
+        {
+          "type": "leaf",
+          "atom": [
+            "has_party",
+            [
+              "Premium Managed Hosting Agreement",
+              "AstroNutrition.com"
+            ]
+          ],
+          "cert": {
+            "provenance": "This is a managed hosting agreement between AstroNutrition.com and deep systems.",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 0.8421,
+              "T": 0.129032,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.666667,
+              "r": 1
+            }
+          }
+        },
+        {
+          "type": "leaf",
+          "atom": [
+            "effective_date",
+            [
+              "Premium Managed Hosting Agreement",
+              "March 1, 2005"
+            ]
+          ],
+          "cert": {
+            "provenance": "The effective term is 12 months beginning March 1, 2005",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 0.7895,
+              "T": 0.129032,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.666667,
+              "r": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "derived",
+      "atom": [
+        "party_bound_effective",
+        [
+          "Premium Managed Hosting Agreement",
+          "deep systems",
+          "March 1, 2005"
+        ]
+      ],
+      "rule": "party_bound_effective",
+      "children": [
+        {
+          "type": "leaf",
+          "atom": [
+            "has_party",
+            [
+              "Premium Managed Hosting Agreement",
+              "deep systems"
+            ]
+          ],
+          "cert": {
+            "provenance": "This is a managed hosting agreement between AstroNutrition.com and deep systems.",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 0.9474,
+              "T": 0.129032,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.666667,
+              "r": 1
+            }
+          }
+        },
+        {
+          "type": "leaf",
+          "atom": [
+            "effective_date",
+            [
+              "Premium Managed Hosting Agreement",
+              "March 1, 2005"
+            ]
+          ],
+          "cert": {
+            "provenance": "The effective term is 12 months beginning March 1, 2005",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 0.7895,
+              "T": 0.129032,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.666667,
+              "r": 1
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

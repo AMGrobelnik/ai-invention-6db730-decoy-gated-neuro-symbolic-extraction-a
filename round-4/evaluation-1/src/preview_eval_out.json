@@ -1,0 +1,486 @@
+{
+  "metadata": {
+    "evaluation_name": "regime_diagnostic_demotion_to_heuristic",
+    "description": "Zero-API CPU-only demotion: proves signal C == signal A (frac(W==Z)=1-winrate), quantifies signal redundancy, and audits the regime map's mispredictions on an honest 4-point panel.",
+    "anchor_ids": [
+      "art_RZC2468yZ-Jh",
+      "art_sBLQqsdm3EIA"
+    ],
+    "input_paths": {
+      "redocred_regime_diagnostic": "/ai-inventor/aii_data/runs/run_MQN7mBg4AhvH/3_invention_loop/iter_3/gen_art/gen_art_experiment_3",
+      "redocred_checkpoints": "/ai-inventor/aii_data/runs/run_MQN7mBg4AhvH/3_invention_loop/iter_3/gen_art/gen_art_experiment_3/checkpoints/confirmatory",
+      "clutrr_self_consistency": "/ai-inventor/aii_data/runs/run_MQN7mBg4AhvH/3_invention_loop/iter_3/gen_art/gen_art_experiment_1"
+    },
+    "n_candidates_redocred": 4384,
+    "n_docs": 152,
+    "seed": 0,
+    "bootstrap_B": 2000,
+    "llm_cost_usd": 0.0,
+    "cpu_only": true,
+    "a_equals_c_identity": {
+      "formal_statement": "W_i = sign(Z_i - Zt_i) * max(Z_i, Zt_i). Case (a) Z_i>Zt_i => W_i=Z_i; (b) Z_i<Zt_i => W_i=-Zt_i != Z_i (scores>=0); (c) Z_i=Zt_i => W_i=0 (=Z_i only if Z_i=0). Therefore 1[W_i=Z_i] = 1[Z_i>Zt_i] modu...",
+      "case_table": [
+        {
+          "case": "a",
+          "condition": "Z>Zt",
+          "predicted_W": "Z",
+          "W_equals_Z": true
+        },
+        {
+          "case": "b",
+          "condition": "Z<Zt",
+          "predicted_W": "-Zt",
+          "W_equals_Z": false
+        },
+        {
+          "case": "c",
+          "condition": "Z==Zt",
+          "predicted_W": "0",
+          "W_equals_Z": "only if Z==0"
+        }
+      ],
+      "case_table_empirical": [
+        {
+          "case": "a",
+          "condition": "Z>Zt",
+          "n": 4111,
+          "all_hold": true,
+          "check": "W==Z"
+        },
+        {
+          "case": "b",
+          "condition": "Z<Zt",
+          "n": 251,
+          "all_hold": true,
+          "check": "W==-Zt"
+        },
+        {
+          "case": "c",
+          "condition": "Z==Zt",
+          "n": 22,
+          "all_hold": true,
+          "check": "W==0"
+        }
+      ],
+      "per_set_table": [
+        {
+          "set": "all",
+          "cutoff": "all candidates",
+          "n": 4384,
+          "winrate": 0.062272,
+          "frac_eq": 0.939097,
+          "one_minus_winrate": 0.937728,
+          "tie_frac": 0.005018,
+          "tie00_frac": 0.001369,
+          "identity_residual": 0.001368613,
+          "residual_le_tie_frac": true,
+          "residual_equals_tie00": true,
+          "indicator_corr_eq_vs_gt": 0.988229,
+          "winrate_ci": [
+            0.051951,
+            0.072695
+          ]
+        },
+        {
+          "set": "top_25pct",
+          "cutoff": "max(Z,Zt)>=1.000",
+          "n": 1096,
+          "winrate": 0.053832,
+          "frac_eq": 0.946168,
+          "one_minus_winrate": 0.946168,
+          "tie_frac": 0.004562,
+          "tie00_frac": 0.0,
+          "identity_residual": 0.0,
+          "residual_le_tie_frac": true,
+          "residual_equals_tie00": true,
+          "indicator_corr_eq_vs_gt": 1.0,
+          "winrate_ci": [
+            0.034864,
+            0.076078
+          ]
+        },
+        {
+          "set": "top_50pct",
+          "cutoff": "max(Z,Zt)>=0.999",
+          "n": 2192,
+          "winrate": 0.044708,
+          "frac_eq": 0.955292,
+          "one_minus_winrate": 0.955292,
+          "tie_frac": 0.004562,
+          "tie00_frac": 0.0,
+          "identity_residual": 0.0,
+          "residual_le_tie_frac": true,
+          "residual_equals_tie00": true,
+          "indicator_corr_eq_vs_gt": 1.0,
+          "winrate_ci": [
+            0.032816,
+            0.05765
+          ]
+        }
+      ],
+      "admitted_set": {
+        "n_candidates": 4384,
+        "n_admitted_W_ge_0": 4133,
+        "n_W_equals_Z_admitted_nonzero": 4111,
+        "n_W_equals_zero_in_admitted": 22,
+        "n_W_equals_Z_overall": 4117,
+        "n_exact_ties_Z_eq_Zt": 22,
+        "spearman_full": 0.933992,
+        "admitted_spearman_with_ties": 0.990959,
+        "admitted_spearman_without_w0_ties": 1.0,
+        "admitted_set_jaccard": 0.916087,
+        "explanation": "On the gate-admitted set {W>=0}, every member with Z>Zt has W=Z exactly and every Z==Zt tie has W=0. Spearman(W,Z)|admitted = 0.99096 < 1 is caused ONLY by the handful of W==0 tie rows (contaminated-d..."
+      },
+      "contamination_audit": {
+        "n_contaminated": 515,
+        "n_clean": 3869,
+        "with_contaminated": {
+          "n": 4384,
+          "winrate": 0.062272,
+          "frac_eq": 0.939097
+        },
+        "contaminated_only": {
+          "n": 515,
+          "winrate": 0.32233,
+          "frac_eq": 0.67767
+        },
+        "without_contaminated": {
+          "n": 3869,
+          "winrate": 0.027656,
+          "frac_eq": 0.973895
+        },
+        "note": "Contaminated decoys (decoy_contaminated=True, i.e. the decoy triple is itself accidentally entailed so Zt~Z) INFLATE the apparent decoy win-rate. Excluding them the marginal exchangeability is even LO..."
+      },
+      "max_residual": 0.00145173,
+      "max_tie_frac": 0.005323,
+      "residual_equals_tie00_all_sets": true,
+      "indicator_corr_headline_top50pct": 1.0,
+      "indicator_corr_min": 0.852181,
+      "corr_a_c_full": -0.988229,
+      "admitted_spearman_with_ties": 0.990959,
+      "admitted_spearman_without_ties": 1.0,
+      "headline_cross_checks": {
+        "full_winrate_recomputed": 0.062272,
+        "one_minus_frac_W_equals_Z_reported": 0.0609,
+        "full_winrate_vs_1mfracWZ_residual": 0.001372,
+        "top50_frac_eq_recomputed": 0.955292,
+        "one_minus_winrate_tail_headline": 0.95529,
+        "reported_frac_W_equals_Z": 0.9391,
+        "reported_admitted_spearman": 0.99096,
+        "recomputed_admitted_spearman_with_ties": 0.990959,
+        "reported_admitted_jaccard": 0.91609,
+        "recomputed_admitted_jaccard": 0.916087
+      },
+      "verdict": "CONFIRMED",
+      "verdict_basis": "residual==tie00_frac exactly in all 4 sets (max_residual=1.452e-03 == Z=Zt=0 fraction); residual<=tie_frac everywhere; corr(a,c)=-0.988229 ~ -1; admitted Spearman without W=0 ties = 1.0 (==1.0, mechan..."
+    },
+    "signal_dependence": {
+      "corr_a_c": -0.988229,
+      "raw_array_overlap_table": [
+        {
+          "signal": "A (tail decoy win-rate)",
+          "reads": [
+            "Z",
+            "Zt"
+          ],
+          "new_array_vs_A": "-"
+        },
+        {
+          "signal": "B (spontaneous-error CDF match)",
+          "reads": [
+            "Z",
+            "Zt",
+            "f"
+          ],
+          "new_array_vs_A": "f used only to SELECT the low-f real subset; same (Z,Zt) exchangeability axis"
+        },
+        {
+          "signal": "C (W-vs-Z divergence)",
+          "reads": [
+            "W=f(Z,Zt)"
+          ],
+          "new_array_vs_A": "NONE (W is a deterministic function of Z,Zt)"
+        }
+      ],
+      "nominal_signal_count": 4,
+      "axes_after_collapse": 2,
+      "macro_axes": [
+        "decoy-exchangeability {A == C, B a distributional refinement}",
+        "base-scorer-calibration {D, via f}"
+      ],
+      "c_redundant_with_a": true,
+      "b_same_axis_as_a": true,
+      "note": "The diagnostic NOMINALLY advertises 4 signals, but the decoy-exchangeability axis is DOUBLE-COUNTED: A and C are algebraically identical (corr(a,c)~-1, frac(W==Z)=1-winrate) and B is a distributional ..."
+    },
+    "regime_panel": {
+      "points": [
+        {
+          "label": "Re-DocRED (logprob)",
+          "winrate_tail": 0.04471,
+          "calibration_auc": 0.60293,
+          "predicted_regime": "GATE REDUNDANT",
+          "predicted_wedge_sign": "null",
+          "realized_outcome": "null (no matched-recall point with delta-CI entirely > 0)",
+          "mispredict": false,
+          "near_mechanical": true,
+          "independent_and_correct": false,
+          "source": "realized_this_run",
+          "note": "Prediction is TRIGGERED by rerank_blocked (frac(W==Z)=0.9391 >= 0.90) = SIGNAL C, which Group 1 proves equals signal A; 'gate keeps & orders the same facts => null wedge' is a near-RESTATEMENT of the ..."
+        },
+        {
+          "label": "CLUTRR (self-consistency)",
+          "winrate_tail": 0.482,
+          "calibration_auc": null,
+          "predicted_regime": "GATE ADDS VALUE",
+          "predicted_wedge_sign": "positive",
+          "realized_outcome": "DISCONFIRMED (realized FDR 1.0 at alpha*=0.5, CI [0.661594, 1.0], decoy_fdr_hat=0.5)",
+          "mispredict": true,
+          "near_mechanical": false,
+          "independent_and_correct": false,
+          "source": "realized_experiment_1_paired_diagonal",
+          "note": "MARGINAL win-rate 0.482 ~ 0.5 => heuristic predicts 'gate adds value' (positive); the POWERED PAIRED diagonal DISCONFIRMS (realized FDR 1.0, CI [0.66,1.0], self-report anti-conservative). The marginal..."
+        },
+        {
+          "label": "CLUTRR (verbalized)",
+          "winrate_tail": 0.103,
+          "calibration_auc": null,
+          "predicted_regime": "GATE WORSE/anti-conservative",
+          "predicted_wedge_sign": "negative",
+          "realized_outcome": "anti-conservative (iter-2 reported)",
+          "mispredict": false,
+          "near_mechanical": false,
+          "independent_and_correct": false,
+          "source": "hypothesis_reported",
+          "note": "Not validated at the powered paired standard; flagged source=hypothesis_reported (iter-2)."
+        }
+      ],
+      "mispredict_count": 1,
+      "near_mechanical_count": 1,
+      "independent_and_correct_count": 0,
+      "scorecard_note": "An anchor counts toward independent_and_correct ONLY if its prediction is (a) NON-mechanical AND (b) correct against a realized PAIRED-standard outcome. Re-DocRED: correct-but-mechanical. CLUTRR self-..."
+    },
+    "demotion_verdict": {
+      "status": "HEURISTIC (demoted from novel contribution)",
+      "reasons": [
+        "signal C is algebraically identical to signal A: frac(W==Z)=1-winrate, corr(a,c)=-0.988229, identity_residual<=tie_frac (max residual 0.00145173 <= max tie_frac 0.005323)",
+        "the one validated anchor (Re-DocRED) prediction is near-mechanical: rerank_blocked via frac(W==Z) restates the realized null",
+        "the map MISPREDICTS CLUTRR self-consistency (predicted positive from marginal 0.482; realized paired diagonal DISCONFIRMED, realized FDR 1.0)"
+      ],
+      "recommend": "present as a deployment-time heuristic with stated A==C redundancy; do NOT present 'W==Z so ranking unchanged' as a forecast",
+      "independent_and_correct_count": 0,
+      "effective_independent_axes": 2
+    },
+    "figure_panel": {
+      "x_winrate_tail": [
+        0.04471,
+        0.482,
+        0.103
+      ],
+      "x_label": "marginal decoy win-rate = 1-frac(W==Z) — a MARGINAL statistic; structurally blind to the paired sign-flip",
+      "y_calibration_auc": [
+        0.60293,
+        null,
+        null
+      ],
+      "y_label": "base-scorer calibration AUC(Z, 1[f>=0.5])  (cached; null where not persisted)",
+      "y_null_note": "AUC not cached for the 3 CLUTRR hypothesis-reported points — placed on the low-calibration band by base_scorer_calibrated=false; value NOT fabricated.",
+      "labels": [
+        "Re-DocRED (logprob)",
+        "CLUTRR (self-consistency)",
+        "CLUTRR (verbalized)"
+      ],
+      "predicted_sign": [
+        "null",
+        "positive",
+        "negative"
+      ],
+      "realized_outcome": [
+        "null",
+        "DISCONFIRMED (FDR 1.0)",
+        "anti-conservative (iter-2)"
+      ],
+      "flag": [
+        "near_mechanical",
+        "MISPREDICT",
+        "reported"
+      ],
+      "exch_band": [
+        0.35,
+        0.65
+      ],
+      "calib_hi": 0.65,
+      "caption": "Honest gold-free, zero-API regime panel (CPU-only, $0). The x-axis is the MARGINAL decoy win-rate, which equals 1-frac(W==Z): signals A and C are therefore the SAME axis, not two independent forecasts..."
+    },
+    "reframing_recommendation": "The paper should LEAD with the marginal-vs-paired conceptual contribution (a marginal exchangeability statistic such as the decoy win-rate = 1-frac(W==Z) cannot certify the PAIRED sign-flip property t...",
+    "reproducibility": {
+      "input_file_sha256": [
+        {
+          "path": "/ai-inventor/aii_data/runs/run_MQN7mBg4AhvH/3_invention_loop/iter_3/gen_art/gen_art_experiment_3/full_method_out.json",
+          "sha256": "7a365fe5f2dc56e441695b6556e9000c5d42ddccbfedec3dc66a70d8be07208c"
+        },
+        {
+          "path": "/ai-inventor/aii_data/runs/run_MQN7mBg4AhvH/3_invention_loop/iter_3/gen_art/gen_art_experiment_1/full_method_out.json",
+          "sha256": "00a0e7a8da8380e3cec87dbe4488f9ab20fd2b28b14e70f125f933683b49d244"
+        },
+        {
+          "path": "/ai-inventor/aii_data/runs/run_MQN7mBg4AhvH/3_invention_loop/iter_3/gen_art/gen_art_experiment_3/checkpoints/confirmatory",
+          "n_files": 152,
+          "combined_sha256": "c7d5f37ceed5de7275eba20563279c14e6122e83705e9b74e295becdef19103f"
+        }
+      ],
+      "code_entrypoint": "eval.py",
+      "deterministic": true,
+      "seed": 0,
+      "bootstrap_B": 2000,
+      "note": "All primary numbers are exact; only winrate CIs use the seeded doc-block bootstrap."
+    }
+  },
+  "metrics_agg": {
+    "n_candidates_redocred": 4384.0,
+    "n_docs": 152.0,
+    "max_identity_residual": 0.00145173,
+    "max_tie_frac": 0.005323,
+    "indicator_corr_min": 0.852181,
+    "corr_a_c_full": -0.988229,
+    "full_winrate": 0.062272,
+    "full_frac_W_equals_Z": 0.939097,
+    "full_winrate_vs_reported_1mfracWZ_residual": 0.001372,
+    "top50_winrate": 0.044708,
+    "top50_frac_eq": 0.955292,
+    "admitted_spearman_with_ties": 0.990959,
+    "admitted_spearman_without_ties": 1.0,
+    "admitted_set_jaccard": 0.916087,
+    "n_admitted_W_ge_0": 4133.0,
+    "n_W_equals_Z_overall": 4117.0,
+    "n_exact_ties_Z_eq_Zt": 22.0,
+    "n_contaminated": 515.0,
+    "winrate_without_contaminated": 0.027656,
+    "nominal_signal_count": 4.0,
+    "effective_independent_axes": 2.0,
+    "regime_mispredict_count": 1.0,
+    "regime_near_mechanical_count": 1.0,
+    "regime_independent_and_correct_count": 0.0,
+    "signal_D_calibration_auc_cached": 0.60293,
+    "clutrr_sc_realized_fdr": 1.0,
+    "clutrr_sc_decoy_fdr_hat": 0.5,
+    "clutrr_sc_alpha_star": 0.5,
+    "clutrr_sc_n_admitted": 12.0,
+    "clutrr_sc_n_false_admitted": 12.0,
+    "llm_cost_usd": 0.0
+  },
+  "datasets": [
+    {
+      "dataset": "redocred_A_equals_C_identity_per_set",
+      "examples": [
+        {
+          "input": "Re-DocRED candidate set S='all' (all candidates), n=4384: verify frac(W==Z) == 1 - winrate up to the Z=Zt=0 tie fraction.",
+          "output": "winrate=0.062272, frac_eq=0.939097, 1-winrate=0.937728, residual=0.001368613 <= tie_frac=0.005018 (OK); indicator_corr(1[W==Z],1[Z>Zt])=0.988229.",
+          "predict_frac_eq_from_identity": "identity predicts frac(W==Z) = (1-winrate) + tie00 = 0.937728 + 0.001369 = 0.939097 (actual 0.939097)",
+          "metadata_set": "all",
+          "metadata_cutoff": "all candidates",
+          "metadata_residual_le_tie_frac": true,
+          "metadata_residual_equals_tie00": true,
+          "metadata_winrate_ci": [
+            0.051951,
+            0.072695
+          ],
+          "eval_winrate": 0.062272,
+          "eval_frac_eq": 0.939097,
+          "eval_tie_frac": 0.005018,
+          "eval_identity_residual": 0.001368613,
+          "eval_indicator_corr": 0.988229,
+          "eval_n": 4384.0
+        },
+        {
+          "input": "Re-DocRED candidate set S='top_25pct' (max(Z,Zt)>=1.000), n=1096: verify frac(W==Z) == 1 - winrate up to the Z=Zt=0 tie fraction.",
+          "output": "winrate=0.053832, frac_eq=0.946168, 1-winrate=0.946168, residual=0.0 <= tie_frac=0.004562 (OK); indicator_corr(1[W==Z],1[Z>Zt])=1.0.",
+          "predict_frac_eq_from_identity": "identity predicts frac(W==Z) = (1-winrate) + tie00 = 0.946168 + 0.0 = 0.946168 (actual 0.946168)",
+          "metadata_set": "top_25pct",
+          "metadata_cutoff": "max(Z,Zt)>=1.000",
+          "metadata_residual_le_tie_frac": true,
+          "metadata_residual_equals_tie00": true,
+          "metadata_winrate_ci": [
+            0.034864,
+            0.076078
+          ],
+          "eval_winrate": 0.053832,
+          "eval_frac_eq": 0.946168,
+          "eval_tie_frac": 0.004562,
+          "eval_identity_residual": 0.0,
+          "eval_indicator_corr": 1.0,
+          "eval_n": 1096.0
+        },
+        {
+          "input": "Re-DocRED candidate set S='top_50pct' (max(Z,Zt)>=0.999), n=2192: verify frac(W==Z) == 1 - winrate up to the Z=Zt=0 tie fraction.",
+          "output": "winrate=0.044708, frac_eq=0.955292, 1-winrate=0.955292, residual=0.0 <= tie_frac=0.004562 (OK); indicator_corr(1[W==Z],1[Z>Zt])=1.0.",
+          "predict_frac_eq_from_identity": "identity predicts frac(W==Z) = (1-winrate) + tie00 = 0.955292 + 0.0 = 0.955292 (actual 0.955292)",
+          "metadata_set": "top_50pct",
+          "metadata_cutoff": "max(Z,Zt)>=0.999",
+          "metadata_residual_le_tie_frac": true,
+          "metadata_residual_equals_tie00": true,
+          "metadata_winrate_ci": [
+            0.032816,
+            0.05765
+          ],
+          "eval_winrate": 0.044708,
+          "eval_frac_eq": 0.955292,
+          "eval_tie_frac": 0.004562,
+          "eval_identity_residual": 0.0,
+          "eval_indicator_corr": 1.0,
+          "eval_n": 2192.0
+        }
+      ]
+    },
+    {
+      "dataset": "regime_map_anchor_panel",
+      "examples": [
+        {
+          "input": "Regime-map anchor 'Re-DocRED (logprob)': marginal winrate_tail=0.04471 => predicted regime 'GATE REDUNDANT' / sign 'null'.",
+          "output": "realized: null (no matched-recall point with delta-CI entirely > 0). mispredict=False, near_mechanical=True, independent_and_correct=False. Prediction is TRIGGERED by rerank_blocked (frac(W==Z)=0.9391...",
+          "predict_wedge_sign": "null",
+          "predict_regime": "GATE REDUNDANT",
+          "metadata_predicted_regime": "GATE REDUNDANT",
+          "metadata_predicted_wedge_sign": "null",
+          "metadata_realized_outcome": "null (no matched-recall point with delta-CI entirely > 0)",
+          "metadata_mispredict": false,
+          "metadata_near_mechanical": true,
+          "metadata_source": "realized_this_run",
+          "eval_winrate_tail": 0.04471,
+          "eval_mispredict": 0.0,
+          "eval_independent_and_correct": 0.0,
+          "eval_calibration_auc": 0.60293
+        },
+        {
+          "input": "Regime-map anchor 'CLUTRR (self-consistency)': marginal winrate_tail=0.482 => predicted regime 'GATE ADDS VALUE' / sign 'positive'.",
+          "output": "realized: DISCONFIRMED (realized FDR 1.0 at alpha*=0.5, CI [0.661594, 1.0], decoy_fdr_hat=0.5). mispredict=True, near_mechanical=False, independent_and_correct=False. MARGINAL win-rate 0.482 ~ 0.5 => ...",
+          "predict_wedge_sign": "positive",
+          "predict_regime": "GATE ADDS VALUE",
+          "metadata_predicted_regime": "GATE ADDS VALUE",
+          "metadata_predicted_wedge_sign": "positive",
+          "metadata_realized_outcome": "DISCONFIRMED (realized FDR 1.0 at alpha*=0.5, CI [0.661594, 1.0], decoy_fdr_hat=0.5)",
+          "metadata_mispredict": true,
+          "metadata_near_mechanical": false,
+          "metadata_source": "realized_experiment_1_paired_diagonal",
+          "eval_winrate_tail": 0.482,
+          "eval_mispredict": 1.0,
+          "eval_independent_and_correct": 0.0
+        },
+        {
+          "input": "Regime-map anchor 'CLUTRR (verbalized)': marginal winrate_tail=0.103 => predicted regime 'GATE WORSE/anti-conservative' / sign 'negative'.",
+          "output": "realized: anti-conservative (iter-2 reported). mispredict=False, near_mechanical=False, independent_and_correct=False. Not validated at the powered paired standard; flagged source=hypothesis_reported ...",
+          "predict_wedge_sign": "negative",
+          "predict_regime": "GATE WORSE/anti-conservative",
+          "metadata_predicted_regime": "GATE WORSE/anti-conservative",
+          "metadata_predicted_wedge_sign": "negative",
+          "metadata_realized_outcome": "anti-conservative (iter-2 reported)",
+          "metadata_mispredict": false,
+          "metadata_near_mechanical": false,
+          "metadata_source": "hypothesis_reported",
+          "eval_winrate_tail": 0.103,
+          "eval_mispredict": 0.0,
+          "eval_independent_and_correct": 0.0
+        }
+      ]
+    }
+  ]
+}

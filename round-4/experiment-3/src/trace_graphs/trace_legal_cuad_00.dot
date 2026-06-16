@@ -1,0 +1,10 @@
+digraph proof {
+  rankdir=TB;
+  node [style=filled, fontname="Helvetica", fontsize=10];
+  labelloc="t"; label="legal_cuad_00 [legal] party_bound_effective";
+  n0 [label="party_bound_effective(Premium Managed Hosting Agreement, AstroNutrition.com, March 1, 2005)\nrule: party_bound_effective", fillcolor="lightblue", tooltip="derived conclusion"];
+  n1 [label="has_party(Premium Managed Hosting Agreement, AstroNutrition.com)\nW=0.8421 T=0.129032 a=0.5\nFDP_hat=0.72 r=1", fillcolor="palegreen", tooltip="This is a managed hosting agreement between AstroNutrition.com and deep systems."];
+  n2 [label="effective_date(Premium Managed Hosting Agreement, March 1, 2005)\nW=0.7895 T=0.129032 a=0.5\nFDP_hat=0.72 r=1", fillcolor="palegreen", tooltip="The effective term is 12 months beginning March 1, 2005"];
+  n0 -> n1 [label="party_bound_effective", fontsize=8];
+  n0 -> n2 [label="party_bound_effective", fontsize=8];
+}

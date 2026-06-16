@@ -1,0 +1,244 @@
+Found 4 dataset(s) for query='legal contract'
+
+============================================================
+Dataset 1: ndp64/Legal_Contract_Syn
+Downloads: 2,374 | Likes: 0
+Tags: size_categories:10K<n<100K, format:parquet, modality:tabular, modality:text, library:datasets
+
+============================================================
+Dataset 2: nhankins/legal_contracts
+Downloads: 601 | Likes: 5
+Tags: size_categories:10K<n<100K, format:text, modality:text, library:datasets, library:mlcroissant
+
+============================================================
+Dataset 3: albertvillanova/legal_contracts
+Downloads: 255 | Likes: 50
+Tags: size_categories:100K<n<1M, modality:text, library:datasets, library:mlcroissant, region:us
+
+============================================================
+Dataset 4: Azzindani/Legal_Contract_Syn
+Downloads: 227 | Likes: 1
+Tags: size_categories:10K<n<100K, format:parquet, modality:tabular, modality:text, library:datasets
+Found 0 dataset(s) for query='contract clause extraction'
+Found 0 dataset(s) for query='NDA non-disclosure agreement'
+Found 2 dataset(s) for query='CUAD contract understanding'
+
+============================================================
+Dataset 1: dvgodoy/CUAD_v1_Contract_Understanding_clause_classification
+Downloads: 267 | Likes: 0
+Description: # Dataset Card for Contract Understanding Atticus Dataset (CUAD) Clause Classification
+
+**This dataset contains 13,155 labeled clauses extracted from 509 commercial legal contracts from the original [...
+Tags: task_categories:text-classification, language:en, license:cc-by-4.0, size_categories:10K<n<100K, format:parquet
+
+============================================================
+Dataset 2: dvgodoy/CUAD_v1_Contract_Understanding_PDF
+Downloads: 164 | Likes: 0
+Description: # Dataset Card for Contract Understanding Atticus Dataset (CUAD) PDF
+
+**This dataset contains the PDFs and the full text of 509 commercial legal contracts from the original [CUAD](https://www.atticusp...
+Tags: language:en, license:cc-by-4.0, size_categories:n<1K, format:parquet, modality:text
+Found 0 dataset(s) for query='legal document understanding'
+Found 0 dataset(s) for query='contract relation extraction'
+Found 0 dataset(s) for query='legal named entity recognition'
+Found 0 dataset(s) for query='court case law opinions'
+Found 0 dataset(s) for query='news relation extraction'
+Found 4 dataset(s) for query='Wikinews'
+
+============================================================
+Dataset 1: malteos/wikinews
+Downloads: 3,475 | Likes: 4
+Description: # Wikinews
+
+The dataset contains news articles from Wikinews in different languages.
+Each article is associated with metadata like title, url, and date.
+The articles grouped into data splits by the ar...
+Tags: size_categories:100K<n<1M, format:parquet, modality:tabular, modality:text, library:datasets
+
+============================================================
+Dataset 2: malteos/wikinews-tmp3
+Downloads: 2,113 | Likes: 0
+Description: # Wikinews
+
+The dataset contains news articles from Wikinews in different languages.
+Each article is associated with metadata like title, url, and date.
+The articles grouped into data splits by the ar...
+Tags: size_categories:10K<n<100K, format:parquet, modality:tabular, modality:text, library:datasets
+
+============================================================
+Dataset 3: Fumika/Wikinews-multilingual
+Downloads: 177 | Likes: 7
+Description: # Wikinews - weakly aligned multilingual pararell sentence datasets
+
+This dataset contains 15,200 multilingual WikiNews articles in 33 languages.
+Out of 15,200 articles, 9,960 are non-English news and...
+Tags: task_categories:text-classification, task_categories:feature-extraction, language:en, language:es, language:fr
+
+============================================================
+Dataset 4: erhwenkuo/wikinews-zhtw
+Downloads: 167 | Likes: 6
+Description: # Dataset Card for "wikinews-zhtw"
+
+維基新聞（英文：Wikinews）是由一群志願者、即民間記者運營的網路媒體。同時是一個自由內容的維基，屬維基媒體計劃項目，由維基媒體基金會負責運營。維基新聞通過協作新聞學的工作模式去運行，同時亦努力通過中性的觀點報導新聞，包括原創一手獨家報道和採訪。
+
+這個數據集是根據 Wikipedia dumps (https://dum...
+Tags: task_categories:text-generation, language:zh, license:cc-by-sa-3.0, size_categories:1K<n<10K, format:parquet
+Found 0 dataset(s) for query='news information extraction'
+Found 0 dataset(s) for query='open information extraction'
+Found 0 dataset(s) for query='REDFM relation extraction'
+Found 0 dataset(s) for query='WebRED relation extraction'
+Found 0 dataset(s) for query='document relation extraction DocRED'
+Found 0 dataset(s) for query='news event extraction'
+Found 0 dataset(s) for query='GDPR regulation text'
+Found 0 dataset(s) for query='regulatory compliance text'
+Found 4 dataset(s) for query='privacy policy text'
+
+============================================================
+Dataset 1: Lots-of-LoRAs/task682_online_privacy_policy_text_classification
+Downloads: 46 | Likes: 0
+Description: 
+# Dataset Card for Natural Instructions (https://github.com/allenai/natural-instructions) Task: task682_online_privacy_policy_text_classification
+
+## Dataset Description
+
+- **Homepage:** https://gith...
+Tags: task_categories:text-generation, annotations_creators:crowdsourced, language_creators:crowdsourced, language:en, license:apache-2.0
+
+============================================================
+Dataset 2: Lots-of-LoRAs/task683_online_privacy_policy_text_purpose_answer_generation
+Downloads: 38 | Likes: 0
+Description: 
+# Dataset Card for Natural Instructions (https://github.com/allenai/natural-instructions) Task: task683_online_privacy_policy_text_purpose_answer_generation
+
+## Dataset Description
+
+- **Homepage:** h...
+Tags: task_categories:text-generation, annotations_creators:crowdsourced, language_creators:crowdsourced, language:en, license:apache-2.0
+
+============================================================
+Dataset 3: Lots-of-LoRAs/task684_online_privacy_policy_text_information_type_generation
+Downloads: 34 | Likes: 0
+Description: 
+# Dataset Card for Natural Instructions (https://github.com/allenai/natural-instructions) Task: task684_online_privacy_policy_text_information_type_generation
+
+## Dataset Description
+
+- **Homepage:**...
+Tags: task_categories:text-generation, annotations_creators:crowdsourced, language_creators:crowdsourced, language:en, license:apache-2.0
+
+============================================================
+Dataset 4: supergoose/flan_combined_task682_online_privacy_policy_text_classification
+Downloads: 29 | Likes: 1
+Tags: size_categories:1K<n<10K, format:parquet, modality:text, library:datasets, library:pandas
+Found 0 dataset(s) for query='EU law regulation'
+Found 0 dataset(s) for query='knowledge graph triples text'
+Found 0 dataset(s) for query='fact extraction documents'
+Found 0 dataset(s) for query='entity relation triples'
+Found 4 dataset(s) for query='contract NLI'
+
+============================================================
+Dataset 1: kiddothe2b/contract-nli
+Downloads: 594 | Likes: 18
+Tags: license:cc-by-nc-sa-4.0, size_categories:10K<n<100K, modality:text, library:datasets, library:mlcroissant
+
+============================================================
+Dataset 2: mteb/ContractNLIPermissibleCopyLegalBenchClassification
+Downloads: 153 | Likes: 0
+Description: <!-- adapted from https://github.com/huggingface/huggingface_hub/blob/v0.30.2/src/huggingface_hub/templates/datasetcard_template.md -->
+
+<div align="center" style="padding: 40px 20px; background-color...
+Tags: task_categories:text-classification, annotations_creators:expert-annotated, multilinguality:monolingual, language:eng, license:cc-by-4.0
+
+============================================================
+Dataset 3: orgrctera/legalbenchrag_contractnli
+Downloads: 140 | Likes: 0
+Description: 
+# LegalBenchRAG: ContractNLI (retrieval)
+
+This dataset is the **ContractNLI** slice of [**LegalBench-RAG**](https://arxiv.org/abs/2408.10343): a **retrieval** benchmark for legal RAG, built by tracin...
+Tags: task_categories:text-retrieval, language:en, license:cc-by-4.0, size_categories:n<1K, format:parquet
+
+============================================================
+Dataset 4: mteb/ContractNLISurvivalOfObligationsLegalBenchClassification
+Downloads: 111 | Likes: 0
+Description: <!-- adapted from https://github.com/huggingface/huggingface_hub/blob/v0.30.2/src/huggingface_hub/templates/datasetcard_template.md -->
+
+<div align="center" style="padding: 40px 20px; background-color...
+Tags: task_categories:text-classification, annotations_creators:expert-annotated, multilinguality:monolingual, language:eng, license:cc-by-4.0
+Found 4 dataset(s) for query='legal QA dataset'
+
+============================================================
+Dataset 1: ibunescu/qa_legal_dataset_train
+Downloads: 231 | Likes: 3
+Tags: size_categories:10K<n<100K, format:json, modality:text, library:datasets, library:pandas
+
+============================================================
+Dataset 2: ggh5454/korean-legal-qa-dataset
+Downloads: 69 | Likes: 0
+Description: 
+# Korean Legal QA Dataset (한국어 법률 QA 데이터셋)
+
+법령 조문과 판례를 **연결고리**로 묶은 한국어 법률 질의응답 데이터셋입니다.
+
+베제처 국가법령정보센터의 공개 법령·판례 데이터를 바탕으로 구축되었습니다.
+
+## 형식 (Format)
+
+각 항목은 **질문(question)**, **정답(answer)**, **검색문서(ret...
+Tags: task_categories:question-answering, multilinguality:monolingual, language:ko, license:cc-by-4.0, size_categories:n<1K
+
+============================================================
+Dataset 3: rudalson/legal-qa-1k-dataset
+Downloads: 44 | Likes: 0
+Description: 
+# Legal QA 1k Dataset (Korean Civil Law)
+
+## 1. 데이터셋 개요
+이 데이터셋은 AI Hub의 `민사법 LLM 사전학습 및 Instruction Tuning 데이터`를 기반으로 1,000개를 랜덤 샘플링하여 제작한 정제된 데이터셋입니다. 
+주로 Llama 3.x 모델의 한국어 법률 도메인 파인튜닝(SFT) 실습을 목적으로...
+Tags: task_categories:question-answering, task_categories:text-generation, language:ko, license:cc-by-nc-sa-4.0, size_categories:1K<n<10K
+
+============================================================
+Dataset 4: Marykka/Bonyad_Vokala_Legal_QA_Dataset
+Downloads: 27 | Likes: 2
+Description: 
+# 📚 Dataset Card for **Bonyad Vokala Legal Q&A Dataset**
+
+
+This dataset contains legal Q&A in **Farsi (Persian)** from the **Bonyad Vokala** website. It includes human-written lawyer answers and AI-g...
+Tags: task_categories:question-answering, language:fa, license:apache-2.0, size_categories:10K<n<100K, format:json
+Found 0 dataset(s) for query='statute legislation text'
+Found 0 dataset(s) for query='newswire annotated'
+Found 4 dataset(s) for query='ContractNLI'
+
+============================================================
+Dataset 1: kiddothe2b/contract-nli
+Downloads: 594 | Likes: 18
+Tags: license:cc-by-nc-sa-4.0, size_categories:10K<n<100K, modality:text, library:datasets, library:mlcroissant
+
+============================================================
+Dataset 2: mteb/ContractNLIPermissibleCopyLegalBenchClassification
+Downloads: 153 | Likes: 0
+Description: <!-- adapted from https://github.com/huggingface/huggingface_hub/blob/v0.30.2/src/huggingface_hub/templates/datasetcard_template.md -->
+
+<div align="center" style="padding: 40px 20px; background-color...
+Tags: task_categories:text-classification, annotations_creators:expert-annotated, multilinguality:monolingual, language:eng, license:cc-by-4.0
+
+============================================================
+Dataset 3: orgrctera/legalbenchrag_contractnli
+Downloads: 140 | Likes: 0
+Description: 
+# LegalBenchRAG: ContractNLI (retrieval)
+
+This dataset is the **ContractNLI** slice of [**LegalBench-RAG**](https://arxiv.org/abs/2408.10343): a **retrieval** benchmark for legal RAG, built by tracin...
+Tags: task_categories:text-retrieval, language:en, license:cc-by-4.0, size_categories:n<1K, format:parquet
+
+============================================================
+Dataset 4: mteb/ContractNLISurvivalOfObligationsLegalBenchClassification
+Downloads: 111 | Likes: 0
+Description: <!-- adapted from https://github.com/huggingface/huggingface_hub/blob/v0.30.2/src/huggingface_hub/templates/datasetcard_template.md -->
+
+<div align="center" style="padding: 40px 20px; background-color...
+Tags: task_categories:text-classification, annotations_creators:expert-annotated, multilinguality:monolingual, language:eng, license:cc-by-4.0
+Found 0 dataset(s) for query='relation extraction wikipedia'
+Found 0 dataset(s) for query='short legal documents'

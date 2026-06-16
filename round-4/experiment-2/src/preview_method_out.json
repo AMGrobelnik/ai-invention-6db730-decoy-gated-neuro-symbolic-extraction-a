@@ -1,0 +1,1429 @@
+{
+  "metadata": {
+    "method_name": "P1-DECONFOUND: a 2-axis (extractor-strength x false-positive-density) persistence matrix for the marginal-vs-paired knockoff+ failure on CLUTRR",
+    "headline_verdict": "EARNED",
+    "headline": "EARNED: the iter-3 paired/anti-conservative knockoff failure PERSISTS (and strengthens) with a COMPETENT extractor (openai/gpt-4.1-mini, mh_acc>=0.45, 3/3 powered multi_hop cells have paired-win-rate ...",
+    "description": "Controlled factorial de-confounding the iter-3 disconfirmation (multi_hop realized FDR 1.0 at alpha*=0.5, paired sign-flip failure) from a pathological weak extractor. AXIS A = extractor strength (gpt...",
+    "axes": {
+      "axis_A_extractor_strength": [
+        "openai/gpt-4.1-nano",
+        "openai/gpt-4.1-mini"
+      ],
+      "axis_B_false_positive_density": [
+        0.2,
+        0.5,
+        0.85
+      ],
+      "families": [
+        "multi_hop",
+        "atomic"
+      ],
+      "extractor_equals_scorer_equals_decoy_generator": true
+    },
+    "phase0_extractor_probe": {
+      "candidates": [
+        {
+          "model": "openai/gpt-4.1-nano",
+          "mh_acc": 0.209097,
+          "atomic_acc": 0.454504,
+          "atomic_precision": 0.506583,
+          "atomic_recall": 0.134722,
+          "mean_false_reals_per_doc": 6.9,
+          "n_pilot_docs": 40,
+          "cost_usd": 0.0,
+          "cost_per_doc": 0.0
+        },
+        {
+          "model": "openai/gpt-4.1-mini",
+          "mh_acc": 0.455119,
+          "atomic_acc": 0.865556,
+          "atomic_precision": 0.509072,
+          "atomic_recall": 0.581528,
+          "mean_false_reals_per_doc": 3.6,
+          "n_pilot_docs": 40,
+          "cost_usd": 0.0,
+          "cost_per_doc": 0.0
+        },
+        {
+          "model": "openai/gpt-4o-mini",
+          "mh_acc": 0.402302,
+          "atomic_acc": 0.815347,
+          "atomic_precision": 0.555575,
+          "atomic_recall": 0.503472,
+          "mean_false_reals_per_doc": 4.075,
+          "n_pilot_docs": 40,
+          "cost_usd": 0.0,
+          "cost_per_doc": 0.0
+        }
+      ],
+      "chosen_strong_extractor": "openai/gpt-4.1-mini",
+      "chosen_mh_acc": 0.455119,
+      "threshold_cleared": true,
+      "acc_threshold": 0.45,
+      "scope_note": "competent extractor cleared bar (mh_acc=0.455119>=0.45)"
+    },
+    "hyperparameters": {
+      "seed": 20240617,
+      "alpha_grid": [
+        0.05,
+        0.1,
+        0.2
+      ],
+      "K_self_consistency": 5,
+      "B_bootstrap_diagonal": 2000,
+      "B_bootstrap_paired": 1000,
+      "tau": 0.05,
+      "n_false_min": 40,
+      "densities": [
+        0.2,
+        0.5,
+        0.85
+      ],
+      "subsample_seeds": [
+        0,
+        1,
+        2
+      ],
+      "acc_threshold_competent": 0.45,
+      "soft_cap_usd": 4.0,
+      "hard_stop_usd": 10.0,
+      "W_statistic": "signed-max  W_i = sign(Z_i - Z~_i)*max(Z_i, Z~_i)",
+      "knockoff_plus": "Barber-Candes eq 1.9 (the +1 kept; exact FDR control)",
+      "normalization_pool": "PRIMARY per-document rank-normalization over {reals U cf U swap} (identical recipe both arms; matches iter-3 so the nano anchor reconciles). Robustness variant {reals U cf} in robustness_alt_normaliza...",
+      "bootstrap": "document-block (cluster) resampling",
+      "multiplicity": "Benjamini-Hochberg q=0.05 across all cell marginal/paired p-values",
+      "scoring": "isolated, provenance-blinded K=5 self-consistency, document-prefix cached",
+      "baseline": "PLAIN raw-confidence threshold gate (decoy-free purely-neural foil), per diagonal row",
+      "alpha_star_definition": "most-permissive CERTIFIED alpha (n_admitted >= ceil(1/alpha))",
+      "floor_power_rule": "a cell is ASSERTED at alpha only if n_admitted>=k_floor(alpha); an anti-conservative disconfirmation additionally requires n_false_admitted>=40 (else 'directional, below false-admission floor'); a cle..."
+    },
+    "extraction_quality": {
+      "openai/gpt-4.1-nano": {
+        "multihop_relation_accuracy": 0.202907,
+        "atomic_relation_accuracy": 0.460186,
+        "atomic_precision": 0.452411,
+        "atomic_recall": 0.077502,
+        "competent": false,
+        "n_docs": 200,
+        "n_reals": 2055,
+        "n_false": 1394,
+        "n_true": 661,
+        "contamination_rate_decoys": 0.092537,
+        "runtime": {
+          "elapsed_s": 612.5,
+          "cost_usd": 0.031215,
+          "n_calls_live": 1274,
+          "n_calls_cached": 30059,
+          "n_calls_warm_fallback": 4330,
+          "k_sc": 5
+        }
+      },
+      "openai/gpt-4.1-mini": {
+        "multihop_relation_accuracy": 0.453231,
+        "atomic_relation_accuracy": 0.859129,
+        "atomic_precision": 0.511436,
+        "atomic_recall": 0.590962,
+        "competent": true,
+        "n_docs": 200,
+        "n_reals": 2112,
+        "n_false": 719,
+        "n_true": 1393,
+        "contamination_rate_decoys": 0.071088,
+        "runtime": {
+          "elapsed_s": 929.1,
+          "cost_usd": 0.926629,
+          "n_calls_live": 11539,
+          "n_calls_cached": 51832,
+          "n_calls_warm_fallback": 4330,
+          "k_sc": 5
+        }
+      }
+    },
+    "persistence_matrix": [
+      {
+        "extractor": "openai/gpt-4.1-nano",
+        "family": "multi_hop",
+        "density": 0.2,
+        "realized_false_frac": 0.199115,
+        "mh_acc": 0.202907,
+        "n_pairs": 226,
+        "n_false": 45,
+        "n_true": 181,
+        "alpha_star": 0.5,
+        "realized_fdr_at_alpha_star": 0.175926,
+        "ci_at_alpha_star": [
+          0.095593,
+          0.25
+        ],
+        "decoy_fdr_hat_at_alpha_star": 0.490741,
+        "n_admitted_at_alpha_star": 108,
+        "n_false_admitted_at_alpha_star": 19,
+        "paired_win_rate": 0.387097,
+        "paired_win_rate_ci": [
+          0.2,
+          0.566667
+        ],
+        "marginal_holds": true,
+        "marginal_direction": "too_easy_anti_conservative",
+        "marginal_tail_gap_mean_diff": -0.055307,
+        "competent": false,
+        "powered": true,
+        "powered_for_disconfirmation": false,
+        "anti_conservative": false,
+        "gate_controls": true,
+        "paired_fails": false,
+        "paired_ok": true,
+        "unstable": true,
+        "seed_spread_realized_median": 0.137255,
+        "seed_spread_paired_median": 0.527778
+      },
+      {
+        "extractor": "openai/gpt-4.1-nano",
+        "family": "multi_hop",
+        "density": 0.5,
+        "realized_false_frac": 0.5,
+        "mh_acc": 0.202907,
+        "n_pairs": 362,
+        "n_false": 181,
+        "n_true": 181,
+        "alpha_star": null,
+        "realized_fdr_at_alpha_star": null,
+        "ci_at_alpha_star": null,
+        "decoy_fdr_hat_at_alpha_star": null,
+        "n_admitted_at_alpha_star": null,
+        "n_false_admitted_at_alpha_star": null,
+        "paired_win_rate": 0.491713,
+        "paired_win_rate_ci": [
+          0.41529,
+          0.554287
+        ],
+        "marginal_holds": true,
+        "marginal_direction": "too_easy_anti_conservative",
+        "marginal_tail_gap_mean_diff": -0.008255,
+        "competent": false,
+        "powered": false,
+        "powered_for_disconfirmation": false,
+        "anti_conservative": false,
+        "gate_controls": false,
+        "paired_fails": false,
+        "paired_ok": true,
+        "unstable": true,
+        "seed_spread_realized_median": 0.356942,
+        "seed_spread_paired_median": 0.471101
+      },
+      {
+        "extractor": "openai/gpt-4.1-nano",
+        "family": "multi_hop",
+        "density": 0.85,
+        "realized_false_frac": 0.850056,
+        "mh_acc": 0.202907,
+        "n_pairs": 887,
+        "n_false": 754,
+        "n_true": 133,
+        "alpha_star": null,
+        "realized_fdr_at_alpha_star": null,
+        "ci_at_alpha_star": null,
+        "decoy_fdr_hat_at_alpha_star": null,
+        "n_admitted_at_alpha_star": null,
+        "n_false_admitted_at_alpha_star": null,
+        "paired_win_rate": 0.461538,
+        "paired_win_rate_ci": [
+          0.423058,
+          0.495128
+        ],
+        "marginal_holds": false,
+        "marginal_direction": "too_easy_anti_conservative",
+        "marginal_tail_gap_mean_diff": -0.003497,
+        "competent": false,
+        "powered": false,
+        "powered_for_disconfirmation": false,
+        "anti_conservative": false,
+        "gate_controls": false,
+        "paired_fails": true,
+        "paired_ok": false,
+        "unstable": false,
+        "seed_spread_realized_median": null,
+        "seed_spread_paired_median": 0.461538
+      }
+    ],
+    "cells_full": [
+      {
+        "extractor": "openai/gpt-4.1-nano",
+        "family": "multi_hop",
+        "density": 0.2,
+        "target_false_frac": 0.2,
+        "realized_false_frac": 0.199115,
+        "mh_acc": 0.202907,
+        "at_acc": 0.460186,
+        "n_pairs": 226,
+        "n_false": 45,
+        "n_true": 181,
+        "populable_for_disconfirmation": true,
+        "alpha_star": 0.5,
+        "diagonal_rows": [
+          {
+            "target_alpha": 0.05,
+            "decoy_fdr_hat": null,
+            "realized_fdr": null,
+            "triple_alpha_decoyfdrhat_realized": [
+              0.05,
+              null,
+              null
+            ],
+            "ci_low": 0.097656,
+            "ci_high": 0.362428,
+            "n_admitted": 0,
+            "n_false_admitted": 0,
+            "k_floor": 20,
+            "certified": false,
+            "self_report_anti_conservative": false,
+            "plain_realized_fdr": 0.227273,
+            "plain_n_admitted": 22,
+            "plain_est_fdr": 0.047727
+          },
+          {
+            "target_alpha": 0.1,
+            "decoy_fdr_hat": null,
+            "realized_fdr": null,
+            "triple_alpha_decoyfdrhat_realized": [
+              0.1,
+              null,
+              null
+            ],
+            "ci_low": 0.085714,
+            "ci_high": 0.547159,
+            "n_admitted": 0,
+            "n_false_admitted": 0,
+            "k_floor": 10,
+            "certified": false,
+            "self_report_anti_conservative": false,
+            "plain_realized_fdr": 0.173077,
+            "plain_n_admitted": 52,
+            "plain_est_fdr": 0.098077
+          },
+          {
+            "target_alpha": 0.2,
+            "decoy_fdr_hat": null,
+            "realized_fdr": null,
+            "triple_alpha_decoyfdrhat_realized": [
+              0.2,
+              null,
+              null
+            ],
+            "ci_low": 0.059269,
+            "ci_high": 0.444444,
+            "n_admitted": 0,
+            "n_false_admitted": 0,
+            "k_floor": 5,
+            "certified": false,
+            "self_report_anti_conservative": false,
+            "plain_realized_fdr": 0.197917,
+            "plain_n_admitted": 96,
+            "plain_est_fdr": 0.199896
+          }
+        ],
+        "paired": {
+          "operative_alpha": 0.5,
+          "win_rate_false_pairs": 0.387097,
+          "n_tail": 31,
+          "win_rate_ci": [
+            0.2,
+            0.566667
+          ],
+          "ks_p_decoy_vs_real": 0.2560450207654439,
+          "paired_fails": false,
+          "paired_ok": true,
+          "interpretation": "win-rate ~0.5 (CI covers 0.5) => paired-exchangeable knockoff null; CI_high<0.5 => false reals beat their own decoys (anti-conservative)"
+        },
+        "marginal": {
+          "regions": {
+            "full": {
+              "n_decoy": 226,
+              "n_spont": 45,
+              "n_truepos": 181,
+              "decoy_vs_spont": {
+                "ks_p": 0.31065122250276717,
+                "mw_p": 0.1242527120704051
+              },
+              "decoy_vs_truepos": {
+                "ks_p": 1.8585277935253735e-06,
+                "mw_p": 3.6378578054010204e-08
+              },
+              "gap_mean_diff": -0.070489,
+              "verdict": "VALID"
+            },
+            "tail_top50pct": {
+              "n_decoy": 96,
+              "n_spont": 23,
+              "n_truepos": 107,
+              "decoy_vs_spont": {
+                "ks_p": 0.346850515664204,
+                "mw_p": 0.05991699424228848
+              },
+              "decoy_vs_truepos": {
+                "ks_p": 0.0053684212493378715,
+                "mw_p": 0.00025517122176903526
+              },
+              "gap_mean_diff": -0.055307,
+              "verdict": "VALID"
+            }
+          },
+          "marginal_holds": true,
+          "marginal_decoy_not_too_easy": false,
+          "marginal_direction": "too_easy_anti_conservative",
+          "tail_gap_mean_diff": -0.055307,
+          "n_truepos": 181,
+          "n_spont": 45,
+          "n_decoy": 226,
+          "cdf": {
+            "x": [
+              0.0,
+              0.02,
+              0.04
+            ],
+            "cdf_truepos": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "cdf_spont": [
+              0.022222222222222223,
+              0.022222222222222223,
+              0.022222222222222223
+            ],
+            "cdf_decoy": [
+              0.02654867256637168,
+              0.02654867256637168,
+              0.05309734513274336
+            ]
+          }
+        },
+        "seed_spread": {
+          "realized_fdr": {
+            "median": 0.137255,
+            "min": 0.037037,
+            "max": 0.188525,
+            "n": 9
+          },
+          "paired_win_rate": {
+            "median": 0.527778,
+            "min": 0.361111,
+            "max": 0.875,
+            "n": 10
+          },
+          "win_rate_unstable": true
+        }
+      },
+      {
+        "extractor": "openai/gpt-4.1-nano",
+        "family": "multi_hop",
+        "density": 0.5,
+        "target_false_frac": 0.5,
+        "realized_false_frac": 0.5,
+        "mh_acc": 0.202907,
+        "at_acc": 0.460186,
+        "n_pairs": 362,
+        "n_false": 181,
+        "n_true": 181,
+        "populable_for_disconfirmation": true,
+        "alpha_star": null,
+        "diagonal_rows": [
+          {
+            "target_alpha": 0.05,
+            "decoy_fdr_hat": null,
+            "realized_fdr": null,
+            "triple_alpha_decoyfdrhat_realized": [
+              0.05,
+              null,
+              null
+            ],
+            "ci_low": null,
+            "ci_high": null,
+            "n_admitted": 0,
+            "n_false_admitted": 0,
+            "k_floor": 20,
+            "certified": false,
+            "self_report_anti_conservative": false,
+            "plain_realized_fdr": 0.410256,
+            "plain_n_admitted": 39,
+            "plain_est_fdr": 0.05
+          },
+          {
+            "target_alpha": 0.1,
+            "decoy_fdr_hat": null,
+            "realized_fdr": null,
+            "triple_alpha_decoyfdrhat_realized": [
+              0.1,
+              null,
+              null
+            ],
+            "ci_low": null,
+            "ci_high": null,
+            "n_admitted": 0,
+            "n_false_admitted": 0,
+            "k_floor": 10,
+            "certified": false,
+            "self_report_anti_conservative": false,
+            "plain_realized_fdr": 0.383562,
+            "plain_n_admitted": 73,
+            "plain_est_fdr": 0.099041
+          },
+          {
+            "target_alpha": 0.2,
+            "decoy_fdr_hat": null,
+            "realized_fdr": null,
+            "triple_alpha_decoyfdrhat_realized": [
+              0.2,
+              null,
+              null
+            ],
+            "ci_low": 0.41,
+            "ci_high": 0.785417,
+            "n_admitted": 0,
+            "n_false_admitted": 0,
+            "k_floor": 5,
+            "certified": false,
+            "self_report_anti_conservative": false,
+            "plain_realized_fdr": 0.439394,
+            "plain_n_admitted": 132,
+            "plain_est_fdr": 0.199015
+          }
+        ],
+        "paired": {
+          "operative_alpha": 0.5,
+          "win_rate_false_pairs": 0.491713,
+          "n_tail": 181,
+          "win_rate_ci": [
+            0.41529,
+            0.554287
+          ],
+          "ks_p_decoy_vs_real": 0.7403848063812315,
+          "paired_fails": false,
+          "paired_ok": true,
+          "interpretation": "win-rate ~0.5 (CI covers 0.5) => paired-exchangeable knockoff null; CI_high<0.5 => false reals beat their own decoys (anti-conservative)"
+        },
+        "marginal": {
+          "regions": {
+            "full": {
+              "n_decoy": 362,
+              "n_spont": 181,
+              "n_truepos": 181,
+              "decoy_vs_spont": {
+                "ks_p": 0.6563340783109822,
+                "mw_p": 0.47972129687803833
+              },
+              "decoy_vs_truepos": {
+                "ks_p": 1.3408249080493277e-05,
+                "mw_p": 8.146502106237092e-07
+              },
+              "gap_mean_diff": -0.021601,
+              "verdict": "VALID"
+            },
+            "tail_top50pct": {
+              "n_decoy": 169,
+              "n_spont": 83,
+              "n_truepos": 110,
+              "decoy_vs_spont": {
+                "ks_p": 0.8516413558011781,
+                "mw_p": 0.660212449278645
+              },
+              "decoy_vs_truepos": {
+                "ks_p": 0.04169902263745598,
+                "mw_p": 0.03510881887354026
+              },
+              "gap_mean_diff": -0.008255,
+              "verdict": "VALID"
+            }
+          },
+          "marginal_holds": true,
+          "marginal_decoy_not_too_easy": true,
+          "marginal_direction": "too_easy_anti_conservative",
+          "tail_gap_mean_diff": -0.008255,
+          "n_truepos": 181,
+          "n_spont": 181,
+          "n_decoy": 362,
+          "cdf": {
+            "x": [
+              0.0,
+              0.02,
+              0.04
+            ],
+            "cdf_truepos": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "cdf_spont": [
+              0.022099447513812154,
+              0.027624309392265192,
+              0.03314917127071823
+            ],
+            "cdf_decoy": [
+              0.024861878453038673,
+              0.024861878453038673,
+              0.04696132596685083
+            ]
+          }
+        },
+        "seed_spread": {
+          "realized_fdr": {
+            "median": 0.356942,
+            "min": 0.25,
+            "max": 0.433962,
+            "n": 6
+          },
+          "paired_win_rate": {
+            "median": 0.471101,
+            "min": 0.410256,
+            "max": 0.5625,
+            "n": 10
+          },
+          "win_rate_unstable": true
+        }
+      },
+      {
+        "extractor": "openai/gpt-4.1-nano",
+        "family": "multi_hop",
+        "density": 0.85,
+        "target_false_frac": 0.85,
+        "realized_false_frac": 0.850056,
+        "mh_acc": 0.202907,
+        "at_acc": 0.460186,
+        "n_pairs": 887,
+        "n_false": 754,
+        "n_true": 133,
+        "populable_for_disconfirmation": true,
+        "alpha_star": null,
+        "diagonal_rows": [
+          {
+            "target_alpha": 0.05,
+            "decoy_fdr_hat": null,
+            "realized_fdr": null,
+            "triple_alpha_decoyfdrhat_realized": [
+              0.05,
+              null,
+              null
+            ],
+            "ci_low": null,
+            "ci_high": null,
+            "n_admitted": 0,
+            "n_false_admitted": 0,
+            "k_floor": 20,
+            "certified": false,
+            "self_report_anti_conservative": false,
+            "plain_realized_fdr": 0.79,
+            "plain_n_admitted": 100,
+            "plain_est_fdr": 0.0499
+          },
+          {
+            "target_alpha": 0.1,
+            "decoy_fdr_hat": null,
+            "realized_fdr": null,
+            "triple_alpha_decoyfdrhat_realized": [
+              0.1,
+              null,
+              null
+            ],
+            "ci_low": null,
+            "ci_high": null,
+            "n_admitted": 0,
+            "n_false_admitted": 0,
+            "k_floor": 10,
+            "certified": false,
+            "self_report_anti_conservative": false,
+            "plain_realized_fdr": 0.786127,
+            "plain_n_admitted": 173,
+            "plain_est_fdr": 0.099827
+          },
+          {
+            "target_alpha": 0.2,
+            "decoy_fdr_hat": null,
+            "realized_fdr": null,
+            "triple_alpha_decoyfdrhat_realized": [
+              0.2,
+              null,
+              null
+            ],
+            "ci_low": null,
+            "ci_high": null,
+            "n_admitted": 0,
+            "n_false_admitted": 0,
+            "k_floor": 5,
+            "certified": false,
+            "self_report_anti_conservative": false,
+            "plain_realized_fdr": 0.819876,
+            "plain_n_admitted": 322,
+            "plain_est_fdr": 0.199783
+          }
+        ],
+        "paired": {
+          "operative_alpha": 0.5,
+          "win_rate_false_pairs": 0.461538,
+          "n_tail": 754,
+          "win_rate_ci": [
+            0.423058,
+            0.495128
+          ],
+          "ks_p_decoy_vs_real": 0.014350333682960527,
+          "paired_fails": true,
+          "paired_ok": false,
+          "interpretation": "win-rate ~0.5 (CI covers 0.5) => paired-exchangeable knockoff null; CI_high<0.5 => false reals beat their own decoys (anti-conservative)"
+        },
+        "marginal": {
+          "regions": {
+            "full": {
+              "n_decoy": 887,
+              "n_spont": 754,
+              "n_truepos": 133,
+              "decoy_vs_spont": {
+                "ks_p": 0.00810567000921519,
+                "mw_p": 0.009927960734519568
+              },
+              "decoy_vs_truepos": {
+                "ks_p": 9.106578074993417e-05,
+                "mw_p": 3.4566029862948463e-06
+              },
+              "gap_mean_diff": -0.039944,
+              "verdict": "GAP:decoys_too_easy(anti-conservative)"
+            },
+            "tail_top50pct": {
+              "n_decoy": 422,
+              "n_spont": 383,
+              "n_truepos": 82,
+              "decoy_vs_spont": {
+                "ks_p": 0.5453570553257637,
+                "mw_p": 0.6681817607211726
+              },
+              "decoy_vs_truepos": {
+                "ks_p": 0.1214890088669835,
+                "mw_p": 0.1025200215955143
+              },
+              "gap_mean_diff": -0.003497,
+              "verdict": "GAP:decoys_too_easy(anti-conservative)"
+            }
+          },
+          "marginal_holds": false,
+          "marginal_decoy_not_too_easy": true,
+          "marginal_direction": "too_easy_anti_conservative",
+          "tail_gap_mean_diff": -0.003497,
+          "n_truepos": 133,
+          "n_spont": 754,
+          "n_decoy": 887,
+          "cdf": {
+            "x": [
+              0.0,
+              0.02,
+              0.04
+            ],
+            "cdf_truepos": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "cdf_spont": [
+              0.015915119363395226,
+              0.022546419098143235,
+              0.03050397877984085
+            ],
+            "cdf_decoy": [
+              0.02818489289740699,
+              0.033821871476888386,
+              0.05411499436302142
+            ]
+          }
+        },
+        "seed_spread": {
+          "realized_fdr": {
+            "median": null,
+            "min": null,
+            "max": null,
+            "n": 0
+          },
+          "paired_win_rate": {
+            "median": 0.461538,
+            "min": 0.461538,
+            "max": 0.461538,
+            "n": 10
+          },
+          "win_rate_unstable": false
+        }
+      }
+    ],
+    "earned_vs_scoped_verdict": {
+      "verdict": "EARNED",
+      "headline": "EARNED: the iter-3 paired/anti-conservative knockoff failure PERSISTS (and strengthens) with a COMPETENT extractor (openai/gpt-4.1-mini, mh_acc>=0.45, 3/3 powered multi_hop cells have paired-win-rate ...",
+      "decision_rule": "Let competent-powered cells = POWERED (n_adm>=k_floor), competent (mh_acc>=0.45), stable strong multi_hop cells. paired_robust := >=2 such cells across >=2 densities have paired_fails (CI_high<0.5: fa...",
+      "strong_extractor": "openai/gpt-4.1-mini",
+      "strong_competent": true,
+      "acc_threshold": 0.45,
+      "n_competent_powered_strong_multihop_cells": 3,
+      "densities_covered_by_powered_cells": [
+        0.2,
+        0.5,
+        0.85
+      ],
+      "paired_robust": true,
+      "n_paired_fail_cells": 3,
+      "paired_fail_densities": [
+        0.2,
+        0.5,
+        0.85
+      ],
+      "anti_conservative_disconfirmation_densities": [
+        0.85
+      ],
+      "clean_decoy_controlled_paired_fail_densities": [
+        0.2
+      ],
+      "n_earned_cells": 2,
+      "earned_densities": [
+        0.2,
+        0.85
+      ],
+      "n_scoped_cells": 0,
+      "density_driven": false,
+      "mechanism": "the marginal 'cf decoys too easy' (tail gap_md<0) and the paired win-rate<0.5 are two views of the SAME self-favoring bias: the LLM scores its own extraction above a counterfactual decoy; this violate...",
+      "supporting_cells": [
+        {
+          "extractor": "openai/gpt-4.1-mini",
+          "family": "multi_hop",
+          "density": 0.2,
+          "operative_alpha": 0.5,
+          "competent": true,
+          "powered": true,
+          "powered_for_disconfirmation": true,
+          "anti_conservative": false,
+          "gate_controls": true,
+          "paired_fails": true,
+          "paired_ok": false,
+          "marginal_holds": true,
+          "marginal_direction": "too_easy_anti_conservative",
+          "marginal_tail_gap_mean_diff": -0.017811,
+          "unstable": false,
+          "realized_fdr": 0.191375,
+          "ci": [
+            0.149714,
+            0.231591
+          ],
+          "n_admitted": 371,
+          "n_false_admitted": 71,
+          "paired_win_rate": 0.268041,
+          "paired_win_rate_ci": [
+            0.187485,
+            0.357947
+          ]
+        },
+        {
+          "extractor": "openai/gpt-4.1-mini",
+          "family": "multi_hop",
+          "density": 0.5,
+          "operative_alpha": 0.5,
+          "competent": true,
+          "powered": true,
+          "powered_for_disconfirmation": true,
+          "anti_conservative": false,
+          "gate_controls": true,
+          "paired_fails": true,
+          "paired_ok": false,
+          "marginal_holds": false,
+          "marginal_direction": "too_easy_anti_conservative",
+          "marginal_tail_gap_mean_diff": -0.025549,
+          "unstable": false,
+          "realized_fdr": 0.449541,
+          "ci": [
+            0.404756,
+            0.495794
+          ],
+          "n_admitted": 545,
+          "n_false_admitted": 245,
+          "paired_win_rate": 0.368557,
+          "paired_win_rate_ci": [
+            0.317489,
+            0.420154
+          ]
+        },
+        {
+          "extractor": "openai/gpt-4.1-mini",
+          "family": "multi_hop",
+          "density": 0.85,
+          "operative_alpha": 0.5,
+          "competent": true,
+          "powered": true,
+          "powered_for_disconfirmation": true,
+          "anti_conservative": true,
+          "gate_controls": false,
+          "paired_fails": true,
+          "paired_ok": false,
+          "marginal_holds": false,
+          "marginal_direction": "too_easy_anti_conservative",
+          "marginal_tail_gap_mean_diff": -0.030632,
+          "unstable": false,
+          "realized_fdr": 0.818182,
+          "ci": [
+            0.758273,
+            0.860311
+          ],
+          "n_admitted": 374,
+          "n_false_admitted": 306,
+          "paired_win_rate": 0.346154,
+          "paired_win_rate_ci": [
+            0.296834,
+            0.390958
+          ]
+        }
+      ],
+      "cell_flags_alpha_star": {
+        "openai/gpt-4.1-nano|multi_hop|0.2": {
+          "operative_alpha": 0.5,
+          "competent": false,
+          "no_certified_alpha": false,
+          "powered": true,
+          "powered_for_disconfirmation": false,
+          "anti_conservative": false,
+          "gate_controls": true,
+          "paired_fails": false,
+          "paired_ok": true,
+          "marginal_holds": true,
+          "unstable": true,
+          "realized_fdr": 0.175926,
+          "ci": [
+            0.095593,
+            0.25
+          ],
+          "n_admitted": 108,
+          "n_false_admitted": 19
+        },
+        "openai/gpt-4.1-nano|multi_hop|0.5": {
+          "operative_alpha": null,
+          "competent": false,
+          "no_certified_alpha": true,
+          "powered": false,
+          "powered_for_disconfirmation": false,
+          "anti_conservative": false,
+          "gate_controls": false,
+          "paired_fails": false,
+          "paired_ok": true,
+          "marginal_holds": true,
+          "unstable": true
+        },
+        "openai/gpt-4.1-nano|multi_hop|0.85": {
+          "operative_alpha": null,
+          "competent": false,
+          "no_certified_alpha": true,
+          "powered": false,
+          "powered_for_disconfirmation": false,
+          "anti_conservative": false,
+          "gate_controls": false,
+          "paired_fails": true,
+          "paired_ok": false,
+          "marginal_holds": false,
+          "unstable": false
+        },
+        "openai/gpt-4.1-nano|multi_hop|native": {
+          "operative_alpha": null,
+          "competent": false,
+          "no_certified_alpha": true,
+          "powered": false,
+          "powered_for_disconfirmation": false,
+          "anti_conservative": false,
+          "gate_controls": false,
+          "paired_fails": true,
+          "paired_ok": false,
+          "marginal_holds": false,
+          "unstable": false
+        },
+        "openai/gpt-4.1-nano|atomic|0.2": {
+          "operative_alpha": 0.5,
+          "competent": true,
+          "no_certified_alpha": false,
+          "powered": true,
+          "powered_for_disconfirmation": true,
+          "anti_conservative": false,
+          "gate_controls": true,
+          "paired_fails": false,
+          "paired_ok": true,
+          "marginal_holds": true,
+          "unstable": true,
+          "realized_fdr": 0.131068,
+          "ci": [
+            0.086695,
+            0.161369
+          ],
+          "n_admitted": 412,
+          "n_false_admitted": 54
+        },
+        "openai/gpt-4.1-nano|atomic|0.5": {
+          "operative_alpha": 0.5,
+          "competent": true,
+          "no_certified_alpha": false,
+          "powered": true,
+          "powered_for_disconfirmation": true,
+          "anti_conservative": false,
+          "gate_controls": true,
+          "paired_fails": false,
+          "paired_ok": true,
+          "marginal_holds": true,
+          "unstable": false,
+          "realized_fdr": 0.296296,
+          "ci": [
+            0.233317,
+            0.39627
+          ],
+          "n_admitted": 432,
+          "n_false_admitted": 128
+        },
+        "openai/gpt-4.1-nano|atomic|0.85": {
+          "operative_alpha": 0.5,
+          "competent": true,
+          "no_certified_alpha": false,
+          "powered": true,
+          "powered_for_disconfirmation": true,
+          "anti_conservative": false,
+          "gate_controls": false,
+          "paired_fails": false,
+          "paired_ok": true,
+          "marginal_holds": true,
+          "unstable": false,
+          "realized_fdr": 0.605634,
+          "ci": [
+            0.442113,
+            0.690228
+          ],
+          "n_admitted": 142,
+          "n_false_admitted": 86
+        },
+        "openai/gpt-4.1-nano|atomic|native": {
+          "operative_alpha": 0.5,
+          "competent": true,
+          "no_certified_alpha": false,
+          "powered": true,
+          "powered_for_disconfirmation": true,
+          "anti_conservative": false,
+          "gate_controls": true,
+          "paired_fails": false,
+          "paired_ok": true,
+          "marginal_holds": true,
+          "unstable": false,
+          "realized_fdr": 0.346756,
+          "ci": [
+            0.260616,
+            0.416403
+          ],
+          "n_admitted": 447,
+          "n_false_admitted": 155
+        },
+        "openai/gpt-4.1-mini|multi_hop|0.2": {
+          "operative_alpha": 0.5,
+          "competent": true,
+          "no_certified_alpha": false,
+          "powered": true,
+          "powered_for_disconfirmation": true,
+          "anti_conservative": false,
+          "gate_controls": true,
+          "paired_fails": true,
+          "paired_ok": false,
+          "marginal_holds": true,
+          "unstable": false,
+          "realized_fdr": 0.191375,
+          "ci": [
+            0.149714,
+            0.231591
+          ],
+          "n_admitted": 371,
+          "n_false_admitted": 71
+        },
+        "openai/gpt-4.1-mini|multi_hop|0.5": {
+          "operative_alpha": 0.5,
+          "competent": true,
+          "no_certified_alpha": false,
+          "powered": true,
+          "powered_for_disconfirmation": true,
+          "anti_conservative": false,
+          "gate_controls": true,
+          "paired_fails": true,
+          "paired_ok": false,
+          "marginal_holds": false,
+          "unstable": false,
+          "realized_fdr": 0.449541,
+          "ci": [
+            0.404756,
+            0.495794
+          ],
+          "n_admitted": 545,
+          "n_false_admitted": 245
+        },
+        "openai/gpt-4.1-mini|multi_hop|0.85": {
+          "operative_alpha": 0.5,
+          "competent": true,
+          "no_certified_alpha": false,
+          "powered": true,
+          "powered_for_disconfirmation": true,
+          "anti_conservative": true,
+          "gate_controls": false,
+          "paired_fails": true,
+          "paired_ok": false,
+          "marginal_holds": false,
+          "unstable": false,
+          "realized_fdr": 0.818182,
+          "ci": [
+            0.758273,
+            0.860311
+          ],
+          "n_admitted": 374,
+          "n_false_admitted": 306
+        },
+        "openai/gpt-4.1-mini|multi_hop|native": {
+          "operative_alpha": 0.5,
+          "competent": true,
+          "no_certified_alpha": false,
+          "powered": true,
+          "powered_for_disconfirmation": true,
+          "anti_conservative": false,
+          "gate_controls": true,
+          "paired_fails": true,
+          "paired_ok": false,
+          "marginal_holds": false,
+          "unstable": false,
+          "realized_fdr": 0.535604,
+          "ci": [
+            0.491595,
+            0.575994
+          ],
+          "n_admitted": 646,
+          "n_false_admitted": 346
+        },
+        "openai/gpt-4.1-mini|atomic|0.2": {
+          "operative_alpha": 0.5,
+          "competent": true,
+          "no_certified_alpha": false,
+          "powered": true,
+          "powered_for_disconfirmation": true,
+          "anti_conservative": false,
+          "gate_controls": true,
+          "paired_fails": true,
+          "paired_ok": false,
+          "marginal_holds": false,
+          "unstable": false,
+          "realized_fdr": 0.138639,
+          "ci": [
+            0.112781,
+            0.165375
+          ],
+          "n_admitted": 779,
+          "n_false_admitted": 108
+        },
+        "openai/gpt-4.1-mini|atomic|0.5": {
+          "operative_alpha": 0.5,
+          "competent": true,
+          "no_certified_alpha": false,
+          "powered": true,
+          "powered_for_disconfirmation": true,
+          "anti_conservative": false,
+          "gate_controls": true,
+          "paired_fails": true,
+          "paired_ok": false,
+          "marginal_holds": false,
+          "unstable": false,
+          "realized_fdr": 0.388489,
+          "ci": [
+            0.328618,
+            0.444053
+          ],
+          "n_admitted": 278,
+          "n_false_admitted": 108
+        },
+        "openai/gpt-4.1-mini|atomic|0.85": {
+          "operative_alpha": 0.5,
+          "competent": true,
+          "no_certified_alpha": false,
+          "powered": true,
+          "powered_for_disconfirmation": true,
+          "anti_conservative": true,
+          "gate_controls": false,
+          "paired_fails": true,
+          "paired_ok": false,
+          "marginal_holds": false,
+          "unstable": false,
+          "realized_fdr": 0.781022,
+          "ci": [
+            0.705425,
+            0.845528
+          ],
+          "n_admitted": 137,
+          "n_false_admitted": 107
+        },
+        "openai/gpt-4.1-mini|atomic|native": {
+          "operative_alpha": 0.5,
+          "competent": true,
+          "no_certified_alpha": false,
+          "powered": true,
+          "powered_for_disconfirmation": true,
+          "anti_conservative": false,
+          "gate_controls": true,
+          "paired_fails": true,
+          "paired_ok": false,
+          "marginal_holds": false,
+          "unstable": false,
+          "realized_fdr": 0.099631,
+          "ci": [
+            0.080612,
+            0.119662
+          ],
+          "n_admitted": 1084,
+          "n_false_admitted": 108
+        }
+      }
+    },
+    "robustness_alt_normalization": {
+      "normalization_pool": "reals_union_cf (no swap)",
+      "verdict": "EARNED",
+      "headline": "EARNED: the iter-3 paired/anti-conservative knockoff failure PERSISTS (and strengthens) with a COMPETENT extractor (openai/gpt-4.1-mini, mh_acc>=0.45, 3/3 powered multi_hop cells have paired-win-rate ...",
+      "n_earned_cells": 2,
+      "n_scoped_cells": 0,
+      "persistence_matrix": [
+        {
+          "extractor": "openai/gpt-4.1-nano",
+          "family": "multi_hop",
+          "density": 0.2,
+          "realized_false_frac": 0.199115,
+          "mh_acc": 0.202907,
+          "n_pairs": 226,
+          "n_false": 45,
+          "n_true": 181,
+          "alpha_star": 0.5,
+          "realized_fdr_at_alpha_star": 0.184783,
+          "ci_at_alpha_star": [
+            0.097561,
+            0.272727
+          ],
+          "decoy_fdr_hat_at_alpha_star": 0.5,
+          "n_admitted_at_alpha_star": 92,
+          "n_false_admitted_at_alpha_star": 17,
+          "paired_win_rate": 0.392857,
+          "paired_win_rate_ci": [
+            0.192308,
+            0.586207
+          ],
+          "marginal_holds": true,
+          "marginal_direction": "too_easy_anti_conservative",
+          "marginal_tail_gap_mean_diff": -0.052734,
+          "competent": false,
+          "powered": true,
+          "powered_for_disconfirmation": false,
+          "anti_conservative": false,
+          "gate_controls": true,
+          "paired_fails": false,
+          "paired_ok": true,
+          "unstable": true,
+          "seed_spread_realized_median": 0.151116,
+          "seed_spread_paired_median": 0.527778
+        },
+        {
+          "extractor": "openai/gpt-4.1-nano",
+          "family": "multi_hop",
+          "density": 0.5,
+          "realized_false_frac": 0.5,
+          "mh_acc": 0.202907,
+          "n_pairs": 362,
+          "n_false": 181,
+          "n_true": 181,
+          "alpha_star": null,
+          "realized_fdr_at_alpha_star": null,
+          "ci_at_alpha_star": null,
+          "decoy_fdr_hat_at_alpha_star": null,
+          "n_admitted_at_alpha_star": null,
+          "n_false_admitted_at_alpha_star": null,
+          "paired_win_rate": 0.491713,
+          "paired_win_rate_ci": [
+            0.41529,
+            0.554287
+          ],
+          "marginal_holds": false,
+          "marginal_direction": "too_hard_conservative",
+          "marginal_tail_gap_mean_diff": 0.008695,
+          "competent": false,
+          "powered": false,
+          "powered_for_disconfirmation": false,
+          "anti_conservative": false,
+          "gate_controls": false,
+          "paired_fails": false,
+          "paired_ok": true,
+          "unstable": false,
+          "seed_spread_realized_median": 0.421132,
+          "seed_spread_paired_median": 0.455801
+        },
+        {
+          "extractor": "openai/gpt-4.1-nano",
+          "family": "multi_hop",
+          "density": 0.85,
+          "realized_false_frac": 0.850056,
+          "mh_acc": 0.202907,
+          "n_pairs": 887,
+          "n_false": 754,
+          "n_true": 133,
+          "alpha_star": null,
+          "realized_fdr_at_alpha_star": null,
+          "ci_at_alpha_star": null,
+          "decoy_fdr_hat_at_alpha_star": null,
+          "n_admitted_at_alpha_star": null,
+          "n_false_admitted_at_alpha_star": null,
+          "paired_win_rate": 0.461538,
+          "paired_win_rate_ci": [
+            0.423058,
+            0.495128
+          ],
+          "marginal_holds": false,
+          "marginal_direction": "too_easy_anti_conservative",
+          "marginal_tail_gap_mean_diff": -0.001239,
+          "competent": false,
+          "powered": false,
+          "powered_for_disconfirmation": false,
+          "anti_conservative": false,
+          "gate_controls": false,
+          "paired_fails": true,
+          "paired_ok": false,
+          "unstable": false,
+          "seed_spread_realized_median": null,
+          "seed_spread_paired_median": 0.461538
+        }
+      ],
+      "note": "primary normalization is {reals U cf U swap} (iter-3 recipe so the nano anchor reconciles); this variant uses only the gate's actual competitors {reals U cf} and should give the same qualitative verdi..."
+    },
+    "sanity_anchor_iter3_reproduction": {
+      "checked": true,
+      "nano_mh_acc": 0.202907,
+      "iter3_matched_first40docs": {
+        "n_pairs": 186,
+        "n_false": 158,
+        "realized_fdr_at_0.5": 1.0,
+        "n_admitted_at_0.5": 12,
+        "n_false_admitted_at_0.5": 12,
+        "certified_at_0.5": true,
+        "paired_win_rate": 0.294118
+      },
+      "full_scale_all_docs": {
+        "n_pairs": 935,
+        "n_false": 754,
+        "realized_fdr_at_0.5": null,
+        "n_admitted_at_0.5": 0,
+        "n_false_admitted_at_0.5": 0,
+        "certified_at_0.5": false,
+        "paired_win_rate": 0.461538
+      },
+      "reproduces_iter3_direction": true,
+      "iter3_anchor": {
+        "alpha_star": 0.5,
+        "realized_fdr_at_alpha_star": 1.0,
+        "mh_acc": 0.169,
+        "paired_win_rate_below_half": true,
+        "n_false_multi_hop_40docs": 158
+      },
+      "scale_finding": "At the iter-3-matched 40-doc scale the nano multi_hop gate reproduces iter-3 (realized FDR=1.0 at alpha=0.5, ~12 admissions, paired win-rate<0.5). At full scale the SAME weak-nano gate admits (near) n..."
+    },
+    "bh_correction": [
+      {
+        "test_name": "openai/gpt-4.1-nano|multi_hop|0.2|marginal.decoy_vs_spont.ks",
+        "raw_p": 0.346850515664204,
+        "bh_adj_p": 0.4547650050761697,
+        "reject": false
+      },
+      {
+        "test_name": "openai/gpt-4.1-nano|multi_hop|0.2|marginal.decoy_vs_spont.mw",
+        "raw_p": 0.05991699424228848,
+        "bh_adj_p": 0.11061598937037874,
+        "reject": false
+      },
+      {
+        "test_name": "openai/gpt-4.1-nano|multi_hop|0.2|paired.ks_decoy_vs_real",
+        "raw_p": 0.2560450207654439,
+        "bh_adj_p": 0.40967203322471024,
+        "reject": false
+      }
+    ],
+    "full_figure_captions": {
+      "F1_persistence_heatmap": "Persistence heatmap: realized FDR at the operative certified alpha (alpha*) across the (extractor x density) grid for multi_hop, each cell annotated with n_admitted / n_false_admitted / decoy_fdr_hat ...",
+      "F2_realized_fdr_diagonals": "Realized-FDR-vs-target-alpha diagonals, nano vs strong extractor overlaid at matched density (0.85 and 0.50). Ideal y=x dashed; doc-block (B>=2000) bootstrap CIs as error bars; the decoy_fdr_hat self-...",
+      "F3_paired_win_rate": "Paired decoy-win-rate over FALSE-real pairs (+ doc-block bootstrap CI) per cell, with the 0.5 exchangeable line — THE persist/vanish chart. CI_high<0.5 => false reals systematically beat their OWN cou...",
+      "F4_marginal_crux_cdf": "Marginal crux CDF overlay (true-positive / spontaneous-error / counterfactual-decoy normalized self-consistency scores) per extractor in the admission tail. Shows the MARGINAL decoy-quality diagnostic..."
+    },
+    "dataset": "CLUTRR-v1-CrispGold-CalibrationAnchor",
+    "total_cost_usd": 0.957844,
+    "cost_trace_path": "logs/cost.jsonl",
+    "interpretation": {
+      "persist": "if the paired failure PERSISTS for a competent extractor at matched/varied density while the marginal holds -> 'marginal != paired at the LLM boundary' is EARNED (headline)",
+      "vanish": "if it VANISHES (gate controls realized FDR at alpha) -> report the POSITIVE result and SCOPE the limitation to the weak-scorer / error-dense regime",
+      "density_driven": "if the failure tracks density for BOTH extractors -> density is the governing variable",
+      "marginal_vs_paired": "the MARGINAL crux (decoy ~ spontaneous-error in distribution) can hold while the PAIRED competition (each false real vs its OWN decoy) fails — the matrix localizes which axis drives that dissociation"
+    },
+    "grand_total_llm_spend_usd_all_processes": 2.9423,
+    "cost_note": "total_cost_usd is the final reproducible run's process spend; grand_total_llm_spend_usd_all_processes sums every probe/checkpoint/run in this workspace."
+  },
+  "datasets": [
+    {
+      "dataset": "CLUTRR-v1-CrispGold-CalibrationAnchor",
+      "examples": [
+        {
+          "input": "{\"doc_id\": \"b9e9666b-1371-400c-a8d0-1a9d3d4a0324\", \"head\": \"Gabrielle\", \"relation\": \"grandmother\", \"tail\": \"Dan\", \"claim\": \"Dan is the grandmother of Gabrielle.\", \"extractor\": \"openai/gpt-4.1-nano\", \"...",
+          "output": "FALSE",
+          "metadata_extractor": "openai/gpt-4.1-nano",
+          "metadata_doc_id": "b9e9666b-1371-400c-a8d0-1a9d3d4a0324",
+          "metadata_fact_type": "atomic",
+          "metadata_chain_length_k": 2,
+          "metadata_z_real_norm": 0.75,
+          "metadata_z_decoy_norm": 0.0,
+          "metadata_z_real_raw_conf": 0.29,
+          "metadata_w_signed_max": 0.75,
+          "metadata_density_membership": [
+            0.85
+          ],
+          "predict_admit_a05": "no",
+          "predict_admit_a10": "no",
+          "predict_admit_a20": "no",
+          "predict_admit_a30": "no",
+          "predict_admit_a50": "yes"
+        },
+        {
+          "input": "{\"doc_id\": \"b9e9666b-1371-400c-a8d0-1a9d3d4a0324\", \"head\": \"Dan\", \"relation\": \"brother\", \"tail\": \"Micheal\", \"claim\": \"Micheal is the brother of Dan.\", \"extractor\": \"openai/gpt-4.1-nano\", \"candidate_ki...",
+          "output": "TRUE",
+          "metadata_extractor": "openai/gpt-4.1-nano",
+          "metadata_doc_id": "b9e9666b-1371-400c-a8d0-1a9d3d4a0324",
+          "metadata_fact_type": "atomic",
+          "metadata_chain_length_k": 2,
+          "metadata_z_real_norm": 0.875,
+          "metadata_z_decoy_norm": 1.0,
+          "metadata_z_real_raw_conf": 0.96,
+          "metadata_w_signed_max": -1.0,
+          "metadata_density_membership": [
+            0.2,
+            0.5
+          ],
+          "predict_admit_a05": "no",
+          "predict_admit_a10": "no",
+          "predict_admit_a20": "no",
+          "predict_admit_a30": "no",
+          "predict_admit_a50": "no"
+        },
+        {
+          "input": "{\"doc_id\": \"b9e9666b-1371-400c-a8d0-1a9d3d4a0324\", \"head\": \"Gabrielle\", \"relation\": \"uncle\", \"tail\": \"Micheal\", \"claim\": \"Micheal is the uncle of Gabrielle.\", \"extractor\": \"openai/gpt-4.1-nano\", \"cand...",
+          "output": "FALSE",
+          "metadata_extractor": "openai/gpt-4.1-nano",
+          "metadata_doc_id": "b9e9666b-1371-400c-a8d0-1a9d3d4a0324",
+          "metadata_fact_type": "multi_hop",
+          "metadata_chain_length_k": 2,
+          "metadata_z_real_norm": 0.625,
+          "metadata_z_decoy_norm": 0.5,
+          "metadata_z_real_raw_conf": 0.28,
+          "metadata_w_signed_max": 0.625,
+          "metadata_density_membership": [
+            0.85
+          ],
+          "predict_admit_a05": "no",
+          "predict_admit_a10": "no",
+          "predict_admit_a20": "no",
+          "predict_admit_a30": "no",
+          "predict_admit_a50": "no"
+        }
+      ]
+    }
+  ]
+}

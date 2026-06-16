@@ -1,0 +1,82 @@
+{
+  "doc_id": "news_wikinews_02",
+  "genre": "news",
+  "kind": "admission",
+  "n_proofs": 1,
+  "graphs": [
+    {
+      "nodes": [
+        {
+          "id": 0,
+          "label": "admitted_fact(choose(The Justice and Development Party,Abdullah G\u00fcl))",
+          "kind": "derived",
+          "rule": "admission"
+        },
+        {
+          "id": 1,
+          "label": "choose(The Justice and Development Party, Abdullah G\u00fcl)",
+          "kind": "leaf",
+          "cert": {
+            "provenance": "The ruling AKP chose Abdullah G\u00fcl as their candidate instead",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 0.7368,
+              "T": 0.191489,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.871795,
+              "r": 1
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "src": 0,
+          "dst": 1,
+          "rule": "admission"
+        }
+      ]
+    }
+  ],
+  "proofs": [
+    {
+      "type": "derived",
+      "atom": [
+        "admitted_fact",
+        [
+          "choose(The Justice and Development Party,Abdullah G\u00fcl)"
+        ]
+      ],
+      "rule": "admission",
+      "children": [
+        {
+          "type": "leaf",
+          "atom": [
+            "choose",
+            [
+              "The Justice and Development Party",
+              "Abdullah G\u00fcl"
+            ]
+          ],
+          "cert": {
+            "provenance": "The ruling AKP chose Abdullah G\u00fcl as their candidate instead",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 0.7368,
+              "T": 0.191489,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.871795,
+              "r": 1
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

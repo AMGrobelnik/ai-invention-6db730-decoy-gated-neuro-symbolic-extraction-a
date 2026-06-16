@@ -1,0 +1,26 @@
+[
+  {
+    "entity_type": "PER",
+    "gloss": "Person — individuals, real or fictional (e.g. Wilfried Schneider)."
+  },
+  {
+    "entity_type": "ORG",
+    "gloss": "Organization — companies, institutions, bands, teams, agencies (e.g. Zest Airways)."
+  },
+  {
+    "entity_type": "LOC",
+    "gloss": "Location — geopolitical entities, places, geographic features (e.g. Philippines)."
+  },
+  {
+    "entity_type": "TIME",
+    "gloss": "Time — dates, years, periods (e.g. 2013, 13 March)."
+  },
+  {
+    "entity_type": "NUM",
+    "gloss": "Number — numeric quantities not otherwise typed (e.g. 24, 1.2 million)."
+  },
+  {
+    "entity_type": "MISC",
+    "gloss": "Miscellaneous — named entities not covered above: creative works, events, products, nationalities, etc."
+  }
+]

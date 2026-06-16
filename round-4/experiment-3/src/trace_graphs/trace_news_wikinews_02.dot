@@ -1,0 +1,8 @@
+digraph proof {
+  rankdir=TB;
+  node [style=filled, fontname="Helvetica", fontsize=10];
+  labelloc="t"; label="news_wikinews_02 [news] admission";
+  n0 [label="admitted_fact(choose(The Justice and Development Party,Abdullah Gül))\nrule: admission", fillcolor="lightblue", tooltip="derived conclusion"];
+  n1 [label="choose(The Justice and Development Party, Abdullah Gül)\nW=0.7368 T=0.191489 a=0.5\nFDP_hat=0.871795 r=1", fillcolor="palegreen", tooltip="The ruling AKP chose Abdullah Gül as their candidate instead"];
+  n0 -> n1 [label="admission", fontsize=8];
+}

@@ -1,0 +1,58 @@
+{
+  "doc_id": "news_wikinews_02",
+  "genre": "news",
+  "engine": "leaf_weight",
+  "kind": "admission",
+  "graphs": [
+    {
+      "nodes": [
+        {
+          "id": 0,
+          "label": "admitted_fact(choose(The Justice and Development Party,Abdullah G\u00fcl))",
+          "kind": "derived",
+          "rule": "admission",
+          "prob": 0.368421
+        },
+        {
+          "id": 1,
+          "label": "choose(The Justice and Development Party, Abdullah G\u00fcl)",
+          "kind": "leaf",
+          "prob": 0.368421,
+          "cert": {
+            "provenance": "The ruling AKP chose Abdullah G\u00fcl as their candidate instead",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 0.7368,
+              "T": 0.191489,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.871795,
+              "r": 1
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "src": 0,
+          "dst": 1,
+          "rule": "admission"
+        }
+      ]
+    }
+  ],
+  "marginals": [
+    {
+      "conclusion": [
+        "admitted_fact",
+        [
+          "choose(The Justice and Development Party,Abdullah G\u00fcl)"
+        ]
+      ],
+      "marginal": 0.3684210526315789
+    }
+  ],
+  "program": "0.368421::choose('The Justice and Development Party','Abdullah G\u00fcl').\nco_occurring(X,Y,D) :- occurred_on(X,D), occurred_on(Y,D)."
+}

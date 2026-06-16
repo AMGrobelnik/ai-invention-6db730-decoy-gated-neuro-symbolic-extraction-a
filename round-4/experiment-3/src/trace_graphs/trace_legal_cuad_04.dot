@@ -1,0 +1,10 @@
+digraph proof {
+  rankdir=TB;
+  node [style=filled, fontname="Helvetica", fontsize=10];
+  labelloc="t"; label="legal_cuad_04 [legal] party_bound_effective";
+  n0 [label="party_bound_effective(Maintenance Agreement, Bankers Bank, MARCH 1, 2001)\nrule: party_bound_effective", fillcolor="lightblue", tooltip="derived conclusion"];
+  n1 [label="has_party(Maintenance Agreement, Bankers Bank)\nW=0.597 T=0.129032 a=0.5\nFDP_hat=0.72 r=1", fillcolor="palegreen", tooltip="Bankers Bank agrees to pay fees equal to $40 per month for all Participating Banks (original or added) for which maintenance is provided."];
+  n2 [label="effective_date(Maintenance Agreement, MARCH 1, 2001)\nW=0.7313 T=0.129032 a=0.5\nFDP_hat=0.72 r=1", fillcolor="palegreen", tooltip="COMMENCEMENT DATE FOR MAINTENANCE UNDER THIS ADDENDUM:  MARCH 1, 2001"];
+  n0 -> n1 [label="party_bound_effective", fontsize=8];
+  n0 -> n2 [label="party_bound_effective", fontsize=8];
+}

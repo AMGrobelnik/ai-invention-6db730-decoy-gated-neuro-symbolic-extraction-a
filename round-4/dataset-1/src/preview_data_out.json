@@ -1,0 +1,657 @@
+{
+  "metadata": {
+    "name": "application_anchor",
+    "description": "Genre-faithful APPLICATION anchor: short, professionally-written legal / news / regulatory documents standardized to a shared (head, relation, tail) triple schema with char-span provenance, coarse {PE...",
+    "schema_per_example": {
+      "grouping": "datasets[] is grouped by SOURCE CORPUS; each document is ONE example.",
+      "input": "JSON string: {doc_id, document_text, genre, source, char_length, entities:[{name,type in {PER,LOC,ORG,TIME,NUM,MISC},char_span:[s,e]}]}",
+      "output": "JSON string: {gold_atomic_facts:[{head,relation,tail,provenance_char_span:[s,e]}]}",
+      "metadata": "metadata_fold(genre), metadata_genre, metadata_gold_quality(crisp|silver), metadata_crisp_subset(bool; crisp-only fold), metadata_decidable_fraction(float [0,1] composite coverage proxy), metadata_dec..."
+    },
+    "n_documents": 84,
+    "n_source_datasets": 4,
+    "dataset_selection_rationale": "4 source corpora CHOSEN from 9+ evaluated. Kept (free commercial+research license + genre-faithful short documents + supports deterministic no-LLM gold): CUAD (legal, CRISP), Wikinews (news, silver), ...",
+    "genre_counts": {
+      "legal": 30,
+      "news": 28,
+      "regulatory": 26
+    },
+    "source_dataset_counts": {
+      "CUAD": 30,
+      "Wikinews": 28,
+      "GDPR": 15,
+      "eCFR": 11
+    },
+    "gold_quality_counts": {
+      "crisp": 30,
+      "silver": 54
+    },
+    "gold_quality_by_genre": {
+      "legal": {
+        "crisp": 30
+      },
+      "news": {
+        "silver": 28
+      },
+      "regulatory": {
+        "silver": 26
+      }
+    },
+    "license_counts": {
+      "CC BY 4.0 (Atticus Project / CUAD v1; Zenodo 4595826)": 30,
+      "CC BY 2.5 (Wikinews / Wikimedia Foundation)": 28,
+      "EUR-Lex reuse (© European Union; Regulation (EU) 2016/679, CELEX:32016R0679; free reuse with attribution); text via gdpr-info.eu": 15,
+      "Public domain (US Government work; eCFR / GPO, ecfr.gov)": 11
+    },
+    "relation_vocab_by_genre": {
+      "legal": [
+        "agreement_date",
+        "contains_exclusivity",
+        "contains_license_grant"
+      ],
+      "news": [
+        "affiliated_with",
+        "announce",
+        "ask"
+      ],
+      "regulatory": [
+        "applies_to",
+        "cross_references",
+        "defined_as"
+      ]
+    },
+    "crisp_subset_count": 30,
+    "decidable_fraction": {
+      "note": "Deterministic coverage proxy (NO model). composite = mean(sentence_coverage, entity_participation, char_coverage). Descriptive per-row feature (like num_facts) so the experiment can rank/select the mo...",
+      "overall": {
+        "min": 0.1139,
+        "max": 0.7692,
+        "mean": 0.3041,
+        "median": 0.2485
+      },
+      "by_genre": {
+        "legal": {
+          "min": 0.1139,
+          "max": 0.3537,
+          "mean": 0.2235,
+          "median": 0.2092
+        },
+        "news": {
+          "min": 0.1348,
+          "max": 0.5206,
+          "mean": 0.24,
+          "median": 0.2202
+        },
+        "regulatory": {
+          "min": 0.118,
+          "max": 0.7692,
+          "mean": 0.4662,
+          "median": 0.5005
+        }
+      },
+      "subscore_means_overall": {
+        "sentence_coverage": 0.4016,
+        "entity_participation": 0.3024,
+        "char_coverage": 0.2083
+      }
+    },
+    "total_facts": 547,
+    "total_entities": 2774,
+    "facts_per_doc": {
+      "min": 3,
+      "max": 15,
+      "mean": 6.51
+    },
+    "char_length": {
+      "min": 1161,
+      "max": 3493,
+      "mean": 2196.1,
+      "median": 2087
+    },
+    "sources": {
+      "CUAD (legal)": "CUAD v1 (theatticusproject) — CC BY 4.0 — human-annotated clause spans (CRISP). https://zenodo.org/records/4595826",
+      "Wikinews (news)": "en.wikinews.org — CC BY 2.5 — deterministic spaCy SVO+5W rule-based curation (SILVER).",
+      "GDPR (regulatory, EU)": "Regulation (EU) 2016/679 (EUR-Lex CELEX:32016R0679; text via gdpr-info.eu) — EUR-Lex free reuse — deterministic structural regex curation (SILVER).",
+      "eCFR (regulatory, US)": "Electronic Code of Federal Regulations (ecfr.gov, versioner API @ 2024-12-31) — US Government public domain — deterministic structural regex curation (SILVER). Parts: 12 CFR 1005 (Reg E), 12 CFR 1016 ..."
+    },
+    "evaluated_but_excluded": {
+      "MAUD (TheAtticusProject/maud)": "annotations CC-BY 4.0 BUT the source merger-agreement texts are CC-BY-NC-SA 3.0 (NonCommercial); multiple-choice expert labels on very long (>50k char) docs, not (h,r,t) char-span facts on ~3k-char do...",
+      "LEDGAR (LexGLUE coastalcph)": "single-label provision CLASSIFICATION only; no relational span facts -> not a crisp (head,relation,tail) source.",
+      "REDFM (Babelscape)": "CC BY-SA-NC 4.0 (NonCommercial) — fails free-license rule; Wikipedia-genre overlap with the Re-DocRED anchor.",
+      "ContractNLI (HF kiddothe2b)": "CC-BY-NC-SA 3.0 underlying docs (NonCommercial) — fails free-license rule; document-level NLI labels, not span facts.",
+      "WebRED (google-research)": "CC BY-SA 3.0 (usable) but sentence-level TFRecord, not genre-faithful short documents; Wikinews preferred.",
+      "LDC ACE / TACRED": "research-restricted / non-free — excluded per plan."
+    },
+    "determinism": {
+      "seed": 42,
+      "tool_versions": {
+        "python": "3.12",
+        "spacy": "3.7.5",
+        "spacy_model": "en_core_web_sm==3.7.1",
+        "nltk": "3.9.1 (wordnet, omw-1.4)",
+        "numpy": "1.26.4",
+        "beautifulsoup4": "4.12.3 (lxml 5.3.0 parser)",
+        "reserved_next_iteration": "sentence-transformers all-MiniLM-L6-v2, rank_bm25 (NOT used for gold here; reserved for next-iteration relation-alignment / retrieval)"
+      },
+      "regeneration": "Deterministic from cached raw/ with no network: python data.py (build_legal+build_news+build_regulatory). Stable sort within each source group by doc_id; source groups in fixed order ['CUAD', 'Wikinew...",
+      "raw_cache_manifest": {
+        "CUADv1.json": {
+          "bytes": 40128638,
+          "sha256_16": "ed0b77d85bdf4014"
+        },
+        "gdpr_html_files": 38,
+        "wikinews_article_files": 734,
+        "ecfr_xml_files": 7
+      }
+    },
+    "verification": "Every entity char_span and fact provenance_char_span is re-verified against document_text (build/verify_dataset.py). Value-tail facts: tail is a substring of the provenance span; clause/label facts: t...",
+    "limitations": "Legal gold is CRISP (CUAD human clause-span annotation), including the excerpt-window legal docs whose every clause span is re-based and re-verified. News and regulatory gold are SILVER (deterministic..."
+  },
+  "datasets": [
+    {
+      "dataset": "CUAD",
+      "examples": [
+        {
+          "input": "{\"doc_id\": \"legal_cuad_00\", \"document_text\": \"EXHIBIT 99.1 JOINT FILING AGREEMENT The undersigned hereby agree that the statement on Schedule 13G with respect to the equity securities of Q Biomed, Inc...",
+          "output": "{\"gold_atomic_facts\": [{\"head\": \"JOINT FILING AGREEMENT\", \"relation\": \"has_title\", \"tail\": \"JOINT FILING AGREEMENT\", \"provenance_char_span\": [13, 35]}, {\"head\": \"JOINT FILING AGREEMENT\", \"relation\": \"...",
+          "metadata_doc_id": "legal_cuad_00",
+          "metadata_fold": "legal",
+          "metadata_genre": "legal",
+          "metadata_source": "CUAD:QBIOMEDINC_04_08_2020-EX-99.1-JOINT FILING AGREEMENT",
+          "metadata_license": "CC BY 4.0 (Atticus Project / CUAD v1; Zenodo 4595826)",
+          "metadata_gold_quality": "crisp",
+          "metadata_char_length": 2732,
+          "metadata_num_entities": 76,
+          "metadata_num_facts": 13,
+          "metadata_relation_vocab": [
+            "agreement_date",
+            "has_party",
+            "has_title"
+          ],
+          "metadata_crisp_subset": true,
+          "metadata_decidable_fraction": 0.1918,
+          "metadata_decidable_subscores": {
+            "sentence_coverage": 0.2895,
+            "entity_participation": 0.1711,
+            "char_coverage": 0.1149
+          },
+          "metadata_entity_types_fine": {
+            "Schedule 13": "LAW",
+            "Q Biomed, Inc.": "ORG",
+            "the Securities Exchange Act": "ORG",
+            "1934": "DATE",
+            "II PN, Ltd.": "DATE",
+            "Troy J. Rillo": "PERSON",
+            "Esq": "GPE",
+            "J. Rillo": "PERSON",
+            "U.S.": "GPE",
+            "LLC": "ORG",
+            "GP": "ORG",
+            "Delta Beta Advisors": "ORG",
+            "Matthew Beckman Date": "PERSON",
+            "Matthew Beckman": "PERSON"
+          },
+          "metadata_contract_title": "QBIOMEDINC_04_08_2020-EX-99.1-JOINT FILING AGREEMENT",
+          "metadata_source_dataset": "CUAD v1 (theatticusproject)",
+          "metadata_source_url": "https://zenodo.org/records/4595826",
+          "metadata_annotation": "human-annotated CUAD clause spans",
+          "metadata_excerpt": false
+        },
+        {
+          "input": "{\"doc_id\": \"legal_cuad_01\", \"document_text\": \"Exhibit 99.1\\n\\nJOINT FILING AGREEMENT\\n\\nPursuant and subject to Rule 13d-1(k)(1) promulgated under the Securities Exchange Act of 1934, as amended, the ...",
+          "output": "{\"gold_atomic_facts\": [{\"head\": \"JOINT FILING AGREEMENT\", \"relation\": \"has_title\", \"tail\": \"JOINT FILING AGREEMENT\", \"provenance_char_span\": [14, 36]}, {\"head\": \"JOINT FILING AGREEMENT\", \"relation\": \"...",
+          "metadata_doc_id": "legal_cuad_01",
+          "metadata_fold": "legal",
+          "metadata_genre": "legal",
+          "metadata_source": "CUAD:ATENTOSA_07_06_2020-EX-99.1-JOINT FILING AGREEMENT",
+          "metadata_license": "CC BY 4.0 (Atticus Project / CUAD v1; Zenodo 4595826)",
+          "metadata_gold_quality": "crisp",
+          "metadata_char_length": 2298,
+          "metadata_num_entities": 51,
+          "metadata_num_facts": 12,
+          "metadata_relation_vocab": [
+            "agreement_date",
+            "has_party",
+            "has_title"
+          ],
+          "metadata_crisp_subset": true,
+          "metadata_decidable_fraction": 0.3147,
+          "metadata_decidable_subscores": {
+            "sentence_coverage": 0.5238,
+            "entity_participation": 0.2353,
+            "char_coverage": 0.1849
+          },
+          "metadata_entity_types_fine": {
+            "the Securities Exchange Act": "ORG",
+            "1934": "DATE",
+            "13D": "DATE",
+            "July 6, 2020": "DATE",
+            "LLC": "ORG",
+            "John Madden": "PERSON",
+            "HPS Investment Partners": "ORG",
+            "HPS Partners Holdings II": "ORG",
+            "HPS Mezzanine Partners II": "PERSON",
+            "L.P.": "PERSON",
+            "HPS Mezzanine": "PERSON"
+          },
+          "metadata_contract_title": "ATENTOSA_07_06_2020-EX-99.1-JOINT FILING AGREEMENT",
+          "metadata_source_dataset": "CUAD v1 (theatticusproject)",
+          "metadata_source_url": "https://zenodo.org/records/4595826",
+          "metadata_annotation": "human-annotated CUAD clause spans",
+          "metadata_excerpt": false
+        },
+        {
+          "input": "{\"doc_id\": \"legal_cuad_02\", \"document_text\": \"EXHIBIT 10.2   ENDORSEMENT AGREEMENT ADDENDUM I   This Endorsement Agreement Addendum I (the \\\"Addendum\\\") is made and effective November 7, 2017,   BETWE...",
+          "output": "{\"gold_atomic_facts\": [{\"head\": \"ENDORSEMENT AGREEMENT ADDENDUM I\", \"relation\": \"has_title\", \"tail\": \"ENDORSEMENT AGREEMENT ADDENDUM I\", \"provenance_char_span\": [15, 47]}, {\"head\": \"ENDORSEMENT AGREEM...",
+          "metadata_doc_id": "legal_cuad_02",
+          "metadata_fold": "legal",
+          "metadata_genre": "legal",
+          "metadata_source": "CUAD:GridironBionutrientsInc_20171206_8-K_EX-10.2_10972556_EX-10.2_Endorsement Agreement",
+          "metadata_license": "CC BY 4.0 (Atticus Project / CUAD v1; Zenodo 4595826)",
+          "metadata_gold_quality": "crisp",
+          "metadata_char_length": 3456,
+          "metadata_num_entities": 71,
+          "metadata_num_facts": 10,
+          "metadata_relation_vocab": [
+            "agreement_date",
+            "effective_date",
+            "has_party"
+          ],
+          "metadata_crisp_subset": true,
+          "metadata_decidable_fraction": 0.1673,
+          "metadata_decidable_subscores": {
+            "sentence_coverage": 0.2143,
+            "entity_participation": 0.1972,
+            "char_coverage": 0.0906
+          },
+          "metadata_entity_types_fine": {
+            "November 7, 2017": "DATE",
+            "National Football League Alumni - Northern California Chapter": "ORG",
+            "NFLA-NC": "ORG",
+            "California": "GPE",
+            "National Football League Alumni, Inc.": "ORG",
+            "Florida": "GPE",
+            "8000": "DATE",
+            "Midlantic Drive": "LOC",
+            "Mount Laurel": "LOC",
+            "NJ": "GPE",
+            "Nevada": "GPE",
+            "1147": "DATE",
+            "N Roseburg CT": "ORG",
+            "STE A/B Visalia": "ORG",
+            "RECITALS": "GPE",
+            "NFLA": "ORG",
+            "Addendum": "PERSON",
+            "the Endorsement Agreement": "ORG",
+            "October 30, 2017": "DATE",
+            "Gridiron CBD": "ORG",
+            "SECTION ONE": "LAW",
+            "Living Water": "PERSON",
+            "Gridiron CBD H2O": "ORG",
+            "Gridiron MVP": "PERSON",
+            "the Pro Football Legends Logo": "ORG",
+            "the Licensed Products'": "ORG",
+            "Company": "ORG",
+            "Licensed Products": "ORG",
+            "GRIDIRON BIONUTRIENTS, INC.": "ORG",
+            "12/6/2017\n\n\n\n\n\n      SECTION": "DATE",
+            "0.05": "MONEY",
+            "the Contract Territory": "ORG",
+            "the Northern California Chapter": "ORG",
+            "the first full quarter": "DATE",
+            "3) month": "DATE",
+            "quarterly": "DATE",
+            "Zezel ProbioticWater": "PERSON",
+            "Bottle Gridiron MVP": "PERSON",
+            "Water= 1 Unit\n\n f. (1": "ORG",
+            "Bottle Gridiron CBD H20": "PERSON",
+            "NC": "GPE",
+            "15%": "PERCENT",
+            "November 22nd, 2017": "DATE",
+            "Food For Athletes,": "ORG",
+            "Gridiron BioNutrients": "ORG",
+            "Darren Long": "PERSON",
+            "The National Football League Alumni": "ORG",
+            "Elvis Gooden": "PERSON",
+            "Alumni - Northern California Chapter": "ORG",
+            "Eric Price": "PERSON",
+            "12/6/2017": "DATE"
+          },
+          "metadata_contract_title": "GridironBionutrientsInc_20171206_8-K_EX-10.2_10972556_EX-10.2_Endorsement Agreement",
+          "metadata_source_dataset": "CUAD v1 (theatticusproject)",
+          "metadata_source_url": "https://zenodo.org/records/4595826",
+          "metadata_annotation": "human-annotated CUAD clause spans",
+          "metadata_excerpt": false
+        }
+      ]
+    },
+    {
+      "dataset": "Wikinews",
+      "examples": [
+        {
+          "input": "{\"doc_id\": \"news_wikinews_00\", \"document_text\": \"Tuesday, January 8, 2008\\n \\n\\nAn Air New Zealand Boeing 777 and A1GP Team New Zealand's car held two races together at an operational airport today.\\n...",
+          "output": "{\"gold_atomic_facts\": [{\"head\": \"Reid\", \"relation\": \"say\", \"tail\": \"I've never been on a such a wide track before and it was fantastic looking across and\", \"provenance_char_span\": [495, 666]}, {\"head\"...",
+          "metadata_doc_id": "news_wikinews_00",
+          "metadata_fold": "news",
+          "metadata_genre": "news",
+          "metadata_source": "Wikinews:pageid_89106",
+          "metadata_license": "CC BY 2.5 (Wikinews / Wikimedia Foundation)",
+          "metadata_gold_quality": "silver",
+          "metadata_char_length": 1910,
+          "metadata_num_entities": 43,
+          "metadata_num_facts": 3,
+          "metadata_relation_vocab": [
+            "say"
+          ],
+          "metadata_crisp_subset": false,
+          "metadata_decidable_fraction": 0.1785,
+          "metadata_decidable_subscores": {
+            "sentence_coverage": 0.2,
+            "entity_participation": 0.093,
+            "char_coverage": 0.2424
+          },
+          "metadata_entity_types_fine": {
+            "Tuesday, January 8, 2008": "DATE",
+            "Air New Zealand": "ORG",
+            "Boeing": "ORG",
+            "777": "CARDINAL",
+            "New Zealand's": "GPE",
+            "two": "CARDINAL",
+            "today": "DATE",
+            "Auckland International Airport": "FAC",
+            "this morning": "TIME",
+            "NZDT": "ORG",
+            "New Zealand": "GPE",
+            "A1GP": "PRODUCT",
+            "Black Beauty": "WORK_OF_ART",
+            "Jonny Reid": "PERSON",
+            "NZ Alpha One": "ORG",
+            "NZA1": "ORG",
+            "Dave Morgan": "PERSON",
+            "Reid": "PERSON",
+            "Morgan": "PERSON",
+            "first": "ORDINAL",
+            "Mr Reid": "PERSON",
+            "270 km": "QUANTITY",
+            "300 km/h.": "QUANTITY",
+            "second": "ORDINAL",
+            "six-months ago": "DATE",
+            "42-years ago": "DATE",
+            "January 20": "DATE",
+            "Taupo": "ORG",
+            "Twenty-one": "CARDINAL",
+            "Team New Zealand": "ORG",
+            "third": "ORDINAL"
+          },
+          "metadata_article_title": "A1GP New Zealand races Boeing 777",
+          "metadata_source_url": "https://en.wikinews.org/wiki/A1GP_New_Zealand_races_Boeing_777",
+          "metadata_revid": 4812797,
+          "metadata_source_dataset": "Wikinews (en.wikinews.org)",
+          "metadata_annotation": "deterministic spaCy SVO+5W rule-based (silver)"
+        },
+        {
+          "input": "{\"doc_id\": \"news_wikinews_01\", \"document_text\": \"Monday, September 10, 2012\\n \\n\\nAn investigation into Scientology and Tom Cruise which was set to air this past Friday on the American television prog...",
+          "output": "{\"gold_atomic_facts\": [{\"head\": \"Tony Ortega\", \"relation\": \"affiliated_with\", \"tail\": \"The Village Voice\", \"provenance_char_span\": [602, 819]}, {\"head\": \"Maureen Orth\", \"relation\": \"affiliated_with\", ...",
+          "metadata_doc_id": "news_wikinews_01",
+          "metadata_fold": "news",
+          "metadata_genre": "news",
+          "metadata_source": "Wikinews:pageid_526365",
+          "metadata_license": "CC BY 2.5 (Wikinews / Wikimedia Foundation)",
+          "metadata_gold_quality": "silver",
+          "metadata_char_length": 3036,
+          "metadata_num_entities": 72,
+          "metadata_num_facts": 5,
+          "metadata_relation_vocab": [
+            "affiliated_with",
+            "confirm",
+            "report"
+          ],
+          "metadata_crisp_subset": false,
+          "metadata_decidable_fraction": 0.1984,
+          "metadata_decidable_subscores": {
+            "sentence_coverage": 0.2,
+            "entity_participation": 0.1806,
+            "char_coverage": 0.2148
+          },
+          "metadata_entity_types_fine": {
+            "Monday, September 10, 2012": "DATE",
+            "Scientology": "ORG",
+            "Tom Cruise": "PERSON",
+            "this past Friday": "DATE",
+            "American": "NORP",
+            "20/20": "CARDINAL",
+            "ABC News": "ORG",
+            "first": "ORDINAL",
+            "ABC": "ORG",
+            "Thursday": "DATE",
+            "Elizabeth Vargas": "PERSON",
+            "Maureen Orth": "PERSON",
+            "Vanity Fair": "ORG",
+            "October 2012": "DATE",
+            "Tony Ortega": "PERSON",
+            "The Village Voice": "ORG",
+            "2008": "DATE",
+            "Jason Beghe": "PERSON",
+            "New York": "GPE",
+            "Beghe": "GPE",
+            "Vargas": "GPE",
+            "Ortega": "PERSON",
+            "Friday": "DATE",
+            "night": "TIME",
+            "The Camera Never Lies'": "ORG",
+            "Vanity Fair on Scientology": "ORG",
+            "Katie Holmes": "PERSON",
+            "David Miscavige": "PERSON",
+            "the Sea Org": "LOC",
+            "Scientologists Marc Headley": "PERSON",
+            "Claire": "PERSON",
+            "Nightline": "ORG",
+            "two": "CARDINAL",
+            "the Sea Org in Scientology": "LOC",
+            "Marc Headley": "PERSON",
+            "tonight": "TIME",
+            "the next few weeks": "DATE",
+            "the Office of Special Affairs": "ORG"
+          },
+          "metadata_article_title": "ABC News yanks 20/20 investigation of Tom Cruise and Scientology",
+          "metadata_source_url": "https://en.wikinews.org/wiki/ABC_News_yanks_20/20_investigation_of_Tom_Cruise_and_Scientology",
+          "metadata_revid": 4812804,
+          "metadata_source_dataset": "Wikinews (en.wikinews.org)",
+          "metadata_annotation": "deterministic spaCy SVO+5W rule-based (silver)"
+        },
+        {
+          "input": "{\"doc_id\": \"news_wikinews_02\", \"document_text\": \"Friday, September 8, 2006\\n \\n\\nFor ABC, the fifth anniversary of the September 11, 2001 attacks will be marked with a new kind of controversy over all...",
+          "output": "{\"gold_atomic_facts\": [{\"head\": \"Bruce R. Lindsey\", \"relation\": \"say\", \"tail\": \"it is unconscionable to mislead the American public about one of the most horrendous\", \"provenance_char_span\": [826, 110...",
+          "metadata_doc_id": "news_wikinews_02",
+          "metadata_fold": "news",
+          "metadata_genre": "news",
+          "metadata_source": "Wikinews:pageid_49614",
+          "metadata_license": "CC BY 2.5 (Wikinews / Wikimedia Foundation)",
+          "metadata_gold_quality": "silver",
+          "metadata_char_length": 3261,
+          "metadata_num_entities": 50,
+          "metadata_num_facts": 3,
+          "metadata_relation_vocab": [
+            "claim",
+            "say"
+          ],
+          "metadata_crisp_subset": false,
+          "metadata_decidable_fraction": 0.1436,
+          "metadata_decidable_subscores": {
+            "sentence_coverage": 0.1429,
+            "entity_participation": 0.06,
+            "char_coverage": 0.2278
+          },
+          "metadata_entity_types_fine": {
+            "Friday, September 8, 2006": "DATE",
+            "ABC": "ORG",
+            "fifth": "ORDINAL",
+            "the September 11, 2001": "EVENT",
+            "this coming Monday": "DATE",
+            "Tuesday": "DATE",
+            "The Path to 9/11": "WORK_OF_ART",
+            "5-hour": "TIME",
+            "2 nights": "DATE",
+            "Monday": "DATE",
+            "October 2000": "DATE",
+            "the US Navy": "ORG",
+            "USS Cole": "PRODUCT",
+            "the World Trade Center": "ORG",
+            "2,973": "CARDINAL",
+            "Samuel R. Berger": "PERSON",
+            "state": "ORG",
+            "Madeleine Albright": "PERSON",
+            "one": "CARDINAL",
+            "White House": "ORG",
+            "Bruce R. Lindsey": "PERSON",
+            "American": "NORP",
+            "about one": "CARDINAL",
+            "Clinton": "PERSON",
+            "bin Laden": "PERSON",
+            "Last night": "TIME",
+            "Harvey Keitel": "PERSON",
+            "September 11": "DATE",
+            "millions of dollars": "MONEY",
+            "Donnie Wahlberg": "PERSON",
+            "Patricia Heaton": "PERSON",
+            "John O'Neil": "PERSON",
+            "One": "CARDINAL",
+            "Cyrus Nowrasteh": "PERSON",
+            "Los Angeles": "GPE",
+            "KRLA-AM": "ORG",
+            "James Bamford": "PERSON",
+            "MSNBC": "ORG",
+            "FBI": "ORG",
+            "MoveOn.org": "PRODUCT",
+            "9/11": "CARDINAL",
+            "millions": "CARDINAL",
+            "Disney": "ORG"
+          },
+          "metadata_article_title": "ABC comes under fire for alleged partisan slant in 9/11 miniseries",
+          "metadata_source_url": "https://en.wikinews.org/wiki/ABC_comes_under_fire_for_alleged_partisan_slant_in_9/11_miniseries",
+          "metadata_revid": 4812805,
+          "metadata_source_dataset": "Wikinews (en.wikinews.org)",
+          "metadata_annotation": "deterministic spaCy SVO+5W rule-based (silver)"
+        }
+      ]
+    },
+    {
+      "dataset": "GDPR",
+      "examples": [
+        {
+          "input": "{\"doc_id\": \"reg_gdpr_05\", \"document_text\": \"Art. 5 GDPR Principles relating to processing of personal data\\n\\n1. Personal data shall be: processed lawfully, fairly and in a transparent manner in relat...",
+          "output": "{\"gold_atomic_facts\": [{\"head\": \"Art. 5 GDPR\", \"relation\": \"has_title\", \"tail\": \"Principles relating to processing of personal data\", \"provenance_char_span\": [12, 62]}, {\"head\": \"Art. 5 GDPR\", \"relati...",
+          "metadata_doc_id": "reg_gdpr_05",
+          "metadata_fold": "regulatory",
+          "metadata_genre": "regulatory",
+          "metadata_source": "GDPR:Art5",
+          "metadata_license": "EUR-Lex reuse (© European Union; Regulation (EU) 2016/679, CELEX:32016R0679; free reuse with attribution); text via gdpr-info.eu",
+          "metadata_gold_quality": "silver",
+          "metadata_char_length": 2006,
+          "metadata_num_entities": 5,
+          "metadata_num_facts": 5,
+          "metadata_relation_vocab": [
+            "cross_references",
+            "has_paragraph",
+            "has_title"
+          ],
+          "metadata_crisp_subset": false,
+          "metadata_decidable_fraction": 0.6327,
+          "metadata_decidable_subscores": {
+            "sentence_coverage": 1.0,
+            "entity_participation": 0.8,
+            "char_coverage": 0.0982
+          },
+          "metadata_entity_types_fine": {
+            "controller": "ORG",
+            "Article 89": "LAW"
+          },
+          "metadata_article": "GDPR Article 5",
+          "metadata_jurisdiction": "EU",
+          "metadata_source_dataset": "GDPR / Regulation (EU) 2016/679",
+          "metadata_source_url": "https://gdpr-info.eu/art-5-gdpr/",
+          "metadata_legal_source": "EUR-Lex CELEX:32016R0679",
+          "metadata_annotation": "deterministic structural regex curation (silver)"
+        },
+        {
+          "input": "{\"doc_id\": \"reg_gdpr_07\", \"document_text\": \"Art. 7 GDPR Conditions for consent\\n\\n1. Where processing is based on consent, the controller shall be able to demonstrate that the data subject has consent...",
+          "output": "{\"gold_atomic_facts\": [{\"head\": \"Art. 7 GDPR\", \"relation\": \"has_title\", \"tail\": \"Conditions for consent\", \"provenance_char_span\": [12, 34]}, {\"head\": \"Art. 7 GDPR\", \"relation\": \"has_paragraph\", \"tail\"...",
+          "metadata_doc_id": "reg_gdpr_07",
+          "metadata_fold": "regulatory",
+          "metadata_genre": "regulatory",
+          "metadata_source": "GDPR:Art7",
+          "metadata_license": "EUR-Lex reuse (© European Union; Regulation (EU) 2016/679, CELEX:32016R0679; free reuse with attribution); text via gdpr-info.eu",
+          "metadata_gold_quality": "silver",
+          "metadata_char_length": 1239,
+          "metadata_num_entities": 3,
+          "metadata_num_facts": 7,
+          "metadata_relation_vocab": [
+            "grants_right",
+            "has_paragraph",
+            "has_title"
+          ],
+          "metadata_crisp_subset": false,
+          "metadata_decidable_fraction": 0.645,
+          "metadata_decidable_subscores": {
+            "sentence_coverage": 0.5556,
+            "entity_participation": 1.0,
+            "char_coverage": 0.3793
+          },
+          "metadata_entity_types_fine": {
+            "controller": "ORG"
+          },
+          "metadata_article": "GDPR Article 7",
+          "metadata_jurisdiction": "EU",
+          "metadata_source_dataset": "GDPR / Regulation (EU) 2016/679",
+          "metadata_source_url": "https://gdpr-info.eu/art-7-gdpr/",
+          "metadata_legal_source": "EUR-Lex CELEX:32016R0679",
+          "metadata_annotation": "deterministic structural regex curation (silver)"
+        },
+        {
+          "input": "{\"doc_id\": \"reg_gdpr_13\", \"document_text\": \"Art. 13 GDPR Information to be provided where personal data are collected from the data subject\\n\\n1. Where personal data relating to a data subject are col...",
+          "output": "{\"gold_atomic_facts\": [{\"head\": \"Art. 13 GDPR\", \"relation\": \"has_title\", \"tail\": \"Information to be provided where personal data are collected from the data subject\", \"provenance_char_span\": [13, 95]}...",
+          "metadata_doc_id": "reg_gdpr_13",
+          "metadata_fold": "regulatory",
+          "metadata_genre": "regulatory",
+          "metadata_source": "GDPR:Art13",
+          "metadata_license": "EUR-Lex reuse (© European Union; Regulation (EU) 2016/679, CELEX:32016R0679; free reuse with attribution); text via gdpr-info.eu",
+          "metadata_gold_quality": "silver",
+          "metadata_char_length": 3186,
+          "metadata_num_entities": 16,
+          "metadata_num_facts": 14,
+          "metadata_relation_vocab": [
+            "cross_references",
+            "grants_right",
+            "has_exception"
+          ],
+          "metadata_crisp_subset": false,
+          "metadata_decidable_fraction": 0.6306,
+          "metadata_decidable_subscores": {
+            "sentence_coverage": 1.0,
+            "entity_participation": 0.5625,
+            "char_coverage": 0.3293
+          },
+          "metadata_entity_types_fine": {
+            "controller": "ORG",
+            "13": "CARDINAL",
+            "Article 6": "LAW",
+            "third": "ORDINAL",
+            "Commission": "ORG",
+            "Article 46": "LAW",
+            "47": "DATE",
+            "second": "ORDINAL",
+            "Article 49": "LAW",
+            "Article 9(": "LAW",
+            "Article 22": "LAW"
+          },
+          "metadata_article": "GDPR Article 13",
+          "metadata_jurisdiction": "EU",
+          "metadata_source_dataset": "GDPR / Regulation (EU) 2016/679",
+          "metadata_source_url": "https://gdpr-info.eu/art-13-gdpr/",
+          "metadata_legal_source": "EUR-Lex CELEX:32016R0679",
+          "metadata_annotation": "deterministic structural regex curation (silver)"
+        }
+      ]
+    }
+  ]
+}

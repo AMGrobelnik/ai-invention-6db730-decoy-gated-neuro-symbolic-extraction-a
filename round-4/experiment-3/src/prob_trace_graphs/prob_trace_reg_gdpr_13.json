@@ -1,0 +1,159 @@
+{
+  "doc_id": "reg_gdpr_13",
+  "genre": "regulatory",
+  "engine": "problog",
+  "kind": "multi_hop",
+  "graphs": [
+    {
+      "nodes": [
+        {
+          "id": 0,
+          "label": "obligation_with_exception(controller, provide all of the following information at the time when personal data are obtained, where and insofar as the data subject already has the information)",
+          "kind": "derived",
+          "rule": "obligation_with_exception",
+          "prob": 0.131488
+        },
+        {
+          "id": 1,
+          "label": "obligates(controller, provide all of the following information at the time when personal data are obtained)",
+          "kind": "leaf",
+          "prob": 0.352941,
+          "cert": {
+            "provenance": "the controller shall, at the time when personal data are obtained, provide the data subject with all of the following information",
+            "provenance_char_span": null,
+            "hallucination_verdict": "HALLUCINATED",
+            "decoy_certificate": {
+              "W_i": -0.8039,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        },
+        {
+          "id": 2,
+          "label": "has_exception(controller, where and insofar as the data subject already has the information)",
+          "kind": "leaf",
+          "prob": 0.372549,
+          "cert": {
+            "provenance": "Paragraphs 1, 2 and 3 shall not apply where and insofar as the data subject already has the information",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 0.7451,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "src": 0,
+          "dst": 1,
+          "rule": "obligation_with_exception"
+        },
+        {
+          "src": 0,
+          "dst": 2,
+          "rule": "obligation_with_exception"
+        }
+      ]
+    },
+    {
+      "nodes": [
+        {
+          "id": 0,
+          "label": "obligation_with_exception(controller, to provide the data subject with additional information necessary to ensure fair and transparent processing, where and insofar as the data subject already has the information)",
+          "kind": "derived",
+          "rule": "obligation_with_exception",
+          "prob": 0.080354
+        },
+        {
+          "id": 1,
+          "label": "obligates(controller, to provide the data subject with additional information necessary to ensure fair and transparent processing)",
+          "kind": "leaf",
+          "prob": 0.215686,
+          "cert": {
+            "provenance": "In addition to the information referred to in paragraph 1, the controller shall, at the time when personal data are obtained, provide the data subject with the following further information necessary to ensure fair and transparent processing",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 0.4314,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        },
+        {
+          "id": 2,
+          "label": "has_exception(controller, where and insofar as the data subject already has the information)",
+          "kind": "leaf",
+          "prob": 0.372549,
+          "cert": {
+            "provenance": "Paragraphs 1, 2 and 3 shall not apply where and insofar as the data subject already has the information",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 0.7451,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "src": 0,
+          "dst": 1,
+          "rule": "obligation_with_exception"
+        },
+        {
+          "src": 0,
+          "dst": 2,
+          "rule": "obligation_with_exception"
+        }
+      ]
+    }
+  ],
+  "marginals": [
+    {
+      "conclusion": [
+        "obligation_with_exception",
+        [
+          "controller",
+          "to provide the data subject with additional information necessary to ensure fair and transparent processing",
+          "where and insofar as the data subject already has the information"
+        ]
+      ],
+      "marginal": 0.08035360361400001
+    },
+    {
+      "conclusion": [
+        "obligation_with_exception",
+        [
+          "controller",
+          "provide all of the following information at the time when personal data are obtained",
+          "where and insofar as the data subject already has the information"
+        ]
+      ],
+      "marginal": 0.13148781660900002
+    }
+  ],
+  "program": "0.490196::has_title('Art. 13 GDPR','Information to be provided where personal data are collected from the data subject').\n0.294118::cross_references('Article 13 GDPR','the obligation to provide information when personal data are collected from the data subject').\n0.009804::cross_references('controller','reference to the appropriate or suitable safeguards and the means by which to obtain a copy of them').\n0.107843::cross_references('controller','the existence of automated decision-making, including profiling').\n0.029412::cross_references('controller','the existence or absence of an adequacy decision by the Commission').\n0.147059::cross_references('controller','the fact that the controller intends to transfer personal data to a third country or international organisation').\n0.421569::cross_references('controller','the purposes of the processing for which the personal data are intended as well as the legal basis for the processing').\n0.156863::cross_references('controller','the right to withdraw consent at any time').\n0.098039::cross_references('controller','whether the provision of personal data is a statutory or contractual requirement').\n0.372549::has_exception('controller','where and insofar as the data subject already has the information').\n0.352941::obligates('controller','provide all of the following information at the time when personal data are obtained').\n0.215686::obligates('controller','to provide the data subject with additional information necessary to ensure fair and transparent processing').\n0.343137::grants_right('data subject','to request from the controller access to and rectification or erasure of personal data or restriction of processing concerning the data subject or to object to processing as well as the right to data portability').\nrelevant_right(A,R) :- cross_references(A,B), grants_right(B,R).\nobligation_with_exception(A,O,E) :- obligates(A,O), has_exception(A,E).\ntitled_obligation(A,T,O) :- has_title(A,T), obligates(A,O).\nquery(obligation_with_exception('controller','provide all of the following information at the time when personal data are obtained','where and insofar as the data subject already has the information')).\nquery(obligation_with_exception('controller','to provide the data subject with additional information necessary to ensure fair and transparent processing','where and insofar as the data subject already has the information'))."
+}

@@ -1,0 +1,63 @@
+{
+  "name": "Re-DocRED Operational Anchor (label-free FDR-gating)",
+  "source": "Re-DocRED (Tan, Xu, Bing et al., 'Revisiting DocRED — Addressing the False Negative Problem in Relation Extraction', EMNLP 2022)",
+  "paper_url": "https://arxiv.org/abs/2205.12696",
+  "data_urls": {
+    "train": "https://huggingface.co/datasets/tonytan48/Re-DocRED/resolve/main/train_revised.json",
+    "dev": "https://huggingface.co/datasets/tonytan48/Re-DocRED/resolve/main/dev_revised.json",
+    "test": "https://huggingface.co/datasets/tonytan48/Re-DocRED/resolve/main/test_revised.json"
+  },
+  "license": "MIT",
+  "raw_doc_counts": {
+    "train": 3053,
+    "dev": 500,
+    "test": 500,
+    "total": 4053
+  },
+  "n_emitted_rows": 236,
+  "n_confirmatory": 152,
+  "n_pilot": 36,
+  "n_reserve": 48,
+  "clusters": [
+    "cluster_PER",
+    "cluster_ORG",
+    "cluster_LOC",
+    "cluster_MISC"
+  ],
+  "per_cluster_counts": {
+    "cluster_PER": {
+      "confirmatory": 38,
+      "pilot": 9,
+      "reserve": 12
+    },
+    "cluster_ORG": {
+      "confirmatory": 38,
+      "pilot": 9,
+      "reserve": 12
+    },
+    "cluster_LOC": {
+      "confirmatory": 38,
+      "pilot": 9,
+      "reserve": 12
+    },
+    "cluster_MISC": {
+      "confirmatory": 38,
+      "pilot": 9,
+      "reserve": 12
+    }
+  },
+  "cluster_scheme": "dominant_entity_type_collapsed_4 (PER/ORG/LOC/MISC; TIME&NUM->MISC)",
+  "secondary_cluster_scheme": "kmeans (k=5, random_state=42) on entity-type histogram + top-20 relation profile + standardized length",
+  "seed": 20240617,
+  "eligibility_filter": "80<=num_words<=400 AND num_entities>=4 AND num_triples>=5",
+  "n_relation_types": 96,
+  "n_entity_types": 6,
+  "gold_caveat": "Re-DocRED has residual false negatives; this dataset licenses ONLY relative operational comparisons at matched recall (precision, hallucinated-conclusion rate) — never an absolute realized-FDR diagonal.",
+  "shared_triple_space": "All downstream systems (neuro-symbolic, plain confidence threshold, CoT, RAG, labeled conformal) map their raw output into THIS identical entity set and 96-relation triple space at matched recall; only RELATIVE operational comparisons are asserted (residual false negatives affect all systems equally).",
+  "companion_files": [
+    "relation_schema.json",
+    "entity_type_schema.json",
+    "dataset_meta.json",
+    "row_schema.json"
+  ]
+}

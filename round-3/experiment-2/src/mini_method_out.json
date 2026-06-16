@@ -1,0 +1,2814 @@
+{
+  "metadata": {
+    "method_name": "Label-free decoy-competition (knockoff+) FDR gate for LLM text->logic fact admission, with auditable trace-graphs",
+    "task": "Operational neuro-symbolic translation of short legal/news/regulatory documents into gated (head, relation, tail) facts that feed a running backward-chaining logic engine, with a quantified hallucination-rate reduction vs raw LLM and human-auditable reasoning traces.",
+    "anchor": "24-doc application anchor (8 legal CUAD-crisp / 8 news Wikinews-silver / 8 regulatory GDPR+eCFR-silver)",
+    "headline_finding": "Decoy-gating reduces the hallucinated-fact rate vs raw LLM in 0 of the grid cells with CI separation; the largest CI-separated reduction is at regulatory/portable/alpha=0.5: raw=0.439 -> gate=0.360 (abs 0.079).",
+    "headline_elicitation": "portable",
+    "primary_metric": "hallucinated-fact rate (decoy-gate vs RAW LLM) per genre x elicitation x alpha, with document-block bootstrap CIs",
+    "models": {
+      "primary_scorer_generator": "openai/gpt-4.1-nano",
+      "cross_family_adjudicator": "mistralai/ministral-8b-2512"
+    },
+    "elicitation": {
+      "logprob": "softmax P(Yes) over {Yes,No} first-token logits (gpt-4.1-nano)",
+      "portable": "K=5 self-consistency Yes/No+confidence, temp 0.7, mean p(true)"
+    },
+    "hyperparameters": {
+      "seed": 20240617,
+      "alpha_grid": [
+        0.05,
+        0.1,
+        0.2,
+        0.3,
+        0.5
+      ],
+      "B_bootstrap": 2000,
+      "K_self_consistency": 5,
+      "r_entrapment": 1,
+      "n_extraction_samples": 3,
+      "extraction_temperature": 0.7,
+      "reals_cap_per_doc": 20,
+      "candidate_cap_per_doc": 40,
+      "recall_grid": [
+        0.1,
+        0.2,
+        0.3,
+        0.4,
+        0.5,
+        0.6
+      ],
+      "kappa_trust_threshold": 0.4,
+      "W_statistic": "signed-max",
+      "knockoff_plus": "Barber-Candes eq 1.9",
+      "bootstrap": "document-block (cluster) resampling",
+      "multiplicity": "Benjamini-Hochberg q=0.05",
+      "scoring": "isolated, provenance-blinded, identical template",
+      "extraction_mode": "open-vocab over-generation + LLM relation alignment to per-genre gold vocab + 'other' escape",
+      "reasoning_engine": "pure-Python backward-chaining meta-interpreter (janus-swi/SWI-Prolog attempted, fell back; identical JSON+DOT trace-graph schema)",
+      "typing": "WordNet hypernym -> coarse {PER,LOC,ORG,TIME,NUM,MISC} -> SUMO class (typing-only, never filters)"
+    },
+    "dataset_counts": {
+      "n_docs": 24,
+      "genre_counts": {
+        "legal": 8,
+        "news": 8,
+        "regulatory": 8
+      },
+      "n_reals": 210,
+      "label_counts": {
+        "TRUE": 42,
+        "FALSE": 51,
+        "UNDECIDABLE": 117
+      },
+      "n_decoys_generated": 420,
+      "contamination_rate_decoys": 0.05714285714285714,
+      "n_entrapment": 209
+    },
+    "hallucination_grid": [
+      {
+        "genre": "legal",
+        "elicitation": "logprob",
+        "alpha": 0.05,
+        "n_reals": 71,
+        "n_admitted": 0,
+        "k_floor": 20,
+        "certified": false,
+        "threshold": null,
+        "decoy_fdr_hat": 1.0,
+        "realized_fdr": 0.0,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 0,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": null
+        },
+        "gate_hall_rate": null,
+        "gate_hall_ci": [
+          null,
+          null
+        ],
+        "raw_hall_rate": 0.028169,
+        "raw_hall_ci": [
+          0.0,
+          0.0759493670886076
+        ],
+        "silver_bounds": {
+          "gate_lower": null,
+          "gate_upper": null,
+          "raw_lower": 0.028169014084507043,
+          "raw_upper": 0.7746478873239436
+        },
+        "regime_tag": "anti_conservative_expected",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "legal",
+        "elicitation": "logprob",
+        "alpha": 0.1,
+        "n_reals": 71,
+        "n_admitted": 0,
+        "k_floor": 10,
+        "certified": false,
+        "threshold": null,
+        "decoy_fdr_hat": 1.0,
+        "realized_fdr": 0.0,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 0,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": null
+        },
+        "gate_hall_rate": null,
+        "gate_hall_ci": [
+          null,
+          null
+        ],
+        "raw_hall_rate": 0.028169,
+        "raw_hall_ci": [
+          0.0,
+          0.0759493670886076
+        ],
+        "silver_bounds": {
+          "gate_lower": null,
+          "gate_upper": null,
+          "raw_lower": 0.028169014084507043,
+          "raw_upper": 0.7746478873239436
+        },
+        "regime_tag": "anti_conservative_expected",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "legal",
+        "elicitation": "logprob",
+        "alpha": 0.2,
+        "n_reals": 71,
+        "n_admitted": 61,
+        "k_floor": 5,
+        "certified": true,
+        "threshold": 0.22973,
+        "decoy_fdr_hat": 0.180328,
+        "realized_fdr": 0.016393,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 61,
+          "N_E": 22,
+          "r": 1,
+          "FDP_hat": 0.53012
+        },
+        "gate_hall_rate": 0.016393,
+        "gate_hall_ci": [
+          0.0,
+          0.043478260869565216
+        ],
+        "raw_hall_rate": 0.028169,
+        "raw_hall_ci": [
+          0.0,
+          0.0759493670886076
+        ],
+        "silver_bounds": {
+          "gate_lower": 0.01639344262295082,
+          "gate_upper": 0.7540983606557377,
+          "raw_lower": 0.028169014084507043,
+          "raw_upper": 0.7746478873239436
+        },
+        "regime_tag": "anti_conservative_expected",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "legal",
+        "elicitation": "logprob",
+        "alpha": 0.3,
+        "n_reals": 71,
+        "n_admitted": 61,
+        "k_floor": 4,
+        "certified": true,
+        "threshold": 0.22973,
+        "decoy_fdr_hat": 0.180328,
+        "realized_fdr": 0.016393,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 61,
+          "N_E": 22,
+          "r": 1,
+          "FDP_hat": 0.53012
+        },
+        "gate_hall_rate": 0.016393,
+        "gate_hall_ci": [
+          0.0,
+          0.043478260869565216
+        ],
+        "raw_hall_rate": 0.028169,
+        "raw_hall_ci": [
+          0.0,
+          0.0759493670886076
+        ],
+        "silver_bounds": {
+          "gate_lower": 0.01639344262295082,
+          "gate_upper": 0.7540983606557377,
+          "raw_lower": 0.028169014084507043,
+          "raw_upper": 0.7746478873239436
+        },
+        "regime_tag": "anti_conservative_expected",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "legal",
+        "elicitation": "logprob",
+        "alpha": 0.5,
+        "n_reals": 71,
+        "n_admitted": 61,
+        "k_floor": 2,
+        "certified": true,
+        "threshold": 0.22973,
+        "decoy_fdr_hat": 0.180328,
+        "realized_fdr": 0.016393,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 61,
+          "N_E": 22,
+          "r": 1,
+          "FDP_hat": 0.53012
+        },
+        "gate_hall_rate": 0.016393,
+        "gate_hall_ci": [
+          0.0,
+          0.043478260869565216
+        ],
+        "raw_hall_rate": 0.028169,
+        "raw_hall_ci": [
+          0.0,
+          0.0759493670886076
+        ],
+        "silver_bounds": {
+          "gate_lower": 0.01639344262295082,
+          "gate_upper": 0.7540983606557377,
+          "raw_lower": 0.028169014084507043,
+          "raw_upper": 0.7746478873239436
+        },
+        "regime_tag": "anti_conservative_expected",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "news",
+        "elicitation": "logprob",
+        "alpha": 0.05,
+        "n_reals": 32,
+        "n_admitted": 0,
+        "k_floor": 20,
+        "certified": false,
+        "threshold": null,
+        "decoy_fdr_hat": 1.0,
+        "realized_fdr": 0.0,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 0,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": null
+        },
+        "gate_hall_rate": null,
+        "gate_hall_ci": [
+          null,
+          null
+        ],
+        "raw_hall_rate": 0.0625,
+        "raw_hall_ci": [
+          0.0,
+          0.16666666666666666
+        ],
+        "silver_bounds": {
+          "gate_lower": null,
+          "gate_upper": null,
+          "raw_lower": 0.0625,
+          "raw_upper": 0.6875
+        },
+        "regime_tag": "anti_conservative_expected",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "news",
+        "elicitation": "logprob",
+        "alpha": 0.1,
+        "n_reals": 32,
+        "n_admitted": 0,
+        "k_floor": 10,
+        "certified": false,
+        "threshold": null,
+        "decoy_fdr_hat": 1.0,
+        "realized_fdr": 0.0,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 0,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": null
+        },
+        "gate_hall_rate": null,
+        "gate_hall_ci": [
+          null,
+          null
+        ],
+        "raw_hall_rate": 0.0625,
+        "raw_hall_ci": [
+          0.0,
+          0.16666666666666666
+        ],
+        "silver_bounds": {
+          "gate_lower": null,
+          "gate_upper": null,
+          "raw_lower": 0.0625,
+          "raw_upper": 0.6875
+        },
+        "regime_tag": "anti_conservative_expected",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "news",
+        "elicitation": "logprob",
+        "alpha": 0.2,
+        "n_reals": 32,
+        "n_admitted": 0,
+        "k_floor": 5,
+        "certified": false,
+        "threshold": null,
+        "decoy_fdr_hat": 1.0,
+        "realized_fdr": 0.0,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 0,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": null
+        },
+        "gate_hall_rate": null,
+        "gate_hall_ci": [
+          null,
+          null
+        ],
+        "raw_hall_rate": 0.0625,
+        "raw_hall_ci": [
+          0.0,
+          0.16666666666666666
+        ],
+        "silver_bounds": {
+          "gate_lower": null,
+          "gate_upper": null,
+          "raw_lower": 0.0625,
+          "raw_upper": 0.6875
+        },
+        "regime_tag": "anti_conservative_expected",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "news",
+        "elicitation": "logprob",
+        "alpha": 0.3,
+        "n_reals": 32,
+        "n_admitted": 0,
+        "k_floor": 4,
+        "certified": false,
+        "threshold": null,
+        "decoy_fdr_hat": 1.0,
+        "realized_fdr": 0.0,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 0,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": null
+        },
+        "gate_hall_rate": null,
+        "gate_hall_ci": [
+          null,
+          null
+        ],
+        "raw_hall_rate": 0.0625,
+        "raw_hall_ci": [
+          0.0,
+          0.16666666666666666
+        ],
+        "silver_bounds": {
+          "gate_lower": null,
+          "gate_upper": null,
+          "raw_lower": 0.0625,
+          "raw_upper": 0.6875
+        },
+        "regime_tag": "anti_conservative_expected",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "news",
+        "elicitation": "logprob",
+        "alpha": 0.5,
+        "n_reals": 32,
+        "n_admitted": 21,
+        "k_floor": 2,
+        "certified": true,
+        "threshold": 0.541667,
+        "decoy_fdr_hat": 0.47619,
+        "realized_fdr": 0.095238,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 21,
+          "N_E": 1,
+          "r": 1,
+          "FDP_hat": 0.090909
+        },
+        "gate_hall_rate": 0.095238,
+        "gate_hall_ci": [
+          0.0,
+          0.5
+        ],
+        "raw_hall_rate": 0.0625,
+        "raw_hall_ci": [
+          0.0,
+          0.16666666666666666
+        ],
+        "silver_bounds": {
+          "gate_lower": 0.09523809523809523,
+          "gate_upper": 0.7619047619047619,
+          "raw_lower": 0.0625,
+          "raw_upper": 0.6875
+        },
+        "regime_tag": "anti_conservative_expected",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "regulatory",
+        "elicitation": "logprob",
+        "alpha": 0.05,
+        "n_reals": 107,
+        "n_admitted": 0,
+        "k_floor": 20,
+        "certified": false,
+        "threshold": null,
+        "decoy_fdr_hat": 1.0,
+        "realized_fdr": 0.0,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 0,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": null
+        },
+        "gate_hall_rate": null,
+        "gate_hall_ci": [
+          null,
+          null
+        ],
+        "raw_hall_rate": 0.439252,
+        "raw_hall_ci": [
+          0.22890705679862305,
+          0.6068376068376068
+        ],
+        "silver_bounds": {
+          "gate_lower": null,
+          "gate_upper": null,
+          "raw_lower": 0.4392523364485981,
+          "raw_upper": 0.8504672897196262
+        },
+        "regime_tag": "anti_conservative_expected",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "regulatory",
+        "elicitation": "logprob",
+        "alpha": 0.1,
+        "n_reals": 107,
+        "n_admitted": 0,
+        "k_floor": 10,
+        "certified": false,
+        "threshold": null,
+        "decoy_fdr_hat": 1.0,
+        "realized_fdr": 0.0,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 0,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": null
+        },
+        "gate_hall_rate": null,
+        "gate_hall_ci": [
+          null,
+          null
+        ],
+        "raw_hall_rate": 0.439252,
+        "raw_hall_ci": [
+          0.22890705679862305,
+          0.6068376068376068
+        ],
+        "silver_bounds": {
+          "gate_lower": null,
+          "gate_upper": null,
+          "raw_lower": 0.4392523364485981,
+          "raw_upper": 0.8504672897196262
+        },
+        "regime_tag": "anti_conservative_expected",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "regulatory",
+        "elicitation": "logprob",
+        "alpha": 0.2,
+        "n_reals": 107,
+        "n_admitted": 0,
+        "k_floor": 5,
+        "certified": false,
+        "threshold": null,
+        "decoy_fdr_hat": 1.0,
+        "realized_fdr": 0.0,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 0,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": null
+        },
+        "gate_hall_rate": null,
+        "gate_hall_ci": [
+          null,
+          null
+        ],
+        "raw_hall_rate": 0.439252,
+        "raw_hall_ci": [
+          0.22890705679862305,
+          0.6068376068376068
+        ],
+        "silver_bounds": {
+          "gate_lower": null,
+          "gate_upper": null,
+          "raw_lower": 0.4392523364485981,
+          "raw_upper": 0.8504672897196262
+        },
+        "regime_tag": "anti_conservative_expected",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "regulatory",
+        "elicitation": "logprob",
+        "alpha": 0.3,
+        "n_reals": 107,
+        "n_admitted": 0,
+        "k_floor": 4,
+        "certified": false,
+        "threshold": null,
+        "decoy_fdr_hat": 1.0,
+        "realized_fdr": 0.0,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 0,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": null
+        },
+        "gate_hall_rate": null,
+        "gate_hall_ci": [
+          null,
+          null
+        ],
+        "raw_hall_rate": 0.439252,
+        "raw_hall_ci": [
+          0.22890705679862305,
+          0.6068376068376068
+        ],
+        "silver_bounds": {
+          "gate_lower": null,
+          "gate_upper": null,
+          "raw_lower": 0.4392523364485981,
+          "raw_upper": 0.8504672897196262
+        },
+        "regime_tag": "anti_conservative_expected",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "regulatory",
+        "elicitation": "logprob",
+        "alpha": 0.5,
+        "n_reals": 107,
+        "n_admitted": 0,
+        "k_floor": 2,
+        "certified": false,
+        "threshold": null,
+        "decoy_fdr_hat": 1.0,
+        "realized_fdr": 0.0,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 0,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": null
+        },
+        "gate_hall_rate": null,
+        "gate_hall_ci": [
+          null,
+          null
+        ],
+        "raw_hall_rate": 0.439252,
+        "raw_hall_ci": [
+          0.22890705679862305,
+          0.6068376068376068
+        ],
+        "silver_bounds": {
+          "gate_lower": null,
+          "gate_upper": null,
+          "raw_lower": 0.4392523364485981,
+          "raw_upper": 0.8504672897196262
+        },
+        "regime_tag": "anti_conservative_expected",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "pooled",
+        "elicitation": "logprob",
+        "alpha": 0.05,
+        "n_reals": 210,
+        "n_admitted": 0,
+        "k_floor": 20,
+        "certified": false,
+        "threshold": null,
+        "decoy_fdr_hat": 1.0,
+        "realized_fdr": 0.0,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 0,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": null
+        },
+        "gate_hall_rate": null,
+        "gate_hall_ci": [
+          null,
+          null
+        ],
+        "raw_hall_rate": 0.242857,
+        "raw_hall_ci": [
+          0.1016949152542373,
+          0.3911292517006802
+        ],
+        "silver_bounds": {
+          "gate_lower": null,
+          "gate_upper": null,
+          "raw_lower": 0.24285714285714285,
+          "raw_upper": 0.8
+        },
+        "regime_tag": "anti_conservative_expected",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "pooled",
+        "elicitation": "logprob",
+        "alpha": 0.1,
+        "n_reals": 210,
+        "n_admitted": 0,
+        "k_floor": 10,
+        "certified": false,
+        "threshold": null,
+        "decoy_fdr_hat": 1.0,
+        "realized_fdr": 0.0,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 0,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": null
+        },
+        "gate_hall_rate": null,
+        "gate_hall_ci": [
+          null,
+          null
+        ],
+        "raw_hall_rate": 0.242857,
+        "raw_hall_ci": [
+          0.1016949152542373,
+          0.3911292517006802
+        ],
+        "silver_bounds": {
+          "gate_lower": null,
+          "gate_upper": null,
+          "raw_lower": 0.24285714285714285,
+          "raw_upper": 0.8
+        },
+        "regime_tag": "anti_conservative_expected",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "pooled",
+        "elicitation": "logprob",
+        "alpha": 0.2,
+        "n_reals": 210,
+        "n_admitted": 0,
+        "k_floor": 5,
+        "certified": false,
+        "threshold": null,
+        "decoy_fdr_hat": 1.0,
+        "realized_fdr": 0.0,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 0,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": null
+        },
+        "gate_hall_rate": null,
+        "gate_hall_ci": [
+          null,
+          null
+        ],
+        "raw_hall_rate": 0.242857,
+        "raw_hall_ci": [
+          0.1016949152542373,
+          0.3911292517006802
+        ],
+        "silver_bounds": {
+          "gate_lower": null,
+          "gate_upper": null,
+          "raw_lower": 0.24285714285714285,
+          "raw_upper": 0.8
+        },
+        "regime_tag": "anti_conservative_expected",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "pooled",
+        "elicitation": "logprob",
+        "alpha": 0.3,
+        "n_reals": 210,
+        "n_admitted": 0,
+        "k_floor": 4,
+        "certified": false,
+        "threshold": null,
+        "decoy_fdr_hat": 1.0,
+        "realized_fdr": 0.0,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 0,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": null
+        },
+        "gate_hall_rate": null,
+        "gate_hall_ci": [
+          null,
+          null
+        ],
+        "raw_hall_rate": 0.242857,
+        "raw_hall_ci": [
+          0.1016949152542373,
+          0.3911292517006802
+        ],
+        "silver_bounds": {
+          "gate_lower": null,
+          "gate_upper": null,
+          "raw_lower": 0.24285714285714285,
+          "raw_upper": 0.8
+        },
+        "regime_tag": "anti_conservative_expected",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "pooled",
+        "elicitation": "logprob",
+        "alpha": 0.5,
+        "n_reals": 210,
+        "n_admitted": 146,
+        "k_floor": 2,
+        "certified": true,
+        "threshold": 0.22973,
+        "decoy_fdr_hat": 0.445205,
+        "realized_fdr": 0.178082,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 146,
+          "N_E": 65,
+          "r": 1,
+          "FDP_hat": 0.616114
+        },
+        "gate_hall_rate": 0.178082,
+        "gate_hall_ci": [
+          0.08129954268292683,
+          0.287673696659111
+        ],
+        "raw_hall_rate": 0.242857,
+        "raw_hall_ci": [
+          0.1016949152542373,
+          0.3911292517006802
+        ],
+        "silver_bounds": {
+          "gate_lower": 0.1780821917808219,
+          "gate_upper": 0.8082191780821918,
+          "raw_lower": 0.24285714285714285,
+          "raw_upper": 0.8
+        },
+        "regime_tag": "anti_conservative_expected",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "legal",
+        "elicitation": "portable",
+        "alpha": 0.05,
+        "n_reals": 71,
+        "n_admitted": 0,
+        "k_floor": 20,
+        "certified": false,
+        "threshold": null,
+        "decoy_fdr_hat": 1.0,
+        "realized_fdr": 0.0,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 0,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": null
+        },
+        "gate_hall_rate": null,
+        "gate_hall_ci": [
+          null,
+          null
+        ],
+        "raw_hall_rate": 0.028169,
+        "raw_hall_ci": [
+          0.0,
+          0.0759493670886076
+        ],
+        "silver_bounds": {
+          "gate_lower": null,
+          "gate_upper": null,
+          "raw_lower": 0.028169014084507043,
+          "raw_upper": 0.7746478873239436
+        },
+        "regime_tag": "uncertified(n<1/alpha)",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "legal",
+        "elicitation": "portable",
+        "alpha": 0.1,
+        "n_reals": 71,
+        "n_admitted": 0,
+        "k_floor": 10,
+        "certified": false,
+        "threshold": null,
+        "decoy_fdr_hat": 1.0,
+        "realized_fdr": 0.0,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 0,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": null
+        },
+        "gate_hall_rate": null,
+        "gate_hall_ci": [
+          null,
+          null
+        ],
+        "raw_hall_rate": 0.028169,
+        "raw_hall_ci": [
+          0.0,
+          0.0759493670886076
+        ],
+        "silver_bounds": {
+          "gate_lower": null,
+          "gate_upper": null,
+          "raw_lower": 0.028169014084507043,
+          "raw_upper": 0.7746478873239436
+        },
+        "regime_tag": "uncertified(n<1/alpha)",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "legal",
+        "elicitation": "portable",
+        "alpha": 0.2,
+        "n_reals": 71,
+        "n_admitted": 0,
+        "k_floor": 5,
+        "certified": false,
+        "threshold": null,
+        "decoy_fdr_hat": 1.0,
+        "realized_fdr": 0.0,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 0,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": null
+        },
+        "gate_hall_rate": null,
+        "gate_hall_ci": [
+          null,
+          null
+        ],
+        "raw_hall_rate": 0.028169,
+        "raw_hall_ci": [
+          0.0,
+          0.0759493670886076
+        ],
+        "silver_bounds": {
+          "gate_lower": null,
+          "gate_upper": null,
+          "raw_lower": 0.028169014084507043,
+          "raw_upper": 0.7746478873239436
+        },
+        "regime_tag": "uncertified(n<1/alpha)",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "legal",
+        "elicitation": "portable",
+        "alpha": 0.3,
+        "n_reals": 71,
+        "n_admitted": 0,
+        "k_floor": 4,
+        "certified": false,
+        "threshold": null,
+        "decoy_fdr_hat": 1.0,
+        "realized_fdr": 0.0,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 0,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": null
+        },
+        "gate_hall_rate": null,
+        "gate_hall_ci": [
+          null,
+          null
+        ],
+        "raw_hall_rate": 0.028169,
+        "raw_hall_ci": [
+          0.0,
+          0.0759493670886076
+        ],
+        "silver_bounds": {
+          "gate_lower": null,
+          "gate_upper": null,
+          "raw_lower": 0.028169014084507043,
+          "raw_upper": 0.7746478873239436
+        },
+        "regime_tag": "uncertified(n<1/alpha)",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "legal",
+        "elicitation": "portable",
+        "alpha": 0.5,
+        "n_reals": 71,
+        "n_admitted": 50,
+        "k_floor": 2,
+        "certified": true,
+        "threshold": 0.129032,
+        "decoy_fdr_hat": 0.44,
+        "realized_fdr": 0.02,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 50,
+          "N_E": 25,
+          "r": 1,
+          "FDP_hat": 0.666667
+        },
+        "gate_hall_rate": 0.02,
+        "gate_hall_ci": [
+          0.0,
+          0.05357142857142857
+        ],
+        "raw_hall_rate": 0.028169,
+        "raw_hall_ci": [
+          0.0,
+          0.0759493670886076
+        ],
+        "silver_bounds": {
+          "gate_lower": 0.02,
+          "gate_upper": 0.76,
+          "raw_lower": 0.028169014084507043,
+          "raw_upper": 0.7746478873239436
+        },
+        "regime_tag": "certified",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "news",
+        "elicitation": "portable",
+        "alpha": 0.05,
+        "n_reals": 32,
+        "n_admitted": 0,
+        "k_floor": 20,
+        "certified": false,
+        "threshold": null,
+        "decoy_fdr_hat": 1.0,
+        "realized_fdr": 0.0,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 0,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": null
+        },
+        "gate_hall_rate": null,
+        "gate_hall_ci": [
+          null,
+          null
+        ],
+        "raw_hall_rate": 0.0625,
+        "raw_hall_ci": [
+          0.0,
+          0.16666666666666666
+        ],
+        "silver_bounds": {
+          "gate_lower": null,
+          "gate_upper": null,
+          "raw_lower": 0.0625,
+          "raw_upper": 0.6875
+        },
+        "regime_tag": "uncertified(n<1/alpha)",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "news",
+        "elicitation": "portable",
+        "alpha": 0.1,
+        "n_reals": 32,
+        "n_admitted": 0,
+        "k_floor": 10,
+        "certified": false,
+        "threshold": null,
+        "decoy_fdr_hat": 1.0,
+        "realized_fdr": 0.0,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 0,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": null
+        },
+        "gate_hall_rate": null,
+        "gate_hall_ci": [
+          null,
+          null
+        ],
+        "raw_hall_rate": 0.0625,
+        "raw_hall_ci": [
+          0.0,
+          0.16666666666666666
+        ],
+        "silver_bounds": {
+          "gate_lower": null,
+          "gate_upper": null,
+          "raw_lower": 0.0625,
+          "raw_upper": 0.6875
+        },
+        "regime_tag": "uncertified(n<1/alpha)",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "news",
+        "elicitation": "portable",
+        "alpha": 0.2,
+        "n_reals": 32,
+        "n_admitted": 0,
+        "k_floor": 5,
+        "certified": false,
+        "threshold": null,
+        "decoy_fdr_hat": 1.0,
+        "realized_fdr": 0.0,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 0,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": null
+        },
+        "gate_hall_rate": null,
+        "gate_hall_ci": [
+          null,
+          null
+        ],
+        "raw_hall_rate": 0.0625,
+        "raw_hall_ci": [
+          0.0,
+          0.16666666666666666
+        ],
+        "silver_bounds": {
+          "gate_lower": null,
+          "gate_upper": null,
+          "raw_lower": 0.0625,
+          "raw_upper": 0.6875
+        },
+        "regime_tag": "uncertified(n<1/alpha)",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "news",
+        "elicitation": "portable",
+        "alpha": 0.3,
+        "n_reals": 32,
+        "n_admitted": 0,
+        "k_floor": 4,
+        "certified": false,
+        "threshold": null,
+        "decoy_fdr_hat": 1.0,
+        "realized_fdr": 0.0,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 0,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": null
+        },
+        "gate_hall_rate": null,
+        "gate_hall_ci": [
+          null,
+          null
+        ],
+        "raw_hall_rate": 0.0625,
+        "raw_hall_ci": [
+          0.0,
+          0.16666666666666666
+        ],
+        "silver_bounds": {
+          "gate_lower": null,
+          "gate_upper": null,
+          "raw_lower": 0.0625,
+          "raw_upper": 0.6875
+        },
+        "regime_tag": "uncertified(n<1/alpha)",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "news",
+        "elicitation": "portable",
+        "alpha": 0.5,
+        "n_reals": 32,
+        "n_admitted": 22,
+        "k_floor": 2,
+        "certified": true,
+        "threshold": 0.191489,
+        "decoy_fdr_hat": 0.5,
+        "realized_fdr": 0.045455,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 22,
+          "N_E": 17,
+          "r": 1,
+          "FDP_hat": 0.871795
+        },
+        "gate_hall_rate": 0.045455,
+        "gate_hall_ci": [
+          0.0,
+          0.14285714285714285
+        ],
+        "raw_hall_rate": 0.0625,
+        "raw_hall_ci": [
+          0.0,
+          0.16666666666666666
+        ],
+        "silver_bounds": {
+          "gate_lower": 0.045454545454545456,
+          "gate_upper": 0.6818181818181818,
+          "raw_lower": 0.0625,
+          "raw_upper": 0.6875
+        },
+        "regime_tag": "certified",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "regulatory",
+        "elicitation": "portable",
+        "alpha": 0.05,
+        "n_reals": 107,
+        "n_admitted": 0,
+        "k_floor": 20,
+        "certified": false,
+        "threshold": null,
+        "decoy_fdr_hat": 1.0,
+        "realized_fdr": 0.0,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 0,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": null
+        },
+        "gate_hall_rate": null,
+        "gate_hall_ci": [
+          null,
+          null
+        ],
+        "raw_hall_rate": 0.439252,
+        "raw_hall_ci": [
+          0.22890705679862305,
+          0.6068376068376068
+        ],
+        "silver_bounds": {
+          "gate_lower": null,
+          "gate_upper": null,
+          "raw_lower": 0.4392523364485981,
+          "raw_upper": 0.8504672897196262
+        },
+        "regime_tag": "uncertified(n<1/alpha)",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "regulatory",
+        "elicitation": "portable",
+        "alpha": 0.1,
+        "n_reals": 107,
+        "n_admitted": 0,
+        "k_floor": 10,
+        "certified": false,
+        "threshold": null,
+        "decoy_fdr_hat": 1.0,
+        "realized_fdr": 0.0,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 0,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": null
+        },
+        "gate_hall_rate": null,
+        "gate_hall_ci": [
+          null,
+          null
+        ],
+        "raw_hall_rate": 0.439252,
+        "raw_hall_ci": [
+          0.22890705679862305,
+          0.6068376068376068
+        ],
+        "silver_bounds": {
+          "gate_lower": null,
+          "gate_upper": null,
+          "raw_lower": 0.4392523364485981,
+          "raw_upper": 0.8504672897196262
+        },
+        "regime_tag": "uncertified(n<1/alpha)",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "regulatory",
+        "elicitation": "portable",
+        "alpha": 0.2,
+        "n_reals": 107,
+        "n_admitted": 0,
+        "k_floor": 5,
+        "certified": false,
+        "threshold": null,
+        "decoy_fdr_hat": 1.0,
+        "realized_fdr": 0.0,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 0,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": null
+        },
+        "gate_hall_rate": null,
+        "gate_hall_ci": [
+          null,
+          null
+        ],
+        "raw_hall_rate": 0.439252,
+        "raw_hall_ci": [
+          0.22890705679862305,
+          0.6068376068376068
+        ],
+        "silver_bounds": {
+          "gate_lower": null,
+          "gate_upper": null,
+          "raw_lower": 0.4392523364485981,
+          "raw_upper": 0.8504672897196262
+        },
+        "regime_tag": "uncertified(n<1/alpha)",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "regulatory",
+        "elicitation": "portable",
+        "alpha": 0.3,
+        "n_reals": 107,
+        "n_admitted": 0,
+        "k_floor": 4,
+        "certified": false,
+        "threshold": null,
+        "decoy_fdr_hat": 1.0,
+        "realized_fdr": 0.0,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 0,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": null
+        },
+        "gate_hall_rate": null,
+        "gate_hall_ci": [
+          null,
+          null
+        ],
+        "raw_hall_rate": 0.439252,
+        "raw_hall_ci": [
+          0.22890705679862305,
+          0.6068376068376068
+        ],
+        "silver_bounds": {
+          "gate_lower": null,
+          "gate_upper": null,
+          "raw_lower": 0.4392523364485981,
+          "raw_upper": 0.8504672897196262
+        },
+        "regime_tag": "uncertified(n<1/alpha)",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "regulatory",
+        "elicitation": "portable",
+        "alpha": 0.5,
+        "n_reals": 107,
+        "n_admitted": 50,
+        "k_floor": 2,
+        "certified": true,
+        "threshold": 0.338462,
+        "decoy_fdr_hat": 0.5,
+        "realized_fdr": 0.36,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 50,
+          "N_E": 44,
+          "r": 1,
+          "FDP_hat": 0.93617
+        },
+        "gate_hall_rate": 0.36,
+        "gate_hall_ci": [
+          0.2351809954751133,
+          0.4583333333333333
+        ],
+        "raw_hall_rate": 0.439252,
+        "raw_hall_ci": [
+          0.22890705679862305,
+          0.6068376068376068
+        ],
+        "silver_bounds": {
+          "gate_lower": 0.36,
+          "gate_upper": 0.78,
+          "raw_lower": 0.4392523364485981,
+          "raw_upper": 0.8504672897196262
+        },
+        "regime_tag": "certified",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "pooled",
+        "elicitation": "portable",
+        "alpha": 0.05,
+        "n_reals": 210,
+        "n_admitted": 0,
+        "k_floor": 20,
+        "certified": false,
+        "threshold": null,
+        "decoy_fdr_hat": 1.0,
+        "realized_fdr": 0.0,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 0,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": null
+        },
+        "gate_hall_rate": null,
+        "gate_hall_ci": [
+          null,
+          null
+        ],
+        "raw_hall_rate": 0.242857,
+        "raw_hall_ci": [
+          0.1016949152542373,
+          0.3911292517006802
+        ],
+        "silver_bounds": {
+          "gate_lower": null,
+          "gate_upper": null,
+          "raw_lower": 0.24285714285714285,
+          "raw_upper": 0.8
+        },
+        "regime_tag": "uncertified(n<1/alpha)",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "pooled",
+        "elicitation": "portable",
+        "alpha": 0.1,
+        "n_reals": 210,
+        "n_admitted": 0,
+        "k_floor": 10,
+        "certified": false,
+        "threshold": null,
+        "decoy_fdr_hat": 1.0,
+        "realized_fdr": 0.0,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 0,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": null
+        },
+        "gate_hall_rate": null,
+        "gate_hall_ci": [
+          null,
+          null
+        ],
+        "raw_hall_rate": 0.242857,
+        "raw_hall_ci": [
+          0.1016949152542373,
+          0.3911292517006802
+        ],
+        "silver_bounds": {
+          "gate_lower": null,
+          "gate_upper": null,
+          "raw_lower": 0.24285714285714285,
+          "raw_upper": 0.8
+        },
+        "regime_tag": "uncertified(n<1/alpha)",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "pooled",
+        "elicitation": "portable",
+        "alpha": 0.2,
+        "n_reals": 210,
+        "n_admitted": 0,
+        "k_floor": 5,
+        "certified": false,
+        "threshold": null,
+        "decoy_fdr_hat": 1.0,
+        "realized_fdr": 0.0,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 0,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": null
+        },
+        "gate_hall_rate": null,
+        "gate_hall_ci": [
+          null,
+          null
+        ],
+        "raw_hall_rate": 0.242857,
+        "raw_hall_ci": [
+          0.1016949152542373,
+          0.3911292517006802
+        ],
+        "silver_bounds": {
+          "gate_lower": null,
+          "gate_upper": null,
+          "raw_lower": 0.24285714285714285,
+          "raw_upper": 0.8
+        },
+        "regime_tag": "uncertified(n<1/alpha)",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "pooled",
+        "elicitation": "portable",
+        "alpha": 0.3,
+        "n_reals": 210,
+        "n_admitted": 0,
+        "k_floor": 4,
+        "certified": false,
+        "threshold": null,
+        "decoy_fdr_hat": 1.0,
+        "realized_fdr": 0.0,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 0,
+          "N_E": 0,
+          "r": 1,
+          "FDP_hat": null
+        },
+        "gate_hall_rate": null,
+        "gate_hall_ci": [
+          null,
+          null
+        ],
+        "raw_hall_rate": 0.242857,
+        "raw_hall_ci": [
+          0.1016949152542373,
+          0.3911292517006802
+        ],
+        "silver_bounds": {
+          "gate_lower": null,
+          "gate_upper": null,
+          "raw_lower": 0.24285714285714285,
+          "raw_upper": 0.8
+        },
+        "regime_tag": "uncertified(n<1/alpha)",
+        "ci_separation_gate_below_raw": false
+      },
+      {
+        "genre": "pooled",
+        "elicitation": "portable",
+        "alpha": 0.5,
+        "n_reals": 210,
+        "n_admitted": 126,
+        "k_floor": 2,
+        "certified": true,
+        "threshold": 0.238806,
+        "decoy_fdr_hat": 0.5,
+        "realized_fdr": 0.18254,
+        "self_report_anticonservative": false,
+        "entrapment": {
+          "N_T": 126,
+          "N_E": 86,
+          "r": 1,
+          "FDP_hat": 0.811321
+        },
+        "gate_hall_rate": 0.18254,
+        "gate_hall_ci": [
+          0.06999418604651164,
+          0.2990674175253614
+        ],
+        "raw_hall_rate": 0.242857,
+        "raw_hall_ci": [
+          0.1016949152542373,
+          0.3911292517006802
+        ],
+        "silver_bounds": {
+          "gate_lower": 0.18253968253968253,
+          "gate_upper": 0.7619047619047619,
+          "raw_lower": 0.24285714285714285,
+          "raw_upper": 0.8
+        },
+        "regime_tag": "certified",
+        "ci_separation_gate_below_raw": false
+      }
+    ],
+    "headline": {
+      "best_reduction_cell": {
+        "genre": "regulatory",
+        "elicitation": "portable",
+        "alpha": 0.5,
+        "raw": 0.439252,
+        "gate": 0.36,
+        "abs_reduction": 0.079252,
+        "rel_reduction": 0.180425,
+        "ci_separated": false,
+        "certified": true,
+        "n_admitted": 50,
+        "regime_tag": "certified"
+      },
+      "n_cells_gate_below_raw_ci_separated": 0,
+      "all_reductions": [
+        {
+          "genre": "legal",
+          "elicitation": "logprob",
+          "alpha": 0.2,
+          "raw": 0.028169,
+          "gate": 0.016393,
+          "abs_reduction": 0.011776,
+          "rel_reduction": 0.418048,
+          "ci_separated": false,
+          "certified": true,
+          "n_admitted": 61,
+          "regime_tag": "anti_conservative_expected"
+        },
+        {
+          "genre": "legal",
+          "elicitation": "logprob",
+          "alpha": 0.3,
+          "raw": 0.028169,
+          "gate": 0.016393,
+          "abs_reduction": 0.011776,
+          "rel_reduction": 0.418048,
+          "ci_separated": false,
+          "certified": true,
+          "n_admitted": 61,
+          "regime_tag": "anti_conservative_expected"
+        },
+        {
+          "genre": "legal",
+          "elicitation": "logprob",
+          "alpha": 0.5,
+          "raw": 0.028169,
+          "gate": 0.016393,
+          "abs_reduction": 0.011776,
+          "rel_reduction": 0.418048,
+          "ci_separated": false,
+          "certified": true,
+          "n_admitted": 61,
+          "regime_tag": "anti_conservative_expected"
+        },
+        {
+          "genre": "news",
+          "elicitation": "logprob",
+          "alpha": 0.5,
+          "raw": 0.0625,
+          "gate": 0.095238,
+          "abs_reduction": -0.032738,
+          "rel_reduction": -0.523808,
+          "ci_separated": false,
+          "certified": true,
+          "n_admitted": 21,
+          "regime_tag": "anti_conservative_expected"
+        },
+        {
+          "genre": "pooled",
+          "elicitation": "logprob",
+          "alpha": 0.5,
+          "raw": 0.242857,
+          "gate": 0.178082,
+          "abs_reduction": 0.064775,
+          "rel_reduction": 0.266721,
+          "ci_separated": false,
+          "certified": true,
+          "n_admitted": 146,
+          "regime_tag": "anti_conservative_expected"
+        },
+        {
+          "genre": "legal",
+          "elicitation": "portable",
+          "alpha": 0.5,
+          "raw": 0.028169,
+          "gate": 0.02,
+          "abs_reduction": 0.008169,
+          "rel_reduction": 0.29,
+          "ci_separated": false,
+          "certified": true,
+          "n_admitted": 50,
+          "regime_tag": "certified"
+        },
+        {
+          "genre": "news",
+          "elicitation": "portable",
+          "alpha": 0.5,
+          "raw": 0.0625,
+          "gate": 0.045455,
+          "abs_reduction": 0.017045,
+          "rel_reduction": 0.27272,
+          "ci_separated": false,
+          "certified": true,
+          "n_admitted": 22,
+          "regime_tag": "certified"
+        },
+        {
+          "genre": "regulatory",
+          "elicitation": "portable",
+          "alpha": 0.5,
+          "raw": 0.439252,
+          "gate": 0.36,
+          "abs_reduction": 0.079252,
+          "rel_reduction": 0.180425,
+          "ci_separated": false,
+          "certified": true,
+          "n_admitted": 50,
+          "regime_tag": "certified"
+        },
+        {
+          "genre": "pooled",
+          "elicitation": "portable",
+          "alpha": 0.5,
+          "raw": 0.242857,
+          "gate": 0.18254,
+          "abs_reduction": 0.060317,
+          "rel_reduction": 0.248364,
+          "ci_separated": false,
+          "certified": true,
+          "n_admitted": 126,
+          "regime_tag": "certified"
+        }
+      ],
+      "self_report_anticonservative_cells": [],
+      "headline_statement": "Decoy-gating reduces the hallucinated-fact rate vs raw LLM in 0 of the grid cells with CI separation; the largest CI-separated reduction is at regulatory/portable/alpha=0.5: raw=0.439 -> gate=0.360 (abs 0.079)."
+    },
+    "s1_decoy_signature": {
+      "logprob": {
+        "counterfactual": {
+          "rows": [
+            {
+              "alpha": 0.05,
+              "n_admitted": 0,
+              "threshold": null,
+              "tail_win_rate": 0.490196,
+              "n_tail": 51
+            },
+            {
+              "alpha": 0.1,
+              "n_admitted": 0,
+              "threshold": null,
+              "tail_win_rate": 0.490196,
+              "n_tail": 51
+            },
+            {
+              "alpha": 0.2,
+              "n_admitted": 0,
+              "threshold": null,
+              "tail_win_rate": 0.490196,
+              "n_tail": 51
+            },
+            {
+              "alpha": 0.3,
+              "n_admitted": 0,
+              "threshold": null,
+              "tail_win_rate": 0.490196,
+              "n_tail": 51
+            },
+            {
+              "alpha": 0.5,
+              "n_admitted": 146,
+              "threshold": 0.22973,
+              "tail_win_rate": 0.490196,
+              "n_tail": 51
+            }
+          ],
+          "n_pairs": 210
+        },
+        "random_swap": {
+          "rows": [
+            {
+              "alpha": 0.05,
+              "n_admitted": 0,
+              "threshold": null,
+              "tail_win_rate": 0.039216,
+              "n_tail": 51
+            },
+            {
+              "alpha": 0.1,
+              "n_admitted": 41,
+              "threshold": 0.95122,
+              "tail_win_rate": 0.0,
+              "n_tail": 9
+            },
+            {
+              "alpha": 0.2,
+              "n_admitted": 185,
+              "threshold": 0.365854,
+              "tail_win_rate": 0.039216,
+              "n_tail": 51
+            },
+            {
+              "alpha": 0.3,
+              "n_admitted": 185,
+              "threshold": 0.365854,
+              "tail_win_rate": 0.039216,
+              "n_tail": 51
+            },
+            {
+              "alpha": 0.5,
+              "n_admitted": 185,
+              "threshold": 0.365854,
+              "tail_win_rate": 0.039216,
+              "n_tail": 51
+            }
+          ],
+          "n_pairs": 210
+        }
+      },
+      "portable": {
+        "counterfactual": {
+          "rows": [
+            {
+              "alpha": 0.05,
+              "n_admitted": 0,
+              "threshold": null,
+              "tail_win_rate": 0.509804,
+              "n_tail": 51
+            },
+            {
+              "alpha": 0.1,
+              "n_admitted": 0,
+              "threshold": null,
+              "tail_win_rate": 0.509804,
+              "n_tail": 51
+            },
+            {
+              "alpha": 0.2,
+              "n_admitted": 0,
+              "threshold": null,
+              "tail_win_rate": 0.509804,
+              "n_tail": 51
+            },
+            {
+              "alpha": 0.3,
+              "n_admitted": 0,
+              "threshold": null,
+              "tail_win_rate": 0.509804,
+              "n_tail": 51
+            },
+            {
+              "alpha": 0.5,
+              "n_admitted": 126,
+              "threshold": 0.238806,
+              "tail_win_rate": 0.452381,
+              "n_tail": 42
+            }
+          ],
+          "n_pairs": 210
+        },
+        "random_swap": {
+          "rows": [
+            {
+              "alpha": 0.05,
+              "n_admitted": 0,
+              "threshold": null,
+              "tail_win_rate": null,
+              "n_tail": 0
+            },
+            {
+              "alpha": 0.1,
+              "n_admitted": 0,
+              "threshold": null,
+              "tail_win_rate": null,
+              "n_tail": 0
+            },
+            {
+              "alpha": 0.2,
+              "n_admitted": 0,
+              "threshold": null,
+              "tail_win_rate": null,
+              "n_tail": 0
+            },
+            {
+              "alpha": 0.3,
+              "n_admitted": 0,
+              "threshold": null,
+              "tail_win_rate": null,
+              "n_tail": 0
+            },
+            {
+              "alpha": 0.5,
+              "n_admitted": 0,
+              "threshold": null,
+              "tail_win_rate": null,
+              "n_tail": 0
+            }
+          ],
+          "n_pairs": 0
+        }
+      }
+    },
+    "matched_recall_curves": {
+      "raw": {
+        "points": [
+          {
+            "recall_target": 0.1,
+            "reached": true,
+            "n_admitted": 210,
+            "precision": 0.2,
+            "precision_ci": [
+              0.13330882352941179,
+              0.2788130004710316
+            ],
+            "halluc_rate": 0.242857,
+            "halluc_ci": [
+              0.100395078605605,
+              0.38806140530225586
+            ]
+          },
+          {
+            "recall_target": 0.2,
+            "reached": true,
+            "n_admitted": 210,
+            "precision": 0.2,
+            "precision_ci": [
+              0.13330882352941179,
+              0.2788130004710316
+            ],
+            "halluc_rate": 0.242857,
+            "halluc_ci": [
+              0.100395078605605,
+              0.38806140530225586
+            ]
+          },
+          {
+            "recall_target": 0.3,
+            "reached": false
+          },
+          {
+            "recall_target": 0.4,
+            "reached": false
+          },
+          {
+            "recall_target": 0.5,
+            "reached": false
+          },
+          {
+            "recall_target": 0.6,
+            "reached": false
+          }
+        ],
+        "max_recall": 0.264286,
+        "n_facts": 210
+      },
+      "gate": {
+        "points": [
+          {
+            "recall_target": 0.1,
+            "reached": true,
+            "n_admitted": 45,
+            "precision": 0.311111,
+            "precision_ci": [
+              0.17774509803921573,
+              0.4546103896103895
+            ],
+            "halluc_rate": 0.022222,
+            "halluc_ci": [
+              0.0,
+              0.07407407407407407
+            ]
+          },
+          {
+            "recall_target": 0.2,
+            "reached": true,
+            "n_admitted": 112,
+            "precision": 0.267857,
+            "precision_ci": [
+              0.18366178532481697,
+              0.3718434343434343
+            ],
+            "halluc_rate": 0.160714,
+            "halluc_ci": [
+              0.06399574468085106,
+              0.257267683772538
+            ]
+          },
+          {
+            "recall_target": 0.3,
+            "reached": false
+          },
+          {
+            "recall_target": 0.4,
+            "reached": false
+          },
+          {
+            "recall_target": 0.5,
+            "reached": false
+          },
+          {
+            "recall_target": 0.6,
+            "reached": false
+          }
+        ],
+        "max_recall": 0.264286,
+        "n_facts": 210
+      },
+      "rag": {
+        "points": [
+          {
+            "recall_target": 0.1,
+            "reached": true,
+            "n_admitted": 28,
+            "precision": 0.5,
+            "precision_ci": [
+              0.26082930756843803,
+              0.75
+            ],
+            "halluc_rate": 0.035714,
+            "halluc_ci": [
+              0.0,
+              0.12
+            ]
+          },
+          {
+            "recall_target": 0.2,
+            "reached": true,
+            "n_admitted": 281,
+            "precision": 0.145907,
+            "precision_ci": [
+              0.09415488922841865,
+              0.207044147995283
+            ],
+            "halluc_rate": 0.234875,
+            "halluc_ci": [
+              0.11971339992144099,
+              0.337842596117244
+            ]
+          },
+          {
+            "recall_target": 0.3,
+            "reached": false
+          },
+          {
+            "recall_target": 0.4,
+            "reached": false
+          },
+          {
+            "recall_target": 0.5,
+            "reached": false
+          },
+          {
+            "recall_target": 0.6,
+            "reached": false
+          }
+        ],
+        "max_recall": 0.25,
+        "n_facts": 281
+      },
+      "cot": {
+        "points": [
+          {
+            "recall_target": 0.1,
+            "reached": true,
+            "n_admitted": 22,
+            "precision": 0.727273,
+            "precision_ci": [
+              0.5652173913043478,
+              0.9090909090909091
+            ],
+            "halluc_rate": 0.045455,
+            "halluc_ci": [
+              0.0,
+              0.13050724637681152
+            ]
+          },
+          {
+            "recall_target": 0.2,
+            "reached": false
+          },
+          {
+            "recall_target": 0.3,
+            "reached": false
+          },
+          {
+            "recall_target": 0.4,
+            "reached": false
+          },
+          {
+            "recall_target": 0.5,
+            "reached": false
+          },
+          {
+            "recall_target": 0.6,
+            "reached": false
+          }
+        ],
+        "max_recall": 0.185714,
+        "n_facts": 114
+      },
+      "gold_total": 140
+    },
+    "extraction_quality": {
+      "legal": {
+        "atomic_precision": 0.28336056644880175,
+        "atomic_recall": 0.26711309523809523,
+        "n_docs": 8,
+        "crisp_restricted": true
+      },
+      "news": {
+        "atomic_precision": 0.29444444444444445,
+        "atomic_recall": 0.1845238095238095,
+        "n_docs": 8,
+        "crisp_restricted": false
+      },
+      "regulatory": {
+        "atomic_precision": 0.1745598441805872,
+        "atomic_recall": 0.4151785714285714,
+        "n_docs": 8,
+        "crisp_restricted": false
+      }
+    },
+    "multihop_corruption": {
+      "by_genre": {
+        "legal": {
+          "raw": {
+            "derived": 11,
+            "corrupt": 0,
+            "corrupted_rate": 0.0
+          },
+          "gate_a0.05": {
+            "derived": 0,
+            "corrupt": 0,
+            "corrupted_rate": null
+          },
+          "gate_a0.1": {
+            "derived": 0,
+            "corrupt": 0,
+            "corrupted_rate": null
+          },
+          "gate_a0.2": {
+            "derived": 0,
+            "corrupt": 0,
+            "corrupted_rate": null
+          },
+          "gate_a0.3": {
+            "derived": 0,
+            "corrupt": 0,
+            "corrupted_rate": null
+          },
+          "gate_a0.5": {
+            "derived": 8,
+            "corrupt": 0,
+            "corrupted_rate": 0.0
+          }
+        },
+        "news": {
+          "raw": {
+            "derived": 0,
+            "corrupt": 0,
+            "corrupted_rate": null
+          },
+          "gate_a0.05": {
+            "derived": 0,
+            "corrupt": 0,
+            "corrupted_rate": null
+          },
+          "gate_a0.1": {
+            "derived": 0,
+            "corrupt": 0,
+            "corrupted_rate": null
+          },
+          "gate_a0.2": {
+            "derived": 0,
+            "corrupt": 0,
+            "corrupted_rate": null
+          },
+          "gate_a0.3": {
+            "derived": 0,
+            "corrupt": 0,
+            "corrupted_rate": null
+          },
+          "gate_a0.5": {
+            "derived": 0,
+            "corrupt": 0,
+            "corrupted_rate": null
+          }
+        },
+        "regulatory": {
+          "raw": {
+            "derived": 12,
+            "corrupt": 11,
+            "corrupted_rate": 0.9166666666666666
+          },
+          "gate_a0.05": {
+            "derived": 0,
+            "corrupt": 0,
+            "corrupted_rate": null
+          },
+          "gate_a0.1": {
+            "derived": 0,
+            "corrupt": 0,
+            "corrupted_rate": null
+          },
+          "gate_a0.2": {
+            "derived": 0,
+            "corrupt": 0,
+            "corrupted_rate": null
+          },
+          "gate_a0.3": {
+            "derived": 0,
+            "corrupt": 0,
+            "corrupted_rate": null
+          },
+          "gate_a0.5": {
+            "derived": 3,
+            "corrupt": 2,
+            "corrupted_rate": 0.6666666666666666
+          }
+        }
+      },
+      "pooled": {
+        "raw": {
+          "derived": 23,
+          "corrupt": 11,
+          "corrupted_rate": 0.4782608695652174
+        },
+        "gate_a0.05": {
+          "derived": 0,
+          "corrupt": 0,
+          "corrupted_rate": null
+        },
+        "gate_a0.1": {
+          "derived": 0,
+          "corrupt": 0,
+          "corrupted_rate": null
+        },
+        "gate_a0.2": {
+          "derived": 0,
+          "corrupt": 0,
+          "corrupted_rate": null
+        },
+        "gate_a0.3": {
+          "derived": 0,
+          "corrupt": 0,
+          "corrupted_rate": null
+        },
+        "gate_a0.5": {
+          "derived": 11,
+          "corrupt": 2,
+          "corrupted_rate": 0.18181818181818182
+        }
+      }
+    },
+    "adjudicator_validation": {
+      "kappa": 0.10126582278481007,
+      "raw_agreement": 0.38028169014084506,
+      "n_legal_judged": 71,
+      "trust_threshold": 0.4,
+      "judge_trusted": false,
+      "fallback_active": true
+    },
+    "trace_graphs": {
+      "n_exported": 6,
+      "examples": [
+        {
+          "doc_id": "legal_cuad_00",
+          "genre": "legal",
+          "kind": "multi_hop",
+          "rule": "party_bound_effective",
+          "conclusion": [
+            "party_bound_effective",
+            [
+              "Premium Managed Hosting Agreement",
+              "AstroNutrition.com",
+              "March 1, 2005"
+            ]
+          ],
+          "graph": {
+            "nodes": [
+              {
+                "id": 0,
+                "label": "party_bound_effective(Premium Managed Hosting Agreement, AstroNutrition.com, March 1, 2005)",
+                "kind": "derived",
+                "rule": "party_bound_effective"
+              },
+              {
+                "id": 1,
+                "label": "has_party(Premium Managed Hosting Agreement, AstroNutrition.com)",
+                "kind": "leaf",
+                "cert": {
+                  "provenance": "This is a managed hosting agreement between AstroNutrition.com and deep systems.",
+                  "provenance_char_span": null,
+                  "hallucination_verdict": "ENTAILED",
+                  "decoy_certificate": {
+                    "W_i": 0.8421,
+                    "T": 0.129032,
+                    "alpha": 0.5
+                  },
+                  "entrapment_certificate": {
+                    "FDP_hat": 0.666667,
+                    "r": 1
+                  }
+                }
+              },
+              {
+                "id": 2,
+                "label": "effective_date(Premium Managed Hosting Agreement, March 1, 2005)",
+                "kind": "leaf",
+                "cert": {
+                  "provenance": "The effective term is 12 months beginning March 1, 2005",
+                  "provenance_char_span": null,
+                  "hallucination_verdict": "ENTAILED",
+                  "decoy_certificate": {
+                    "W_i": 0.7895,
+                    "T": 0.129032,
+                    "alpha": 0.5
+                  },
+                  "entrapment_certificate": {
+                    "FDP_hat": 0.666667,
+                    "r": 1
+                  }
+                }
+              }
+            ],
+            "edges": [
+              {
+                "src": 0,
+                "dst": 1,
+                "rule": "party_bound_effective"
+              },
+              {
+                "src": 0,
+                "dst": 2,
+                "rule": "party_bound_effective"
+              }
+            ]
+          },
+          "json_path": "trace_graphs/trace_legal_cuad_00.json",
+          "dot_path": "trace_graphs/trace_legal_cuad_00.dot"
+        },
+        {
+          "doc_id": "legal_cuad_04",
+          "genre": "legal",
+          "kind": "multi_hop",
+          "rule": "party_bound_effective",
+          "conclusion": [
+            "party_bound_effective",
+            [
+              "Maintenance Agreement",
+              "Bankers Bank",
+              "MARCH 1, 2001"
+            ]
+          ],
+          "graph": {
+            "nodes": [
+              {
+                "id": 0,
+                "label": "party_bound_effective(Maintenance Agreement, Bankers Bank, MARCH 1, 2001)",
+                "kind": "derived",
+                "rule": "party_bound_effective"
+              },
+              {
+                "id": 1,
+                "label": "has_party(Maintenance Agreement, Bankers Bank)",
+                "kind": "leaf",
+                "cert": {
+                  "provenance": "Bankers Bank agrees to pay fees equal to $40 per month for all Participating Banks (original or added) for which maintenance is provided.",
+                  "provenance_char_span": null,
+                  "hallucination_verdict": "ENTAILED",
+                  "decoy_certificate": {
+                    "W_i": 0.597,
+                    "T": 0.129032,
+                    "alpha": 0.5
+                  },
+                  "entrapment_certificate": {
+                    "FDP_hat": 0.666667,
+                    "r": 1
+                  }
+                }
+              },
+              {
+                "id": 2,
+                "label": "effective_date(Maintenance Agreement, MARCH 1, 2001)",
+                "kind": "leaf",
+                "cert": {
+                  "provenance": "COMMENCEMENT DATE FOR MAINTENANCE UNDER THIS ADDENDUM:  MARCH 1, 2001",
+                  "provenance_char_span": null,
+                  "hallucination_verdict": "ENTAILED",
+                  "decoy_certificate": {
+                    "W_i": 0.7313,
+                    "T": 0.129032,
+                    "alpha": 0.5
+                  },
+                  "entrapment_certificate": {
+                    "FDP_hat": 0.666667,
+                    "r": 1
+                  }
+                }
+              }
+            ],
+            "edges": [
+              {
+                "src": 0,
+                "dst": 1,
+                "rule": "party_bound_effective"
+              },
+              {
+                "src": 0,
+                "dst": 2,
+                "rule": "party_bound_effective"
+              }
+            ]
+          },
+          "json_path": "trace_graphs/trace_legal_cuad_04.json",
+          "dot_path": "trace_graphs/trace_legal_cuad_04.dot"
+        },
+        {
+          "doc_id": "news_wikinews_02",
+          "genre": "news",
+          "kind": "admission",
+          "rule": "admission",
+          "conclusion": [
+            "admitted_fact",
+            [
+              "choose(The Justice and Development Party,Abdullah Gül)"
+            ]
+          ],
+          "graph": {
+            "nodes": [
+              {
+                "id": 0,
+                "label": "admitted_fact(choose(The Justice and Development Party,Abdullah Gül))",
+                "kind": "derived",
+                "rule": "admission"
+              },
+              {
+                "id": 1,
+                "label": "choose(The Justice and Development Party, Abdullah Gül)",
+                "kind": "leaf",
+                "cert": {
+                  "provenance": "The ruling AKP chose Abdullah Gül as their candidate instead",
+                  "provenance_char_span": null,
+                  "hallucination_verdict": "ENTAILED",
+                  "decoy_certificate": {
+                    "W_i": 0.7368,
+                    "T": 0.191489,
+                    "alpha": 0.5
+                  },
+                  "entrapment_certificate": {
+                    "FDP_hat": 0.871795,
+                    "r": 1
+                  }
+                }
+              }
+            ],
+            "edges": [
+              {
+                "src": 0,
+                "dst": 1,
+                "rule": "admission"
+              }
+            ]
+          },
+          "json_path": "trace_graphs/trace_news_wikinews_02.json",
+          "dot_path": "trace_graphs/trace_news_wikinews_02.dot"
+        },
+        {
+          "doc_id": "news_wikinews_03",
+          "genre": "news",
+          "kind": "admission",
+          "rule": "admission",
+          "conclusion": [
+            "admitted_fact",
+            [
+              "call(Rove,Novak)"
+            ]
+          ],
+          "graph": {
+            "nodes": [
+              {
+                "id": 0,
+                "label": "admitted_fact(call(Rove,Novak))",
+                "kind": "derived",
+                "rule": "admission"
+              },
+              {
+                "id": 1,
+                "label": "call(Rove, Novak)",
+                "kind": "leaf",
+                "cert": {
+                  "provenance": "Novak called Rove on a Tuesday, 6 days before he broke the story.",
+                  "provenance_char_span": null,
+                  "hallucination_verdict": "ENTAILED",
+                  "decoy_certificate": {
+                    "W_i": 1.0,
+                    "T": 0.191489,
+                    "alpha": 0.5
+                  },
+                  "entrapment_certificate": {
+                    "FDP_hat": 0.871795,
+                    "r": 1
+                  }
+                }
+              }
+            ],
+            "edges": [
+              {
+                "src": 0,
+                "dst": 1,
+                "rule": "admission"
+              }
+            ]
+          },
+          "json_path": "trace_graphs/trace_news_wikinews_03.json",
+          "dot_path": "trace_graphs/trace_news_wikinews_03.dot"
+        },
+        {
+          "doc_id": "reg_gdpr_07",
+          "genre": "regulatory",
+          "kind": "multi_hop",
+          "rule": "titled_obligation",
+          "conclusion": [
+            "titled_obligation",
+            [
+              "Art. 7 GDPR",
+              "Conditions for consent",
+              "present consent request in a clearly distinguishable manner"
+            ]
+          ],
+          "graph": {
+            "nodes": [
+              {
+                "id": 0,
+                "label": "titled_obligation(Art. 7 GDPR, Conditions for consent, present consent request in a clearly distinguishable manner)",
+                "kind": "derived",
+                "rule": "titled_obligation"
+              },
+              {
+                "id": 1,
+                "label": "has_title(Art. 7 GDPR, Conditions for consent)",
+                "kind": "leaf",
+                "cert": {
+                  "provenance": "Art. 7 GDPR Conditions for consent",
+                  "provenance_char_span": null,
+                  "hallucination_verdict": "ENTAILED",
+                  "decoy_certificate": {
+                    "W_i": 0.68,
+                    "T": 0.338462,
+                    "alpha": 0.5
+                  },
+                  "entrapment_certificate": {
+                    "FDP_hat": 0.93617,
+                    "r": 1
+                  }
+                }
+              },
+              {
+                "id": 2,
+                "label": "obligates(Art. 7 GDPR, present consent request in a clearly distinguishable manner)",
+                "kind": "leaf",
+                "cert": {
+                  "provenance": "the request for consent shall be presented in a manner which is clearly distinguishable from the other matters",
+                  "provenance_char_span": null,
+                  "hallucination_verdict": "HALLUCINATED",
+                  "decoy_certificate": {
+                    "W_i": -0.3333,
+                    "T": 0.338462,
+                    "alpha": 0.5
+                  },
+                  "entrapment_certificate": {
+                    "FDP_hat": 0.93617,
+                    "r": 1
+                  }
+                }
+              }
+            ],
+            "edges": [
+              {
+                "src": 0,
+                "dst": 1,
+                "rule": "titled_obligation"
+              },
+              {
+                "src": 0,
+                "dst": 2,
+                "rule": "titled_obligation"
+              }
+            ]
+          },
+          "json_path": "trace_graphs/trace_reg_gdpr_07.json",
+          "dot_path": "trace_graphs/trace_reg_gdpr_07.dot"
+        },
+        {
+          "doc_id": "reg_gdpr_13",
+          "genre": "regulatory",
+          "kind": "multi_hop",
+          "rule": "obligation_with_exception",
+          "conclusion": [
+            "obligation_with_exception",
+            [
+              "controller",
+              "provide all of the following information at the time when personal data are obtained",
+              "where and insofar as the data subject already has the information"
+            ]
+          ],
+          "graph": {
+            "nodes": [
+              {
+                "id": 0,
+                "label": "obligation_with_exception(controller, provide all of the following information at the time when personal data are obtained, where and insofar as the data subject already has the information)",
+                "kind": "derived",
+                "rule": "obligation_with_exception"
+              },
+              {
+                "id": 1,
+                "label": "obligates(controller, provide all of the following information at the time when personal data are obtained)",
+                "kind": "leaf",
+                "cert": {
+                  "provenance": "the controller shall, at the time when personal data are obtained, provide the data subject with all of the following information",
+                  "provenance_char_span": null,
+                  "hallucination_verdict": "HALLUCINATED",
+                  "decoy_certificate": {
+                    "W_i": -0.8039,
+                    "T": 0.338462,
+                    "alpha": 0.5
+                  },
+                  "entrapment_certificate": {
+                    "FDP_hat": 0.93617,
+                    "r": 1
+                  }
+                }
+              },
+              {
+                "id": 2,
+                "label": "has_exception(controller, where and insofar as the data subject already has the information)",
+                "kind": "leaf",
+                "cert": {
+                  "provenance": "Paragraphs 1, 2 and 3 shall not apply where and insofar as the data subject already has the information",
+                  "provenance_char_span": null,
+                  "hallucination_verdict": "ENTAILED",
+                  "decoy_certificate": {
+                    "W_i": 0.7451,
+                    "T": 0.338462,
+                    "alpha": 0.5
+                  },
+                  "entrapment_certificate": {
+                    "FDP_hat": 0.93617,
+                    "r": 1
+                  }
+                }
+              }
+            ],
+            "edges": [
+              {
+                "src": 0,
+                "dst": 1,
+                "rule": "obligation_with_exception"
+              },
+              {
+                "src": 0,
+                "dst": 2,
+                "rule": "obligation_with_exception"
+              }
+            ]
+          },
+          "json_path": "trace_graphs/trace_reg_gdpr_13.json",
+          "dot_path": "trace_graphs/trace_reg_gdpr_13.dot"
+        }
+      ],
+      "dot_paths": [
+        "trace_graphs/trace_legal_cuad_00.dot",
+        "trace_graphs/trace_legal_cuad_04.dot",
+        "trace_graphs/trace_news_wikinews_02.dot",
+        "trace_graphs/trace_news_wikinews_03.dot",
+        "trace_graphs/trace_reg_gdpr_07.dot",
+        "trace_graphs/trace_reg_gdpr_13.dot"
+      ],
+      "note": "multi_hop = real bridge derivation; admission = depth-1 admission-boundary trace with full per-leaf certificate (used where no bridge fires)."
+    },
+    "bh_correction": [
+      {
+        "test_name": "gate<raw[legal|logprob|a0.2]",
+        "raw_p": 0.29892959643259776,
+        "bh_adj_p": 0.4755217370609922,
+        "reject": false
+      },
+      {
+        "test_name": "gate<raw[legal|logprob|a0.3]",
+        "raw_p": 0.29892959643259776,
+        "bh_adj_p": 0.4755217370609922,
+        "reject": false
+      },
+      {
+        "test_name": "gate<raw[legal|logprob|a0.5]",
+        "raw_p": 0.29892959643259776,
+        "bh_adj_p": 0.4755217370609922,
+        "reject": false
+      },
+      {
+        "test_name": "gate<raw[news|logprob|a0.5]",
+        "raw_p": 0.596188893769439,
+        "bh_adj_p": 0.6624321041882655,
+        "reject": false
+      },
+      {
+        "test_name": "gate<raw[pooled|logprob|a0.5]",
+        "raw_p": 0.2375189710183424,
+        "bh_adj_p": 0.4755217370609922,
+        "reject": false
+      },
+      {
+        "test_name": "gate<raw[legal|portable|a0.5]",
+        "raw_p": 0.36521904277665673,
+        "bh_adj_p": 0.4755217370609922,
+        "reject": false
+      },
+      {
+        "test_name": "gate<raw[news|portable|a0.5]",
+        "raw_p": 0.3804173896487938,
+        "bh_adj_p": 0.4755217370609922,
+        "reject": false
+      },
+      {
+        "test_name": "gate<raw[regulatory|portable|a0.5]",
+        "raw_p": 0.23952182406597866,
+        "bh_adj_p": 0.4755217370609922,
+        "reject": false
+      },
+      {
+        "test_name": "gate<raw[pooled|portable|a0.5]",
+        "raw_p": 0.2609029267341848,
+        "bh_adj_p": 0.4755217370609922,
+        "reject": false
+      },
+      {
+        "test_name": "adjudicator_agreement_vs_chance",
+        "raw_p": 0.9840364189583938,
+        "bh_adj_p": 0.9840364189583937,
+        "reject": false
+      }
+    ],
+    "runtime": {
+      "elapsed_s": 373.7212176322937,
+      "cost_usd": 0.305083810000003,
+      "n_calls_live": 4907,
+      "n_calls_cached": 926,
+      "cached_tokens_observed": 85760
+    },
+    "cost_trace_path": "logs/cost.jsonl",
+    "interpretation": {
+      "primary": "Per (genre, elicitation, alpha) the gate hallucination rate is compared to the alpha-invariant RAW rate with CI separation; the full grid is reported so regime-dependence is explicit.",
+      "regime": "logprob: anti-conservative expected (LLM overconfident in own errors); portable: vacuous below the certified alpha (n_admitted<1/alpha) — shown as 'uncertified' but populated.",
+      "second_order": "self_report_anticonservative flags cells where the gate's own decoy_fdr_hat under-states the realized FDR.",
+      "trace_graphs": "every admitted leaf carries provenance + decoy (W_i,T,alpha) + entrapment (FDP_hat,r) certificates; derived conclusions are corrupted iff any supporting leaf is hallucinated."
+    }
+  },
+  "datasets": [
+    {
+      "dataset": "ApplicationAnchor-24doc-Legal-News-Regulatory",
+      "examples": [
+        {
+          "input": "{\"doc_id\": \"legal_cuad_00\", \"head\": \"Premium Managed Hosting Agreement\", \"relation\": \"agreement_date\", \"tail\": \"03/01/05\", \"genre\": \"legal\", \"candidate_kind\": \"real\"}",
+          "output": "TRUE",
+          "metadata_doc_id": "legal_cuad_00",
+          "metadata_genre": "legal",
+          "metadata_gold_quality": "crisp",
+          "metadata_gold_exact": true,
+          "metadata_hallucination_verdict": "ENTAILED",
+          "metadata_hall_adj": false,
+          "metadata_extraction_freq": 1,
+          "metadata_sumo_type_head": "&%Entity+",
+          "metadata_sumo_type_tail": "&%TimePosition+",
+          "metadata_decoy_relation": "effective_date",
+          "metadata_provenance_quote": "03/01/05",
+          "metadata_z_real_rank_lp": 0.8333333333333334,
+          "metadata_z_decoy_rank_lp": 0.75,
+          "metadata_w_cf_lp": 0.833333,
+          "metadata_z_real_raw_lp": 0.9998415638475772,
+          "predict_admit_lp_a05": "no",
+          "predict_admit_lp_a10": "no",
+          "predict_admit_lp_a20": "yes",
+          "predict_admit_lp_a30": "yes",
+          "predict_admit_lp_a50": "yes",
+          "metadata_z_real_rank_pt": 0.5789473684210527,
+          "metadata_z_decoy_rank_pt": 1.0,
+          "metadata_w_cf_pt": -1.0,
+          "metadata_z_real_raw_pt": 1.0,
+          "predict_admit_pt_a05": "no",
+          "predict_admit_pt_a10": "no",
+          "predict_admit_pt_a20": "no",
+          "predict_admit_pt_a30": "no",
+          "predict_admit_pt_a50": "no"
+        },
+        {
+          "input": "{\"doc_id\": \"legal_cuad_00\", \"head\": \"Premium Managed Hosting Agreement\", \"relation\": \"effective_date\", \"tail\": \"March 1, 2005\", \"genre\": \"legal\", \"candidate_kind\": \"real\"}",
+          "output": "TRUE",
+          "metadata_doc_id": "legal_cuad_00",
+          "metadata_genre": "legal",
+          "metadata_gold_quality": "crisp",
+          "metadata_gold_exact": true,
+          "metadata_hallucination_verdict": "ENTAILED",
+          "metadata_hall_adj": false,
+          "metadata_extraction_freq": 1,
+          "metadata_sumo_type_head": "&%Entity+",
+          "metadata_sumo_type_tail": "&%TimePosition+",
+          "metadata_decoy_relation": "agreement_date",
+          "metadata_provenance_quote": "The effective term is 12 months beginning March 1, 2005",
+          "metadata_z_real_rank_lp": 0.9583333333333334,
+          "metadata_z_decoy_rank_lp": 1.0,
+          "metadata_w_cf_lp": -1.0,
+          "metadata_z_real_raw_lp": 0.9999910603051653,
+          "predict_admit_lp_a05": "no",
+          "predict_admit_lp_a10": "no",
+          "predict_admit_lp_a20": "no",
+          "predict_admit_lp_a30": "no",
+          "predict_admit_lp_a50": "no",
+          "metadata_z_real_rank_pt": 0.7894736842105263,
+          "metadata_z_decoy_rank_pt": 0.7368421052631579,
+          "metadata_w_cf_pt": 0.789474,
+          "metadata_z_real_raw_pt": 1.0,
+          "predict_admit_pt_a05": "no",
+          "predict_admit_pt_a10": "no",
+          "predict_admit_pt_a20": "no",
+          "predict_admit_pt_a30": "no",
+          "predict_admit_pt_a50": "yes"
+        },
+        {
+          "input": "{\"doc_id\": \"legal_cuad_00\", \"head\": \"Premium Managed Hosting Agreement\", \"relation\": \"expiration_date\", \"tail\": \"February 28, 2006\", \"genre\": \"legal\", \"candidate_kind\": \"real\"}",
+          "output": "TRUE",
+          "metadata_doc_id": "legal_cuad_00",
+          "metadata_genre": "legal",
+          "metadata_gold_quality": "crisp",
+          "metadata_gold_exact": true,
+          "metadata_hallucination_verdict": "ENTAILED",
+          "metadata_hall_adj": false,
+          "metadata_extraction_freq": 1,
+          "metadata_sumo_type_head": "&%Entity+",
+          "metadata_sumo_type_tail": "&%TimePosition+",
+          "metadata_decoy_relation": "has_party",
+          "metadata_provenance_quote": "and ending February 28, 2006.",
+          "metadata_z_real_rank_lp": 0.9166666666666666,
+          "metadata_z_decoy_rank_lp": 0.5416666666666666,
+          "metadata_w_cf_lp": 0.916667,
+          "metadata_z_real_raw_lp": 0.9999852610186964,
+          "predict_admit_lp_a05": "no",
+          "predict_admit_lp_a10": "no",
+          "predict_admit_lp_a20": "yes",
+          "predict_admit_lp_a30": "yes",
+          "predict_admit_lp_a50": "yes",
+          "metadata_z_real_rank_pt": 0.631578947368421,
+          "metadata_z_decoy_rank_pt": 0.10526315789473684,
+          "metadata_w_cf_pt": 0.631579,
+          "metadata_z_real_raw_pt": 1.0,
+          "predict_admit_pt_a05": "no",
+          "predict_admit_pt_a10": "no",
+          "predict_admit_pt_a20": "no",
+          "predict_admit_pt_a30": "no",
+          "predict_admit_pt_a50": "yes"
+        }
+      ]
+    }
+  ]
+}

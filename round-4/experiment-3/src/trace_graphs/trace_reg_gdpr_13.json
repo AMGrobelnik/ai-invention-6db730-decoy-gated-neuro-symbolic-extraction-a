@@ -1,0 +1,254 @@
+{
+  "doc_id": "reg_gdpr_13",
+  "genre": "regulatory",
+  "kind": "multi_hop",
+  "n_proofs": 2,
+  "graphs": [
+    {
+      "nodes": [
+        {
+          "id": 0,
+          "label": "obligation_with_exception(controller, provide all of the following information at the time when personal data are obtained, where and insofar as the data subject already has the information)",
+          "kind": "derived",
+          "rule": "obligation_with_exception"
+        },
+        {
+          "id": 1,
+          "label": "obligates(controller, provide all of the following information at the time when personal data are obtained)",
+          "kind": "leaf",
+          "cert": {
+            "provenance": "the controller shall, at the time when personal data are obtained, provide the data subject with all of the following information",
+            "provenance_char_span": null,
+            "hallucination_verdict": "HALLUCINATED",
+            "decoy_certificate": {
+              "W_i": -0.8039,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        },
+        {
+          "id": 2,
+          "label": "has_exception(controller, where and insofar as the data subject already has the information)",
+          "kind": "leaf",
+          "cert": {
+            "provenance": "Paragraphs 1, 2 and 3 shall not apply where and insofar as the data subject already has the information",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 0.7451,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "src": 0,
+          "dst": 1,
+          "rule": "obligation_with_exception"
+        },
+        {
+          "src": 0,
+          "dst": 2,
+          "rule": "obligation_with_exception"
+        }
+      ]
+    },
+    {
+      "nodes": [
+        {
+          "id": 0,
+          "label": "obligation_with_exception(controller, to provide the data subject with additional information necessary to ensure fair and transparent processing, where and insofar as the data subject already has the information)",
+          "kind": "derived",
+          "rule": "obligation_with_exception"
+        },
+        {
+          "id": 1,
+          "label": "obligates(controller, to provide the data subject with additional information necessary to ensure fair and transparent processing)",
+          "kind": "leaf",
+          "cert": {
+            "provenance": "In addition to the information referred to in paragraph 1, the controller shall, at the time when personal data are obtained, provide the data subject with the following further information necessary to ensure fair and transparent processing",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 0.4314,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        },
+        {
+          "id": 2,
+          "label": "has_exception(controller, where and insofar as the data subject already has the information)",
+          "kind": "leaf",
+          "cert": {
+            "provenance": "Paragraphs 1, 2 and 3 shall not apply where and insofar as the data subject already has the information",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 0.7451,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "src": 0,
+          "dst": 1,
+          "rule": "obligation_with_exception"
+        },
+        {
+          "src": 0,
+          "dst": 2,
+          "rule": "obligation_with_exception"
+        }
+      ]
+    }
+  ],
+  "proofs": [
+    {
+      "type": "derived",
+      "atom": [
+        "obligation_with_exception",
+        [
+          "controller",
+          "provide all of the following information at the time when personal data are obtained",
+          "where and insofar as the data subject already has the information"
+        ]
+      ],
+      "rule": "obligation_with_exception",
+      "children": [
+        {
+          "type": "leaf",
+          "atom": [
+            "obligates",
+            [
+              "controller",
+              "provide all of the following information at the time when personal data are obtained"
+            ]
+          ],
+          "cert": {
+            "provenance": "the controller shall, at the time when personal data are obtained, provide the data subject with all of the following information",
+            "provenance_char_span": null,
+            "hallucination_verdict": "HALLUCINATED",
+            "decoy_certificate": {
+              "W_i": -0.8039,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        },
+        {
+          "type": "leaf",
+          "atom": [
+            "has_exception",
+            [
+              "controller",
+              "where and insofar as the data subject already has the information"
+            ]
+          ],
+          "cert": {
+            "provenance": "Paragraphs 1, 2 and 3 shall not apply where and insofar as the data subject already has the information",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 0.7451,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "derived",
+      "atom": [
+        "obligation_with_exception",
+        [
+          "controller",
+          "to provide the data subject with additional information necessary to ensure fair and transparent processing",
+          "where and insofar as the data subject already has the information"
+        ]
+      ],
+      "rule": "obligation_with_exception",
+      "children": [
+        {
+          "type": "leaf",
+          "atom": [
+            "obligates",
+            [
+              "controller",
+              "to provide the data subject with additional information necessary to ensure fair and transparent processing"
+            ]
+          ],
+          "cert": {
+            "provenance": "In addition to the information referred to in paragraph 1, the controller shall, at the time when personal data are obtained, provide the data subject with the following further information necessary to ensure fair and transparent processing",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 0.4314,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        },
+        {
+          "type": "leaf",
+          "atom": [
+            "has_exception",
+            [
+              "controller",
+              "where and insofar as the data subject already has the information"
+            ]
+          ],
+          "cert": {
+            "provenance": "Paragraphs 1, 2 and 3 shall not apply where and insofar as the data subject already has the information",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 0.7451,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

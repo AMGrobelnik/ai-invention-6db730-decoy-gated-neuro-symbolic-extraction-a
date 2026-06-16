@@ -1,0 +1,10 @@
+digraph prob_proof {
+  rankdir=TB;
+  node [style=filled, fontname="Helvetica", fontsize=10];
+  labelloc="t"; label="reg_gdpr_13 [regulatory] obligation_with_exception (prob)";
+  n0 [label="obligation_with_exception(controller, provide all of the following information at the time when personal data are obtained, where and insofar as the data subject already has the information)\nrule: obligation_with_exception\np=0.131", fillcolor="lightblue", tooltip="derived conclusion (marginal)"];
+  n1 [label="obligates(controller, provide all of the following information at the time when personal data are obtained)\np=0.353\nW=-0.8039 T=0.338462 a=0.5\nFDP_hat=0.93617 r=1", fillcolor="lightsalmon", tooltip="the controller shall, at the time when personal data are obtained, provide the data subject with all of the following information"];
+  n2 [label="has_exception(controller, where and insofar as the data subject already has the information)\np=0.373\nW=0.7451 T=0.338462 a=0.5\nFDP_hat=0.93617 r=1", fillcolor="palegreen", tooltip="Paragraphs 1, 2 and 3 shall not apply where and insofar as the data subject already has the information"];
+  n0 -> n1 [label="obligation_with_exception", fontsize=8];
+  n0 -> n2 [label="obligation_with_exception", fontsize=8];
+}

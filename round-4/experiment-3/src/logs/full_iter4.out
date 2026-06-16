@@ -1,0 +1,33 @@
+11:20:09|INFO   |Loaded 24 docs from full_data_out.json (genres={legal:8, news:8, regulatory:8})
+11:20:09|INFO   |STAGE 1 extraction (systems=['raw', 'rag', 'cot'], n_samples=3)...
+11:20:11|INFO   |  [extract] 48/72 | cost=$0.0000 | live=0 cached=144 | errs=0
+11:20:12|INFO   |  [extract] 72/72 | cost=$0.0000 | live=0 cached=216 | errs=0
+11:20:13|INFO   |  [align] 23/23 | cost=$0.0000 | live=0 cached=239 | errs=0
+11:20:13|INFO   |reals=208 by-label={'TRUE': 42, 'FALSE': 51, 'UNDECIDABLE': 115}
+11:20:13|INFO   |STAGE 2 decoys + swaps + entrapment...
+11:20:13|INFO   |  [decoy] 24/24 | cost=$0.0000 | live=0 cached=255 | errs=0
+11:20:14|INFO   |decoys; contamination_rate=0.0577
+11:20:14|INFO   |STAGE 2 scoring elic=logprob over 1038 candidates...
+11:20:17|INFO   |  [score-logprob] 240/1038 | cost=$0.0000 | live=0 cached=495 | errs=0
+11:20:20|INFO   |  [score-logprob] 480/1038 | cost=$0.0000 | live=0 cached=735 | errs=0
+11:20:23|INFO   |  [score-logprob] 720/1038 | cost=$0.0000 | live=0 cached=975 | errs=0
+11:20:26|INFO   |  [score-logprob] 960/1038 | cost=$0.0000 | live=0 cached=1215 | errs=0
+11:20:27|INFO   |  [score-logprob] 1038/1038 | cost=$0.0000 | live=0 cached=1293 | errs=0
+11:20:27|INFO   |STAGE 2 scoring elic=portable over 830 candidates...
+11:20:43|INFO   |  [score-portable] 240/830 | cost=$0.0000 | live=0 cached=2493 | errs=0
+11:20:59|INFO   |  [score-portable] 480/830 | cost=$0.0000 | live=0 cached=3693 | errs=0
+11:21:16|INFO   |  [score-portable] 720/830 | cost=$0.0000 | live=0 cached=4893 | errs=0
+11:21:23|INFO   |  [score-portable] 830/830 | cost=$0.0000 | live=0 cached=5443 | errs=0
+11:21:23|INFO   |STAGE 2b cross-family adjudicator (gray-zone + legal validation)...
+11:21:25|INFO   |  [judge] 96/335 | cost=$0.0000 | live=0 cached=5539 | errs=0
+11:21:26|INFO   |  [judge] 192/335 | cost=$0.0000 | live=0 cached=5635 | errs=0
+11:21:27|INFO   |  [judge] 288/335 | cost=$0.0000 | live=0 cached=5731 | errs=0
+11:21:28|INFO   |  [judge] 335/335 | cost=$0.0000 | live=0 cached=5778 | errs=0
+11:21:28|INFO   |Pipeline done 79.1s | cost=$0.0000
+11:21:28|INFO   |ANALYSIS ...
+11:21:28|INFO   |  adjudicator kappa=0.097 trusted=False
+11:21:34|INFO   |  trace-graphs exported: 6
+11:21:34|INFO   |ITER-4 probabilistic reasoner + finalized reporting ...
+11:21:35|INFO   |  prob trace-graphs: 4 | engine=problog | multihop genres=['legal', 'regulatory'] | self_report=conservative | atomic CI-sep 0/40
+11:21:35|INFO   |Wrote /ai-inventor/aii_data/runs/run_MQN7mBg4AhvH/3_invention_loop/iter_4/gen_art/gen_art_experiment_3/method_out.json (473 KB, 208 rows)
+11:21:36|INFO   |DONE. cost=$0.0000 | Decoy-gating reduces the hallucinated-fact rate vs raw LLM in 0 of the grid cells with CI separation; the largest CI-separated reduction is at regulatory/portable/alpha=0.5: raw=0.439 -> gate=0.360 (abs 0.079).

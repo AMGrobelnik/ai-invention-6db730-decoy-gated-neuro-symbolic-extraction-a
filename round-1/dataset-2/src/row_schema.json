@@ -1,0 +1,286 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "input",
+    "output",
+    "metadata_fold",
+    "metadata_id",
+    "metadata_split_origin",
+    "metadata_orig_index",
+    "metadata_split_role",
+    "metadata_is_confirmatory",
+    "metadata_is_pilot",
+    "metadata_is_reserve",
+    "metadata_kmeans_cluster",
+    "metadata_cluster_scheme",
+    "metadata_seed",
+    "metadata_sents",
+    "metadata_sent_char_offsets",
+    "metadata_entities",
+    "metadata_gold_triples",
+    "metadata_features",
+    "metadata_gold_caveat",
+    "metadata_title"
+  ],
+  "properties": {
+    "input": {
+      "type": "string",
+      "minLength": 1
+    },
+    "output": {
+      "type": "string",
+      "minLength": 1
+    },
+    "metadata_fold": {
+      "enum": [
+        "cluster_PER",
+        "cluster_ORG",
+        "cluster_LOC",
+        "cluster_MISC"
+      ]
+    },
+    "metadata_id": {
+      "type": "string",
+      "pattern": "^redocred_(train|dev|test)_[0-9]+$"
+    },
+    "metadata_title": {
+      "type": "string"
+    },
+    "metadata_split_origin": {
+      "enum": [
+        "train",
+        "dev",
+        "test"
+      ]
+    },
+    "metadata_orig_index": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "metadata_split_role": {
+      "enum": [
+        "confirmatory",
+        "pilot",
+        "reserve"
+      ]
+    },
+    "metadata_is_confirmatory": {
+      "type": "boolean"
+    },
+    "metadata_is_pilot": {
+      "type": "boolean"
+    },
+    "metadata_is_reserve": {
+      "type": "boolean"
+    },
+    "metadata_kmeans_cluster": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "metadata_cluster_scheme": {
+      "type": "string"
+    },
+    "metadata_seed": {
+      "type": "integer"
+    },
+    "metadata_sents": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "metadata_sent_char_offsets": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "metadata_entities": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "entity_id",
+          "type",
+          "canonical_name",
+          "n_mentions",
+          "mentions"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "entity_id": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "type": {
+            "enum": [
+              "PER",
+              "ORG",
+              "LOC",
+              "TIME",
+              "NUM",
+              "MISC"
+            ]
+          },
+          "canonical_name": {
+            "type": "string"
+          },
+          "n_mentions": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "mentions": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": [
+                "name",
+                "sent_id",
+                "pos",
+                "char_span"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "sent_id": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "pos": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer"
+                  },
+                  "minItems": 2,
+                  "maxItems": 2
+                },
+                "char_span": {
+                  "oneOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "integer"
+                      },
+                      "minItems": 2,
+                      "maxItems": 2
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "metadata_gold_triples": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "head_id",
+          "head_name",
+          "head_type",
+          "relation_pid",
+          "relation_name",
+          "tail_id",
+          "tail_name",
+          "tail_type",
+          "evidence_sent_ids",
+          "evidence_text"
+        ],
+        "properties": {
+          "head_id": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "head_name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "head_type": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "relation_pid": {
+            "type": "string",
+            "pattern": "^P[0-9]+$"
+          },
+          "relation_name": {
+            "type": "string"
+          },
+          "tail_id": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "tail_name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "tail_type": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "evidence_sent_ids": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "evidence_text": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "metadata_features": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "num_words",
+        "num_chars",
+        "num_sents",
+        "num_entities",
+        "num_triples",
+        "num_relation_types_present",
+        "num_entity_types_present",
+        "entity_type_counts",
+        "dominant_entity_type",
+        "relation_pid_counts",
+        "avg_mentions_per_entity",
+        "entity_density",
+        "mention_density",
+        "triple_density",
+        "frac_singleton_entities",
+        "frac_multi_evidence_triples",
+        "max_evidence_sentence_gap"
+      ]
+    },
+    "metadata_gold_caveat": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+11:36:23|INFO   |Loaded 593 docs (pilot=58)
+11:36:23|INFO   |Extraction over 593 docs (n_extract=1)...
+11:36:26|INFO   |  [extract] 96/593 done | cost=$0.0000 | live=0 cached=96 (warm=56) | errs=0
+11:36:29|INFO   |  [extract] 192/593 done | cost=$0.0000 | live=0 cached=192 (warm=152) | errs=0
+11:36:32|INFO   |  [extract] 288/593 done | cost=$0.0000 | live=0 cached=288 (warm=248) | errs=0
+11:36:36|INFO   |  [extract] 384/593 done | cost=$0.0000 | live=0 cached=384 (warm=344) | errs=0
+11:36:39|INFO   |  [extract] 480/593 done | cost=$0.0000 | live=0 cached=480 (warm=440) | errs=0
+11:36:42|INFO   |  [extract] 576/593 done | cost=$0.0000 | live=0 cached=576 (warm=536) | errs=0
+11:36:43|INFO   |  [extract] 593/593 done | cost=$0.0000 | live=0 cached=593 (warm=553) | errs=0
+11:36:43|INFO   |reals=6992 TRUE=2069 FALSE(spont)=4923 UND=0
+11:36:43|INFO   |Generating counterfactual decoys (cf/cf2) + swaps + rungs + entrapment...
+11:36:45|INFO   |  [decoy] 96/593 done | cost=$0.0000 | live=0 cached=686 (warm=607) | errs=0
+11:36:48|INFO   |  [decoy] 192/593 done | cost=$0.0000 | live=0 cached=778 (warm=699) | errs=0
+11:36:52|INFO   |  [decoy] 288/593 done | cost=$0.0000 | live=0 cached=871 (warm=792) | errs=0
+11:36:55|INFO   |  [decoy] 384/593 done | cost=$0.0000 | live=0 cached=967 (warm=888) | errs=0
+11:36:58|INFO   |  [decoy] 480/593 done | cost=$0.0000 | live=0 cached=1055 (warm=976) | errs=0
+11:37:02|INFO   |  [decoy] 576/593 done | cost=$0.0000 | live=0 cached=1147 (warm=1068) | errs=0
+11:37:03|INFO   |  [decoy] 593/593 done | cost=$0.0000 | live=0 cached=1164 (warm=1085) | errs=0
+11:37:03|INFO   |decoys generated; contamination_rate=0.1002
+11:37:03|INFO   |Generating ministral-cf (cfo) decoys on 40 warm (G,S) docs...
+11:37:04|INFO   |  [decoy-cfo] 40/40 done | cost=$0.0000 | live=0 cached=1204 (warm=1125) | errs=0
+11:37:04|INFO   |Self-consistency headline scoring: 27967 items x K=5 ...
+11:38:04|INFO   |  [score-sc] 600/27967 done | cost=$0.0000 | live=0 cached=4204 (warm=2075) | errs=0
+11:39:44|INFO   |  [score-sc] 1200/27967 done | cost=$0.0000 | live=0 cached=7204 (warm=5075) | errs=0
+11:41:21|INFO   |  [score-sc] 1800/27967 done | cost=$0.0000 | live=0 cached=10204 (warm=8075) | errs=0
+11:42:56|INFO   |  [score-sc] 2400/27967 done | cost=$0.0000 | live=0 cached=13204 (warm=11075) | errs=0
+11:44:34|INFO   |  [score-sc] 3000/27967 done | cost=$0.0000 | live=0 cached=16204 (warm=14075) | errs=0
+11:46:22|INFO   |  [score-sc] 3600/27967 done | cost=$0.0000 | live=0 cached=19204 (warm=17075) | errs=0
+11:48:11|INFO   |  [score-sc] 4200/27967 done | cost=$0.0000 | live=0 cached=22204 (warm=20075) | errs=0
+11:50:11|INFO   |  [score-sc] 4800/27967 done | cost=$0.0417 | live=1847 cached=23357 (warm=21228) | errs=0
+11:52:16|INFO   |  [score-sc] 5400/27967 done | cost=$0.1088 | live=4847 cached=23357 (warm=21228) | errs=0
+11:54:28|INFO   |  [score-sc] 6000/27967 done | cost=$0.1768 | live=7847 cached=23357 (warm=21228) | errs=0
+11:57:03|INFO   |  [score-sc] 6600/27967 done | cost=$0.2445 | live=10847 cached=23357 (warm=21228) | errs=0
+11:58:40|INFO   |  [score-sc] 7200/27967 done | cost=$0.2876 | live=12807 cached=24397 (warm=21228) | errs=0
+12:00:04|INFO   |  [score-sc] 7800/27967 done | cost=$0.2889 | live=12867 cached=27337 (warm=23158) | errs=0
+12:01:58|INFO   |  [score-sc] 8400/27967 done | cost=$0.2952 | live=13112 cached=30092 (warm=25913) | errs=0
+12:03:52|INFO   |  [score-sc] 9000/27967 done | cost=$0.3167 | live=13992 cached=32212 (warm=28033) | errs=0
+12:06:02|INFO   |  [score-sc] 9600/27967 done | cost=$0.3702 | live=16332 cached=32872 (warm=28693) | errs=0
+12:08:30|INFO   |  [score-sc] 10200/27967 done | cost=$0.4380 | live=19332 cached=32872 (warm=28693) | errs=0
+12:11:59|INFO   |  [score-sc] 10800/27967 done | cost=$0.5044 | live=22332 cached=32872 (warm=28693) | errs=0

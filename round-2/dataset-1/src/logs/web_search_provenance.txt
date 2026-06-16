@@ -1,0 +1,184 @@
+Search: CUAD contract understanding atticus dataset license CC BY
+Found: 5 results
+
+1. CUAD Dataset - The Atticus Project
+   https://www.atticusprojectai.org/cuad/
+   Contract Understanding Atticus Dataset (CUAD) v1 is a corpus of 13,000+ labels in 510 commercial legal contracts that have been manually labeled under the ......
+
+2. Contract Understanding Atticus Dataset (CUAD) v1 - Zenodo
+   https://zenodo.org/records/4595826
+   Contract Understanding Atticus Dataset (CUAD) v1 is a ... Rights. License. cc-by-4.0 icon Creative Commons Attribution 4.0 International....
+
+3. Contract Understanding Atticus Dataset (CUAD) v1 - Hash.ai
+   https://hash.ai/@atticusproject/cuad
+   CUAD is licensed under the Creative Commons Attribution 4.0 (CC BY 4.0) license and free to the public for commercial and non-commercial use....
+
+4. CUAD: An Expert-Annotated NLP Dataset for Legal Contract Review
+   https://arxiv.org/abs/2103.06268
+   CUAD was created with dozens of legal experts from The Atticus Project and consists of over 13,000 annotations. The task is to highlight salient ......
+
+5. TheAtticusProject/cuad: CUAD (NeurIPS 2021) - GitHub
+   https://github.com/TheAtticusProject/cuad/
+   This repository contains code for the Contract Understanding Atticus Dataset (CUAD), pronounced "kwad", a dataset for legal contract review curated by the ......
+
+Search: ContractNLI dataset download license stanford
+Found: 5 results
+
+1. ContractNLI: A Dataset for Document-level Natural Language ...
+   https://stanfordnlp.github.io/contract-nli/
+   ContractNLI · A Dataset for Document-level Natural Language Inference for Contracts · Dataset specification · Baseline system · License · Download....
+
+2. stanfordnlp/contract-nli: ContractNLI: A Dataset for Document-level ...
+   https://github.com/stanfordnlp/contract-nli
+   A dataset for document-level natural language inference for contracts. Please visit the website at https://stanfordnlp.github.io/contract-nli/....
+
+3. [PDF] ContractNLI: A Dataset for Document-level Natural Language ...
+   https://aclanthology.org/2021.findings-emnlp.164.pdf
+   We investigate interesting linguistic characteris- tics in contracts that make this task challenging even for Span NLI BERT. 2 ContractNLI ......
+
+4. The Stanford Natural Language Inference (SNLI) Corpus
+   https://nlp.stanford.edu/projects/snli/
+   The Stanford Natural Language Inference (SNLI) corpus (version 1.0) is a collection of 570k human-written English sentence pairs manually labeled for balanced ......
+
+5. This is the entire dataset as of May 2024. - Material Contracts Corpus
+   https://mcc.law.stanford.edu/download/contracts/
+   The corpus includes all exhibits filed as “material contracts” with the US Securities and Exchange Commission (SEC) by registrants from 2000 to 2023....
+
+Search: REDFM Babelscape relation extraction dataset license CC BY-SA
+Found: 5 results
+
+1. rebel/README.md at main · Babelscape/rebel - GitHub
+   https://github.com/Babelscape/rebel/blob/main/README.md
+   This is also the repository for the ACL2023 paper REDFM: a Filtered and Multilingual Relation Extraction Dataset. ... CC BY-SA-NC 4.0 license. The text of ......
+
+2. Babelscape/mrebel-large-32 - Hugging Face
+   https://huggingface.co/Babelscape/mrebel-large-32
+   REDFM: a Filtered and Multilingual Relation Extraction Dataset. This ... This model is licensed under the CC BY-SA 4.0 license. The text ......
+
+3. REDFM: a Filtered and Multilingual Relation Extraction Dataset - arXiv
+   https://arxiv.org/html/2306.09802v1
+   In this Section, we present RED FM, our supervised and multilingual dataset for Relation Extraction, and a larger SRED FM, a silver-annotated dataset covering ......
+
+4. RED FM : a Filtered and Multilingual Relation Extraction Dataset
+   https://babelscape.com/research/publication/red-fm-a-filtered-and-multilingual-relation-extraction-dataset
+   Relation Extraction (RE) is a task that identifies relationships between entities in a text, enabling the acquisition of relational facts and bridging the ......
+
+5. REDFM: a Filtered and Multilingual Relation Extraction Dataset
+   https://aclanthology.org/2023.acl-long.237/
+   First, we present SREDFM, an automatically annotated dataset covering 18 languages, 400 relation types, 13 entity types, totaling more than 40 million triplet ......
+
+Search: WebRED google research dataset relation extraction license
+Found: 5 results
+
+1. google-research-datasets/WebRED ...
+   https://github.com/google-research-datasets/WebRED
+   WebRED - Web Relation Extraction Dataset. A dataset for extracting ... This data is licensed by Google LLC under a Creative Commons Attribution ......
+
+2. BioREx: Improving Biomedical Relation Extraction by ... - PMC
+   https://pmc.ncbi.nlm.nih.gov/articles/PMC10370213/
+   by PT Lai · 2023 · Cited by 44 — Biomedical relation extraction (RE) is the task of automatically identifying and characterizing relations between biomedical concepts from free text....
+
+3. 50000 Lessons on How to Read: a Relation Extraction ...
+   https://research.google/blog/50000-lessons-on-how-to-read-a-relation-extraction-corpus/
+   This dataset is licensed by Google Inc. under the Creative Commons Attribution-Sharealike 3.0 license. Thanks to Shaohua Sun, Ni Lao, and Rahul ......
+
+4. The TAC Relation Extraction Dataset (TACRED)
+   https://toolbox.google.com/datasetsearch/search?query=Relation%20Extraction%20-site%3Akaggle.com
+   TACRED is a large-scale relation extraction dataset with 106,264 examples. License MIT Licensehttps://opensource.org/licenses/MIT License information was ......
+
+5. Relation Extraction in Underexplored Biomedical Domains
+   https://direct.mit.edu/coli/article/50/3/953/121178/Relation-Extraction-in-Underexplored-Biomedical
+   by MG Delmas · 2024 · Cited by 13 — The proposed sampling method is used to build training and evaluation datasets by maximizing the diversity of entities in the extracted samples....
+
+Search: Wikinews creative commons license CC BY 2.5 reuse
+Found: 5 results
+
+1. Requests for comment/Update standard license for Wikinews
+   https://meta.wikimedia.org/wiki/Requests_for_comment/Update_standard_license_for_Wikinews
+   Creative Commons is forward compatible, so it is possible to copy text licensed 2.5 to a text licensed 4.0 but not the other way around. So any ......
+
+2. Creative Commons license - Wikipedia
+   https://en.wikipedia.org/wiki/Creative_Commons_license
+   A CC license is used when an author wants to give other people the right to share, use, and build upon a work that the author has created. CC provides an author ......
+
+3. Deed - Attribution-ShareAlike 3.0 Unported - Creative Commons
+   https://creativecommons.org/licenses/by-sa/3.0/deed.en
+   ShareAlike — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original. No additional ......
+
+4. Do I have to name all editors when reusing text from Wikipedia and ...
+   https://law.stackexchange.com/questions/91403/do-i-have-to-name-all-editors-when-reusing-text-from-wikipedia-and-se
+   When you submit text to which you hold the copyright, you agree to license it under: Creative Commons Attribution-ShareAlike 3.0 Unported ......
+
+5. Wikinews switches to Creative Commons license
+   https://en.wikinews.org/wiki/Wikinews_switches_to_Creative_Commons_license
+   The Wikimedia Board of Trustees has decided to change the licensing of Wikinews from either public domain or other licenses which some language versions had ......
+
+Search: GDPR regulation full text license EUR-Lex reuse public
+Found: 5 results
+
+1. Regulation - 2016/679 - EN - gdpr - EUR-Lex - European Union
+   https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng
+   Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing ......
+
+2. [PDF] REGULATION (EU) 2016/ 679 OF THE EUROPEAN PARLIAMENT ...
+   https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32016R0679
+   The protection of natural persons in relation to the processing of personal data is a fundamental right. Article 8(1) of the Charter of ......
+
+3. General Data Protection Regulation (GDPR) – Legal Text
+   https://gdpr-info.eu/
+   Here you can find the official PDF of the Regulation (EU) 2016/679 (General Data Protection Regulation) in the current version of the OJ L 119, 04.05.2016...
+
+4. General Data Protection Regulation (EU) 2016/679
+   https://www.legislation.gov.uk/eur/2016/679/contents
+   ... EU on the reuse of documents from the EU institutions. For more information see the EUR-Lex public statement on re-use. © Crown and database right....
+
+5. Guidance on upcoming new data protection rules across the EU
+   https://eur-lex.europa.eu/content/news/guidance-for-general-data-protection-regulation-application.html
+   The European Commission has published guidance to facilitate the smooth application of the General Data Protection Regulation (GDPR), the new EU-wide data ......
+
+Search: eCFR electronic code federal regulations public domain bulk data
+Found: 5 results
+
+1. eCFR :: Home
+   https://www.ecfr.gov/
+   The Electronic Code of Federal Regulations (eCFR) is a continuously updated online version of the CFR. It is not an official legal edition of the CFR....
+
+2. bulk-data/ECFR-XML-User-Guide.md at main - GitHub
+   https://github.com/usgpo/bulk-data/blob/master/ECFR-XML-User-Guide.md
+   The purpose of this document is to provide an overview of e-CFR XML files and associated schema. The FDsys Bulk Data repository at http://www.gpo.gov/fdsys/ ......
+
+3. About the Electronic Code of Federal Regulations | National Archives
+   https://www.archives.gov/federal-register/cfr/about-ecfr
+   Bulk data downloads of e-CFR XML files are available to the general public via Data.gov and Govinfo. Information on the legal status, ......
+
+4. About Code of Federal Regulations - Research Guides
+   https://researchguides.library.syr.edu/CFR
+   Bulk data downloads of Code of Federal Regulations XML files are available to the general public via Data.gov and GPO's Bulk Data Repository....
+
+5. [XML] https://www.govinfo.gov/bulkdata/ECFR
+   https://www.govinfo.gov/bulkdata/ECFR
+   https://www.govinfo.gov/bulkdata/ECFR >Electronic Code of Federal Regulations</collectionCode><breadcrumbs><crumb><dispalyLabel>Bulk Data</dispalyLabel><url>/ ......
+
+Search: Wikinews API get article plain text extract MediaWiki
+Found: 5 results
+
+1. API:Get the contents of a page - MediaWiki
+   https://www.mediawiki.org/wiki/API:Get_the_contents_of_a_page
+   The Revisions API can be used to retrieve the content of a page as Wikitext. This can be done by specifying the title of the page in the titles parameter....
+
+2. Get Text Content from mediawiki page via API - Stack Overflow
+   https://stackoverflow.com/questions/1625162/get-text-content-from-mediawiki-page-via-api
+   The Mediawiki TextExtracts API ( mediawiki.org/wiki/... ) gives you just the text contents of an article. (It keeps article headings, but that's relatively easy ......
+
+3. Is there a way to extract plain text, summary and links from article?
+   https://www.mediawiki.org/wiki/Topic:Tbmn1b0hc71402pu
+   Hello, I am building a tool that communicates with the mediawiki API (from wikipedia) and I basically need three pieces of information from the ......
+
+4. get the text of Wikipedia articles from the API? : r/mediawiki - Reddit
+   https://www.reddit.com/r/mediawiki/comments/mty5pd/get_the_text_of_wikipedia_articles_from_the_api/
+   How do I get the text of Wikipedia articles from the API? I know the Revisions API (as wikitext), Parse API (as HTML or wikitext), or API of ......
+
+5. A small Python Code to get Wikipedia page content in plan text
+   https://gist.github.com/scionoftech/0f35d5e231be2cf46823d774023268b6
+   Get a plain text representation of either the entire page or the page "extract" straight from the API with the extracts prop. # Note that this approach only ......
+

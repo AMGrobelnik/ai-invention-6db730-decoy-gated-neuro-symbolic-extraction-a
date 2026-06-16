@@ -1,0 +1,742 @@
+{
+  "doc_id": "reg_gdpr_07",
+  "genre": "regulatory",
+  "kind": "multi_hop",
+  "n_proofs": 10,
+  "graphs": [
+    {
+      "nodes": [
+        {
+          "id": 0,
+          "label": "titled_obligation(Art. 7 GDPR, Conditions for consent, present consent request in a clearly distinguishable manner)",
+          "kind": "derived",
+          "rule": "titled_obligation"
+        },
+        {
+          "id": 1,
+          "label": "has_title(Art. 7 GDPR, Conditions for consent)",
+          "kind": "leaf",
+          "cert": {
+            "provenance": "Art. 7 GDPR Conditions for consent",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 0.68,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        },
+        {
+          "id": 2,
+          "label": "obligates(Art. 7 GDPR, present consent request in a clearly distinguishable manner)",
+          "kind": "leaf",
+          "cert": {
+            "provenance": "the request for consent shall be presented in a manner which is clearly distinguishable from the other matters",
+            "provenance_char_span": null,
+            "hallucination_verdict": "HALLUCINATED",
+            "decoy_certificate": {
+              "W_i": -0.3333,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "src": 0,
+          "dst": 1,
+          "rule": "titled_obligation"
+        },
+        {
+          "src": 0,
+          "dst": 2,
+          "rule": "titled_obligation"
+        }
+      ]
+    },
+    {
+      "nodes": [
+        {
+          "id": 0,
+          "label": "titled_obligation(Art. 7 GDPR, Conditions for consent, use clear and plain language in consent declaration)",
+          "kind": "derived",
+          "rule": "titled_obligation"
+        },
+        {
+          "id": 1,
+          "label": "has_title(Art. 7 GDPR, Conditions for consent)",
+          "kind": "leaf",
+          "cert": {
+            "provenance": "Art. 7 GDPR Conditions for consent",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 0.68,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        },
+        {
+          "id": 2,
+          "label": "obligates(Art. 7 GDPR, use clear and plain language in consent declaration)",
+          "kind": "leaf",
+          "cert": {
+            "provenance": "using clear and plain language.",
+            "provenance_char_span": null,
+            "hallucination_verdict": "HALLUCINATED",
+            "decoy_certificate": {
+              "W_i": -0.48,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "src": 0,
+          "dst": 1,
+          "rule": "titled_obligation"
+        },
+        {
+          "src": 0,
+          "dst": 2,
+          "rule": "titled_obligation"
+        }
+      ]
+    },
+    {
+      "nodes": [
+        {
+          "id": 0,
+          "label": "titled_obligation(Art. 7 GDPR, assess whether consent is freely given, present consent request in a clearly distinguishable manner)",
+          "kind": "derived",
+          "rule": "titled_obligation"
+        },
+        {
+          "id": 1,
+          "label": "has_title(Art. 7 GDPR, assess whether consent is freely given)",
+          "kind": "leaf",
+          "cert": {
+            "provenance": "When assessing whether consent is freely given, utmost account shall be taken of whether ... the performance of a contract, including the provision of a service, is conditional on consent to the processing of personal data that is not necessary for the performance of that contract.",
+            "provenance_char_span": null,
+            "hallucination_verdict": "HALLUCINATED",
+            "decoy_certificate": {
+              "W_i": 0.36,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        },
+        {
+          "id": 2,
+          "label": "obligates(Art. 7 GDPR, present consent request in a clearly distinguishable manner)",
+          "kind": "leaf",
+          "cert": {
+            "provenance": "the request for consent shall be presented in a manner which is clearly distinguishable from the other matters",
+            "provenance_char_span": null,
+            "hallucination_verdict": "HALLUCINATED",
+            "decoy_certificate": {
+              "W_i": -0.3333,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "src": 0,
+          "dst": 1,
+          "rule": "titled_obligation"
+        },
+        {
+          "src": 0,
+          "dst": 2,
+          "rule": "titled_obligation"
+        }
+      ]
+    },
+    {
+      "nodes": [
+        {
+          "id": 0,
+          "label": "titled_obligation(Art. 7 GDPR, assess whether consent is freely given, use clear and plain language in consent declaration)",
+          "kind": "derived",
+          "rule": "titled_obligation"
+        },
+        {
+          "id": 1,
+          "label": "has_title(Art. 7 GDPR, assess whether consent is freely given)",
+          "kind": "leaf",
+          "cert": {
+            "provenance": "When assessing whether consent is freely given, utmost account shall be taken of whether ... the performance of a contract, including the provision of a service, is conditional on consent to the processing of personal data that is not necessary for the performance of that contract.",
+            "provenance_char_span": null,
+            "hallucination_verdict": "HALLUCINATED",
+            "decoy_certificate": {
+              "W_i": 0.36,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        },
+        {
+          "id": 2,
+          "label": "obligates(Art. 7 GDPR, use clear and plain language in consent declaration)",
+          "kind": "leaf",
+          "cert": {
+            "provenance": "using clear and plain language.",
+            "provenance_char_span": null,
+            "hallucination_verdict": "HALLUCINATED",
+            "decoy_certificate": {
+              "W_i": -0.48,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "src": 0,
+          "dst": 1,
+          "rule": "titled_obligation"
+        },
+        {
+          "src": 0,
+          "dst": 2,
+          "rule": "titled_obligation"
+        }
+      ]
+    },
+    {
+      "nodes": [
+        {
+          "id": 0,
+          "label": "titled_obligation(Art. 7 GDPR, infringement of this Regulation shall not be binding, present consent request in a clearly distinguishable manner)",
+          "kind": "derived",
+          "rule": "titled_obligation"
+        },
+        {
+          "id": 1,
+          "label": "has_title(Art. 7 GDPR, infringement of this Regulation shall not be binding)",
+          "kind": "leaf",
+          "cert": {
+            "provenance": "Any part of such a declaration which constitutes an infringement of this Regulation shall not be binding.",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": -0.4933,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        },
+        {
+          "id": 2,
+          "label": "obligates(Art. 7 GDPR, present consent request in a clearly distinguishable manner)",
+          "kind": "leaf",
+          "cert": {
+            "provenance": "the request for consent shall be presented in a manner which is clearly distinguishable from the other matters",
+            "provenance_char_span": null,
+            "hallucination_verdict": "HALLUCINATED",
+            "decoy_certificate": {
+              "W_i": -0.3333,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "src": 0,
+          "dst": 1,
+          "rule": "titled_obligation"
+        },
+        {
+          "src": 0,
+          "dst": 2,
+          "rule": "titled_obligation"
+        }
+      ]
+    },
+    {
+      "nodes": [
+        {
+          "id": 0,
+          "label": "titled_obligation(Art. 7 GDPR, infringement of this Regulation shall not be binding, use clear and plain language in consent declaration)",
+          "kind": "derived",
+          "rule": "titled_obligation"
+        },
+        {
+          "id": 1,
+          "label": "has_title(Art. 7 GDPR, infringement of this Regulation shall not be binding)",
+          "kind": "leaf",
+          "cert": {
+            "provenance": "Any part of such a declaration which constitutes an infringement of this Regulation shall not be binding.",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": -0.4933,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        },
+        {
+          "id": 2,
+          "label": "obligates(Art. 7 GDPR, use clear and plain language in consent declaration)",
+          "kind": "leaf",
+          "cert": {
+            "provenance": "using clear and plain language.",
+            "provenance_char_span": null,
+            "hallucination_verdict": "HALLUCINATED",
+            "decoy_certificate": {
+              "W_i": -0.48,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "src": 0,
+          "dst": 1,
+          "rule": "titled_obligation"
+        },
+        {
+          "src": 0,
+          "dst": 2,
+          "rule": "titled_obligation"
+        }
+      ]
+    }
+  ],
+  "proofs": [
+    {
+      "type": "derived",
+      "atom": [
+        "titled_obligation",
+        [
+          "Art. 7 GDPR",
+          "Conditions for consent",
+          "present consent request in a clearly distinguishable manner"
+        ]
+      ],
+      "rule": "titled_obligation",
+      "children": [
+        {
+          "type": "leaf",
+          "atom": [
+            "has_title",
+            [
+              "Art. 7 GDPR",
+              "Conditions for consent"
+            ]
+          ],
+          "cert": {
+            "provenance": "Art. 7 GDPR Conditions for consent",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 0.68,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        },
+        {
+          "type": "leaf",
+          "atom": [
+            "obligates",
+            [
+              "Art. 7 GDPR",
+              "present consent request in a clearly distinguishable manner"
+            ]
+          ],
+          "cert": {
+            "provenance": "the request for consent shall be presented in a manner which is clearly distinguishable from the other matters",
+            "provenance_char_span": null,
+            "hallucination_verdict": "HALLUCINATED",
+            "decoy_certificate": {
+              "W_i": -0.3333,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "derived",
+      "atom": [
+        "titled_obligation",
+        [
+          "Art. 7 GDPR",
+          "Conditions for consent",
+          "use clear and plain language in consent declaration"
+        ]
+      ],
+      "rule": "titled_obligation",
+      "children": [
+        {
+          "type": "leaf",
+          "atom": [
+            "has_title",
+            [
+              "Art. 7 GDPR",
+              "Conditions for consent"
+            ]
+          ],
+          "cert": {
+            "provenance": "Art. 7 GDPR Conditions for consent",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": 0.68,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        },
+        {
+          "type": "leaf",
+          "atom": [
+            "obligates",
+            [
+              "Art. 7 GDPR",
+              "use clear and plain language in consent declaration"
+            ]
+          ],
+          "cert": {
+            "provenance": "using clear and plain language.",
+            "provenance_char_span": null,
+            "hallucination_verdict": "HALLUCINATED",
+            "decoy_certificate": {
+              "W_i": -0.48,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "derived",
+      "atom": [
+        "titled_obligation",
+        [
+          "Art. 7 GDPR",
+          "assess whether consent is freely given",
+          "present consent request in a clearly distinguishable manner"
+        ]
+      ],
+      "rule": "titled_obligation",
+      "children": [
+        {
+          "type": "leaf",
+          "atom": [
+            "has_title",
+            [
+              "Art. 7 GDPR",
+              "assess whether consent is freely given"
+            ]
+          ],
+          "cert": {
+            "provenance": "When assessing whether consent is freely given, utmost account shall be taken of whether ... the performance of a contract, including the provision of a service, is conditional on consent to the processing of personal data that is not necessary for the performance of that contract.",
+            "provenance_char_span": null,
+            "hallucination_verdict": "HALLUCINATED",
+            "decoy_certificate": {
+              "W_i": 0.36,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        },
+        {
+          "type": "leaf",
+          "atom": [
+            "obligates",
+            [
+              "Art. 7 GDPR",
+              "present consent request in a clearly distinguishable manner"
+            ]
+          ],
+          "cert": {
+            "provenance": "the request for consent shall be presented in a manner which is clearly distinguishable from the other matters",
+            "provenance_char_span": null,
+            "hallucination_verdict": "HALLUCINATED",
+            "decoy_certificate": {
+              "W_i": -0.3333,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "derived",
+      "atom": [
+        "titled_obligation",
+        [
+          "Art. 7 GDPR",
+          "assess whether consent is freely given",
+          "use clear and plain language in consent declaration"
+        ]
+      ],
+      "rule": "titled_obligation",
+      "children": [
+        {
+          "type": "leaf",
+          "atom": [
+            "has_title",
+            [
+              "Art. 7 GDPR",
+              "assess whether consent is freely given"
+            ]
+          ],
+          "cert": {
+            "provenance": "When assessing whether consent is freely given, utmost account shall be taken of whether ... the performance of a contract, including the provision of a service, is conditional on consent to the processing of personal data that is not necessary for the performance of that contract.",
+            "provenance_char_span": null,
+            "hallucination_verdict": "HALLUCINATED",
+            "decoy_certificate": {
+              "W_i": 0.36,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        },
+        {
+          "type": "leaf",
+          "atom": [
+            "obligates",
+            [
+              "Art. 7 GDPR",
+              "use clear and plain language in consent declaration"
+            ]
+          ],
+          "cert": {
+            "provenance": "using clear and plain language.",
+            "provenance_char_span": null,
+            "hallucination_verdict": "HALLUCINATED",
+            "decoy_certificate": {
+              "W_i": -0.48,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "derived",
+      "atom": [
+        "titled_obligation",
+        [
+          "Art. 7 GDPR",
+          "infringement of this Regulation shall not be binding",
+          "present consent request in a clearly distinguishable manner"
+        ]
+      ],
+      "rule": "titled_obligation",
+      "children": [
+        {
+          "type": "leaf",
+          "atom": [
+            "has_title",
+            [
+              "Art. 7 GDPR",
+              "infringement of this Regulation shall not be binding"
+            ]
+          ],
+          "cert": {
+            "provenance": "Any part of such a declaration which constitutes an infringement of this Regulation shall not be binding.",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": -0.4933,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        },
+        {
+          "type": "leaf",
+          "atom": [
+            "obligates",
+            [
+              "Art. 7 GDPR",
+              "present consent request in a clearly distinguishable manner"
+            ]
+          ],
+          "cert": {
+            "provenance": "the request for consent shall be presented in a manner which is clearly distinguishable from the other matters",
+            "provenance_char_span": null,
+            "hallucination_verdict": "HALLUCINATED",
+            "decoy_certificate": {
+              "W_i": -0.3333,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "derived",
+      "atom": [
+        "titled_obligation",
+        [
+          "Art. 7 GDPR",
+          "infringement of this Regulation shall not be binding",
+          "use clear and plain language in consent declaration"
+        ]
+      ],
+      "rule": "titled_obligation",
+      "children": [
+        {
+          "type": "leaf",
+          "atom": [
+            "has_title",
+            [
+              "Art. 7 GDPR",
+              "infringement of this Regulation shall not be binding"
+            ]
+          ],
+          "cert": {
+            "provenance": "Any part of such a declaration which constitutes an infringement of this Regulation shall not be binding.",
+            "provenance_char_span": null,
+            "hallucination_verdict": "ENTAILED",
+            "decoy_certificate": {
+              "W_i": -0.4933,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        },
+        {
+          "type": "leaf",
+          "atom": [
+            "obligates",
+            [
+              "Art. 7 GDPR",
+              "use clear and plain language in consent declaration"
+            ]
+          ],
+          "cert": {
+            "provenance": "using clear and plain language.",
+            "provenance_char_span": null,
+            "hallucination_verdict": "HALLUCINATED",
+            "decoy_certificate": {
+              "W_i": -0.48,
+              "T": 0.338462,
+              "alpha": 0.5
+            },
+            "entrapment_certificate": {
+              "FDP_hat": 0.93617,
+              "r": 1
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
